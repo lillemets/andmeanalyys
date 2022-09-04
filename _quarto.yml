@@ -1,0 +1,60 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Oijee! Andmeteadus"
+  author-meta: "Jüri Lillemets"
+  date-meta: today
+  date-format: iso
+  logo: logo.png
+  favicon: logo.png
+  chapters: 
+  - index.qmd
+  - part: "Põhimõisted"
+    chapters: 
+    - andmeteadus.qmd
+    - mlaibd.qmd
+    - analüüs.qmd
+    - tarkvara.qmd
+  - part: "R keel"
+#    chapters: 
+#    - kasutus.qmd
+#    - korrastus.qmd
+#    - joonised.qmd
+#    - kraapimine.qmd
+  - part: "Statistika"
+#      chapters:
+#      - tunnused.qmd
+#      - valim.qmd
+#      - parameetrilisus.qmd
+#      - põhjuslikkus.qmd
+#      - tinglikkus.qmd
+#      - sobitamine.qmd
+#      - standardiseerimine.qmd
+#      - veatabel.qmd
+  - part: "Rakendused"
+#      chapters:
+#      - usaldusvahemikud.qmd
+#      - seosed.qmd
+#      - linreg.qmd
+#      - logreg.qmd
+#      - klassifitseerimine.qmd
+#      - klasterdamine.qmd
+#      - mõõtmevähendus.qmd
+#      - tekstikaeve.qmd
+#      - maakaardid.qmd
+#      - masinõpe.qmd
+  - viited.qmd
+#  appendices:
+#  - põhimõtted.qmd
+#  - sõnastik.qmd
+
+bibliography: ../../note/assets/library.json
+csl: ../../note/assets/apa.csl
+
+format:
+  html:
+    theme: cosmo
+    css: style.css
+reference-location: margin

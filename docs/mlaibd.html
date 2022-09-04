@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 2&nbsp; Masinõpe ja suurandmed</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./analüüs.html" rel="next">
+<link href="./andmeteadus.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">R keel</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Statistika</span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Rakendused</span>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Sisukord</h2>
+   
+  <ul>
+  <li><a href="#masinõpe-ei-ole-veel-päris-tehisintellekt" id="toc-masinõpe-ei-ole-veel-päris-tehisintellekt" class="nav-link active" data-scroll-target="#masinõpe-ei-ole-veel-päris-tehisintellekt"> <span class="header-section-number">2.1</span> Masinõpe ei ole veel päris tehisintellekt</a></li>
+  <li><a href="#andmeteadus-võimaldab-rakendada-suurandmeid" id="toc-andmeteadus-võimaldab-rakendada-suurandmeid" class="nav-link" data-scroll-target="#andmeteadus-võimaldab-rakendada-suurandmeid"> <span class="header-section-number">2.2</span> Andmeteadus võimaldab rakendada suurandmeid</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-mlaibd" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Andmeteaduse levikuga on kaasas käinud veel mitmed sellega lähedalt seotud mõisted, sh masinõpe, tehisintellekt ja suurandmed.</p>
+<section id="masinõpe-ei-ole-veel-päris-tehisintellekt" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="masinõpe-ei-ole-veel-päris-tehisintellekt"><span class="header-section-number">2.1</span> Masinõpe ei ole veel päris tehisintellekt</h2>
+<p>Masinõpe on andmeteadustes kasutatav üldine tehnika, mida rakendatakse konkreetsetel algoritmidel või mudelitel selleks, et saavutada nende võimalikult suur täpsus prognoosimisel. Selleks üritatakse masinõppe käigus leida sobivaimad parameetrid. Nii põhineb masinõpe algoritmi või mudeli arendamisel: masinõppe käigus võetakse aluseks olemasolevad sisendite ja väljundite paarid, et arendada algoritmide võimekust leida sobiv väljund sellistele juhtudele, kus teada on ainult sisendi väärtus. Mudelite ja algoritmide arendamisel võrreldakse nende erinevaid võimalikke parameetreid erinevate andmike kontekstis, seega seisneb masinõppe tööpõhimõte erinevate parameetrite ja andmete kombinatsioonide võrdlemises.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Masinõpe põhineb mudeli või algoritmi rakendamisel erinevate parameetritega ja erinevatel andmetel selleks, et leida selline mudel või algoritm, mis võimalikult täpselt prognoosiks.</p>
+</div>
+</div>
+<p>Sageli arvatakse, et masinõpe on üks tehisintellekti (<em>artificial intelligence</em>) rakendusi, sest see on võimeline lahendama ülesandeid ilma inimese sekkumiseta <span class="citation" data-cites="pinheiro21introduction">(<a href="viited.html#ref-pinheiro21introduction" role="doc-biblioref">Pinheiro et al., 2021</a>)</span>. Selline arusaam on mõneti mõistetav, kui mõtestame tehisintellekti nii, et see hõlmab arvutusi selliste ülesannete lahendamiseks, millega tavapäraselt saavad hakkama ainult inimesed <span class="citation" data-cites="spiegelhalter19art">(<a href="viited.html#ref-spiegelhalter19art" role="doc-biblioref">Spiegelhalter, 2019</a>)</span>. Õppimine masinõppes viitab justkui selle oskusele leida andmetest iseseisvalt mustreid ja nende alusel otsuseid (prognoose) teha. Samas on masinõpe piiratud mustrite leidmisega ainult olemasolevatest andmetest ega suuda arvesse võtta väljaspool neid olevaid tegureid ega “mängureegleid” <span class="citation" data-cites="taddy19business">(<a href="viited.html#ref-taddy19business" role="doc-biblioref">Taddy, 2019</a>)</span>, milleks on vajalik abstraktne teoreetiline mõtlemine. Ehk masinõppe abil saab lahendada ainult üksikuid väga konkreetseid ülesandeid, aga see ei asenda veel inimesi.</p>
+<!-- 
+[[Machine learning (ML)]]
+[[Artificial intelligence (AI)]]
+[[Machine learning is not artificial intelligence]]
+-->
+</section>
+<section id="andmeteadus-võimaldab-rakendada-suurandmeid" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="andmeteadus-võimaldab-rakendada-suurandmeid"><span class="header-section-number">2.2</span> Andmeteadus võimaldab rakendada suurandmeid</h2>
+<p>Suurandmed on sellised andmed, mis on suured. Tegelikult on suurandmetel veel palju eripärasid, mis tulenevalt eelkõige nende automatiseeritud loomisest. Tavapäraselt selgitatakse suurandmete olemust nn kolme V alusel:</p>
+<ul>
+<li>andmete suur maht (<em>volume</em>),</li>
+<li>andmete loomise suur kiirus (<em>velocity</em>) ja</li>
+<li>andmete suur mitmekesisus (<em>variety</em>).</li>
+</ul>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suurandmeid iseloomustab nende suur maht, loomise kiirus ja mitmekesisus.</p>
+</div>
+</div>
+<p>Lisaks nendele kolmele on kirjanduses suurandmetele veel mitmeid omadusi omistatud <span class="citation" data-cites="kitchin16what">(<a href="viited.html#ref-kitchin16what" role="doc-biblioref">Kitchin &amp; McArdle, 2016</a>)</span>:</p>
+<ul>
+<li>kõikehõlmavus ja esinduslikkus,</li>
+<li>peenekoelisus ja eripärasus,</li>
+<li>ühendatavus teiste andmikega,</li>
+<li>võimalus kiiresti andmevälju lisada,</li>
+<li>korrastamatus ja müra,</li>
+<li>suur (rahaline) väärtus,</li>
+<li>mitmetähenduslikkus.</li>
+</ul>
+<p>Siiski on leitud, et isegi kolme V-d esindavad omadused ei iseloomusta sugugi kõiki suurandmeid ja üldiselt saab suurandmeid kirjeldada pigem erinevate kombinatsioonide kaudu eelpool nimetatud omadustest <span class="citation" data-cites="kitchin16what">(<a href="viited.html#ref-kitchin16what" role="doc-biblioref">Kitchin &amp; McArdle, 2016</a>)</span>. Need omadused võimaldavad aga eristada suurandmeid nö tavapärastest korrastatud tabelitena esitatud andmetest.</p>
+<p>Suurandmed ilmusid seoses teabe digitaliseerimisega, mis võimaldas andmeid lihtsamini koguda ja odavamalt hoiustada, ning suurandmete analüüsimise võimaluste tekkimisega, mille aluseks oli arvutite riistvaralise võimekuse ja vastavate tarkvaraliste võimaluste areng. Need arengud võimaldasid samal ajal ka andmeteaduste kui eriala ilmumist, mida toetas lisaks ka ühisosa leidmine teadustöös arvutiteaduse, statistika ning sotsiaalteadustes vahel <span class="citation" data-cites="taddy19business">(<a href="viited.html#ref-taddy19business" role="doc-biblioref">Taddy, 2019</a>)</span>. Ühest küljest tekitas suurandmete olemasolu vajaduse andmeteaduse meetodite järgi, teisalt pakkusid suurandmed võimaluse rakendada meetodeid, mis klassikalise statistika alla ei kuulunud.</p>
+<p>Klassikalised statistilised meetodid ei ole enamasti sobilikud suurandmete analüüsimiseks. Kuna suur osa statistikast seisneb üldistuste tegemises, siis vastavad meetodid ei ole lihtsalt asjakohased, kui andmed esindavad tervet kogumit ja eesmärk on prognoosimine. Sealjuures ilmnevad ka tehnilised puudujäägid. Statistikas laialt levinud statistiline hüpoteeside testimine on tundlik suurte valimite suhtes ja viitab sellistel juhtudel alati statistiliselt olulisele erinevusele. Samuti on hõlmavad paljud meetodid vabadusastmete arvu, mida ei saa kasutada, kui tunnuseid on rohkem kui vaatlusi. Andmeteaduses levinud meetoditel selliseid piiranguid enamasti ei ole.</p>
+<!-- 
+[[Big data]]
+[[Growth of data science and big data]]
+-->
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2" role="doc-bibliography" style="display: none">
+<div id="ref-kitchin16what" class="csl-entry" role="doc-biblioentry">
+Kitchin, R., &amp; McArdle, G. (2016). What makes Big Data, Big Data? Exploring the ontological characteristics of 26 datasets. <em>Big Data &amp; Society</em>, <em>3</em>(1), 205395171663113. <a href="https://doi.org/10.1177/2053951716631130">https://doi.org/10.1177/2053951716631130</a>
+</div>
+<div id="ref-pinheiro21introduction" class="csl-entry" role="doc-biblioentry">
+Pinheiro, C., Patetta, M., &amp; Safari, an O. M. C. (2021). <em>Introduction to Statistical and Machine Learning Methods for Data Science</em>. SAS Institute Inc.
+</div>
+<div id="ref-spiegelhalter19art" class="csl-entry" role="doc-biblioentry">
+Spiegelhalter, D. J. (2019). <em>The art of statistics: learning from data</em>. Pelican Books.
+</div>
+<div id="ref-taddy19business" class="csl-entry" role="doc-biblioentry">
+Taddy, M. (2019). <em>Business data science: combining machine learning and economics to optimize, automate, and accelerate business decisions</em> (First edition). McGraw-Hill Education.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./andmeteadus.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./analüüs.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analüüs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

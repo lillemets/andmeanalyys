@@ -1,0 +1,17 @@
+# Tunnuste liigid {#sec-tunnused}
+
+## Mõõtmise tasandid
+
+
+
+<!--
+Levels of measurement
+-->
+
+## Tunnuste liigid
+
+
+
+<!--
+Types of variables
+-->

@@ -1,0 +1,25 @@
+# Põhikasutus {#sec-kasutus}
+
+## Sisestamine
+
+read.csv()
+read.csv2()
+
+<!--
+Tidy data
+Data structures
+-->
+
+## Objektid ja funktsioonid
+
+## Ridade valimine
+
+> < >= <= == !=
+
+## Veergude valimine
+
+> < >= <= == !=
+
+## Korratav analüüs
+
+Skriptid ja Quarto

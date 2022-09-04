@@ -1,0 +1,57 @@
+# Korrastus {#sec-korrastus}
+
+Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi protsessi kõige aeganõudvam osa. 
+
+## Tunnuse tüüp
+
+as.numeric()
+as.character()
+
+## Vaatluste sõelumine
+
+dplyr::filter
+
+## Puuduvad väärtused
+
+is.na(), na.rm = T
+
+<!--
+Data preparation
+-->
+
+## Väärtuste asendamine
+
+<!--
+Data preparation
+-->
+
+## Väärtuste muutmine
+
+cut
+
+
+<!--
+Data preparation
+-->
+
+## Lai-pikk vormindamine
+
+tidyr::pivot_wider(), tidyr: :pivot_longer()
+
+<!--
+Wide and long data
+-->
+
+## Agregeerimine
+
+aggregate()
+
+<!--
+Aggregation
+-->
+
+## Ühendamine
+
+
+merge()
+dplyr::left_join()

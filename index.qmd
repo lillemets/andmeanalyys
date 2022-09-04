@@ -1,0 +1,7 @@
+# Saateks {.unnumbered}
+
+Sellel lehel on esitatud õpik, mida võib käsitleda sissejuhatusena kaasaegsesse kvantitatiivsesse andmeanalüüsi. Nii ei ole siin esitatud kuigi palju traditsioonilist statistikat ega muude kui arvandmete analüüsimist. Andmeteadusele kohaselt on enamuse käsitletavate meetodite eesmärk prognoosimine, mitte selgitamine. Rõhuasetus on meetodite praktilisel rakendamisel, mitte nende teoreetilise tausta selgitamisel.
+
+Õpik on abivahend kursuse Sissejuhatus andmeteadusesse ja -analüüsi jaoks Eesti Maaülikoolis. 
+
+*Logol on kujutatud andmeanalüüs [DALL-E masinõppe mudeli](https://www.craiyon.com) nägemuses.*

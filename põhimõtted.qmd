@@ -1,0 +1,7 @@
+# Andmeanalüüsi õpetamise põhimõtted {#sec-põhimõtted}
+
+Käesoleva õpiku ja vastava kursuse kavandamisel on võetud arvesse mitmed teaduskirjanduses esitatud soovitusi andmeanalüüsi õpetamise kohta. Et õppijad paremini mõistaksid, milline osa andmeteadusest ja statistikast on siin kõrvale jäetud ja miks midagi just sellisel viisil käsitletakse, siis on need põhimõtted alljärgnevalt esitatud.
+
+<!--
+Teaching data analysis
+-->

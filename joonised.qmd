@@ -1,0 +1,12 @@
+# Joonised {#sec-joonised}
+
+plot()
+hist()
+boxplot()
+ggplot2::ggplot()
+
+<!--
+Statistical plots
+Visualization
+Prefer simplicity to sophistication
+-->

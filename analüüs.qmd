@@ -1,0 +1,58 @@
+# Analüüs {#sec-analüüs}
+
+## Analüüsi käik
+
+Andmeanalüüsi teel soovitud teadmiseni jõudmiseks on vajalik sooritada teatud tegevused teatud järjekorras. Kuigi erinevate autorite poolt esitatud andmeanalüüsi sammud mõnevõrra erinevad [@peng16art; @spiegelhalter19art; @pinheiro21introduction], siis saab need kokku võtta järgnevalt: 
+
+1. püstita uurimisküsimus, 
+2. kavanda selle küsimuse lahendamine, 
+3. kogu vajalikud andmed, 
+4. loo arusaam andmetes sisalduvast, 
+5. tekita seoseid kirjeldav mudel, 
+6. tõlgenda mudelit, 
+7. esita tulemused.
+
+Ärinduse valdkonnas kasutatakse mõnikord standardiseeritud CRISP-DM lähenemist, mis määrab tegevused ettevõtte siseste andmete praktiliseks rakendamiseks. Võrreldes eelnevalt kirjeldatud sammudega hõlmab nimetatud lähenemine ka andmete kättesaadavuse hindamist ja pöörab enam tähelepanu mudeli rakendamisele.
+
+<!-- 
+Data analysis process
+Research question
+Cross Industry Standard Process for Data Mining (CRISP-DM)
+-->
+
+## Andmeanalüüsi põhimõtted
+
+Kogemus näitab, et teatud vead kipuvad andmetega tegelemisel korduma ja nii saab esitada teatud põhimõtted, mida selle käigus silmas pidada Alljärgnevate soovituse hulgas on muuhulgas eeskuju võetud @spiegelhalter19art poolt esitatud põhimõtetest.
+
+- Pea iga tegevuse puhul alati meeles, mis on analüüsi lõppeesmärk. Vastasel juhul on oht jääda pusima mingi tegevuse juures, mis tegelikult ei olegi eriti vajalik.
+- Andmeanalüüsis ei saa kõike ette näha, aga siiski tuleb kasuks kõik tegevused ette kavandada. Nt juba andmete kogumistel peaks olema selge, millise meetodi abil neid hiljem uuritakse. 
+- Andmete analüüsimine ei kulge enamasti sirgjooneliselt algusest lõpuni, vaid enamasti on vaja tegevusi korrata või eelmise tegevuse juurde tagasi minna. Nt kui kogutud andmed ei võimalda vajaliku meetodi rakendamist, siis võib olla vajalik andmeid täiendada.
+- Veendu, et andmed on täpsed ja usaldusväärsed või kui ei ole, siis peab see olema arvesse võetav. Sobimatute andmete analüüsimine on maha visatud aeg ja vaev.
+- Kasuta ainult meetodeid, millest aru saad. Tarkvara kuvab peaaegu alati arvutuse tulemuse, isegi siis kui see on täiesti seosetu.
+- Eelista alati lihtsust keerukatele arvutustele. Kuigi mõne keerulise meetodi rakendamine võib tunduda peen ja usutav, siis on lihtsate meetodite rakendamisest sageli palju rohkem kasu, sest tulemused on läbipaistvamad ja arusaadavamad.
+- Üldistuste tegemisel esita alati punkthinnangute usaldusvahemikud või kasuta üldse ainult vahemikhinnanguid. Kahe rühma mingi tunnuse punkthinnangud võivad olla erinevad, aga kui vastavad vahemikhinnangud kattuvad, siis me ei saa seda erinevust üldistada^[Nt kui mingis valimis olevate ettevõtete käive keskmiselt kasvas, aga selle keskmise kasvu usaldusvahemik kattis ka 0, siis on tõenäoline, et üldiselt selliste ettevõtete käive ei muutunudki]. 
+- Nähtuste üldistamisel otsi tasakaalu nihke ja hajuvuse vähendamise vahel. Statistiline mudel peaks olema piisavalt täpne olemasoleva valimi suhtes, aga ka piisavalt ebatäpne, et see kirjeldaks täpselt ka mõnda muud valimit.
+- Võimalusel võrdle enda analüüsi tulemusi mingite varasemate tulemustega ja uuri, kas ka teistsugused meetodid annavad sama tulemuse ehk valideeri tulemusi. 
+- Teosta andmete analüüs nii, et see oleks korratav. Korratavuse võimaldamiseks tuleb analüüs vormistada nii, et kõik tegevused andmetega oleksid tuvastatavad käsulehelt (*script*).
+- Otsi andmetest mustreid. Selleks uuri seoseid erinevate tunnuste vahel, mitte ära keskendu üksikutele tunnustele.
+
+Eraldi võib välja tuua mõned soovitused, mida pidada meeles andmetest mustrite leidmisel.
+
+- Agregeerimise ja summeerimise käigus läheb alati vähemalt osa andmetes olevast infost kaduma.
+-  Andmete jaotus on enamasti kaldu kas suurte või harvem väikeste väärtuste suhtes ja seega on kallutatud ka mõõdikud, mis on tundlikud erindite suhtes^[Nt töötasu jaotus ühiskonnas on kaldu suuremate töötasude poole, mitõttu ka töötasude aritmeetiline keskmine on kaldu suurema väärtuse suunas.].
+- Tinglikuse rakendamine (*conditioning*) on lihtne viis andmetest mustrite leidmiseks: uuri, mil viisil muutuvad ühe tunnuse väärtused teise tunnuse väärtuste muutudes. 
+- Mustreid on enamasti lihtsam tuvastada joonistelt kui arvutuste tulemustest.
+- Mõned mustrid ilmnevad ainult juhul, kui uurida tunnuseid teisendatud kujul (*transformed*). Teisendusi on oluline meeles pidada tulemuste tõlgendamisel.
+
+<!-- 
+Principles of statistical analysis
+Patterns in data
+-->
+
+<!--
+## Eetika
+
+<!-- 
+Data ethics
+Data protection regulations
+-->

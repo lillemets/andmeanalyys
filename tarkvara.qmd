@@ -1,0 +1,44 @@
+# Tarkvara andmetöötluseks {#sec-tarkvara}
+
+Andmetega tegelemiseks kasutatav tarkvara oleneb paljuski valdkonnast. Kui lihtsateks teheteks korrastatud andmetel piisab ka nn kontoritarkvarast, siis andmeteadustes kasutatakse tunduvalt võimekamaid rakendusi. Kuigi enamus arvutikasutajatest on ilmselt tuttav tabelarvutusega (nt Excel), siis on andmete töötlemiseks olemas ka suurel hulgal teisi graafilise kasutajaliidesega rakendusi, aga ka käsureal töötavaid programmeerimiskeeli. Üldiselt võibki need rakendused jagada kolmeks:
+
+- tabelarvutust (*spreadsheet*) kasutatakse enamasti kahemõõtmeliste tabelite haldamiseks ja lihtsate tehete rakendamiseks, 
+- statistikarakendused (*statistical package*) on suunatud eelkõige klassikaliste statistiliste meetodite rakendamiseks andmetabelitel, 
+- programmeerimiskeeli (*programming languages*) saab kasutada misiganes korrastatusega andmetel enamuse olemasolevate protseduuride rakendamiseks.
+
+|               | Tabelarvutus                                     | Statistikarakendus   | Programmeerimiskeel             |
+|---------------|-------------------------------------------------|------------------------|-----------------------------------|
+| Kasutajaliides     | Graafiline                                             | Graafiline, käsurida               | Käsurida                               |
+| Vaade          | Tabel                                           | Tabel, tunnuste nimed    | Käsurida                      |
+| Andmeliigid    | Tabel                                           | Vaatlus-tunnus tabel | Element, vektor, maatriks, list, andmetabel, ... |
+| Andmete kaht | Väike | Piiratud tarkvaraliselt |Piiratud riistvaraliselt|
+| Objektid       | Lahtrid, read, veerud                            | Vaatlused, tunnused    | Objektid, funktsioonid                |
+| Võimalused | Lihtsamad tehted | Klassikalised statistilised protseduurid    | Statistilised ja arvutuslikud protseduurid  |
+| Maksumus          | Odav/tasuta                                     | Kallis                 | Tasuta                            |
+| Näited  | Microsoft Excel, Google Sheets, LibreOffice Calc | SPSS, SAS, Stata, Matlab | R, Python, SQL, Java, Julia  |
+
+: Kolme liiki andmetöötlustarkvarade võrdlus
+
+<!-- 
+Statistical software 
+-->
+
+## Tabelarvutus
+
+Tabelarvutuse rakendused võimaldavad andmete töötlemist ainult kahemõõtmelise tabelina või selliste tabelite kogumikuna. Selliseid tabeleid on mugav hallata ainult siis, kui need on eriti veergude arvu mõttes väiksed. Kuigi paljudel tabelarvutuse rakendustel on olemas ka funktsioonid ja lisad mitmete statistiliste protseduuride teostamiseks, siis on tabelarvutus mugav pigem matemaatiliste tehete rakendamiseks otse lahtritel. Seetõttu on nende rakenduste kasutamine väga lihtsasti õpitav, aga neil puuduvad võimalused paljudeks tegevusteks, mis on vajalikud andmete põhjalikumal analüüsimisel. Siiski on tabelarvutuse rakendused kasulikud andmete sisestamiseks ja lihtsate kokkuvõtete tegemiseks. 
+
+## Statistikarakendused
+
+Sarnaselt tabelarvutusele on vähemalt enamusel statistikarakendustel olemas andmetabeli vaade, aga suurem osa andmetöötlusest tehakse tervete ridade või veergude kaupa, mitte iga lahtrit üksikult muutes. Selleks eeldavad statistkarakendused nn korrastatud andmetabelit, milles read esindavad vaatlusi ja veerud tunnuseid. See loogika lihtsustab märkimisväärselt statistiliste protseduuride kasutamist. Erinevalt tabelarvutuse rakendustest kuvatakse arvutuste tulemused mitte otse andmetabelis vaid eraldi vaates. Kuigi statistikarakendused sisaldavad protseduure enamuse klassikalise statistika meetodite rakendamiseks, siis paljudel juhtudel ei võimalda need keerukamaid arvutusi ega korrastamata andmete kasutamist.
+
+## Programmeerimiskeeled
+
+Programmeerimiskeelte kasutamine on põhimõtteliselt väga lihtne: objektidel (andmed) rakendatakse funktsioone (tehted). Kogu keerukus seisneb objektide ja funktsioonide tundmises ning nende omavahelises kombineerimises.
+
+Kõige selgemalt eristab programmeerimiskeeli teistest rakendustest graafilise kasutajaliidese puudumine. Seega ei toimu andmete töötlemine mitte menüüdest valikute tegemise teel, vaid kõik tegevused toimuvad käsitsi sisse trükitavate käskude alusel, mida saab sisestada otse käsurealt või käsulehelt. Andmeid saab hoiustada väga mitmesugusel kujul alates üksiktutest väärtustest ja lõpetades mitmemõõtmeliste tabelitega. 
+
+Samuti ei ole käsurea vahendusel andmetega tegeledes andmed pidevalt nähtaval ja seega peab kasutaja väga täpselt meeles pidama, millisel kujul andmed parajasti hoiustatud on. Nt tabelina vormistatud andmete puhul on oluline teada, mida esindavad read ja mida veerud, mis on veergude nimetused ja mis tüüpi tunnusena on andmed veergudes. 
+
+## R keel
+
+Väga üksikud programmeerimiskeeled on loodud ainult andmete töötlemiseks. Nendest kõige laialdasemalt kasutatav on R keel. Seda võib laiemas mõtes pidada arvutuskeskkonnaks, mis on ette nähtud andmete töötlemiseks, arvutuste tegemiseks ja jooniste kuvamiseks^[Põhjalikum R keele kirjeldus on esitatud selle ametlikul [leheküljel](https://www.r-project.org/about.html).]. 

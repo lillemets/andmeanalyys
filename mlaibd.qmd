@@ -1,0 +1,52 @@
+# Masinõpe ja suurandmed {#sec-mlaibd}
+
+Andmeteaduse levikuga on kaasas käinud veel mitmed sellega lähedalt seotud mõisted, sh masinõpe, tehisintellekt ja suurandmed.
+
+## Masinõpe ei ole veel päris tehisintellekt
+
+Masinõpe on andmeteadustes kasutatav üldine tehnika, mida rakendatakse konkreetsetel algoritmidel või mudelitel selleks, et saavutada nende võimalikult suur täpsus prognoosimisel. Selleks üritatakse masinõppe käigus leida sobivaimad parameetrid. Nii põhineb masinõpe algoritmi või mudeli arendamisel: masinõppe käigus võetakse aluseks olemasolevad sisendite ja väljundite paarid, et arendada algoritmide võimekust leida sobiv väljund sellistele juhtudele, kus teada on ainult sisendi väärtus. Mudelite ja algoritmide arendamisel võrreldakse nende erinevaid võimalikke parameetreid erinevate andmike kontekstis, seega seisneb masinõppe tööpõhimõte erinevate parameetrite ja andmete kombinatsioonide võrdlemises.
+
+::: {.callout-note}
+Masinõpe põhineb mudeli või algoritmi rakendamisel erinevate parameetritega ja erinevatel andmetel selleks, et leida selline mudel või algoritm, mis võimalikult täpselt prognoosiks.
+:::
+
+Sageli arvatakse, et masinõpe on üks tehisintellekti (*artificial intelligence*) rakendusi, sest see on võimeline lahendama ülesandeid ilma inimese sekkumiseta [@pinheiro21introduction]. Selline arusaam on mõneti mõistetav, kui mõtestame tehisintellekti nii, et see hõlmab arvutusi selliste ülesannete lahendamiseks, millega tavapäraselt saavad hakkama ainult inimesed [@spiegelhalter19art]. Õppimine masinõppes viitab justkui selle oskusele leida andmetest iseseisvalt mustreid ja nende alusel otsuseid (prognoose) teha. Samas on masinõpe piiratud  mustrite leidmisega ainult olemasolevatest andmetest ega suuda arvesse võtta väljaspool neid olevaid tegureid ega "mängureegleid" [@taddy19business], milleks on vajalik abstraktne teoreetiline mõtlemine. Ehk masinõppe abil saab lahendada ainult üksikuid väga konkreetseid ülesandeid, aga see ei asenda veel inimesi.
+
+<!-- 
+[[Machine learning (ML)]]
+[[Artificial intelligence (AI)]]
+[[Machine learning is not artificial intelligence]]
+-->
+
+## Andmeteadus võimaldab rakendada suurandmeid
+
+Suurandmed on sellised andmed, mis on suured. Tegelikult on suurandmetel veel palju eripärasid, mis tulenevalt eelkõige nende automatiseeritud loomisest. Tavapäraselt selgitatakse suurandmete olemust nn kolme V alusel:
+
+- andmete suur maht (*volume*), 
+- andmete loomise suur kiirus (*velocity*) ja 
+- andmete suur mitmekesisus (*variety*). 
+
+::: {.callout-note}
+Suurandmeid iseloomustab nende suur maht, loomise kiirus ja mitmekesisus.
+:::
+
+Lisaks nendele kolmele on kirjanduses suurandmetele veel mitmeid omadusi omistatud [@kitchin16what]: 
+
+- kõikehõlmavus ja esinduslikkus, 
+- peenekoelisus ja eripärasus, 
+- ühendatavus teiste andmikega, 
+- võimalus kiiresti andmevälju lisada, 
+- korrastamatus ja müra, 
+- suur (rahaline) väärtus, 
+- mitmetähenduslikkus.
+
+Siiski on leitud, et isegi kolme V-d esindavad omadused ei iseloomusta sugugi kõiki suurandmeid ja üldiselt saab suurandmeid kirjeldada pigem erinevate kombinatsioonide kaudu eelpool nimetatud omadustest [@kitchin16what]. Need omadused võimaldavad aga eristada suurandmeid nö tavapärastest korrastatud tabelitena esitatud andmetest.
+
+Suurandmed ilmusid seoses teabe digitaliseerimisega, mis võimaldas andmeid lihtsamini koguda ja odavamalt hoiustada, ning suurandmete analüüsimise võimaluste tekkimisega, mille aluseks oli arvutite riistvaralise võimekuse ja vastavate tarkvaraliste võimaluste areng. Need arengud võimaldasid samal ajal ka andmeteaduste kui eriala ilmumist, mida toetas lisaks ka ühisosa leidmine teadustöös arvutiteaduse, statistika ning sotsiaalteadustes vahel [@taddy19business]. Ühest küljest tekitas suurandmete olemasolu vajaduse andmeteaduse meetodite järgi, teisalt pakkusid suurandmed võimaluse rakendada meetodeid, mis klassikalise statistika alla ei kuulunud. 
+
+Klassikalised statistilised meetodid ei ole enamasti sobilikud suurandmete analüüsimiseks. Kuna suur osa statistikast seisneb üldistuste tegemises, siis vastavad meetodid ei ole lihtsalt asjakohased, kui andmed esindavad tervet kogumit ja eesmärk on prognoosimine. Sealjuures ilmnevad ka tehnilised puudujäägid. Statistikas laialt levinud statistiline hüpoteeside testimine on tundlik suurte valimite suhtes ja viitab sellistel juhtudel alati statistiliselt olulisele erinevusele. Samuti on hõlmavad paljud meetodid vabadusastmete arvu, mida ei saa kasutada, kui tunnuseid on rohkem kui vaatlusi. Andmeteaduses levinud meetoditel selliseid piiranguid enamasti ei ole.
+
+<!-- 
+[[Big data]]
+[[Growth of data science and big data]]
+-->
