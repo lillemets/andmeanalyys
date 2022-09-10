@@ -18,33 +18,33 @@ book:
     - analüüs.qmd
     - tarkvara.qmd
   - part: "R keel"
-#    chapters: 
-#    - kasutus.qmd
-#    - korrastus.qmd
+    chapters: 
+    - kasutus.qmd
+    - korrastus.qmd
 #    - joonised.qmd
 #    - kraapimine.qmd
   - part: "Statistika"
-#      chapters:
-#      - tunnused.qmd
-#      - valim.qmd
-#      - parameetrilisus.qmd
-#      - põhjuslikkus.qmd
-#      - tinglikkus.qmd
-#      - sobitamine.qmd
-#      - standardiseerimine.qmd
-#      - veatabel.qmd
+    chapters:
+    - tunnused.qmd
+#     - valim.qmd
+#     - parameetrilisus.qmd
+#     - põhjuslikkus.qmd
+#     - tinglikkus.qmd
+#     - sobitamine.qmd
+#     - standardiseerimine.qmd
+#     - veatabel.qmd
   - part: "Rakendused"
-#      chapters:
-#      - usaldusvahemikud.qmd
-#      - seosed.qmd
-#      - linreg.qmd
-#      - logreg.qmd
-#      - klassifitseerimine.qmd
-#      - klasterdamine.qmd
-#      - mõõtmevähendus.qmd
-#      - tekstikaeve.qmd
-#      - maakaardid.qmd
-#      - masinõpe.qmd
+#     chapters:
+#     - usaldusvahemikud.qmd
+#     - seosed.qmd
+#     - linreg.qmd
+#     - logreg.qmd
+#     - klassifitseerimine.qmd
+#     - klasterdamine.qmd
+#     - mõõtmevähendus.qmd
+#     - tekstikaeve.qmd
+#     - maakaardid.qmd
+#     - masinõpe.qmd
   - viited.qmd
 #  appendices:
 #  - põhimõtted.qmd

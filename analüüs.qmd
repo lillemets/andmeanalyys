@@ -1,4 +1,4 @@
-# Analüüs {#sec-analüüs}
+# Andmete analüüs {#sec-analüüs}
 
 ## Analüüsi käik
 
@@ -8,9 +8,9 @@ Andmeanalüüsi teel soovitud teadmiseni jõudmiseks on vajalik sooritada teatud
 2. kavanda selle küsimuse lahendamine, 
 3. kogu vajalikud andmed, 
 4. loo arusaam andmetes sisalduvast, 
-5. tekita seoseid kirjeldav mudel, 
-6. tõlgenda mudelit, 
-7. esita tulemused.
+5. tee arvutused vastavalt uurimisküsimusele, 
+6. tõlgenda arvutuste tulemusi, 
+7. esita tulemused teksti ja/või joonistena.
 
 Ärinduse valdkonnas kasutatakse mõnikord standardiseeritud CRISP-DM lähenemist, mis määrab tegevused ettevõtte siseste andmete praktiliseks rakendamiseks. Võrreldes eelnevalt kirjeldatud sammudega hõlmab nimetatud lähenemine ka andmete kättesaadavuse hindamist ja pöörab enam tähelepanu mudeli rakendamisele.
 
@@ -38,9 +38,9 @@ Kogemus näitab, et teatud vead kipuvad andmetega tegelemisel korduma ja nii saa
 
 Eraldi võib välja tuua mõned soovitused, mida pidada meeles andmetest mustrite leidmisel.
 
+- Uuri, mil viisil muutuvad ühe tunnuse väärtused teise tunnuse väärtuste muutudes. 
 - Agregeerimise ja summeerimise käigus läheb alati vähemalt osa andmetes olevast infost kaduma.
--  Andmete jaotus on enamasti kaldu kas suurte või harvem väikeste väärtuste suhtes ja seega on kallutatud ka mõõdikud, mis on tundlikud erindite suhtes^[Nt töötasu jaotus ühiskonnas on kaldu suuremate töötasude poole, mitõttu ka töötasude aritmeetiline keskmine on kaldu suurema väärtuse suunas.].
-- Tinglikuse rakendamine (*conditioning*) on lihtne viis andmetest mustrite leidmiseks: uuri, mil viisil muutuvad ühe tunnuse väärtused teise tunnuse väärtuste muutudes. 
+- Andmete jaotus on enamasti kaldu kas suurte või harvem väikeste väärtuste suhtes ja seega on kallutatud ka mõõdikud, mis on tundlikud erindite suhtes^[Nt töötasu jaotus ühiskonnas on kaldu suuremate töötasude poole, mitõttu ka töötasude aritmeetiline keskmine on kaldu suurema väärtuse suunas.].
 - Mustreid on enamasti lihtsam tuvastada joonistelt kui arvutuste tulemustest.
 - Mõned mustrid ilmnevad ainult juhul, kui uurida tunnuseid teisendatud kujul (*transformed*). Teisendusi on oluline meeles pidada tulemuste tõlgendamisel.
 

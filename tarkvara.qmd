@@ -42,3 +42,5 @@ Samuti ei ole käsurea vahendusel andmetega tegeledes andmed pidevalt nähtaval 
 ## R keel
 
 Väga üksikud programmeerimiskeeled on loodud ainult andmete töötlemiseks. Nendest kõige laialdasemalt kasutatav on R keel. Seda võib laiemas mõtes pidada arvutuskeskkonnaks, mis on ette nähtud andmete töötlemiseks, arvutuste tegemiseks ja jooniste kuvamiseks^[Põhjalikum R keele kirjeldus on esitatud selle ametlikul [leheküljel](https://www.r-project.org/about.html).]. 
+
+R keele kasutamiseks tuleb arvutisse laadida ja paigaldada [vastav rakendus](https://cloud.r-project.org/). Keele kasutamiseks on soovitatav paigaldada arvutisse ka rakendus [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/#download).

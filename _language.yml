@@ -18,10 +18,10 @@ title-block-affiliation-plural: "Affiliations"
 title-block-published: "Avaldati"
 
 callout-tip-caption: "Soovitus"
-callout-note-caption: "Mõiste"
+callout-note-caption: "Märkus"
 callout-warning-caption: "Pea meeles!"
-callout-important-caption: "Pane tähele!"
-callout-caution-caption: "Ettevaatust!"
+callout-important-caption: "Mõiste"
+callout-caution-caption: "Vaata ette!"
 
 code-summary: "Code"
 

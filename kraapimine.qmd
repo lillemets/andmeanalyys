@@ -1,0 +1,11 @@
+# Kraapimine {#sec-kraapimine}
+
+# URL
+
+read.csv()
+
+# scrape, rvest
+
+# API
+
+Statistikaamet, Eurostat

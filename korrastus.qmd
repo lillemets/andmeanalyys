@@ -1,19 +1,189 @@
+---
+output: html_document
+format:
+  html:
+    self-contained: true
+editor_options: 
+  chunk_output_type: console
+execute:
+  freeze: auto
+---
+
 # Korrastus {#sec-korrastus}
 
-Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi protsessi kõige aeganõudvam osa. 
+Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi kõige aeganõudvam osa. Andmeanalüütikud ise on hinnanud, et kogu andmeanalüüsi käigus veedavad nad umbes 80% ajast andmeid korrastades [@wickham14tidy; @kelleher18data]. Sekundaarandmed ei ole peaaegu kunagi täpselt selliselt vormistatnud nagu meie poolt valitud protseduur seda eeldab, mistõttu ilma oskuseta andmeid korrastada ei ole nendega enamasti suurt midagi teha.
+
+<!--
+Data preparation
+-->
+
+Alljärgnevalt uurime keskmist brutopalka ja palgalõhet Eestis ning nendega seotud näitajaid.
+
+``` {r}
+#| include: false
+library('tidyverse')
+```
+
+```{r}
+#| include: false
+if (format(file.info('andmed/palk.csv')$mtime, '%Y') < format(Sys.Date(), '%Y')) {
+  library('pxweb')
+  päring <- pxweb_query('
+{
+  "query": [
+    {
+      "code": "Näitaja",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "D11_EMPL",
+          "D_EMPL",
+          "STR_B1_PT",
+          "EMPL"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+')
+  palk <- pxweb_get_data('https://andmed.stat.ee/api/v1/et/stat/PA001', query = päring)
+  write.csv(palk, 'andmed/palk.csv', row.names = F)
+} else palk <- read.csv('andmed/palk.csv')
+```
+
+```{r}
+#| include: false
+if (format(file.info('andmed/lõhe.csv')$mtime, '%Y') < format(Sys.Date(), '%Y')) {
+  library('pxweb')
+  päring <- pxweb_query('
+{
+  "query": [
+    {
+      "code": "Tegevusala (EMTAK 2008)",
+      "selection": {
+        "filter": "item",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20"
+        ]
+      }
+    }
+  ],
+  "response": {
+    "format": "json-stat2"
+  }
+}
+')
+  lõhe <- pxweb_get_data('https://andmed.stat.ee/api/v1/et/stat/PA5335', query = päring)
+  names(lõhe)[4] <- 'väärtus'
+  write.csv(lõhe, 'andmed/lõhe.csv', row.names = F)
+} else lõhe <- read.csv('andmed/lõhe.csv')
+```
+
+## Veeru nimetused
+
+Kui oleme andmed töölauale laadinud, siis esmalt on mõistlik saada nendest ülevaade. Selleks kasutame juba tuttavaid funktsioone objekti esimeste ridade (`head()`) ja ülesehituse (`str()`) kuvamiseks.
+
+``` {r}
+head(palk)
+str(palk)
+```
+
+Näeme, et neljandal veerul on pikk ja lohisev nimetus. Andmetabel veeru nimetusi saame kuvada funktsiooniga `names()` ja selle funktsiooni nimetust kasutades saame ka neljandale veerule uue nime anda.
+
+``` {r}
+names(palk)
+names(palk)[4] <- 'väärtus'
+names(palk)
+```
 
 ## Tunnuse tüüp
 
-as.numeric()
-as.character()
+Andmetabeli ülesehituse küsimisel kuvatakse ka iga tunnuse tüüp, millest sagedasemad on arvtunnus (`num`) ja nimitunnus (`chr`). Täpsemalt loe mõõtmise tasemete ja tunnuse tüüpide kohta peatükist @sec-tunnused või [peatükist -@sec-tunnused].
 
-## Vaatluste sõelumine
+``` {r}
+str(palk)
+```
 
-dplyr::filter
+::: {.callout-warning}
+Tunnuse tüüp peab olema objektis määratud vastavalt tunnuse mõõtmise tasemele. Arvud peavad olema objektides salvestatud arvtunnusena ning sõnad ja laused nimitunnusena. Vastupidisel juhul käsitlevad fuktsioonid tunnuseid valesti ega võimalda rakendada vajalikke tehteid.
+:::
+
+Tunnuse tüüp on oluline selleks et funktsioonid oskaksid neid õigesti kasutada. Nt kui arve sisaldav veerg on laaditud mingil põhjusel^[Kui arve sisaldavasse veergu on sattunud mõni sõna, täht, kirjavahemärk vms, siis R loeb selles veerus olevad väärtused enamasti nimitunnusteks.] objekti nimitunnusena, siis ei ole võimalik sellise tunnusega matemaatilisi tehteid teha. Tunnuste tüübi teisendamiseks saab kasutada funktsioone `as.character()` ja `as.numeric()`.
+
+```{r}
+# Kui arvud on salvestatud nimitunnusena, siis ei saa arvutata keskmist.
+palk$väärtus <- as.character(palk$väärtus)
+head(palk$väärtus) %>% mean
+# Kui arvtunnus on õigesti sisestatud, siis saab selle alusel ka arvutada.
+palk$väärtus <- as.numeric(palk$väärtus)
+head(palk$väärtus) %>% mean
+```
+
+## Kordumatud väärtused
+
+Eelnevalt kuvatud andmetabeli puhul huvitab meid ilmselt, mis võimalikud väärtused on veergudes "Näitaja", "Tegevusala" ja "Vaatlusperiood". Kuna tabelis on `r nrow(palk)` rida, siis ei ole otstarbekas kuvada kõiki väärtusi, vaid ainult neid, mis ei kordu. Selleks on käsklus `unique()`.
+
+``` {r}
+unique(palk$Näitaja)
+unique(palk$Tegevusala)
+unique(palk$Vaatlusperiood)
+```
+
+Näeme, et vaatlusperioodi veerus on läbisegi aastad ja kvartalid. Kui teisendame vastava tunnuse arvtunnuseks, siis tähti sisaldavad väärtused muutuvad puuduvateks väärtusteks.
+
+``` {r}
+palk$Vaatlusperiood <- as.numeric(palk$Vaatlusperiood)
+unique(palk$Vaatlusperiood)
+```
 
 ## Puuduvad väärtused
 
-is.na(), na.rm = T
+Kui andmetes esineb puuduvaid väärtusi, siis on kolm peamist viisi, kuidas nendega tekkivaid probleeme lahendada. 
+
+- Enamasti eemaldatakse andmetabelist vaatlused (read), milles esinevad puuduvad väärtused. 
+- Kui on teada, et puuduvad väärtused esinevad juhuslikult, siis on lihtne viis on asendada need veeru keskmise väärtusega.
+- Õigem on tuletada puuduvad väärtused aga teiste veergude väärtuste alusel. Tõeste väärtuse prognoosimiseks on palju erievaid võimalusi, sh masinõpe.
+- Kui puuduvaid väärtusi soovitakse analüüsi kaasata või eraldi uurida, siis saab need eraldi väärtusega määratleda. Puuduvate nimitunnuse väärtustele võib anda mingi nimetuse, arvtunnuse korral võib puuduvad väärtused määratleda eraldi veerus loogilise muutujana.
+
+Vaatlusperioodi teisendamise tulemusel on nüüd vastavas veerus puuduvad väärtused nendel juhtudel, kus lisaks aastaarvule oli kirjas ka kvartal. Seega saame tabelisse alles jätta vaid aastaid esindavad väärtused kui eemaldame need read, kus vaatlusperiood puudub. Puuduvate väärtuse määratlemiseks saame kasutada funktsiooni `is.na()` ja olemasolevate väärtuse valimiseks peame seega lisaman funktsiooni ette loogikaoperaatori `!`. 
+
+``` {r}
+# Algne ridade arv
+nrow(palk)
+# Sõelume välja väärtused, kus vaatlusperiood ei ole puudu.
+palk <- filter(palk, !is.na(Vaatlusperiood))
+# Ridade arv pärast puuduvate väärtustega ridade eemaldamist
+nrow(palk)
+```
+
+Teine võimalus on kasutada funktsiooni `complete.cases()`, mis väljastab andmetabelis puuduvate väärtusteta read määrava tõeväärtuse, võttes puuduvate väärtuse määramisel arvesse kõiki veerge.
+
+``` {r}
+# Valime read, kus on ainult täielikud vaatlused
+palk <- palk[complete.cases(palk), ]
+```
 
 <!--
 Data preparation
@@ -21,37 +191,226 @@ Data preparation
 
 ## Väärtuste asendamine
 
+Mõnikord esineb andmetes väärtusi, mis ei ole teoreetiliselt võimalikud. Sellisel juhul on kolm viisi, kuidas sobimatud väärtused kõrvaldada.
+
+- Arvtunnuse korral saab ebasobiva väärtuse asendada vastavalt vähima või suurima teoreetiliselt võimaliku väärtusega.
+- Võimalusel saab eemaldada kogu ebasobivaid väärtuseid sisaldava tunnuse.
+- Ebasobivaid väärtusi saab kohelda nii nagu puuduvaid väärtuseid.
+
+Kui oletame, et meie andmetabelis oleval ajavahemikul oli alampalk kõige vähem 278 eurot kuus, siis ei tohiks olla väärtuseid, kus keskmine brutokuupalk on sellest madalam.
+
+``` {r}
+bruto <- filter(palk, Näitaja == 'Keskmine brutokuupalk, eurot' &
+                  Tegevusala == 'Kokku – kõik tegevusalad')
+# Määrame väärtuseks 278 juhtudel, kus väärtus on vähem kui 278
+bruto$väärtus[bruto$väärtus < 278] <- 278
+```
+
 <!--
 Data preparation
 -->
 
-## Väärtuste muutmine
+## Väärtuste teisendamine
 
-cut
+Väärtuste teisendamise käigus antakse tunnusele uued väärtused lähtudes algsetest väärtustes. Selleks on mitu põhjust ja viisi.
 
+- Kui tunnusel on palju äärmuslikul suuri või väikseid väärtusi, siis selline tunnus ei sobi paljude parameetriliste meetodite rakendamiseks. Sellisel juhul saab kasutada erinevaid matemaatilisi teisendusi, mis muudab väärtuste jaotuse sümmeetrilisemaks^[Kui tunnusel on palju äärmuslikult suuri jaotusi, siis naturaallogaritm väärtustest annab tulemuseks sümmeetrilise jaotuse.]. 
+- Teatud meetodid eeldavad, et andmed on mõõdetud samal skaalal ehk omavad sarnaseid väärtusi. Sellisel juhul saame väärtused standardiseerida<!--, millest on täpsemalt juttu @sec-standardiseerimine-->.
+- Kui tunnusel on rohkem kordumatuid väärtusi kui soovime, siis saame väärtused intervallida.
+
+Kui soovime keskmise brutokuupalga esitada 500 euro laiuste intervallidena, siis saame intervallimiseks kasutada funktsiooni `cut()`.
+
+``` {r}
+bruto$intervallid <- cut(bruto$väärtus, 
+                         breaks = c(500,1000,1500,Inf), 
+                         labels = c(">500...1000",">1000...1500",">1500"))
+bruto %>% select(Vaatlusperiood, väärtus, intervallid)
+```
 
 <!--
 Data preparation
 -->
 
-## Lai-pikk vormindamine
+## Korrasandmed
 
-tidyr::pivot_wider(), tidyr: :pivot_longer()
+Korrasandmed (*tidy data* [@wickham14tidy]) on andmetabeli vormistamise viis, mille korral
+
+1. iga tunnus on eraldi veerus, 
+2. iga vaatlus on eraldi real, 
+3. iga vaatluste aluseks olev üksus on omaette tabelis^[Nt tellimuste tabelis ei peaks olema kõiki tellija tunnuseid, vaid tellimused ja tellijad tuleks hoida eraldi tabeltes ning ainult vajaduse korral need tellija koodi alusel kokku viia.].
 
 <!--
-Wide and long data
+Tidy data
 -->
+
+### Andmetabeli laiendamine
+
+Meie andmed brutotöötasu kohta vastavad tingimusele, et iga vaatlus (mõõtmine) on eraldi real. Kui lähtume aga sellest, et iga näitaja on omaette tunnus, siis peaks iga näitaja väärtused olema eraldi veerus, et meie andmed korrasandmete tingimusele vastaksid.
+
+``` {r}
+head(palk)
+```
+
+Sellist andmetabelit, milles iga rida sisaldab ainult ühte väärtust, võiks nimetada täielikult kitsaks. Selline kitsas andmetabel ei pruugi olla kõige sobivam viis selles olevate andmete analüüsimiseks. Nt on praegu keeruline võrrelda kahe näitaja väärtusi, sest need väärtused on kõik ühes veerus. Kui soovime tõsta iga näitaja eraldi veergu ehk antud juhul andmetabelit laiendada, siis saame selleks kasutada funktsiooni `pivot_wider()`.
+
+``` {r}
+palk <- pivot_wider(palk, names_from = 'Näitaja', values_from = 'väärtus')
+head(palk)
+# Kuna veeru nimed sisaldavad nüüd tühikuid, siis nimetame need ümber.
+names(palk) <- c('tegevusala', 'aasta', 
+                 'kesk.palk', 'kesk.kulu', 'osatööaeg', 'töötajad')
+head(palk)
+```
+
+Sellisel kujul tabeliga on meil võimalik erinevatel küsimustele vastamiseks arvutusi teha. 
+
+``` {r}
+# Mitu eurot kulus keskmiselt tööjõumaksudeks?
+palk$kesk.maksud <- palk$kesk.kulu - palk$kesk.palk
+head(palk)
+```
+
+kuidas lisada andmetabelisse tunnuseid või neid muuta funktsiooni `mutate()` abil. 
+
+``` {r}
+# Mitu eurot maksti töötajatele töötasu kokku?
+palk <- mutate(palk, kogu.palk = kesk.palk * töötajad)
+head(palk)
+```
+
+::: {.callout-warning}
+Enamus funktsioone eeldavad, et funktsiooni argumentidena esitab kasutaja tunnuse väärtusi sisaldava veeru. Seetõttu tuleks andmetabel vormistada selliselt, et iga tunnuse väärtused on eraldi veerus.
+:::
+
+### Andmetabeli kitsendamine
+
+Sageli on meil aga vastupidine olukord, kus ühe tunnuse väärtused on jagatud mitmesse veergu. See oli kunagi sagedane nt Statistikaameti tabelite korral, milles vaikimisi esitati iga aasta väärtused eraldi veerus. Sellisel kujul andmed sobivad küll aegridade joonistamiseks tabelarvutuse rakendustes, aga mitte R keele funktsioonide kasutamiseks. 
+
+All on esitatud Statistikaameti tabel PA5335 palgalõhe kohta, milles iga aasta väärtused on eraldi veerus. 
+
+``` {r}
+#| include: false
+lõhe <- pivot_wider(lõhe, names_from = 'Aasta', values_from = 'väärtus')
+```
+
+``` {r}
+head(lõhe)
+```
+
+Koondamaks kõikide aastate väärtused ühte veergu, tuleks seda andmetabelit kitsendada ehk pikendada. Seda saab teha nt funktsiooniga `pivot_longer()`.
+
+``` {r}
+# Viime kõik aastad ühte veergu
+lõhe <- pivot_longer(lõhe, cols = as.character(2011:2021), 
+                     names_to = 'aasta', values_to = 'väärtus')
+head(lõhe)
+# Viime iga näitaja eraldi veergu
+lõhe <- pivot_wider(lõhe, names_from = 'Näitaja', values_from = 'väärtus')
+head(lõhe)
+# Parendame veergude nimetusi
+names(lõhe) <- c('tegevusala', 'aasta', 'mehed.palk', 'naised.palk', 'lõhe.osa')
+head(lõhe)
+```
+
+::: {.callout-warning}
+Korduvate mõõtmiste korral tuleks mõõtmise aeg kajastada eraldi veerus ja mitte jaotada sama tunnuse mõõtmisi erinevate veergude vahel.
+:::
 
 ## Agregeerimine
 
-aggregate()
+Sageli on vaja andmetabelis olevad väärtused edasiseks analüüsiks kuidagi koondada. Väärtuste kokku võtmine mingite rühmade kaupa ja mingi tehte alusel on **agregeerimine**. Nii on agregeerimisel vaja määrata
+
+- väärtusi sisaldav kokku võetav tunnus, 
+- väärtusi rühmitav tunnus, 
+- kokkuvõtte aluseks olev tehe (funktsioon).
+
+Andmetabeli agregeerimiseks on R keeles funktsioon `aggregate()`, mille argumentideks tuleb sisestada need kolm tegurit. 
+
+``` {r}
+head(palk)
+# Mis oli igal tegevusalal perioodi keskmise brutotöötasu keskmine?
+aggregate(kesk.palk ~ tegevusala, palk, mean)
+```
+
+Teine võimalus agregeerimiseks on kasutada pakis `tidyverse` sisalduvaid funktsioone `group_by()` esmalt rühmitamiseks ja `summarise()` seejärel kokku võtmiseks.
+
+``` {r}
+head(lõhe)
+# Mis oli igal tegevusalal kõige suurem palgalõhe?
+lõhe %>% 
+  group_by(tegevusala) %>% # Rühmitame andmetabeli tegevusala alusel
+  summarise(max(lõhe.osa)) # Leiame suurima palgalõhe
+```
+
+Väga sageli on kasu ka funktsioonist `table()`, mille abil saab väärtuseid loendada.
+
+``` {r}
+head(lõhe)
+# Mitu korda iga tegevusala tabelis esineb?
+table(lõhe$tegevusala)
+# Mitmel aastal oli igal tegevusalal palgalõhe rohkem kui 10%?
+table(lõhe$tegevusala, lõhe$lõhe.osa > 10)
+```
+
+Üleval olevast tabelist näeme muuhulgas, et 
+
+- veonduses ja laonduses oli palgalõhe ainult ühel aastal üle 10%, samas kui 
+- hariduses oli kõikidel aastatel palgalõhe üle 10%.
 
 <!--
 Aggregation
 -->
 
-## Ühendamine
+## Tabelite ühendamine
 
+Mõnikord on sama vaatluse andmed erinevates tabelites. Sellisel juhul saame kaks tabelit omavahel ühendada ühe või mitme tunnuse väärtuste alusel.
 
-merge()
-dplyr::left_join()
+Käesolevates näidetes võiksime ühendada brutopalga ja palgalõhe andmetabelid `palk` ja `lõhe`. Mõlemas tabelis esindab iga rida ühte tegevusala ühel aastal, mistõttu saab nende kahe tunnuse alusel read kokku viia. 
+
+Selleks peavad sama tähendusega väärtused olema samamoodi nimetatud. Saame seda kontrollida funktsiooniga `setdiff()`, mis näitab, millised esimeses argumendis olevad kordumatud väärtused on puudu teisest argumendist.
+
+``` {r}
+# Milliseid palgalõhe tabelis olevaid tegevusalasid ei ole brutopalga tabelis?
+setdiff(lõhe$tegevusala, palk$tegevusala)
+# Milliseid brutopalga tabelis olevaid tegevusalasid ei ole palgalõhe tabelis?
+setdiff(palk$tegevusala, lõhe$tegevusala)
+```
+
+Näeme, et kahes tabelis on samad nähtused kas erinevate nimetustega või siis on semikooloni asemel kastatud koma. Muudame väärtuste nimetused nii, et sama nähtus oleks täpselt samamoodi sõnastatud.
+
+``` {r}
+# Määrame palgalõhe tabelis tegevusalale semikooloni koma asemele
+lõhe$tegevusala[lõhe$tegevusala == 'Veevarustus; kanalisatsioon, jäätme- ja saastekäitlus'] <- 'Veevarustus; kanalisatsioon; jäätme- ja saastekäitlus'
+# Määrame brutopalga tabelis veerus tegevusala "Tegevusalad kokku" seal, 
+# kus on pregu on "Kokku - kõik tegevusalad"
+palk$tegevusala[palk$tegevusala == 'Kokku – kõik tegevusalad'] <- 'Tegevusalad kokku'
+```
+
+Kaks tabelit saame ühendada funktsiooniga `merge()`. 
+
+``` {r}
+palkLõhe <- merge(
+  palk, lõhe, 
+  by.x = c('tegevusala', 'aasta'), # Brutopalga tabeli ühendatavad tunnused
+  by.y = c('tegevusala', 'aasta'), # Palgalõhe tabeli ühendatavad tunnused
+  all.x = TRUE, # Jätame alles kõik brutopalga tabeli read
+  all.y = TRUE) # Jätame alles kõik palgalõhe tabeli read
+# Meie andmetabelites on ühendatavad tunnused sama nimega, 
+# seega võime mõned argumendid ära jätta või neid lihtsustada
+palkLõhe <- merge(palk, lõhe, all = TRUE)
+head(palkLõhe)
+```
+
+Ühendatud tabeli alusel saame varem kahes eraldi tabelis olnud tunnuseid nüüd omavahel võrrelda. Näiteks saame uurida, kuidas on palgalõhe seotud osatööaja, keskmise palga ja tegevusalaga ning kuidas see seos aastate jooksul muutunud on.
+
+``` {r}
+#| column: page-right
+#| warning: false
+#| fig-width: 10
+#| fig-height: 10
+ggplot(palkLõhe) + 
+  aes(x = lõhe.osa, y = osatööaeg, size = kesk.palk, color = aasta) + 
+  geom_point(alpha = .5) +
+  facet_wrap(~tegevusala, ncol = 3) +
+  theme_minimal()
+```

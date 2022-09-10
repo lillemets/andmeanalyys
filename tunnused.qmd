@@ -1,8 +1,42 @@
 # Tunnuste liigid {#sec-tunnused}
 
-## Mõõtmise tasandid
+## Mõõtmistasemed
 
+Kahte nähtust saab võrrelda mitmel viisl: kas üks on teisest suurem, kumb on teisest suurem, kui palju on üks teistest suurem. Vastavalt sellele saab nähtusi ka mitmel viisil mõõta. Kõige üldisemalt saame eristada nelja mõõtmistaset^[Eesti keeles on  mõõtmistasemete olemust ilmekalt selgitanud @sauga17statistika.], millele vastavad mõõtmisskaalad alates kõige üldistavamast:
 
+1. binaarskaala (kuni kaks järjestamata väärtust), 
+2. nimiskaala (järjestamata väärtused),
+3. järjestusskala (järjestatud väärtused), 
+4. arvskaala (väärtused, mille erinevusi saame arvutada).
+
+Sealjuures tuleb nähtuste mõõtmisel võtta arvesse, et mida üldistatum on mõõtmistase, seda vähem teavet see sisaldab. Seega saame väärtusi teisendada alati üldisemale mõõtmistasemele, aga mitte vähem üldisele.
+
+Mõõtmistasemete eristamiseks on veel mitu viisi.
+
+- **Kvantitatiivse ja kvalitatiivse** mõõtmistaseme eristamine seisneb selles, kas mõõtmise tulemuseks on arvud. Kvantitatiivse mõõtmise korral on väärtused esitatavad tähenduslikult arvudena, kvalitatiivne mõõtmistase hõlmab enamasti aga arve mitte sisaldavaid väärtusi ehk sõnu või lauseid.
+- **Diskreetne ja pidev** mõõtmine kehtivad ainult arvskaalal ja nende erisus seisneb intervallide vahedes. Diskreetsel mõõtmisel on tulemuseks ainult täisarvud, mis saadakse enamasti millegi loendamisel. Pideval mõõtmisel võib tulemuseks olla mistahes arv.
+- **Intervall- ja suhteskaala** on mõlemad arvskaala alaliigid, mille erinevus tuleneb väärtuse 0 tähendusest. Intervallskaalal  ei ole väärtusel 0 sisulist tähendust. Suhteskaalal tähendab väärtus 0 aga mõõdetava nähtuse puudumist. Seetõttu võib intervallskaalal mõõdetud väärtusi ainult liita ja lahutada, suhteskaalal aga ka korrutada ja jagada [@stevens46theory]^[Nt 20 eurot on kaks korda rohkem kui 10 eurot, aga 20 kraadi ei ole kaks korda soojem kui 10 kraadi.]. 
+
+Eelnevalt selgitatud mõõtmise tasemed saab kokku võtta alloleva joonisega
+
+```{mermaid}
+graph
+	subgraph Kvalitatiivne
+	    Binaarskaala-->Nimiskaala
+	    Nimiskaala-->Järjestusskaala
+	end
+	subgraph Kvantitatiivne
+	    Järjestusskaala-->Arvskaala
+	end
+		subgraph "Väärtuse 0 tähendus"
+		    Arvskaala-->|0 ei ole puudumine|Intervallskaala
+		    Arvskaala-->|0 on puudumne|Suhteskaala
+		end
+		subgraph "Intervallide vahed"
+		    Arvskaala-->|Täisarvud|Diskreetne
+		    Arvskaala-->|Mistahes arvud|Pidev
+		end
+```
 
 <!--
 Levels of measurement
@@ -10,7 +44,22 @@ Levels of measurement
 
 ## Tunnuste liigid
 
+Statistikarakendused ja R keel määravad andmete sisestamisel igale andmetabeli veerule tunnuse liigi. See tunnuse liik on otseselt seotud mõõtmistasemega. Kasutades andmetöötluseks tarkvara, mis ei ole tabelarvutus, on oluline eristada käesoleva peatüki alguses esitatud nelja üldist mõõtmistaset. Diskreetsete ja pideva skaala eristamine ei ole üldjuhul tähtis ja intervall- ja suhteskaalat tarkvara ei erista. 
 
+Kui salvestada R töölaua objekti kas või üksik väärtus, siis määratakse selle liigiks kas `numeric` või `character`, vastavalt sellele, kas tegemist on arvuga või mitte. Kui väärtus pärineb tõeväärtusest (@sec-kasutus), siis määratakse selle liigiks `logical`.
+
+| Mõõtmistase | Tunnuse liik R keeles | Selgitus |
+|----------|-----------------------|--|
+| Binaarskaala   | Logical   | Ainult väärtused FALSE või TRUE|
+| Nimiskaala  | Character | Misiganes väärtused |
+| Järjestusskaala  | Factor    | Misiganes väärtused järjestatakse |
+| Arvskaala | Numeric     | Ainult arvud|
+
+Tunnuste liike on tarkvaral tähtis eristada seetõttu, et sel juhul 
+
+- ilmnevad lihtsamini puudulikud väärtused veergudes^[Nt kui arvude veergu on sattunud mõni täht, siis saab vea tuvastada varakult tunnuse tüübi alusel ja ei ole vaja hiljem ilmneva vea põhjust mõnikod mitu tundi otsida.]; 
+- tarkvara määrab ise tunnuse jaoks vaikimisi sobiva funktsiooni rakendamise või andmete kuvamise viisi; 
+- tarkvara saab optimeerida arvutuskäiku nii, et see toimuks võimalikult kiiresti. 
 
 <!--
 Types of variables

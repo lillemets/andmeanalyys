@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus - 3&nbsp; Analüüs</title>
+<title>Oijee! Andmeteadus - 3&nbsp; Andmete analüüs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analüüs</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -137,7 +137,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analüüs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analüüs</span></a>
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -148,10 +148,39 @@ div.csl-indent {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">R keel</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Statistika</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">Rakendused</span>
@@ -180,7 +209,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-analüüs" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Analüüs</span></span></h1>
+<h1 class="title"><span id="sec-analüüs" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></span></h1>
 </div>
 
 
@@ -202,9 +231,9 @@ div.csl-indent {
 <li>kavanda selle küsimuse lahendamine,</li>
 <li>kogu vajalikud andmed,</li>
 <li>loo arusaam andmetes sisalduvast,</li>
-<li>tekita seoseid kirjeldav mudel,</li>
-<li>tõlgenda mudelit,</li>
-<li>esita tulemused.</li>
+<li>tee arvutused vastavalt uurimisküsimusele,</li>
+<li>tõlgenda arvutuste tulemusi,</li>
+<li>esita tulemused teksti ja/või joonistena.</li>
 </ol>
 <p>Ärinduse valdkonnas kasutatakse mõnikord standardiseeritud CRISP-DM lähenemist, mis määrab tegevused ettevõtte siseste andmete praktiliseks rakendamiseks. Võrreldes eelnevalt kirjeldatud sammudega hõlmab nimetatud lähenemine ka andmete kättesaadavuse hindamist ja pöörab enam tähelepanu mudeli rakendamisele.</p>
 <!-- 
@@ -231,9 +260,9 @@ Cross Industry Standard Process for Data Mining (CRISP-DM)
 </ul>
 <div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Nt kui mingis valimis olevate ettevõtete käive keskmiselt kasvas, aga selle keskmise kasvu usaldusvahemik kattis ka 0, siis on tõenäoline, et üldiselt selliste ettevõtete käive ei muutunudki</p></li></div><p>Eraldi võib välja tuua mõned soovitused, mida pidada meeles andmetest mustrite leidmisel.</p>
 <ul>
+<li>Uuri, mil viisil muutuvad ühe tunnuse väärtused teise tunnuse väärtuste muutudes.</li>
 <li>Agregeerimise ja summeerimise käigus läheb alati vähemalt osa andmetes olevast infost kaduma.</li>
 <li>Andmete jaotus on enamasti kaldu kas suurte või harvem väikeste väärtuste suhtes ja seega on kallutatud ka mõõdikud, mis on tundlikud erindite suhtes<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
-<li>Tinglikuse rakendamine (<em>conditioning</em>) on lihtne viis andmetest mustrite leidmiseks: uuri, mil viisil muutuvad ühe tunnuse väärtused teise tunnuse väärtuste muutudes.</li>
 <li>Mustreid on enamasti lihtsam tuvastada joonistelt kui arvutuste tulemustest.</li>
 <li>Mõned mustrid ilmnevad ainult juhul, kui uurida tunnuseid teisendatud kujul (<em>transformed</em>). Teisendusi on oluline meeles pidada tulemuste tõlgendamisel.</li>
 </ul>
