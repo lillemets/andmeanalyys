@@ -14,8 +14,8 @@ Sealjuures tuleb nähtuste mõõtmisel võtta arvesse, et mida üldistatum on m�
 Mõõtmistasemete eristamiseks on veel mitu viisi.
 
 - **Kvantitatiivse ja kvalitatiivse** mõõtmistaseme eristamine seisneb selles, kas mõõtmise tulemuseks on arvud. Kvantitatiivse mõõtmise korral on väärtused esitatavad tähenduslikult arvudena, kvalitatiivne mõõtmistase hõlmab enamasti aga arve mitte sisaldavaid väärtusi ehk sõnu või lauseid.
-- **Diskreetne ja pidev** mõõtmine kehtivad ainult arvskaalal ja nende erisus seisneb intervallide vahedes. Diskreetsel mõõtmisel on tulemuseks ainult täisarvud, mis saadakse enamasti millegi loendamisel. Pideval mõõtmisel võib tulemuseks olla mistahes arv.
-- **Intervall- ja suhteskaala** on mõlemad arvskaala alaliigid, mille erinevus tuleneb väärtuse 0 tähendusest. Intervallskaalal  ei ole väärtusel 0 sisulist tähendust. Suhteskaalal tähendab väärtus 0 aga mõõdetava nähtuse puudumist. Seetõttu võib intervallskaalal mõõdetud väärtusi ainult liita ja lahutada, suhteskaalal aga ka korrutada ja jagada [@stevens46theory]^[Nt 20 eurot on kaks korda rohkem kui 10 eurot, aga 20 kraadi ei ole kaks korda soojem kui 10 kraadi.]. 
+- **Diskreetne ja pidev** (*discrete*, *continuous*) mõõtmine kehtivad ainult arvskaalal ja nende erisus seisneb intervallide vahedes. Diskreetsel mõõtmisel on tulemuseks ainult täisarvud, mis saadakse enamasti millegi loendamisel. Pideval mõõtmisel võib tulemuseks olla mistahes arv.
+- **Intervall- ja suhteskaala** (*interval*, *ratio*) on mõlemad arvskaala alaliigid, mille erinevus tuleneb väärtuse 0 tähendusest. Suhteskaalal tähendab väärtus 0 mõõdetava nähtuse puudumist, intervallskaalal aga mitte. Seetõttu võib intervallskaalal mõõdetud väärtusi ainult liita ja lahutada, suhteskaalal aga ka korrutada ja jagada [@stevens46theory]^[Nt 20 eurot on kaks korda rohkem kui 10 eurot, aga 20 kraadi ei ole kaks korda soojem kui 10 kraadi.]. 
 
 Eelnevalt selgitatud mõõtmise tasemed saab kokku võtta alloleva joonisega
 
@@ -30,11 +30,11 @@ graph
 	end
 		subgraph "Väärtuse 0 tähendus"
 		    Arvskaala-->|0 ei ole puudumine|Intervallskaala
-		    Arvskaala-->|0 on puudumne|Suhteskaala
+		    Arvskaala-->|0 on puudumine|Suhteskaala
 		end
 		subgraph "Intervallide vahed"
 		    Arvskaala-->|Täisarvud|Diskreetne
-		    Arvskaala-->|Mistahes arvud|Pidev
+		    Arvskaala-->|Kõik arvud|Pidev
 		end
 ```
 
@@ -48,12 +48,16 @@ Statistikarakendused ja R keel määravad andmete sisestamisel igale andmetabeli
 
 Kui salvestada R töölaua objekti kas või üksik väärtus, siis määratakse selle liigiks kas `numeric` või `character`, vastavalt sellele, kas tegemist on arvuga või mitte. Kui väärtus pärineb tõeväärtusest (@sec-kasutus), siis määratakse selle liigiks `logical`.
 
-| Mõõtmistase | Tunnuse liik R keeles | Selgitus |
-|----------|-----------------------|--|
-| Binaarskaala   | Logical   | Ainult väärtused FALSE või TRUE|
-| Nimiskaala  | Character | Misiganes väärtused |
-| Järjestusskaala  | Factor    | Misiganes väärtused järjestatakse |
-| Arvskaala | Numeric     | Ainult arvud|
+|Eelistus | Mõõtmistase | Tunnuse liik R keeles | Selgitus |
+|---|----------|-----------------------|--|
+|1.| Binaarskaala   | Logical   | Ainult väärtused FALSE või TRUE|
+|2.| Arvskaala | Numeric     | Ainult arvud|
+|3.| Järjestusskaala  | Factor    | Ükskõik mis väärtused järjestatakse |
+|4.| Nimiskaala  | Character | Ükskõik mis väärtused |
+
+::: {.callout-tip}
+Väärtustele tunnuse liigi määramisel tuleks eelistada  kõige lihtsamat tunnuse liiki. Sel juhul saab enamasti vastava tunnusega kõige enam erinevaid tehteid teha.
+:::
 
 Tunnuste liike on tarkvaral tähtis eristada seetõttu, et sel juhul 
 

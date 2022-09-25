@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 12&nbsp; Korrelatsioon</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./seosereeglid.html" rel="next">
+<link href="./tinglikkus.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-korrelatsioon" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Korrelatsioonanalüüs on kõige sagedamini kasutatav mõõdik seose hindamiseks kahe arvtunnuse või harvemini järjestustunnuse vahel. Kui ühe tunnuse väärtuse suurenedes kipuvad teise tunnuse väärtused keskmiselt suurenema või vähenema, siis on nende tunnuste vahel korrelatsioon.</p>
+<p>Selle korrelatsiooni suuna ja tugevuse saab arvutada ja esitada korrelatsioonikoefitsiendina. Kuigi selleks on erinevaid arvutuskäike, siis enamasti kasutatakse Pearsoni korrelatsioonikoefitsienti ja seda võib eeldada ka juhul, kui täpsustus arvutuskäigu kohta puudub.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pea meeles!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Korrelatsioonikoefitsiendi väärtusel on kolm omadust, mille alusel saab teha järeldusi vastava tunnuste vahelise seose kohta:</p>
+<ul>
+<li>selle väärtus on vahemikus -1 ja 1;</li>
+<li>selle absoluutväärtus näitab seose tugevust, kus
+<ul>
+<li>väärtus 0 näitab seose puudumist ja</li>
+<li>väärtus -1 või 1 näitab täielikku seost;</li>
+</ul></li>
+<li>selle märk näitab seose suunda, kus
+<ul>
+<li>positiivne väärtus tähendab positiivset seost ehk ühe tunnuse väärtuste suurenedes suurenevad ka teise tunnuse väärtused</li>
+<li>negatiivne väärtus näitab negatiivset seost.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<p>Hinnang korrelatsioonikordaja tugevusele oleneb konkreetsetest nähtustest, mida tunnused esindavad. Nt füüsikaliste nähtuste vahel on korrelatsioonikordajad tavaliselt kõrgemad kui ühiskondlike nähtuste puhul.</p>
+<p>Üldiselt võib korrelatsioonikordaja alusel seose tugevuse hindamisel lähtuda sellest, et korrelatsioonikordaja</p>
+<ul>
+<li>alla 0,2 näitab korrelatsiooni puudumist,</li>
+<li>0,2 ja 0,5 vahel näitab mõõdukat korrelatsiooni,</li>
+<li>üle 0,5 näitab tugevat korrelatsiooni.</li>
+</ul>
+<p>Harva huvitab meid üksik korrelatsioonikordaja kahe tunnuse vahel. Enamasti soovime hinnata korraga seoseid mitme tunnuse või väga paljude tunnuste vahel. Üks korrelatsioonanalüüsi kasulik rakendus on korrelatsioonimaatriksid ja nende alusel loodud seosekaardid (<em>heatmaps</em>), mis näitlikustavad korraga kõiki ette antud korrelatsioone.</p>
+<p>R keeles on korrelatsioonide leidmiseks funktsioon <code>cor()</code>, mis vaikimisi arvutab Pearsoni korrelatsioonikordaja.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Laadime laienduse tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'tidyverse'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sisestame andmed</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>riigid <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/countries.csv'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Jätame veerunimetustes alles vaid enne punkti oleva</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(riigid) <span class="sc">%&lt;&gt;%</span> <span class="fu">strsplit</span>(<span class="st">'</span><span class="sc">\\</span><span class="st">.'</span>) <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="st">`</span><span class="at">[</span><span class="st">`</span>, <span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Kuvame andmetabeli ülevaate</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(riigid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   227 obs. of  20 variables:
+ $ Country    : chr  "Afghanistan " "Albania " "Algeria " "American Samoa " ...
+ $ Region     : chr  "ASIA (EX. NEAR EAST)         " "EASTERN EUROPE                     " "NORTHERN AFRICA                    " "OCEANIA                            " ...
+ $ Population : int  31056997 3581655 32930091 57794 71201 12127071 13477 69108 39921833 2976372 ...
+ $ Area       : int  647500 28748 2381740 199 468 1246700 102 443 2766890 29800 ...
+ $ Pop        : num  48 124.6 13.8 290.4 152.1 ...
+ $ Coastline  : num  0 1.26 0.04 58.29 0 ...
+ $ Net        : num  23.06 -4.93 -0.39 -20.71 6.6 ...
+ $ Infant     : num  163.07 21.52 31 9.27 4.05 ...
+ $ GDP        : int  700 4500 6000 8000 19000 1900 8600 11000 11200 3500 ...
+ $ Literacy   : num  36 86.5 70 97 100 42 95 89 97.1 98.6 ...
+ $ Phones     : num  3.2 71.2 78.1 259.5 497.2 ...
+ $ Arable     : num  12.13 21.09 3.22 10 2.22 ...
+ $ Crops      : num  0.22 4.42 0.25 15 0 0.24 0 4.55 0.48 2.3 ...
+ $ Other      : num  87.7 74.5 96.5 75 97.8 ...
+ $ Climate    : num  1 3 1 2 3 NA 2 2 3 4 ...
+ $ Birthrate  : num  46.6 15.11 17.14 22.46 8.71 ...
+ $ Deathrate  : num  20.34 5.22 4.61 3.27 6.25 ...
+ $ Agriculture: num  0.38 0.232 0.101 NA NA 0.096 0.04 0.038 0.095 0.239 ...
+ $ Industry   : num  0.24 0.188 0.6 NA NA 0.658 0.18 0.22 0.358 0.343 ...
+ $ Service    : num  0.38 0.579 0.298 NA NA 0.246 0.78 0.743 0.547 0.418 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jätame ainult valitud tunnused ja seejärel eemaldame puuduvad väärtused</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>riigid <span class="ot">&lt;-</span> riigid[, <span class="dv">3</span><span class="sc">:</span><span class="dv">17</span>] <span class="sc">%&gt;%</span> na.omit</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Arvutame korrelatsioonid</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>korrelatsioonid <span class="ot">&lt;-</span> <span class="fu">cor</span>(riigid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell column-page-right">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Määrame käsu vastuse suurima laiuse</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width =</span> <span class="dv">1000</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Kuvame arvutatud korrelatsioonid ümardatuna kahe komakohani</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(korrelatsioonid, <span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Population  Area   Pop Coastline   Net Infant   GDP Literacy Phones Arable Crops Other Climate Birthrate Deathrate
+Population       1.00  0.61 -0.02     -0.06  0.01   0.01 -0.04    -0.04  -0.01   0.21 -0.06 -0.14   -0.02     -0.06     -0.04
+Area             0.61  1.00 -0.07     -0.10  0.05   0.01  0.06    -0.01   0.07  -0.05 -0.16  0.12   -0.10     -0.03     -0.01
+Pop             -0.02 -0.07  1.00      0.15  0.15  -0.14  0.19     0.08   0.15  -0.06 -0.04  0.06   -0.01     -0.17     -0.13
+Coastline       -0.06 -0.10  0.15      1.00 -0.17  -0.12  0.04     0.12   0.10  -0.08  0.38 -0.13   -0.03     -0.07     -0.18
+Net              0.01  0.05  0.15     -0.17  1.00   0.01  0.36    -0.04   0.22  -0.07 -0.41  0.27   -0.06     -0.05      0.03
+Infant           0.01  0.01 -0.14     -0.12  0.01   1.00 -0.64    -0.77  -0.70  -0.11 -0.10  0.14   -0.37      0.86      0.67
+GDP             -0.04  0.06  0.19      0.04  0.36  -0.64  1.00     0.53   0.88   0.04 -0.20  0.07    0.36     -0.66     -0.25
+Literacy        -0.04 -0.01  0.08      0.12 -0.04  -0.77  0.53     1.00   0.60   0.07  0.07 -0.09    0.39     -0.79     -0.41
+Phones          -0.01  0.07  0.15      0.10  0.22  -0.70  0.88     0.60   1.00   0.11 -0.11 -0.03    0.41     -0.73     -0.33
+Arable           0.21 -0.05 -0.06     -0.08 -0.07  -0.11  0.04     0.07   0.11   1.00  0.10 -0.86    0.38     -0.19      0.06
+Crops           -0.06 -0.16 -0.04      0.38 -0.41  -0.10 -0.20     0.07  -0.11   0.10  1.00 -0.58   -0.01      0.08     -0.21
+Other           -0.14  0.12  0.06     -0.13  0.27   0.14  0.07    -0.09  -0.03  -0.86 -0.58  1.00   -0.31      0.12      0.06
+Climate         -0.02 -0.10 -0.01     -0.03 -0.06  -0.37  0.36     0.39   0.41   0.38 -0.01 -0.31    1.00     -0.46      0.02
+Birthrate       -0.06 -0.03 -0.17     -0.07 -0.05   0.86 -0.66    -0.79  -0.73  -0.19  0.08  0.12   -0.46      1.00      0.45
+Deathrate       -0.04 -0.01 -0.13     -0.18  0.03   0.67 -0.25    -0.41  -0.33   0.06 -0.21  0.06    0.02      0.45      1.00</code></pre>
+</div>
+</div>
+<p>Näeme, et nt kirjaoskuse ja sündimuse vahel on tugev negatiivne korrelatsioon ning rahvaarv korreleerub tugevalt ainult riigi pindalaga.</p>
+<p>Korrelatsioonimaatriksi kuvamiseks joonisena saame kasutada funktsiooni <code>heatmap()</code>. Vaikimisi järjestatkse tunnused selliselt, et sarnaste korrelatsioonidega tunnused oleksid lähestikku.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(korrelatsioonid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="korrelatsioon_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Rohkem valikuid korrelatsioonimaartikis joonistamisel pakub funktsioon <code>heatmap.2()</code> laiendusest <code>gplots</code>. Lisaks legendile pakub see ka väga palju teisi võimalusi korrelatsioonide kuvamiseks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'gplots'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(korrelatsioonid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="korrelatsioon_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Interaktiivse seosekaardi tekitamiseks saame kasutada funktsiooni <code>heatmaply()</code> samanimelisest laiendusest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'heatmaply'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmaply</span>(korrelatsioonid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-ea3385dbc1bf17c88437" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ea3385dbc1bf17c88437">{"x":{"data":[{"x":[8.0625,3.875,null,3.875,3.875,null,3.875,2.25,null,2.25,2.25,null,2.25,1.5,null,1.5,1.5,null,1.5,1,null,1,1,null,1.5,2,null,2,2,null,2.25,3,null,3,3,null,3.875,5.5,null,5.5,5.5,null,5.5,4.5,null,4.5,4.5,null,4.5,4,null,4,4,null,4.5,5,null,5,5,null,5.5,6.5,null,6.5,6.5,null,6.5,6,null,6,6,null,6.5,7,null,7,7,null,8.0625,12.25,null,12.25,12.25,null,12.25,10.75,null,10.75,10.75,null,10.75,9.5,null,9.5,9.5,null,9.5,8.5,null,8.5,8.5,null,8.5,8,null,8,8,null,8.5,9,null,9,9,null,9.5,10.5,null,10.5,10.5,null,10.5,10,null,10,10,null,10.5,11,null,11,11,null,10.75,12,null,12,12,null,12.25,13.75,null,13.75,13.75,null,13.75,13,null,13,13,null,13.75,14.5,null,14.5,14.5,null,14.5,14,null,14,14,null,14.5,15,null,15,15],"y":[3.80550908052853,3.80550908052853,null,3.80550908052853,2.5082241695423,null,2.5082241695423,2.5082241695423,null,2.5082241695423,0.933459024955072,null,0.933459024955072,0.933459024955072,null,0.933459024955072,0.308861886169826,null,0.308861886169826,0.308861886169826,null,0.308861886169826,0,null,0.308861886169826,0.308861886169826,null,0.308861886169826,0,null,0.933459024955072,0.933459024955072,null,0.933459024955072,0,null,2.5082241695423,2.5082241695423,null,2.5082241695423,1.89917805453641,null,1.89917805453641,1.89917805453641,null,1.89917805453641,1.2553432811946,null,1.2553432811946,1.2553432811946,null,1.2553432811946,0,null,1.2553432811946,1.2553432811946,null,1.2553432811946,0,null,1.89917805453641,1.89917805453641,null,1.89917805453641,1.11161947880066,null,1.11161947880066,1.11161947880066,null,1.11161947880066,0,null,1.11161947880066,1.11161947880066,null,1.11161947880066,0,null,3.80550908052853,3.80550908052853,null,3.80550908052853,2.58596894076712,null,2.58596894076712,2.58596894076712,null,2.58596894076712,2.11889490645357,null,2.11889490645357,2.11889490645357,null,2.11889490645357,1.70682393589342,null,1.70682393589342,1.70682393589342,null,1.70682393589342,1.3703407445324,null,1.3703407445324,1.3703407445324,null,1.3703407445324,0,null,1.3703407445324,1.3703407445324,null,1.3703407445324,0,null,1.70682393589342,1.70682393589342,null,1.70682393589342,0.688315485448725,null,0.688315485448725,0.688315485448725,null,0.688315485448725,0,null,0.688315485448725,0.688315485448725,null,0.688315485448725,0,null,2.11889490645357,2.11889490645357,null,2.11889490645357,0,null,2.58596894076712,2.58596894076712,null,2.58596894076712,1.23312962138201,null,1.23312962138201,1.23312962138201,null,1.23312962138201,0,null,1.23312962138201,1.23312962138201,null,1.23312962138201,0.391348896850347,null,0.391348896850347,0.391348896850347,null,0.391348896850347,0,null,0.391348896850347,0.391348896850347,null,0.391348896850347,0],"text":["y: 3.8055091","y: 3.8055091",null,"y: 3.8055091","y: 3.8055091",null,"y: 2.5082242","y: 2.5082242",null,"y: 2.5082242","y: 2.5082242",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.9334590","y: 0.9334590",null,"y: 2.5082242","y: 2.5082242",null,"y: 2.5082242","y: 2.5082242",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 3.8055091","y: 3.8055091",null,"y: 3.8055091","y: 3.8055091",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.1188949","y: 2.1188949",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.7068239","y: 1.7068239",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.5859689","y: 2.5859689",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489"],"type":"scatter","mode":"lines","line":{"width":2.26771653543307,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","name":"(black,solid)","legendgroup":"(black,solid)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8.0625,3.875,2.25,1.5,1,2,3,5.5,4.5,4,5,6.5,6,7,12.25,10.75,9.5,8.5,8,9,10.5,10,11,12,13.75,13,14.5,14,15],"y":[3.80550908052853,2.5082241695423,0.933459024955072,0.308861886169826,0,0,0,1.89917805453641,1.2553432811946,0,0,1.11161947880066,0,0,2.58596894076712,2.11889490645357,1.70682393589342,1.3703407445324,0,0,0.688315485448725,0,0,0,1.23312962138201,0,0.391348896850347,0,0],"text":["y: 3.8055091","y: 2.5082242","y: 0.9334590","y: 0.3088619","y: 0.0000000","y: 0.0000000","y: 0.0000000","y: 1.8991781","y: 1.2553433","y: 0.0000000","y: 0.0000000","y: 1.1116195","y: 0.0000000","y: 0.0000000","y: 2.5859689","y: 2.1188949","y: 1.7068239","y: 1.3703407","y: 0.0000000","y: 0.0000000","y: 0.6883155","y: 0.0000000","y: 0.0000000","y: 0.0000000","y: 1.2331296","y: 0.0000000","y: 0.3913489","y: 0.0000000","y: 0.0000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.88976377952756,"color":"transparent"}},"hoveron":"points","name":"(NA,1)","legendgroup":"(NA,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"type":"scatter","mode":"markers","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x2","yaxis":"y","frame":null},{"x":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"y":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"z":[[1,0.938145644869072,0.745844696288091,0.657823884478915,0.484138356753865,0.357410158144102,0.485215351526538,0.564463019174962,0.657500686405091,0.443826551314025,0.49695444762182,0.500537840320997,0.327516776591272,0.119933135757807,0.109174626676679],[0.938145644869072,1,0.783588438101352,0.684713562974637,0.523108354206935,0.402196805282986,0.516404567858543,0.546403206395364,0.583263975072304,0.45891403901098,0.500773891887866,0.446152308510497,0.289029712050939,0.0871687751645228,0.0697147121363981],[0.745844696288091,0.783588438101352,1,0.674585126812254,0.503180332823868,0.49924273526136,0.52563463369546,0.508512434385603,0.441709728354226,0.44027260726583,0.459182276548821,0.413361647533703,0.24146418933772,0.0529528595878318,0.0413992880594493],[0.657823884478915,0.684713562974637,0.674585126812254,1,0.669683301039449,0.458528348949363,0.446425550288211,0.456741785320317,0.433862863849723,0.45327357489468,0.412330781018329,0.298191752519293,0.474989426976241,0.267690707577409,0.216875540603172],[0.484138356753865,0.523108354206935,0.503180332823868,0.669683301039449,1,0.515580915199965,0.420772623589045,0.432756189887334,0.424745701582263,0.575728442058215,0.43797435937029,0,0.495215152175267,0.404743154704511,0.362397832453193],[0.357410158144102,0.402196805282986,0.49924273526136,0.458528348949363,0.515580915199965,1,0.666738470401626,0.444768185876036,0.244198092125668,0.429253085683656,0.376862823535658,0.150221901189369,0.348683312064476,0.409074652628113,0.504025393900815],[0.485215351526538,0.516404567858543,0.52563463369546,0.446425550288211,0.420772623589045,0.666738470401626,1,0.54623308806149,0.370418528519278,0.431733592174813,0.41243567166705,0.395921519006947,0.368900188018102,0.397208070824814,0.428089749802412],[0.564463019174962,0.546403206395364,0.508512434385603,0.456741785320317,0.432756189887334,0.444768185876036,0.54623308806149,1,0.541507338233603,0.453702867933083,0.427111284597073,0.498310272123521,0.395638324534728,0.388413788943721,0.370989181200797],[0.657500686405091,0.583263975072304,0.441709728354226,0.433862863849723,0.424745701582263,0.244198092125668,0.370418528519278,0.541507338233603,1,0.467514075845193,0.487767740361891,0.606184485985003,0.481425914833514,0.466444376567249,0.439358918906937],[0.443826551314025,0.45891403901098,0.44027260726583,0.45327357489468,0.575728442058215,0.429253085683656,0.431733592174813,0.453702867933083,0.467514075845193,1,0.791768399828985,0.389570015594567,0.440768759240891,0.468128171402486,0.430726181692261],[0.49695444762182,0.500773891887866,0.459182276548821,0.412330781018329,0.43797435937029,0.376862823535658,0.41243567166705,0.427111284597073,0.487767740361891,0.791768399828985,1,0.528380460850445,0.45681757419992,0.470177166374274,0.446176321922148],[0.500537840320997,0.446152308510497,0.413361647533703,0.298191752519293,0,0.150221901189369,0.395921519006947,0.498310272123521,0.606184485985003,0.389570015594567,0.528380460850445,1,0.495954032223758,0.53920105281784,0.525715255360031],[0.327516776591272,0.289029712050939,0.24146418933772,0.474989426976241,0.495215152175267,0.348683312064476,0.368900188018102,0.395638324534728,0.481425914833514,0.440768759240891,0.45681757419992,0.495954032223758,1,0.824286003704884,0.703176821129512],[0.119933135757807,0.0871687751645228,0.0529528595878318,0.267690707577409,0.404743154704511,0.409074652628113,0.397208070824814,0.388413788943721,0.466444376567249,0.468128171402486,0.470177166374274,0.53920105281784,0.824286003704884,1,0.924822322374017],[0.109174626676679,0.0697147121363981,0.0413992880594493,0.216875540603172,0.362397832453193,0.504025393900815,0.428089749802412,0.370989181200797,0.439358918906937,0.430726181692261,0.446176321922148,0.525715255360031,0.703176821129512,0.924822322374017,1]],"text":[["row: GDP<br>column: GDP<br>value:  1.000000","row: GDP<br>column: Phones<br>value:  0.884682","row: GDP<br>column: Literacy<br>value:  0.526168","row: GDP<br>column: Climate<br>value:  0.362067","row: GDP<br>column: Arable<br>value:  0.038258","row: GDP<br>column: Crops<br>value: -0.198006","row: GDP<br>column: Coastline<br>value:  0.040266","row: GDP<br>column: Pop<br>value:  0.188011","row: GDP<br>column: Net<br>value:  0.361465","row: GDP<br>column: Population<br>value: -0.036897","row: GDP<br>column: Area<br>value:  0.062152","row: GDP<br>column: Other<br>value:  0.068832","row: GDP<br>column: Deathrate<br>value: -0.253738","row: GDP<br>column: Infant<br>value: -0.640745","row: GDP<br>column: Birthrate<br>value: -0.660802"],["row: Phones<br>column: GDP<br>value:  0.884682","row: Phones<br>column: Phones<br>value:  1.000000","row: Phones<br>column: Literacy<br>value:  0.596535","row: Phones<br>column: Climate<br>value:  0.412199","row: Phones<br>column: Arable<br>value:  0.110911","row: Phones<br>column: Crops<br>value: -0.114509","row: Phones<br>column: Coastline<br>value:  0.098413","row: Phones<br>column: Pop<br>value:  0.154341","row: Phones<br>column: Net<br>value:  0.223062","row: Phones<br>column: Population<br>value: -0.008769","row: Phones<br>column: Area<br>value:  0.069272","row: Phones<br>column: Other<br>value: -0.032561","row: Phones<br>column: Deathrate<br>value: -0.325491","row: Phones<br>column: Infant<br>value: -0.701829","row: Phones<br>column: Birthrate<br>value: -0.734369"],["row: Literacy<br>column: GDP<br>value:  0.526168","row: Literacy<br>column: Phones<br>value:  0.596535","row: Literacy<br>column: Literacy<br>value:  1.000000","row: Literacy<br>column: Climate<br>value:  0.393316","row: Literacy<br>column: Arable<br>value:  0.073759","row: Literacy<br>column: Crops<br>value:  0.066418","row: Literacy<br>column: Coastline<br>value:  0.115621","row: Literacy<br>column: Pop<br>value:  0.083700","row: Literacy<br>column: Net<br>value: -0.040843","row: Literacy<br>column: Population<br>value: -0.043523","row: Literacy<br>column: Area<br>value: -0.008269","row: Literacy<br>column: Other<br>value: -0.093694","row: Literacy<br>column: Deathrate<br>value: -0.414169","row: Literacy<br>column: Infant<br>value: -0.765619","row: Literacy<br>column: Birthrate<br>value: -0.787158"],["row: Climate<br>column: GDP<br>value:  0.362067","row: Climate<br>column: Phones<br>value:  0.412199","row: Climate<br>column: Literacy<br>value:  0.393316","row: Climate<br>column: Climate<br>value:  1.000000","row: Climate<br>column: Arable<br>value:  0.384177","row: Climate<br>column: Crops<br>value: -0.009488","row: Climate<br>column: Coastline<br>value: -0.032051","row: Climate<br>column: Pop<br>value: -0.012818","row: Climate<br>column: Net<br>value: -0.055473","row: Climate<br>column: Population<br>value: -0.019284","row: Climate<br>column: Area<br>value: -0.095616","row: Climate<br>column: Other<br>value: -0.308410","row: Climate<br>column: Deathrate<br>value:  0.021201","row: Climate<br>column: Infant<br>value: -0.365274","row: Climate<br>column: Birthrate<br>value: -0.460011"],["row: Arable<br>column: GDP<br>value:  0.038258","row: Arable<br>column: Phones<br>value:  0.110911","row: Arable<br>column: Literacy<br>value:  0.073759","row: Arable<br>column: Climate<br>value:  0.384177","row: Arable<br>column: Arable<br>value:  1.000000","row: Arable<br>column: Crops<br>value:  0.096878","row: Arable<br>column: Coastline<br>value: -0.079877","row: Arable<br>column: Pop<br>value: -0.057536","row: Arable<br>column: Net<br>value: -0.072470","row: Arable<br>column: Population<br>value:  0.209013","row: Arable<br>column: Area<br>value: -0.047807","row: Arable<br>column: Other<br>value: -0.864341","row: Arable<br>column: Deathrate<br>value:  0.058909","row: Arable<br>column: Infant<br>value: -0.109762","row: Arable<br>column: Birthrate<br>value: -0.188708"],["row: Crops<br>column: GDP<br>value: -0.198006","row: Crops<br>column: Phones<br>value: -0.114509","row: Crops<br>column: Literacy<br>value:  0.066418","row: Crops<br>column: Climate<br>value: -0.009488","row: Crops<br>column: Arable<br>value:  0.096878","row: Crops<br>column: Crops<br>value:  1.000000","row: Crops<br>column: Coastline<br>value:  0.378687","row: Crops<br>column: Pop<br>value: -0.035141","row: Crops<br>column: Net<br>value: -0.409072","row: Crops<br>column: Population<br>value: -0.064067","row: Crops<br>column: Area<br>value: -0.161740","row: Crops<br>column: Other<br>value: -0.584276","row: Crops<br>column: Deathrate<br>value: -0.214276","row: Crops<br>column: Infant<br>value: -0.101686","row: Crops<br>column: Birthrate<br>value:  0.075334"],["row: Coastline<br>column: GDP<br>value:  0.040266","row: Coastline<br>column: Phones<br>value:  0.098413","row: Coastline<br>column: Literacy<br>value:  0.115621","row: Coastline<br>column: Climate<br>value: -0.032051","row: Coastline<br>column: Arable<br>value: -0.079877","row: Coastline<br>column: Crops<br>value:  0.378687","row: Coastline<br>column: Coastline<br>value:  1.000000","row: Coastline<br>column: Pop<br>value:  0.154024","row: Coastline<br>column: Net<br>value: -0.173754","row: Coastline<br>column: Population<br>value: -0.059442","row: Coastline<br>column: Area<br>value: -0.095420","row: Coastline<br>column: Other<br>value: -0.126208","row: Coastline<br>column: Deathrate<br>value: -0.176585","row: Coastline<br>column: Infant<br>value: -0.123810","row: Coastline<br>column: Birthrate<br>value: -0.066236"],["row: Pop<br>column: GDP<br>value:  0.188011","row: Pop<br>column: Phones<br>value:  0.154341","row: Pop<br>column: Literacy<br>value:  0.083700","row: Pop<br>column: Climate<br>value: -0.012818","row: Pop<br>column: Arable<br>value: -0.057536","row: Pop<br>column: Crops<br>value: -0.035141","row: Pop<br>column: Coastline<br>value:  0.154024","row: Pop<br>column: Pop<br>value:  1.000000","row: Pop<br>column: Net<br>value:  0.145213","row: Pop<br>column: Population<br>value: -0.018484","row: Pop<br>column: Area<br>value: -0.068060","row: Pop<br>column: Other<br>value:  0.064679","row: Pop<br>column: Deathrate<br>value: -0.126736","row: Pop<br>column: Infant<br>value: -0.140205","row: Pop<br>column: Birthrate<br>value: -0.172691"],["row: Net<br>column: GDP<br>value:  0.361465","row: Net<br>column: Phones<br>value:  0.223062","row: Net<br>column: Literacy<br>value: -0.040843","row: Net<br>column: Climate<br>value: -0.055473","row: Net<br>column: Arable<br>value: -0.072470","row: Net<br>column: Crops<br>value: -0.409072","row: Net<br>column: Coastline<br>value: -0.173754","row: Net<br>column: Pop<br>value:  0.145213","row: Net<br>column: Net<br>value:  1.000000","row: Net<br>column: Population<br>value:  0.007265","row: Net<br>column: Area<br>value:  0.045024","row: Net<br>column: Other<br>value:  0.265794","row: Net<br>column: Deathrate<br>value:  0.033201","row: Net<br>column: Infant<br>value:  0.005270","row: Net<br>column: Birthrate<br>value: -0.045226"],["row: Population<br>column: GDP<br>value: -0.036897","row: Population<br>column: Phones<br>value: -0.008769","row: Population<br>column: Literacy<br>value: -0.043523","row: Population<br>column: Climate<br>value: -0.019284","row: Population<br>column: Arable<br>value:  0.209013","row: Population<br>column: Crops<br>value: -0.064067","row: Population<br>column: Coastline<br>value: -0.059442","row: Population<br>column: Pop<br>value: -0.018484","row: Population<br>column: Net<br>value:  0.007265","row: Population<br>column: Population<br>value:  1.000000","row: Population<br>column: Area<br>value:  0.611785","row: Population<br>column: Other<br>value: -0.138050","row: Population<br>column: Deathrate<br>value: -0.042598","row: Population<br>column: Infant<br>value:  0.008410","row: Population<br>column: Birthrate<br>value: -0.061320"],["row: Area<br>column: GDP<br>value:  0.062152","row: Area<br>column: Phones<br>value:  0.069272","row: Area<br>column: Literacy<br>value: -0.008269","row: Area<br>column: Climate<br>value: -0.095616","row: Area<br>column: Arable<br>value: -0.047807","row: Area<br>column: Crops<br>value: -0.161740","row: Area<br>column: Coastline<br>value: -0.095420","row: Area<br>column: Pop<br>value: -0.068060","row: Area<br>column: Net<br>value:  0.045024","row: Area<br>column: Population<br>value:  0.611785","row: Area<br>column: Area<br>value:  1.000000","row: Area<br>column: Other<br>value:  0.120740","row: Area<br>column: Deathrate<br>value: -0.012677","row: Area<br>column: Infant<br>value:  0.012230","row: Area<br>column: Birthrate<br>value: -0.032516"],["row: Other<br>column: GDP<br>value:  0.068832","row: Other<br>column: Phones<br>value: -0.032561","row: Other<br>column: Literacy<br>value: -0.093694","row: Other<br>column: Climate<br>value: -0.308410","row: Other<br>column: Arable<br>value: -0.864341","row: Other<br>column: Crops<br>value: -0.584276","row: Other<br>column: Coastline<br>value: -0.126208","row: Other<br>column: Pop<br>value:  0.064679","row: Other<br>column: Net<br>value:  0.265794","row: Other<br>column: Population<br>value: -0.138050","row: Other<br>column: Area<br>value:  0.120740","row: Other<br>column: Other<br>value:  1.000000","row: Other<br>column: Deathrate<br>value:  0.060287","row: Other<br>column: Infant<br>value:  0.140914","row: Other<br>column: Birthrate<br>value:  0.115772"],["row: Deathrate<br>column: GDP<br>value: -0.253738","row: Deathrate<br>column: Phones<br>value: -0.325491","row: Deathrate<br>column: Literacy<br>value: -0.414169","row: Deathrate<br>column: Climate<br>value:  0.021201","row: Deathrate<br>column: Arable<br>value:  0.058909","row: Deathrate<br>column: Crops<br>value: -0.214276","row: Deathrate<br>column: Coastline<br>value: -0.176585","row: Deathrate<br>column: Pop<br>value: -0.126736","row: Deathrate<br>column: Net<br>value:  0.033201","row: Deathrate<br>column: Population<br>value: -0.042598","row: Deathrate<br>column: Area<br>value: -0.012677","row: Deathrate<br>column: Other<br>value:  0.060287","row: Deathrate<br>column: Deathrate<br>value:  1.000000","row: Deathrate<br>column: Infant<br>value:  0.672409","row: Deathrate<br>column: Birthrate<br>value:  0.446620"],["row: Infant<br>column: GDP<br>value: -0.640745","row: Infant<br>column: Phones<br>value: -0.701829","row: Infant<br>column: Literacy<br>value: -0.765619","row: Infant<br>column: Climate<br>value: -0.365274","row: Infant<br>column: Arable<br>value: -0.109762","row: Infant<br>column: Crops<br>value: -0.101686","row: Infant<br>column: Coastline<br>value: -0.123810","row: Infant<br>column: Pop<br>value: -0.140205","row: Infant<br>column: Net<br>value:  0.005270","row: Infant<br>column: Population<br>value:  0.008410","row: Infant<br>column: Area<br>value:  0.012230","row: Infant<br>column: Other<br>value:  0.140914","row: Infant<br>column: Deathrate<br>value:  0.672409","row: Infant<br>column: Infant<br>value:  1.000000","row: Infant<br>column: Birthrate<br>value:  0.859843"],["row: Birthrate<br>column: GDP<br>value: -0.660802","row: Birthrate<br>column: Phones<br>value: -0.734369","row: Birthrate<br>column: Literacy<br>value: -0.787158","row: Birthrate<br>column: Climate<br>value: -0.460011","row: Birthrate<br>column: Arable<br>value: -0.188708","row: Birthrate<br>column: Crops<br>value:  0.075334","row: Birthrate<br>column: Coastline<br>value: -0.066236","row: Birthrate<br>column: Pop<br>value: -0.172691","row: Birthrate<br>column: Net<br>value: -0.045226","row: Birthrate<br>column: Population<br>value: -0.061320","row: Birthrate<br>column: Area<br>value: -0.032516","row: Birthrate<br>column: Other<br>value:  0.115772","row: Birthrate<br>column: Deathrate<br>value:  0.446620","row: Birthrate<br>column: Infant<br>value:  0.859843","row: Birthrate<br>column: Birthrate<br>value:  1.000000"]],"colorscale":[[0,"#440154"],[0.0413992880594493,"#471164"],[0.0529528595878318,"#481568"],[0.0697147121363981,"#481B6D"],[0.0871687751645228,"#482071"],[0.109174626676679,"#482878"],[0.119933135757807,"#472B7A"],[0.150221901189369,"#463480"],[0.216875540603172,"#3F4889"],[0.24146418933772,"#3C508B"],[0.244198092125668,"#3C508B"],[0.267690707577409,"#39578C"],[0.289029712050939,"#365D8D"],[0.298191752519293,"#355F8D"],[0.327516776591272,"#31678E"],[0.348683312064476,"#2F6C8E"],[0.357410158144102,"#2E6E8E"],[0.362397832453193,"#2E6F8E"],[0.368900188018102,"#2D718E"],[0.370418528519278,"#2D718E"],[0.370989181200797,"#2C718E"],[0.376862823535658,"#2C728E"],[0.388413788943721,"#2B758E"],[0.389570015594567,"#2B758E"],[0.395638324534728,"#2A778E"],[0.395921519006947,"#2A778E"],[0.397208070824814,"#2A778E"],[0.402196805282986,"#29798E"],[0.404743154704511,"#29798E"],[0.409074652628113,"#297A8E"],[0.412330781018329,"#297B8E"],[0.41243567166705,"#297B8E"],[0.413361647533703,"#297B8E"],[0.420772623589045,"#287D8E"],[0.424745701582263,"#277E8E"],[0.427111284597073,"#277F8E"],[0.428089749802412,"#277F8E"],[0.429253085683656,"#277F8E"],[0.430726181692261,"#27808E"],[0.431733592174813,"#27808E"],[0.432756189887334,"#27808E"],[0.433862863849723,"#26818E"],[0.43797435937029,"#26828E"],[0.439358918906937,"#26828E"],[0.44027260726583,"#26828E"],[0.440768759240891,"#26828E"],[0.441709728354226,"#26828E"],[0.443826551314025,"#26828E"],[0.444768185876036,"#26828E"],[0.446152308510497,"#25838E"],[0.446176321922148,"#25838E"],[0.446425550288211,"#25838E"],[0.45327357489468,"#25858E"],[0.453702867933083,"#25858E"],[0.456741785320317,"#25858E"],[0.45681757419992,"#25858E"],[0.458528348949363,"#24868E"],[0.45891403901098,"#24868E"],[0.459182276548821,"#24868E"],[0.466444376567249,"#23888E"],[0.467514075845193,"#23888E"],[0.468128171402486,"#23888E"],[0.470177166374274,"#23898E"],[0.474989426976241,"#238A8D"],[0.481425914833514,"#228C8D"],[0.484138356753865,"#228C8D"],[0.485215351526538,"#228D8D"],[0.487767740361891,"#228D8D"],[0.495215152175267,"#218F8D"],[0.495954032223758,"#218F8D"],[0.49695444762182,"#21908D"],[0.498310272123521,"#21908D"],[0.49924273526136,"#21908D"],[0.500537840320997,"#21918C"],[0.500773891887866,"#21918C"],[0.503180332823868,"#21918C"],[0.504025393900815,"#20928C"],[0.508512434385603,"#20928C"],[0.515580915199965,"#20938C"],[0.516404567858543,"#1F948C"],[0.523108354206935,"#1F958B"],[0.52563463369546,"#1F968B"],[0.525715255360031,"#1F968B"],[0.528380460850445,"#1F978B"],[0.53920105281784,"#1F998A"],[0.541507338233603,"#1F9A8A"],[0.54623308806149,"#1E9B8A"],[0.546403206395364,"#1E9B8A"],[0.564463019174962,"#1FA088"],[0.575728442058215,"#1FA287"],[0.583263975072304,"#20A486"],[0.606184485985003,"#24AA83"],[0.657500686405091,"#32B67A"],[0.657823884478915,"#32B67A"],[0.666738470401626,"#35B779"],[0.669683301039449,"#37B878"],[0.674585126812254,"#38B977"],[0.684713562974637,"#3CBC74"],[0.703176821129512,"#45BF70"],[0.745844696288091,"#5AC864"],[0.783588438101352,"#70CF57"],[0.791768399828985,"#75D054"],[0.824286003704884,"#89D548"],[0.924822322374017,"#CCE11D"],[0.938145644869072,"#D6E21A"],[1,"#FDE725"]],"type":"heatmap","showscale":false,"autocolorscale":false,"showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[1],"y":[1],"name":"99_2851e5317a1573ff0604b8129bb0262d","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#440154"],[0.00334448160535116,"#440256"],[0.00668896321070233,"#450357"],[0.0100334448160535,"#450558"],[0.0133779264214047,"#450659"],[0.0167224080267559,"#46075B"],[0.020066889632107,"#46085C"],[0.0234113712374582,"#460A5D"],[0.0267558528428094,"#460B5E"],[0.0301003344481605,"#470C5F"],[0.0334448160535117,"#470E61"],[0.0367892976588629,"#470F62"],[0.040133779264214,"#471063"],[0.0434782608695652,"#471164"],[0.0468227424749164,"#471365"],[0.0501672240802676,"#481467"],[0.0535117056856187,"#481568"],[0.0568561872909699,"#481768"],[0.0602006688963211,"#481769"],[0.0635451505016722,"#48186A"],[0.0668896321070234,"#481A6C"],[0.0702341137123745,"#481B6D"],[0.0735785953177257,"#481C6E"],[0.0769230769230769,"#481D6F"],[0.0802675585284281,"#481E6F"],[0.0836120401337793,"#481F70"],[0.0869565217391304,"#482071"],[0.0903010033444816,"#482173"],[0.0936454849498328,"#482374"],[0.096989966555184,"#482475"],[0.100334448160535,"#482576"],[0.103678929765886,"#482576"],[0.107023411371237,"#482777"],[0.110367892976589,"#482878"],[0.11371237458194,"#482979"],[0.117056856187291,"#472A7A"],[0.120401337792642,"#472B7A"],[0.123745819397993,"#472D7B"],[0.127090301003344,"#472D7B"],[0.130434782608696,"#472E7C"],[0.133779264214047,"#472F7D"],[0.137123745819398,"#46307E"],[0.140468227424749,"#46327E"],[0.1438127090301,"#46337F"],[0.147157190635451,"#463480"],[0.150501672240803,"#463480"],[0.153846153846154,"#453581"],[0.157190635451505,"#453781"],[0.160535117056856,"#453882"],[0.163879598662207,"#443983"],[0.167224080267559,"#443A83"],[0.17056856187291,"#443A83"],[0.173913043478261,"#443C84"],[0.177257525083612,"#433D84"],[0.180602006688963,"#433E85"],[0.183946488294314,"#423F85"],[0.187290969899666,"#424086"],[0.190635451505017,"#424186"],[0.193979933110368,"#424186"],[0.197324414715719,"#414387"],[0.20066889632107,"#414487"],[0.204013377926421,"#404588"],[0.207357859531773,"#404688"],[0.210702341137124,"#3F4788"],[0.214046822742475,"#3F4889"],[0.217391304347826,"#3F4889"],[0.220735785953177,"#3E4989"],[0.224080267558528,"#3E4A89"],[0.22742474916388,"#3E4C8A"],[0.230769230769231,"#3D4D8A"],[0.234113712374582,"#3D4E8A"],[0.237458193979933,"#3C4F8A"],[0.240802675585284,"#3C4F8A"],[0.244147157190635,"#3C508B"],[0.247491638795987,"#3B518B"],[0.250836120401338,"#3B528B"],[0.254180602006689,"#3A538B"],[0.25752508361204,"#3A548C"],[0.260869565217391,"#39558C"],[0.264214046822742,"#39558C"],[0.267558528428094,"#39568C"],[0.270903010033445,"#38588C"],[0.274247491638796,"#38598C"],[0.277591973244147,"#375A8C"],[0.280936454849498,"#375B8D"],[0.284280936454849,"#375B8D"],[0.287625418060201,"#365C8D"],[0.290969899665552,"#365D8D"],[0.294314381270903,"#355E8D"],[0.297658862876254,"#355F8D"],[0.301003344481605,"#34608D"],[0.304347826086957,"#34618D"],[0.307692307692308,"#34618D"],[0.311036789297659,"#33628D"],[0.31438127090301,"#33638D"],[0.317725752508361,"#32648E"],[0.321070234113712,"#32658E"],[0.324414715719063,"#31668E"],[0.327759197324415,"#31678E"],[0.331103678929766,"#31678E"],[0.334448160535117,"#31688E"],[0.337792642140468,"#30698E"],[0.341137123745819,"#306A8E"],[0.344481605351171,"#2F6B8E"],[0.347826086956522,"#2F6C8E"],[0.351170568561873,"#2E6D8E"],[0.354515050167224,"#2E6D8E"],[0.357859531772575,"#2E6E8E"],[0.361204013377926,"#2E6F8E"],[0.364548494983278,"#2D708E"],[0.367892976588629,"#2D718E"],[0.37123745819398,"#2C718E"],[0.374581939799331,"#2C728E"],[0.377926421404682,"#2C728E"],[0.381270903010033,"#2C738E"],[0.384615384615385,"#2B748E"],[0.387959866220736,"#2B758E"],[0.391304347826087,"#2A768E"],[0.394648829431438,"#2A778E"],[0.397993311036789,"#2A778E"],[0.40133779264214,"#2A788E"],[0.404682274247492,"#29798E"],[0.408026755852843,"#297A8E"],[0.411371237458194,"#297B8E"],[0.414715719063545,"#287C8E"],[0.418060200668896,"#287D8E"],[0.421404682274247,"#287D8E"],[0.424749163879599,"#277E8E"],[0.42809364548495,"#277F8E"],[0.431438127090301,"#27808E"],[0.434782608695652,"#26818E"],[0.438127090301003,"#26828E"],[0.441471571906354,"#26828E"],[0.444816053511706,"#26828E"],[0.448160535117057,"#25838E"],[0.451505016722408,"#25848E"],[0.454849498327759,"#25858E"],[0.45819397993311,"#24868E"],[0.461538461538462,"#24878E"],[0.464882943143813,"#23888E"],[0.468227424749164,"#23888E"],[0.471571906354515,"#23898E"],[0.474916387959866,"#238A8D"],[0.478260869565217,"#228B8D"],[0.481605351170569,"#228C8D"],[0.48494983277592,"#228D8D"],[0.488294314381271,"#218E8D"],[0.491638795986622,"#218E8D"],[0.494983277591973,"#218F8D"],[0.498327759197324,"#21908D"],[0.501672240802676,"#21918C"],[0.505016722408027,"#20928C"],[0.508361204013378,"#20928C"],[0.511705685618729,"#20928C"],[0.51505016722408,"#20938C"],[0.518394648829431,"#1F948C"],[0.521739130434783,"#1F958B"],[0.525083612040134,"#1F968B"],[0.528428093645485,"#1F978B"],[0.531772575250836,"#1F988B"],[0.535117056856187,"#1F988B"],[0.538461538461538,"#1F998A"],[0.541806020066889,"#1F9A8A"],[0.545150501672241,"#1E9B8A"],[0.548494983277592,"#1E9C89"],[0.551839464882943,"#1E9D89"],[0.555183946488294,"#1F9E89"],[0.558528428093645,"#1F9E89"],[0.561872909698997,"#1F9F88"],[0.565217391304348,"#1FA088"],[0.568561872909699,"#1FA188"],[0.57190635451505,"#1FA187"],[0.575250836120401,"#1FA287"],[0.578595317725752,"#20A386"],[0.581939799331104,"#20A386"],[0.585284280936455,"#20A486"],[0.588628762541806,"#21A585"],[0.591973244147157,"#21A685"],[0.595317725752508,"#22A785"],[0.598662207357859,"#22A884"],[0.602006688963211,"#23A983"],[0.605351170568562,"#23A983"],[0.608695652173913,"#24AA83"],[0.612040133779264,"#25AB82"],[0.615384615384615,"#25AC82"],[0.618729096989967,"#26AD81"],[0.622073578595318,"#27AD81"],[0.625418060200669,"#27AD81"],[0.62876254180602,"#28AE80"],[0.632107023411371,"#29AF7F"],[0.635451505016722,"#2AB07F"],[0.638795986622073,"#2CB17E"],[0.642140468227425,"#2DB27D"],[0.645484949832776,"#2EB37C"],[0.648829431438127,"#2EB37C"],[0.652173913043478,"#30B47C"],[0.655518394648829,"#31B57B"],[0.658862876254181,"#32B67A"],[0.662207357859532,"#34B679"],[0.665551839464883,"#35B779"],[0.668896321070234,"#36B878"],[0.672240802675585,"#37B878"],[0.675585284280936,"#39B977"],[0.678929765886288,"#3ABA76"],[0.682274247491639,"#3BBB75"],[0.68561872909699,"#3DBC74"],[0.688963210702341,"#3EBC73"],[0.692307692307692,"#40BD72"],[0.695652173913043,"#41BD72"],[0.698996655518395,"#42BE71"],[0.702341137123746,"#44BF70"],[0.705685618729097,"#46C06F"],[0.709030100334448,"#48C16E"],[0.712374581939799,"#49C16D"],[0.71571906354515,"#4BC26C"],[0.719063545150502,"#4DC26C"],[0.722408026755853,"#4EC36B"],[0.725752508361204,"#50C46A"],[0.729096989966555,"#52C569"],[0.732441471571906,"#54C568"],[0.735785953177257,"#55C667"],[0.739130434782609,"#57C666"],[0.74247491638796,"#59C765"],[0.745819397993311,"#5AC864"],[0.749163879598662,"#5CC863"],[0.752508361204013,"#5EC962"],[0.755852842809364,"#5FCA61"],[0.759197324414716,"#62CB5F"],[0.762541806020067,"#64CB5F"],[0.765886287625418,"#66CB5D"],[0.769230769230769,"#67CC5C"],[0.77257525083612,"#69CD5B"],[0.775919732441472,"#6CCD5A"],[0.779264214046823,"#6DCE59"],[0.782608695652174,"#6FCF57"],[0.785953177257525,"#71CF57"],[0.789297658862876,"#74D055"],[0.792642140468227,"#75D054"],[0.795986622073579,"#77D153"],[0.79933110367893,"#79D151"],[0.802675585284281,"#7BD250"],[0.806020066889632,"#7ED34F"],[0.809364548494983,"#80D34E"],[0.812709030100334,"#82D34D"],[0.816053511705686,"#84D44B"],[0.819397993311037,"#86D549"],[0.822742474916388,"#88D548"],[0.826086956521739,"#8AD647"],[0.82943143812709,"#8DD645"],[0.832775919732441,"#8FD644"],[0.836120401337793,"#91D743"],[0.839464882943144,"#93D741"],[0.842809364548495,"#95D840"],[0.846153846153846,"#97D83E"],[0.849498327759197,"#9AD93D"],[0.852842809364548,"#9CD93C"],[0.8561872909699,"#9ED93A"],[0.859531772575251,"#A0DA39"],[0.862876254180602,"#A2DA37"],[0.866220735785953,"#A5DB36"],[0.869565217391304,"#A7DB35"],[0.872909698996655,"#A9DC33"],[0.876254180602007,"#ABDC31"],[0.879598662207358,"#AEDC30"],[0.882943143812709,"#B0DD2F"],[0.88628762541806,"#B2DD2D"],[0.889632107023411,"#B5DE2B"],[0.892976588628763,"#B7DE2A"],[0.896321070234114,"#B9DE28"],[0.899665551839465,"#BBDE27"],[0.903010033444816,"#BEDF26"],[0.906354515050167,"#C0DF25"],[0.909698996655518,"#C2DF23"],[0.91304347826087,"#C4E021"],[0.916387959866221,"#C7E020"],[0.919732441471572,"#C9E11F"],[0.923076923076923,"#CBE11E"],[0.926421404682274,"#CEE11D"],[0.929765886287625,"#D0E11C"],[0.933110367892977,"#D2E21B"],[0.936454849498328,"#D4E21A"],[0.939799331103679,"#D7E219"],[0.94314381270903,"#D9E319"],[0.946488294314381,"#DBE319"],[0.949832775919732,"#DDE318"],[0.953177257525084,"#DFE318"],[0.956521739130435,"#E2E418"],[0.959866220735786,"#E4E419"],[0.963210702341137,"#E6E419"],[0.966555183946488,"#E8E419"],[0.969899665551839,"#EBE51A"],[0.973244147157191,"#EDE51B"],[0.976588628762542,"#EFE51C"],[0.979933110367893,"#F1E51D"],[0.983277591973244,"#F3E61E"],[0.986622073578595,"#F5E61F"],[0.989966555183946,"#F7E620"],[0.993311036789298,"#F9E622"],[0.996655518394649,"#FBE723"],[1,"#FDE725"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"thickness":23.04,"title":null,"titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"tickmode":"array","ticktext":["-0.5","0.0","0.5","1.0"],"tickvals":[0.195426087050552,0.463617391367035,0.731808695683517,1],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y2","frame":null},{"x":[3.80550908052853,3.80550908052853,null,3.80550908052853,2.5082241695423,null,2.5082241695423,2.5082241695423,null,2.5082241695423,0.933459024955072,null,0.933459024955072,0.933459024955072,null,0.933459024955072,0.308861886169826,null,0.308861886169826,0.308861886169826,null,0.308861886169826,0,null,0.308861886169826,0.308861886169826,null,0.308861886169826,0,null,0.933459024955072,0.933459024955072,null,0.933459024955072,0,null,2.5082241695423,2.5082241695423,null,2.5082241695423,1.89917805453641,null,1.89917805453641,1.89917805453641,null,1.89917805453641,1.2553432811946,null,1.2553432811946,1.2553432811946,null,1.2553432811946,0,null,1.2553432811946,1.2553432811946,null,1.2553432811946,0,null,1.89917805453641,1.89917805453641,null,1.89917805453641,1.11161947880066,null,1.11161947880066,1.11161947880066,null,1.11161947880066,0,null,1.11161947880066,1.11161947880066,null,1.11161947880066,0,null,3.80550908052853,3.80550908052853,null,3.80550908052853,2.58596894076712,null,2.58596894076712,2.58596894076712,null,2.58596894076712,2.11889490645357,null,2.11889490645357,2.11889490645357,null,2.11889490645357,1.70682393589342,null,1.70682393589342,1.70682393589342,null,1.70682393589342,1.3703407445324,null,1.3703407445324,1.3703407445324,null,1.3703407445324,0,null,1.3703407445324,1.3703407445324,null,1.3703407445324,0,null,1.70682393589342,1.70682393589342,null,1.70682393589342,0.688315485448725,null,0.688315485448725,0.688315485448725,null,0.688315485448725,0,null,0.688315485448725,0.688315485448725,null,0.688315485448725,0,null,2.11889490645357,2.11889490645357,null,2.11889490645357,0,null,2.58596894076712,2.58596894076712,null,2.58596894076712,1.23312962138201,null,1.23312962138201,1.23312962138201,null,1.23312962138201,0,null,1.23312962138201,1.23312962138201,null,1.23312962138201,0.391348896850347,null,0.391348896850347,0.391348896850347,null,0.391348896850347,0,null,0.391348896850347,0.391348896850347,null,0.391348896850347,0],"y":[8.0625,3.875,null,3.875,3.875,null,3.875,2.25,null,2.25,2.25,null,2.25,1.5,null,1.5,1.5,null,1.5,1,null,1,1,null,1.5,2,null,2,2,null,2.25,3,null,3,3,null,3.875,5.5,null,5.5,5.5,null,5.5,4.5,null,4.5,4.5,null,4.5,4,null,4,4,null,4.5,5,null,5,5,null,5.5,6.5,null,6.5,6.5,null,6.5,6,null,6,6,null,6.5,7,null,7,7,null,8.0625,12.25,null,12.25,12.25,null,12.25,10.75,null,10.75,10.75,null,10.75,9.5,null,9.5,9.5,null,9.5,8.5,null,8.5,8.5,null,8.5,8,null,8,8,null,8.5,9,null,9,9,null,9.5,10.5,null,10.5,10.5,null,10.5,10,null,10,10,null,10.5,11,null,11,11,null,10.75,12,null,12,12,null,12.25,13.75,null,13.75,13.75,null,13.75,13,null,13,13,null,13.75,14.5,null,14.5,14.5,null,14.5,14,null,14,14,null,14.5,15,null,15,15],"text":["y: 3.8055091","y: 3.8055091",null,"y: 3.8055091","y: 3.8055091",null,"y: 2.5082242","y: 2.5082242",null,"y: 2.5082242","y: 2.5082242",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.3088619","y: 0.3088619",null,"y: 0.9334590","y: 0.9334590",null,"y: 0.9334590","y: 0.9334590",null,"y: 2.5082242","y: 2.5082242",null,"y: 2.5082242","y: 2.5082242",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.2553433","y: 1.2553433",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.8991781","y: 1.8991781",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 1.1116195","y: 1.1116195",null,"y: 3.8055091","y: 3.8055091",null,"y: 3.8055091","y: 3.8055091",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.1188949","y: 2.1188949",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.3703407","y: 1.3703407",null,"y: 1.7068239","y: 1.7068239",null,"y: 1.7068239","y: 1.7068239",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 0.6883155","y: 0.6883155",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.1188949","y: 2.1188949",null,"y: 2.5859689","y: 2.5859689",null,"y: 2.5859689","y: 2.5859689",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 1.2331296","y: 1.2331296",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489",null,"y: 0.3913489","y: 0.3913489"],"type":"scatter","mode":"lines","line":{"width":2.26771653543307,"color":"rgba(0,0,0,1)","dash":"solid"},"hoveron":"points","name":"(black,solid)","legendgroup":"(black,solid)","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[3.80550908052853,2.5082241695423,0.933459024955072,0.308861886169826,0,0,0,1.89917805453641,1.2553432811946,0,0,1.11161947880066,0,0,2.58596894076712,2.11889490645357,1.70682393589342,1.3703407445324,0,0,0.688315485448725,0,0,0,1.23312962138201,0,0.391348896850347,0,0],"y":[8.0625,3.875,2.25,1.5,1,2,3,5.5,4.5,4,5,6.5,6,7,12.25,10.75,9.5,8.5,8,9,10.5,10,11,12,13.75,13,14.5,14,15],"text":["y: 3.8055091","y: 2.5082242","y: 0.9334590","y: 0.3088619","y: 0.0000000","y: 0.0000000","y: 0.0000000","y: 1.8991781","y: 1.2553433","y: 0.0000000","y: 0.0000000","y: 1.1116195","y: 0.0000000","y: 0.0000000","y: 2.5859689","y: 2.1188949","y: 1.7068239","y: 1.3703407","y: 0.0000000","y: 0.0000000","y: 0.6883155","y: 0.0000000","y: 0.0000000","y: 0.0000000","y: 1.2331296","y: 0.0000000","y: 0.3913489","y: 0.0000000","y: 0.0000000"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"transparent","opacity":1,"size":null,"symbol":null,"line":{"width":1.88976377952756,"color":"transparent"}},"hoveron":"points","name":"(NA,1)","legendgroup":"(NA,1)","showlegend":true,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"xaxis":{"domain":[0,0.8],"automargin":true,"type":"linear","autorange":false,"range":[0.5,15.5],"tickmode":"array","ticktext":["GDP","Phones","Literacy","Climate","Arable","Crops","Coastline","Pop","Net","Population","Area","Other","Deathrate","Infant","Birthrate"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"categoryorder":"array","categoryarray":["GDP","Phones","Literacy","Climate","Arable","Crops","Coastline","Pop","Net","Population","Area","Other","Deathrate","Infant","Birthrate"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-45,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y2","title":"","hoverformat":".2f"},"xaxis2":{"domain":[0.8,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"y2","type":"linear","autorange":false,"range":[0,3.80550908052853],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[0,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"yaxis2":{"domain":[0,0.8],"automargin":true,"type":"linear","autorange":false,"range":[0.5,15.5],"tickmode":"array","ticktext":["GDP","Phones","Literacy","Climate","Arable","Crops","Coastline","Pop","Net","Population","Area","Other","Deathrate","Infant","Birthrate"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"categoryorder":"array","categoryarray":["GDP","Phones","Literacy","Climate","Arable","Crops","Coastline","Pop","Net","Population","Area","Other","Deathrate","Infant","Birthrate"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":13.2835201328352},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"yaxis":{"domain":[0.8,1],"automargin":true,"showticklabels":false,"showgrid":false,"zeroline":false,"anchor":"x","type":"linear","autorange":false,"range":[0,3.80550908052853],"tickmode":"array","ticktext":["0","1","2","3"],"tickvals":[0,1,2,3],"categoryorder":"array","categoryarray":["0","1","2","3"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.65296803652968,"tickwidth":0,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"gridcolor":null,"gridwidth":0,"title":{"text":"","font":{"color":null,"family":null,"size":0}},"hoverformat":".2f"},"annotations":[],"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.8,"y0":0.8,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.8,"y0":0,"y1":0.8},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.8,"x1":1,"y0":0,"y1":0.8}],"images":[],"margin":{"t":0,"r":null,"b":79.7011207970112,"l":79.7011207970112},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"y":1,"yanchor":"top"},"hovermode":"closest","barmode":"relative","paper_bgcolor":"rgba(255,255,255,1)","title":""},"attrs":{"a7f23f138879":{"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"x":{},"y":{},"type":"scatter"},"a7f2ef10fd0":{"colour":{},"shape":{},"size":{},"x":{},"y":{}},"a7f24f9625d4":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20]},"a7f27f466cd8":{"x":{},"y":{},"fill":{},"text":{},"type":"heatmap"},"a7f2560fde2a":{"xend":{},"yend":{},"colour":{},"linetype":{},"size":{},"x":{},"y":{},"type":"scatter"},"a7f2e54353":{"colour":{},"shape":{},"size":{},"x":{},"y":{}}},"source":"A","config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displaylogo":false,"modeBarButtonsToRemove":["sendDataToCloud","select2d","lasso2d","autoScale2d","hoverClosestCartesian","hoverCompareCartesian","sendDataToCloud"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"subplot":true,"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<!-- 
+[[Correlation analysis]]
+-->
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./tinglikkus.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tinglikkus</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./seosereeglid.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seosereeglid</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

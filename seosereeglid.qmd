@@ -1,0 +1,189 @@
+# Seosereeglid {#sec-seosereeglid}
+
+Seosereegel (*association rule*) näitab, kui sageli esinevad nähtused üheskoos ja seosereeglite analüüsi eesmärk on tavaliselt selgitada välja selliste nähtuste kogumid. Seosereeglite analüüsi kasutatakse sageli asjade koos esinemise uurimiseks  tehingutes nt toodete või teenuste ostmisel.
+
+Sageli nimetataksegi seosereeglite analüüsi hoopis ostukorvi analüüsiks (*market-basket analysis*, @saltz17introduction), sest selle abil saab vastata küsimustele ostjate ostueelistuste kohta.
+
+- Kui sageli ostetakse teatud tooted korraga?
+- Millised teenused valitakse korraga?
+
+Seosereeglid põhinevad lihtsalt asjade esinemissagedustel. Seosereeglite leidmiseks kasuatakse Apriori algoritmi. See määrab kõikvõimalikud andmetes esinevad asjade kogumid ja tuvastab need, mis esinevad teatud tugevuse ja kindlusega. Lisaks neie kahele mõõdikule saab seosereegleid hinnata ka ootuspärasuse alusel.
+
+- Seose tugevus (*support*) on asju A ja B sisaldavate tehingute osakaal: 
+  $$\text{tugi}=\frac{\text{tehingud, kus on A ja B}}{\text{kõik tehingud}}.$$
+  See näitab tõenäosust, et juhuslikus tehingus on asjad A ja B ning iseloomustab reegli sagedust.
+- Seose kindlus (*confidence*) on asju A ja B sisaldavate tehingute osakaal ainult asju A sisaldavatest tehingutest: 
+  $$\text{kindlus}=\frac{\text{tehingud, kus on A and B}}{\text{tehingud, kus on A}}.$$
+  See näitab tõenäosust, et tehingus on B, kui selles on A ning iseloomustab reegli kehtivust.
+- Seose ootuspärasus (*lift*) on kindluse ja oodatava kindluse suhe. 
+  $$\text{oodatav kindlus}=\frac{\text{tehingud, kus on B}}{\text{kõik tehingud}}.$$
+  $$\text{ootuspärasus}=\frac{\text{kindlus}}{\text{oodatav kindlus}}.$$
+  See näitab kui sageli võime oodata, et reegel kehtib. Selle mõõdiku väärtused iseloomustavad reeglit järgnevalt: 
+  - $1$ näitab, et A ei mõjuta B olemist tehingus, 
+  - $>1$ näitab, et A soodustab B olemist tehingus, 
+  - $<1$ näitab, et A välistab B olemist tehingus. 
+
+Enamasti ei võeta järelduste tegemisel arvesse selliseid seosereegleid, mis on liiga ilmselged või millele ei ole seletust ja mis võivad olla seega juhuslikud. 
+
+## Seosereeglite leidmine
+
+Seosereeglite analüüsimiseks R keeles peame paigaldama ja laadima laienduse `arules` ja reeglite kuvamiseks joonistena laienduse `arulesViz`.
+
+``` {r}
+#| message: false
+# Laadime laiendused
+library('tidyverse')
+library('arules') # Seosereeglite arvutamiseks
+library('arulesViz') # Seosereeglite joonistamiseks
+```
+
+Seosereeglite kasutamisel R keeles on üks võimalus sisestada andmed tekstifailina, milles igal real on ühes tehindus olevad asjad. Järgnevalt laadimegi sellisel kujul oleva toidupoe ostukorvi andmestiku [Groceries](https://raw.githubusercontent.com/lillemets/andmeteadus/main/andmed/groceries.txt). Selleks kasutame funktsiooni `read.transactions()` ja lisame täpsustuse `format = 'basket'` määramaks, et iga rida esindab ühte tehingut. 
+
+```{r}
+tehingud <- read.transactions('andmed/groceries.txt', format = 'basket', sep = ',')
+summary(tehingud)
+```
+
+Funktsioon `summary()` kuvab muuhulgas tehingute ja asjade arvu, sagedasemate asjad nimetused ja sagedused ning tehingute suurused. Konkreetsete tehingute nägemiseks saame kasutada funktsiooni `inspect()`.
+
+```{r}
+inspect(tehingud[1:3])
+```
+
+Lisaks saame kuvada nt teatud toega tehingud. Alljärgnevalt leiame asjad, mis esinevad vähmalt 5% tehingutes. 
+
+``` {r}
+eclat(tehingud, support = 0.05) %>% sort %>% inspect
+```
+
+Näeme, et enam kui veerandis tehingutest on piim ja veidi alla viiendikus köögiviljad.
+
+Seosereeglid saame leida Apriori algoritmi kasutades funktsiooniga `apriori()`. Sealjuures peaksime määrama teatud tingimused leitavatele reeglitele: 
+
+- `support` ehk tugi, 
+- `confidece` ehk kindlus, 
+- `minlen` ehk vähima asjad arvu tehingus, 
+- `maxlen` ehk suurima asjade arvu ühes tehingus.
+
+Alljärgnevalt leiame reeglid, mis iseloomustavad vähmalt 1% kõikidest tehingutest (tugi) ja kehtivad 20% juhtudest (kindlus).
+
+```{r}
+# Määrame valikud
+valikud <- list(support = 0.01, confidence = 0.2)
+# Rakendame Apriori algoritmi
+reeglid <- apriori(tehingud, parameter = valikud, 
+                   control = list(verbose = FALSE)) %>% # Peidame protseduuri kirjelduse
+  sort(by = 'confidence') # Järjestame reeglid alates kõige kõrgema kindlusega reeglist
+# Kuvame ülevaate reeglitest
+summary(reeglid)
+```
+
+Näeme, et leiti `r nrow(reeglid@quality)` reeglit keskmise toega `r mean(reeglid@quality$support)` ja keskmise kindlusega `r mean(reeglid@quality$confidence)`.
+
+```{r}
+# Kuvame 20 esimest reeglit
+inspect(reeglid[1:20])
+```
+
+Kõige sagedasem on osta koos teiste toodetega köögivilju ja piima. Esimene reegel näitab, et kui ostetakse tsitruselisi ja juurvilju, siis umbes 58,62% juhtudest ostetakse ka teisi köögivilju. Selliseid tehinguid oli 102 ehk 1,03% kõikidest tehingutest.
+
+:::{.callout-warning}
+Seosereeglid kuvatakse funktsiooni `apriori()` kasutades kujul `A => B` ehk kui ostetakse A, siis ostetakse ka B, mitte aga vastupidi. Nt kindlus näitab tõenäosust, et tehingus on B, kui selles on A, aga see sama kindlus ei kehti vastupidise seose kohta.
+:::
+
+Funktsioon `plot()` joonistab toe ja kindluse vahelised seosed. 
+
+``` {r}
+plot(reeglid)
+```
+
+Lisades argumendi `engine = 'htmlwidget'` saame interaktiivse joonise, millel on vöimalik tuvastada konkreetseid reegleid, mida punktid esindavad.
+
+``` {r}
+plot(reeglid, engine = 'htmlwidget')
+```
+
+Kõige intuitiivsem viis reeglite kuvamiseks on võrgustikjoonis, mis näitab korraga seoseid mitme reegli vahel.
+
+```{r}
+plot(reeglid, method = 'graph', limit = 20)
+```
+
+Samuti saame kuvada maatriksi, milles veergudes on A ja ridades B ning nende ristumiskohtades on reeglid.
+
+```{r}
+plot(reeglid, method = 'grouped', limit = 20)
+```
+
+Lisaks saame kuvada reeglid nooltena, mille joon läbib kõiki asju A ja noole ots näitab asja B.
+
+```{r}
+plot(reeglid, method = 'paracoord', limit = 10)
+```
+
+## Reeglid asjade kohta
+
+Eelnevalt leidsime kõikvõimalikud seosereeglid ja uurisime neid, millel oli kõige kõrgem kindlus. Saame aga leida seosereeglid ka ainult meile huvipakkuvate asjade kohta.
+
+Nt kui soovime teada, mis toodetega kaasneb jogurt (ehk jogurt on B), siis lisame funktsioonile `apriori()` argumendi `appearance = list(default = 'lhs', rhs = 'other vegetables')`.
+
+``` {r}
+valikud <- list(support = 0.01, confidence = 0.1)
+reeglid <- apriori(tehingud, parameter = valikud, 
+                   control = list(verbose = FALSE), 
+                   appearance = list(default = 'lhs', rhs = 'yogurt')) %>% 
+  sort(by = 'confidence')
+plot(reeglid, method = 'graph', limit = 20)
+```
+
+Saame otsida seosereegleid ka teistpidi. Nt kui ostetakse pudelivett, siis mida veel ostetakse (pudelivesi on A)?
+
+``` {r}
+reeglid <- apriori(tehingud, parameter = valikud, 
+                   control = list(verbose = FALSE), 
+                   appearance = list(default = 'rhs', lhs = 'bottled water')) %>% 
+  sort(by = 'confidence')
+plot(reeglid, method = 'graph', limit = 20)
+```
+
+
+Kui seosereeglite analüüsi rakendada ostjate ostueelistuste määramiseks ja on olemas teave ka ostjate tausta kohta, siis saab hinnata ka seda, millised ostjad milliseid tooteid eelistavad. 
+
+<!--
+``` {r}
+#| include: false
+#| eval: false
+
+# Muuda tehingute nimekiri binaarväärtuste maartiksiks. Ei tööta!
+# https://www.kaggle.com/datasets/irfanasrullah/groceries?select=groceries.csv
+tehingud <- read.table('andmed/groceries.csv', header = F, sep = '?')
+tehingud <- splitstackshape::cSplit_e(tehingud, "V1", sep = ',', fill = 0, type = "character")
+names(tehingud) <- sub('V1_', '', names(tehingud))
+tehingud <- tehingud[, -1]
+write.csv(tehingud, 'andmed/groceries_bin.csv', row.names = F)
+```
+
+``` {r}
+#| include: false
+#| eval: false
+
+# Eemalda teistes reeglites sisalduvad reeglid
+subsetRules <- which(colSums(is.subset(reeglid, reeglid)) > 1)
+length(subsetRules)
+reeglid <- reeglid[-subsetRules]
+```
+
+``` {r}
+#| include: false
+#| eval: false
+
+vara <- read.csv('https://opendata.smit.ee/ppa/csv/vara_1.csv', sep = '\t')
+vara %<>% select('ToimNadalapaev', 'SyndmusLiik', 'SyndmusTaiendavStatLiik', 'SissetungimiseLiik', 'Valve', 'Valve', 'Paragrahv', 'Kahjusumma', 'Kahjusumma', 'MaakondNimetus', 'ValdLinnNimetus', 'KohtNimetus', 'SoidukLiik', 'SoidukMark')
+write.csv(vara, 'andmed/vara.csv', row.names = FALSE)
+tehingud <- read.transactions('andmed/vara.csv', format = 'basket', sep = ',')
+```
+-->
+
+<!-- 
+[[Association rules]]
+-->

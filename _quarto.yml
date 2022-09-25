@@ -21,30 +21,32 @@ book:
     chapters: 
     - kasutus.qmd
     - korrastus.qmd
-#    - joonised.qmd
+    - joonised.qmd
 #    - kraapimine.qmd
   - part: "Statistika"
     chapters:
     - tunnused.qmd
-#     - valim.qmd
-#     - parameetrilisus.qmd
-#     - põhjuslikkus.qmd
-#     - tinglikkus.qmd
-#     - sobitamine.qmd
-#     - standardiseerimine.qmd
-#     - veatabel.qmd
+#    - valim.qmd
+#    - parameetrilisus.qmd
+    - seosed.qmd
+    - põhjuslikkus.qmd
+    - tinglikkus.qmd
+#    - sobitamine.qmd
+#    - standardiseerimine.qmd
+#    - veatabel.qmd
   - part: "Rakendused"
-#     chapters:
-#     - usaldusvahemikud.qmd
-#     - seosed.qmd
-#     - linreg.qmd
-#     - logreg.qmd
-#     - klassifitseerimine.qmd
-#     - klasterdamine.qmd
-#     - mõõtmevähendus.qmd
+    chapters:
+    - korrelatsioon.qmd
+    - seosereeglid.qmd
+#    - usaldusvahemikud.qmd
+#    - linreg.qmd
+#    - logreg.qmd
+#    - klassifitseerimine.qmd
+#    - klasterdamine.qmd
+#    - mõõtmevähendus.qmd
 #     - tekstikaeve.qmd
-#     - maakaardid.qmd
-#     - masinõpe.qmd
+#    - maakaardid.qmd
+#    - masinõpe.qmd
   - viited.qmd
 #  appendices:
 #  - põhimõtted.qmd
@@ -53,8 +55,10 @@ book:
 bibliography: ../../note/assets/library.json
 csl: ../../note/assets/apa.csl
 
+reference-location: margin
 format:
   html:
     theme: cosmo
     css: style.css
-reference-location: margin
+execute: 
+  freeze: auto

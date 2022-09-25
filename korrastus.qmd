@@ -1,14 +1,3 @@
----
-output: html_document
-format:
-  html:
-    self-contained: true
-editor_options: 
-  chunk_output_type: console
-execute:
-  freeze: auto
----
-
 # Korrastus {#sec-korrastus}
 
 Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi kõige aeganõudvam osa. Andmeanalüütikud ise on hinnanud, et kogu andmeanalüüsi käigus veedavad nad umbes 80% ajast andmeid korrastades [@wickham14tidy; @kelleher18data]. Sekundaarandmed ei ole peaaegu kunagi täpselt selliselt vormistatnud nagu meie poolt valitud protseduur seda eeldab, mistõttu ilma oskuseta andmeid korrastada ei ole nendega enamasti suurt midagi teha.
@@ -120,17 +109,17 @@ names(palk)
 
 ## Tunnuse tüüp
 
-Andmetabeli ülesehituse küsimisel kuvatakse ka iga tunnuse tüüp, millest sagedasemad on arvtunnus (`num`) ja nimitunnus (`chr`). Täpsemalt loe mõõtmise tasemete ja tunnuse tüüpide kohta peatükist @sec-tunnused või [peatükist -@sec-tunnused].
+Andmetabeli ülesehituse küsimisel kuvatakse ka iga tunnuse tüüp, millest sagedasemad on arvtunnus (`num`) ja nimitunnus (`chr`). Täpsemalt loe mõõtmise tasemete ja tunnuse tüüpide kohta [peatükist -@sec-tunnused].
 
 ``` {r}
 str(palk)
 ```
 
 ::: {.callout-warning}
-Tunnuse tüüp peab olema objektis määratud vastavalt tunnuse mõõtmise tasemele. Arvud peavad olema objektides salvestatud arvtunnusena ning sõnad ja laused nimitunnusena. Vastupidisel juhul käsitlevad fuktsioonid tunnuseid valesti ega võimalda rakendada vajalikke tehteid.
+Tunnuse tüüp peab olema objektis määratud vastavalt tunnuse mõõtmise tasemele. Arvud peavad olema objektides salvestatud arvtunnusena ning sõnad ja laused nimitunnusena. Vastupidisel juhul käsitlevad funktsioonid tunnuseid valesti ega võimalda rakendada vajalikke tehteid.
 :::
 
-Tunnuse tüüp on oluline selleks et funktsioonid oskaksid neid õigesti kasutada. Nt kui arve sisaldav veerg on laaditud mingil põhjusel^[Kui arve sisaldavasse veergu on sattunud mõni sõna, täht, kirjavahemärk vms, siis R loeb selles veerus olevad väärtused enamasti nimitunnusteks.] objekti nimitunnusena, siis ei ole võimalik sellise tunnusega matemaatilisi tehteid teha. Tunnuste tüübi teisendamiseks saab kasutada funktsioone `as.character()` ja `as.numeric()`.
+Tunnuse tüüp on oluline selleks et funktsioonid oskaksid neid õigesti kasutada. Nt kui arve sisaldav veerg on laaditud mingil põhjusel^[Kui arve sisaldavasse veergu on sattunud mõni sõna, täht, kirjavahemärk vms, siis R loeb selles veerus olevad väärtused enamasti nimitunnusteks.] objekti nimitunnusena, siis ei ole võimalik sellise tunnusega matemaatilisi tehteid teha. Kui aga andmetabelis on mingi vaatluse kood (nt isikukood), mille R keel tuvastab arvtunnusena, siis on mõistlik salvestada see nimitunnusena, et mitte selle alusel kogemata arvutusi teha. Tunnuste tüübi teisendamiseks saab kasutada funktsioone `as.character()` ja `as.numeric()`. 
 
 ```{r}
 # Kui arvud on salvestatud nimitunnusena, siis ei saa arvutata keskmist.
@@ -212,7 +201,7 @@ Data preparation
 
 ## Väärtuste teisendamine
 
-Väärtuste teisendamise käigus antakse tunnusele uued väärtused lähtudes algsetest väärtustes. Selleks on mitu põhjust ja viisi.
+Väärtuste teisendamise käigus antakse tunnusele uued väärtused lähtudes algsetest väärtustest. Selleks on mitu põhjust ja viisi.
 
 - Kui tunnusel on palju äärmuslikul suuri või väikseid väärtusi, siis selline tunnus ei sobi paljude parameetriliste meetodite rakendamiseks. Sellisel juhul saab kasutada erinevaid matemaatilisi teisendusi, mis muudab väärtuste jaotuse sümmeetrilisemaks^[Kui tunnusel on palju äärmuslikult suuri jaotusi, siis naturaallogaritm väärtustest annab tulemuseks sümmeetrilise jaotuse.]. 
 - Teatud meetodid eeldavad, et andmed on mõõdetud samal skaalal ehk omavad sarnaseid väärtusi. Sellisel juhul saame väärtused standardiseerida<!--, millest on täpsemalt juttu @sec-standardiseerimine-->.
@@ -225,6 +214,14 @@ bruto$intervallid <- cut(bruto$väärtus,
                          breaks = c(500,1000,1500,Inf), 
                          labels = c(">500...1000",">1000...1500",">1500"))
 bruto %>% select(Vaatlusperiood, väärtus, intervallid)
+```
+
+Andmetabelisse saab lisada tunnuseid või neid muuta muuhulgas ka funktsiooni `mutate()` abil. 
+
+``` {r}
+# Mis aastatel oli keskmine brutotöötasu üle keskmise?
+bruto <- mutate(bruto, ülekeskmise = väärtus > mean(väärtus))
+head(bruto)
 ```
 
 <!--
@@ -267,14 +264,6 @@ Sellisel kujul tabeliga on meil võimalik erinevatel küsimustele vastamiseks ar
 ``` {r}
 # Mitu eurot kulus keskmiselt tööjõumaksudeks?
 palk$kesk.maksud <- palk$kesk.kulu - palk$kesk.palk
-head(palk)
-```
-
-kuidas lisada andmetabelisse tunnuseid või neid muuta funktsiooni `mutate()` abil. 
-
-``` {r}
-# Mitu eurot maksti töötajatele töötasu kokku?
-palk <- mutate(palk, kogu.palk = kesk.palk * töötajad)
 head(palk)
 ```
 

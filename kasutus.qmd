@@ -1,19 +1,10 @@
----
-output: html_document
-format:
-  html:
-    self-contained: true
-editor_options: 
-  chunk_output_type: console
-execute:
-  freeze: auto
----
-
 # Põhikasutus {#sec-kasutus}
 
 Käesolevas peatükis tutvume lühidalt R keele kasutamisega.
 
-Käsureal esitatud käsu alusel teeb rakendus vastavalt R keele loogikale arvutused ja esitab vastuse. Nii saab käsurida kasutada ka lihtsalt kalkulaatorina ja sealjuures saab korraga teha ka mitu tehet.
+## Käsurida
+
+Käsureal (*command line*) esitatud käsu alusel teeb R rakendus vastavalt R keele loogikale arvutused ja esitab vastuse. Nii saab käsurida kasutada ka lihtsalt kalkulaatorina ja sealjuures saab korraga teha ka mitu tehet.
 
 ```{r}
 13 + 8 # Liitmine
@@ -25,13 +16,13 @@ Käsureal esitatud käsu alusel teeb rakendus vastavalt R keele loogikale arvutu
 13 + (8 - 5) * 9^(1/2)
 ```
 
-R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.
+R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.=
 
 ## Objektid ja funktsioonid
 
 > To understand computations in R, two slogans are helpful:  
-> Everything that exists is an object.  
-> Everything that happens is a function call.  
+> 	Everything that exists is an object.  
+> 	Everything that happens is a function call.  
 > - John Chambers
 
 Andmete töötlemiseks on vaja need kuidagi salvestada. Väärtusi saab R keeles salvestada objektidena. Sealjuures väärtused, mis ei ole arvud, tuleb ümbritseda jutumärkidega.
@@ -91,32 +82,31 @@ Iga funktsiooni kõikide argumentide teada saamiseks saab kuvada vastava funktsi
 ```
 
 :::{.callout-note}
-R keele kasutamine on väga lihtne: see on lihtsalt funktsioonide rakendamine objektidel. Kogu keerukus seisneb objektide ja funktsioonide tundmises ning nende omavahel kombineerimises.
+R keele kasutamine on põhimõtteliselt väga lihtne: see on lihtsalt funktsioonide rakendamine objektidel. Kogu keerukus seisneb objektide ja funktsioonide tundmises ning nende omavahel kombineerimises.
 :::
 
-## Pakid
+## Laiendused
 
-R keele paigaldamisel tuleb kaasa palju funktsioone, mis võimaldavad rakendada põhilisi andmetöötluse ja statistilise analüüsi protseduure. Võimaluste lisamiseks on aga paljud R keele kasutajad kirjutanud ise funktsioone ja koondanud need pakkidesse (*packages*), mis on saadaval ka teistele kasutajatele^[Ametlikult tunnustatud R keele pakid on [CRAN](https://cran.r-project.org/) hoidlas.]. Selleks, et neid pakke kasutada tuleb need esmalt arvutisse paigaldada ja seejärel töölauale laadida.
+R keele paigaldamisel tuleb kaasa palju funktsioone, mis võimaldavad rakendada põhilisi andmetöötluse ja statistilise analüüsi protseduure. Võimaluste lisamiseks on aga paljud R keele kasutajad kirjutanud ise funktsioone ja koondanud need laiendustesse või pakkidesse (*packages*), mis on saadaval ka teistele kasutajatele^[Ametlikult tunnustatud R keele laiendused on [CRAN](https://cran.r-project.org/) hoidlas.]. Selleks, et neid laiendusi kasutada tuleb need esmalt arvutisse paigaldada ja seejärel töölauale laadida.
 
 ```{r}
 #| eval: false
-# Laadime paki alla ja paigaldame arvutisse.
+# Laadime laienduse alla ja paigaldame arvutisse.
 install.packages('tidyverse')
-# Paki kasutamiseks tuleb see esmalt R töölauale laadida.
+# Laienduse kasutamiseks tuleb see esmalt R töölauale laadida.
 library('tidyverse')
 ```
 
 ```{r}
 #| include: false
-# Paki kasutamiseks tuleb see esmalt R töölauale laadida.
 library('tidyverse')
 ```
 
-Eelnevate käskudega paigaldatud ja laaditud pakk `tidyverse` sisaldab tegelikult palju teisi pakke, mille funktsioonid lihtsustavad käskude kirjutamist R keeles. Edaspidi kasutame paljusid antud pakis sisalduvaid funktsioone.
+Eelnevate käskudega paigaldatud ja laaditud laiendus `tidyverse` sisaldab tegelikult palju teisi laiendusi, mille funktsioonid lihtsustavad käskude kirjutamist R keeles. Edaspidi kasutame paljusid antud laienduses sisalduvaid funktsioone.
 
 ## Sisestamine
 
-Mõistagi ei pea andmed R töölauale sisestama üksikute väärtuste kaupa nii nagu eelnevas näites. Lisatavates pakkides olevate funktsioonide abil on R võimeline lugema andmeid peaaegu misiganes vormingus. Siiski on soovitatav kasutada R keelega kaasas olevaid funktsioone, mis tunnevad eelkõige lihttekstina salvestatud andmeid. Üheks selliseks andmevorminguks on CSV (*comma separated value*). Kui andmed on mingi muu faililaiendiga (nt .xlsx), siis tuleks need esmalt CSVna salvestada. Nagu nimi ütleb, on CSV fail lihtsalt tekstifail, milles väärtused on eraldatud komadega.
+Mõistagi ei pea andmed R töölauale sisestama üksikute väärtuste kaupa nii nagu eelnevas näites. Lisatavates lainedustes olevate funktsioonide abil on R võimeline lugema andmeid peaaegu misiganes vormingus. Siiski on soovitatav kasutada R keelega kaasas olevaid funktsioone, mis tunnevad eelkõige lihttekstina salvestatud andmeid. Üheks selliseks andmevorminguks on CSV (*comma separated value*), mis on lihtsalt teksti sisaldav fail, milles väärtused on eraldatud komadega.
 
 CSV vormingus andmete R töölauale laadimiseks saab kasutada funktsiooni `read.csv()`, mille argumendiks on andmefaili koht failisüsteemis. Kui andmete esimene rida sisaldab veergude nimetusi, siis tuleb seda argumendiga täpsustada argumendiga `header = TRUE`.
 
@@ -163,9 +153,9 @@ if (format(file.info('andmed/thi.csv')$mtime, '%Y') < format(Sys.Date(), '%Y')) 
 
 ```{r}
 #| eval: false
-# Salvestame objekti "thi" töölaua kaustas oleva faili "IA02.csv"
+# Salvestame objekti "thi" töölaua kaustas oleva faili "thi.csv"
 # Need on tarbijahinnaindeksi (THI) andmed Statistikaameti tabeli IA02 alusel
-thi <- read.csv('C:/Users/kasutajanimi/Desktop/IA02.csv', header = TRUE)
+thi <- read.csv('C:/Users/kasutajanimi/Desktop/thi.csv', header = TRUE)
 ```
 
 ::: {.callout-caution}
@@ -178,15 +168,19 @@ Faililaiendiga `.xlsx` nö tabelarvutuse vihikutes ei pruugi andmed olla vormist
 
 ```{r}
 #| eval: false
-thi <- read_excel('C:/Users/kasutajanimi/Desktop/IA02.xlsx')
+thi <- read_excel('C:/Users/kasutajanimi/Desktop/thi.xlsx')
 ```
+
+::: {.callout-tip}
+Kui andmed on mingi muu faililaiendiga (nt `.xlsx`), siis on soovitatav need esmalt CSVna salvestada ja alles seejärel R töölauale laadida. 
+:::
 
 Kui soovime kõik loetavad ja salvestatavad failid koondada ühte kausta, siis võime määrata selle vaikimisi kaustaks. Sel juhul ei pea me faili täielikku asukohta sisestama, vaid piisab faili nimest ja -laiendist.
 
 ```{r}
 #| eval: false
 setwd('C:/Users/kasutajanimi/Desktop/')
-thi <- read.csv('IA02.csv', header = TRUE)
+thi <- read.csv('thi.csv', header = TRUE)
 ```
 
 ::: {.callout-warning}
@@ -264,7 +258,7 @@ Loogikaoperaatorite (*logical operators*) abil saame ühendada mitu võrdlust. L
 
 ### Valimine andmetabelist
 
-Eelneva kirjelduse alusel võib väärtuste valimine tunduda keeruline ja tülikas. Seda saab teatud mõttes lihtsustada, kui kasutame varem paigaldatud pakis sisalduvaid funktsioone. Ridade valimiseks on funktsioon `filter()` ja veergude valimiseks `select()`. 
+Eelneva kirjelduse alusel võib väärtuste valimine tunduda keeruline ja tülikas. Seda saab teatud mõttes lihtsustada, kui kasutame varem paigaldatud laienduses sisalduvaid funktsioone. Ridade valimiseks on funktsioon `filter()` ja veergude valimiseks `select()`. 
 
 ```{r}
 # THI aastal 2020
@@ -349,12 +343,12 @@ R keelt kasutades ei ole võimalik käske tühistada või tagasi võtta (*undo*)
 Käsulehel on andmetöötluse tegevused enamasti teatud järjekorras:
 
 1. töökausta määramine, 
-2. pakkide laadimine, 
+2. laienduste laadimine, 
 3. andmete sisestamine, 
 4. andmetöötlus, 
 5. tulemuse salvestamine andmefailide, tabelite, jooniste või muul kujul.
 
-## Aruannete koostamine
+## Aruanded R keeles
 
 Lisaks käsulehele saab analüüsi vormistada ka terve aruandena. Rakenduses RStudio saab selleks kõik käsud ja sinna juurde kuuluvad selgitused vormistada lihttekstina vastavalt [Quarto](https://quarto.org/) eeskirjadele. Vastavaid `.qmd` faililaiendiga lihtteksti faile saab salvestada paljudes erinevates vormingutes, sh PDFi, HTMLi ja Microsoft Wordi dokumentidena. Teksti vormistamiseks tuleb sealjuures kasutada [Markdown](https://commonmark.org/help/) märgistuskeelt. 
 
