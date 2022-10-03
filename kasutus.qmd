@@ -16,7 +16,9 @@ Käsureal (*command line*) esitatud käsu alusel teeb R rakendus vastavalt R kee
 13 + (8 - 5) * 9^(1/2)
 ```
 
-R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.=
+R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.
+
+Mõnikord väljastab R käsu sisestamisel veateate. Teatega "Error" kaasneb käsu täitmata jätmine, samas kui teade "Warning" tähendab, et käsk küll täideti, aga teatud tingimustel.
 
 ## Objektid ja funktsioonid
 
@@ -153,7 +155,7 @@ if (format(file.info('andmed/thi.csv')$mtime, '%Y') < format(Sys.Date(), '%Y')) 
 
 ```{r}
 #| eval: false
-# Salvestame objekti "thi" töölaua kaustas oleva faili "thi.csv"
+# Loeme objekti "thi" töölaua kaustas olevast failist "thi.csv"
 # Need on tarbijahinnaindeksi (THI) andmed Statistikaameti tabeli IA02 alusel
 thi <- read.csv('C:/Users/kasutajanimi/Desktop/thi.csv', header = TRUE)
 ```
@@ -180,7 +182,7 @@ Kui soovime kõik loetavad ja salvestatavad failid koondada ühte kausta, siis v
 ```{r}
 #| eval: false
 setwd('C:/Users/kasutajanimi/Desktop/')
-thi <- read.csv('thi.csv', header = TRUE)
+thi <- read.csv('thi.csv')
 ```
 
 ::: {.callout-warning}

@@ -1,8 +1,8 @@
 # Tinglikkus {#sec-tinglikkus}
 
-On olemas väga vähe nähtusi, mis ei ole mõjutatud ühegi teise nähtuse poolt ja mille hajuvus on seega täiesti juhuslik. Peaaegu iga tunnuse väärtuste hajuvust saame seletada vähemalt mingil määral mõne teiste tunnuste väärtustega. Sageli kipuvad ühe tunnuse väärtused sõltuvalt teise tunnuse väärtustes olema suuremad või väiksemad. Sellisel juhul saame öelda, et tunnuse väärtused on tingitud (*conditional*) mõnest teisest tunnusest ja seega jaotuvad ka vastavalt tinglikule jaotusele (*conditional distribution*). Seda tõsiasja võibki nimetada tunnuste tinglikkuseks. Sealjuures ei ole seoste põhjuslikkus oluline.
+On olemas väga vähe nähtusi, mis ei ole mõjutatud ühegi teise nähtuse poolt ja mille hajuvus on seega täiesti juhuslik. Peaaegu iga tunnuse väärtuste hajuvust saame seletada vähemalt mingil määral mõne teiste tunnuste väärtustega. Sageli kipuvad ühe tunnuse väärtused sõltuvalt teise tunnuse väärtustes olema suuremad või väiksemad. Sellisel juhul saame öelda, et tunnuse väärtused on tingitud (*conditional*) mõnest teisest tunnusest ja seega jaotuvad ka vastavalt tinglikule jaotusele (*conditional distribution*). Kuna peaaegu kõik nähtused sõltuvad teistest nähtustest, siis võib pidada kõiki jaotusi tinglikeks  [@wild06concept]. Seda tõsiasja võibki nimetada tunnuste tinglikkuseks. Sealjuures ei ole seoste põhjuslikkus oluline.
 
-Mõeldes tunnuste hajuvusest kui millesti, mis on tingitud ühest või enamast teistest tunnustest, on lihtsam mõtestada seoseid tunnuste vahel [@wild06concept]. Tinglikkuse ideed rakendades vaatleme, kas ja mil viisil ühe tunnuse väärtused erinevad vastavalt mõne teise tunnuse väärtustele. Seda tegevust nimetatakse sageli ka kihitamiseks (*stratification*). 
+Mõeldes tunnuste hajuvusest kui millesti, mis on tingitud ühest või enamast teistest tunnustest, on lihtsam mõtestada seoseid tunnuste vahel. Tinglikkuse ideed rakendades vaatleme, kas ja mil viisil ühe tunnuse väärtused erinevad vastavalt mõne teise tunnuse väärtustele. Seda tegevust nimetatakse sageli ka kihitamiseks (*stratification*). 
 
 :::{.callout-important}
 Kihitamise käigus uurime, kuidas ühe tunnuse väärtused erinevad teise tunnuse kihtide lõikes.
@@ -18,6 +18,6 @@ Tinglikkus võib hõlmata rohkem kui kahte nähtust. Sageli ilmnevad seosed tunn
 Interaktsioon iseloomustab olukorda, kus kahe tunnuse vaheline seos muutub märkimisväärselt, kui võtame arvesse ka mõnda kolmandat tunnust. 
 :::
 
-<!-- 
-[[Conditionality]]
+<!--
+[[Conditionality]] 
 -->

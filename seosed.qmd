@@ -2,8 +2,8 @@
 
 Sageli huvitab meid üksikute tunnuste hajuvus või muutumine ajas või ruumis. Kõige huvitavamaid asjaolud ilmnevad enamasti aga siis, kui uurime, kuidas kahe või enama tunnuse väärtused teineteisest sõltuvad. Sõltuvusi tunnuste vahel saame tuvastada siis, kui uurime nende väärtusi objektide (nt isik, asutus, ettevõte) lõikes. Seoseid tunnuste vahel saab statistiliselt kirjeldada kolmel viisil: 
 
-- suund ehk kas seos on positiivne või negatiivne; 
-- tugevus ehk mil määral sõltuvad ühe tunnuse väärtused teise tunnuse väärtustest; 
-- statistiline olulisus ehk kas seos on juhuslik ja tuvastav ainult valimis või ka kogumile üldistatav.
+- *suund* ehk kas seos on positiivne või negatiivne; 
+- *tugevus* ehk mil määral sõltuvad ühe tunnuse väärtused teise tunnuse väärtustest; 
+- *statistiline olulisus* ehk kas seos on juhuslik ja tuvastav ainult valimis või ka kogumile üldistatav.`
 
 Lisaks saame enamasti ainult teoreetiliselt kirjeldada ka seoste põhjuslikku vahekorda.

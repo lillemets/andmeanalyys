@@ -6,14 +6,21 @@ Paljud statistilised protseduurid võimaldavad määrata, kas ja mil määral on
 - kasutada teoreetilisi põhjendusi statistika abil leitud seostele põhjuslikkuse omistamiseks. 
 
 :::{.callout-warning}
-Mitte ühegi statistiliste arvutustega ei saa näidata seose põhjuslikkust. Põhjuslike seoste näitamiseks on vajalikud eksperimendi tingimustes kogutud andmed.
+Mitte ükski statistiline arvutus ei näita seose põhjuslikkust. Põhjuslike seoste näitamiseks on vajalikud juhusliku katse tingimustes kogutud andmed.
 :::
 
-Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslik katse (*randomized controlled trial* ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest^[Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.].  
-Majandus- ja ühiskonnateadustes on juhuslikud katsed enamasti kulukad või eetilistel põhjustel sobimatud^[Nt hiljuti on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.].
+Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslik katse (*randomized controlled trial* ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest^[Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.].  Kui loodusteadustes on juhuslikud katsed tavalised, siis majandus- ja ühiskonnateadustes on need enamasti kulukad või eetilistel põhjustel sobimatud^[Siiski on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.].
 
-Üks nähtus võib otseselt mõjutada teist, aga mõlemad võivad mõjutada ka üksteist. Lisaks sellele on veel mitu seletust statistilise protseduuri abil leitud seostele tunnuste vahel:
+:::{.callout-important}
+Juhusliku katse käigus määratakse uuritavad objektid juhuslkult katse- ja kontrollrühma. Kuna seetõttu on rühmade ainus erinevus katserühmal rakendatav tegevus, siis on igasugune hilisem erinevus rühmade vahel seletatav ainult selle tegevuse mõjuga.
+:::
 
-- seos on kokkusattumus^[[IDEE: Tõstame viina hinda, et vähendada õpetajate puudust koolides](https://stat24.ee/2014/12/idee-tostame-viina-hinda-et-vahendada-opetajate-puudust-koolides/ )], 
-- mingi kolmas nähtus mõjutab mõlemat uuritavat nähtust ja viimaste vahel vastastikkune mõju puudub, 
-- mingi kolmas nähtus vahendab ühe nähtuse mõju teisele ja mõju uuritavate nähtuste vahel on kaudne.
+Üks nähtus võib otseselt mõjutada teist ($X \rightarrow Y$). Lisaks sellele on veel mitu seletust statistilise protseduuri abil leitud seostele tunnuste vahel:
+- seos on vastasikune 
+  $$X \leftrightarrow Y,$$ 
+- mingi kolmas nähtus mõjutab mõlemat uuritavat nähtust ja viimaste vahel vastastikkune mõju puudub: 
+	$$\displaylines{Z \rightarrow X \\ Z \rightarrow Y},$$
+- mingi kolmas nähtus vahendab ühe nähtuse mõju teisele ja mõju uuritavate nähtuste vahel on kaudne: 
+	$$X \rightarrow Z \rightarrow Y,$$
+- kuigi seda esineb harva, siis seos võib olla kokkusattumus^[[IDEE: Tõstame viina hinda, et vähendada õpetajate puudust koolides](https://stat24.ee/2014/12/idee-tostame-viina-hinda-et-vahendada-opetajate-puudust-koolides/ )]: 
+	$$X \cancel{\rightarrow} Y.$$

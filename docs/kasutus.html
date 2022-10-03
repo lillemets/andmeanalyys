@@ -231,17 +231,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
   </div>
 </li>
       </ul>
@@ -256,12 +271,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
   </div>
 </li>
       </ul>
@@ -350,7 +370,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>[1] 22</code></pre>
 </div>
 </div>
-<p>R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.=</p>
+<p>R keele võimekus avaldub aga siis, kui kasutame käske salvestamaks väärtused objektidesse ja rakendamaks neil erinevaid funktsioone.</p>
+<p>Mõnikord väljastab R käsu sisestamisel veateate. Teatega “Error” kaasneb käsu täitmata jätmine, samas kui teade “Warning” tähendab, et käsk küll täideti, aga teatud tingimustel.</p>
 </section>
 <section id="objektid-ja-funktsioonid" class="level2 page-columns page-full" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="objektid-ja-funktsioonid"><span class="header-section-number">5.2</span> Objektid ja funktsioonid</h2>
@@ -464,7 +485,7 @@ Märkus
 <p>Mõistagi ei pea andmed R töölauale sisestama üksikute väärtuste kaupa nii nagu eelnevas näites. Lisatavates lainedustes olevate funktsioonide abil on R võimeline lugema andmeid peaaegu misiganes vormingus. Siiski on soovitatav kasutada R keelega kaasas olevaid funktsioone, mis tunnevad eelkõige lihttekstina salvestatud andmeid. Üheks selliseks andmevorminguks on CSV (<em>comma separated value</em>), mis on lihtsalt teksti sisaldav fail, milles väärtused on eraldatud komadega.</p>
 <p>CSV vormingus andmete R töölauale laadimiseks saab kasutada funktsiooni <code>read.csv()</code>, mille argumendiks on andmefaili koht failisüsteemis. Kui andmete esimene rida sisaldab veergude nimetusi, siis tuleb seda argumendiga täpsustada argumendiga <code>header = TRUE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Salvestame objekti "thi" töölaua kaustas oleva faili "thi.csv"</span></span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loeme objekti "thi" töölaua kaustas olevast failist "thi.csv"</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Need on tarbijahinnaindeksi (THI) andmed Statistikaameti tabeli IA02 alusel</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'C:/Users/kasutajanimi/Desktop/thi.csv'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -502,7 +523,7 @@ Soovitus
 <p>Kui soovime kõik loetavad ja salvestatavad failid koondada ühte kausta, siis võime määrata selle vaikimisi kaustaks. Sel juhul ei pea me faili täielikku asukohta sisestama, vaid piisab faili nimest ja -laiendist.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/Users/kasutajanimi/Desktop/'</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'thi.csv'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'thi.csv'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">

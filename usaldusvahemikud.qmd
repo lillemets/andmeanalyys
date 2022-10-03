@@ -1,1 +1,272 @@
 # Usaldusvahemikud {#sec-usaldusvahemikud}
+
+<!-- 
+[[Confidence intervals (CI)]]
+-->
+
+Tihti peame üldistusi tegema valimi alusel (@sec-valim). Selline olukord tekib näiteks juhul, kui kasutame küsitluse teel kogutud andmeid ja soovime nende alusel teha järeldusi ka isikute kohta, kes küsitluses ei osalenud. Sellisel juhul ei iseloomusta aga valimi alusel arvutatud mõõdik otseselt kogumit, vaid on ainult hinnang. Sellist konkreetset hinnangut nimetatakse **punkthinnanguks**. Ei ole aga tõenäoline, et mingi konkreetne valimi alusel arvutatud mõõdiku väärtus on täpselt sama, mis vastavas kogumis. Seetõttu arvutatakse mõõdiku väärtusele ka vahemikud, milles tegelik, kogumiku väärtus teatud tõenäosusega asetseb. Selliselt arvutatud hinnangut nimetatakse **vahemikhinnanguks**, mis enamasti tähendab usaldusvahemikke.
+
+:::{.callout-important}
+Usaldusvahemikud (*confidence intervals*) on vahemikhinnangud mingi parameetri tegeliku väärtuse kohta. See väärtus asub usaldusvahemike piirides teatud kindlusega, millest lähtutakse usaldusvahemike arvutamisel.
+:::
+
+Usaldusvahemike arvutamiseks on kaks viisi:
+
+- eeldame, et kogumis on väärtuste jaotus samasugune nagu valimis, mistõttu saame valimist omakorda valimeid võttes ja nende alusel leitud paljude punkthinnangute alusel leida vahemikhinnangu; 
+- eeldame, et kogumis on väärtus mingi konkreetse teoreetilise jaotusega, mis võimaldab üksikute valimi omaduste alusel matemaatiliselt leida vahemikhinangu.
+
+
+Siin vaatame eelkõige esimest, taasvalikut hõlmavat lähenemist, aga lõpus uurime lühidalt ka teoreetilse jaotuse abil usalduvahemiku arvutamist.
+
+## Ühe tunnuse usaldusvahemikud
+
+Alustame vajalike laienduste töölauale laadimisega.
+
+``` {r}
+#| message: false
+library('magrittr')
+library('tidyverse')
+library('ggplot2')
+```
+
+```{r}
+#| include: false
+set.seed(0)
+```
+
+Järgnevas näites kasutame andmestikku IT valdkonna töötajate töötasude kohta 2020. aastal peamiselt Saksamaal.
+
+```{r}
+tasu <- read.csv('andmed/itsalary.csv')
+str(tasu)
+```
+
+<!--
+[[IT salary]]
+-->
+
+Veerus `salary` on aastane brutotöötasu eurodes ilma lisatasudeta. Teisendame selle meile tuttavaaks kuutöötasuks ja uurime, kuidas tasud jaotuvad.
+
+```{r}
+tasu %<>% mutate(salary = salary / 12)
+hist(tasu$salary)
+mean(tasu$salary)
+```
+
+Näeme, et keskmine kuutöötasu on `r mean(tasu$salary) %>% round` eurot. Kui tõenäoline on, et ka tegelikult oli Saksamaal 2020. aastal IT valdkonna töötajate kuutöötasu täpselt `r mean(tasu$salary) %>% round` eurot? Mitte eriti. Usutavama hinnangu saaksime anda siis, kui leiame hoopis vahemiku, milles see hinnang mingi kindlusega on. Seega peaksime leidma usaldusvahemikud.
+
+Usaldusvahemike leidmiseks kõige intuitiivsem viis on kasutada Korduvvalikut (*bootstrapping*). Selleks võtame esmalt andmetest mingil hulgal juhuslikult valimeid nii, et iga leitud valim on sama suur kui algne andmestik, aga osad väärtused (isikud) valimites korduvad ja osad on puudu (@sec-taasvalik). Valimi võtmiseks saame kasutada funktsiooni `sample()` ja selle tegevuse kordamiseks funktsiooni `replicate()`. 
+
+``` {r}
+valimid <- replicate(1000, # Korrata järgnevat käsku 1000 korda
+                     sample(tasu$salary, # Võtta valim töötasude seast
+                            length(tasu$salary), # Valimis on sama palju väärtusi kui andmestik
+                            replace = T), # Valimis võivad vaatlused korduda
+                     simplify = FALSE) # Väljasta tulemus loeteluna
+str(head(valimid))
+```
+
+Üleval on kuvatud esimesed kuus valimit tuhandest. Näeme, et igas valimis on `r length(valimid[[1]])` juhuslikku väärtust andmetes olevates töötasudest.
+
+Järgmiseks arvutame iga valimi keskmise väärtuse. Selleks rakendame funktsiooni `mean()` igal valimil eraldi. Loetelu igale osisele saame funktsiooni rakendada funktsiooniga `sapply()` alljärgnevalt. Vaatame valimite keskmiste jaotust histogrammilt.
+
+``` {r}
+keskmised <- sapply(valimid, mean)
+hist(keskmised)
+```
+
+Histogrammilt näeme, et suur osa valimite keskmistest jäävad väärtuste `r quantile(keskmised, .025) %>% round(-2)` ja `r quantile(keskmised, .975) %>% round(-2)` vahele. 
+
+Kuna usaldusvahemik oleneb sellest, kui kindlad me tahame olla, et tegelik väärtus seal asub, siis peame selle kindluse määrama. Enamasti leitakse usaldusvahemik kindusega 95%. Taasvalikut rakendadades tähendab see, et usaldusvahemiku määravad need piirid, kuhul jääb 95% kõikidest leitud valimite keskmistest. Seega alumine töötasu piir peab olema selline, millest väiksemaid väärtusi on 2,5% ja ülemisest piirist suuremaid väärtusi 2,5%. Sinna vahele jääb 95% kõikide valimite alusel leitud keskmistest töötasudest. Vastavate kvantiilide leidmiseks saame kasutada funktsiooni `quantile()`.
+
+``` {r}
+quantile(keskmised, .025) # Alumine 2.5% piir
+quantile(keskmised, .975) # Ülemine 2.5% piir
+```
+
+Need kaks töötasu väärtust `r quantile(keskmised, .025) %>% round` ja `r quantile(keskmised, .975) %>% round` ongi 95% usaldusvahemikud, mille vahele jääb suure tõenäosusega tegelik töötasu.
+
+All oleval joonisel on leitud usaldusvahemikud kujutatud töötasu valimijaotuse tihedusfunktsioonil. Joontena esitatud usaldusvahemike vahele jääb 95% tihendusfunktsiooni kõvera alusest pindalast.
+
+```{r}
+plot(density(keskmised))
+abline(v = quantile(keskmised, .025))
+abline(v = quantile(keskmised, .975))
+```
+
+Eelnevate arvutuste üks mõte oli usaldusvahemike leidmise selgitamine. Tegelikult saab korduvvaliku alusel usaldusvahemikke leida ka lühemalt, kasutades funktsioone `boot()` ja `boot.ci()` vastavast laiendusest. Sellisel juhul tuleb kasutatav mõõdik vormistada veidi keerulisemalt, käsitsi loodava funktsioonina.
+
+```{r}
+library('boot')
+# Leiame 1000 korduvvaliku teel saadud valimi keskmised 
+keskmisedBoot <- boot(tasu$salary, 
+                      function(x,i) mean(x[i]), # Funktsioon keskmiste arvutamiseks
+                      1000) # Kordame valikut 1000 korda
+# Leiame, mis vahemikku jääb 95% nendest keskmistest
+boot.ci(keskmisedBoot, conf = 0.95, type = 'norm')
+```
+
+Näeme, et leitud töötasu usaldusvahemikud on sarnased varem käsitsi leitud usaldusvahemikele `r quantile(keskmised, .025) %>% round` ja `r quantile(keskmised, .975) %>% round`.
+
+:::{.callout-warning}
+Korduvvaliku käigus võetakse valimid juhuslikult. Seetõttu saame korduvvalikut korrates peaaegu alati veidi erineva valimi ja seega ka erinevad usaldusvahemikud. See erinevus on aga piisavalt väike, et hinnngut mitte märkimisväärselt muuta.
+:::
+
+
+## Kahe rühma võrdlemine
+
+Võrdleme naiste ja meeste töötasude erinevust. 
+
+```{r}
+hist(tasu$salary, freq = FALSE)
+lines(density(tasu$salary[tasu$gender == "Female"]), col = 'red')
+lines(density(tasu$salary[tasu$gender == "Male"]), col = 'blue')
+mean(tasu$salary[tasu$gender == "Female"])
+mean(tasu$salary[tasu$gender == "Male"])
+```
+
+Näeme, et naiste keskmine töötasu on tunduvalt madalam kui meestel, kuigi töötasude jaotused suurel määral kattuvad. Enne järelduste tegemist tuleb aga meeles pidada, et andmestikus on ainult valim ja tegelikult, kogumis ei pruugi üldse erinevust olla. Usutavama järeldus saame teha usaldusvahemike alusel. Leiame järgnevalt usaldusvahemikud naiste ja meeste töötasude kohta eraldi.
+
+```{r}
+# Naiste töötasu usaldusvahemikud
+keskmisedN <- boot(tasu$salary[tasu$gender == "Female"], 
+                   function(x,i) mean(x[i]), 
+                   1000) 
+boot.ci(keskmisedN, conf = 0.95, type = 'norm')
+# Meeste töötasu usaldusvahemikud
+keskmisedM <- boot(tasu$salary[tasu$gender == "Male"], 
+                   function(x,i) mean(x[i]), 
+                   1000) 
+boot.ci(keskmisedM, conf = 0.95, type = 'norm')
+```
+
+```{r}
+#| include: false
+uvN <- boot.ci(keskmisedN, conf = 0.95, type = 'norm')$normal[2:3] %>% round
+uvM <- boot.ci(keskmisedM, conf = 0.95, type = 'norm')$normal[2:3] %>% round
+```
+
+Näeme, et 95% valimite korral on naiste tegelik keskmine töötasu `r uvN[1]` ja `r uvN[2]` euro vahel, meestel aga `r uvM[1]` ja `r uvM[2]` euro vahel.
+
+Saame selle erinevuse joonistada ka valimijaotuste tihendusfunktsioonina koos varem leitud üldise keskmise töötasu valimijaotusega.
+
+````{r}
+hist(keskmised, freq = FALSE, xlim = c(4500,6500))
+lines(density(keskmisedN$t), col = 'red') # Naiste tõõtasu punasega
+lines(density(keskmisedM$t), col = 'blue') # Meeste tõõtasu sinisega
+```
+
+Näeme, et naiste ja meeste tööusaldusude valimijaotused peaaegu ei kattu. Võime järeldada, et naiste töötasu IT valdkonnas 2020. aastal oli madalam mitte ainult meie andmetes, vaid ka tegelikult. 
+
+:::{.callout-warning}
+Usaldusvahemikel on palju tõlgendusviise. Õige on öelda, et usaldusvahemikud kehtivad 95% valimite korral ja tegemist on 95% usaldusvahemikega. Korduvvaliku alusel leitud usaldusvahemike korral ei ole aga ka täiesti vale öelda, et need kehtivad 95% tõenäosusega või et teglik väärtus jääb usaldusvahemikku 95% tõenäosusega.
+:::
+
+## Seose usaldusvahemikud
+
+Korduvvalik ei võimalda usaldusvahemikke leida mitte ainult keskväärtuse, vaid mistahes parameetri jaoks. Alloleval joonisel paistab, et töökogemuse (`experience`) kasvades suureneb ka keskmiselt töötasu (`salary`). Meid võib huvitada, kas see seos kehtib ainult meie valimis või ka tegelikkuses. 
+
+```{r}
+ggplot(tasu) + 
+  aes(x = experience, y = salary) + 
+  geom_point() + 
+  geom_smooth() + 
+  theme_minimal()
+```
+
+Seost kahe tunnuse vahel saame hinnata korrelatsioonikordajaga. Leiame järgneval korrelatsiooni kahe huvipakkuva tunnuse vahel selliselt, et võtame arvesse ainult isikuid, kelle kohta ei ole kummagi tunnuse väärtuste seas puuduvaid. Selleks lisame funktsiooni `cor()` argumendi `use = 'pairwise.complete.obs'`.
+
+```{r}
+cor(tasu$salary, tasu$experience, use = 'pairwise.complete.obs')
+```
+
+Näeme, et meie valimis on tunnuste vahel keskmise või mõõduka tugevusega positiive seos. 
+
+Arvutame usaldusvahemikud jällegi laienduse `boot` funktsioone kasutades. 
+
+```{r}
+korrelatsioonid <- boot(tasu[, c('salary', 'experience')], 
+                        function(x,i) cor(x[i, 'salary'], x[i, 'experience']), 
+                        1000)
+boot.ci(korrelatsioonid, type = 'norm')
+```
+
+```{r}
+#| include: false
+uv <- boot.ci(korrelatsioonid, conf = 0.95, type = 'norm')$normal[2:3] %>% round(2)
+```
+
+Nagu näha, siis 95% valimite korral jäävad korrelatsioonid vahemikku `r uv[1]` ja `r uv[2]`. 
+
+Joonistame ka korrelatsioonide valimijaotuse.
+
+``` {r}
+hist(korrelatsioonid$t, xlim = c(0,.5))
+```
+
+On selge, et 95% usaldusvahemikud ei kata nullpunkti. Sellest võime järeldada, et mitte ainult meie valimis, vaid ka üldiselt, kogumis on kogemuse ja töötasu vahel positiivne seos. Usaldusvahemike alusel võime järeldada, et korrelatsioonikordaja kogemuse ja töötasu vahel on kogumis 95% kindlusega vähemalt `r uv[1]`, aga mitte üle `r uv[1]`.
+
+## Usaldusvahemikud statistika lähenemises
+
+Eelnev usaldusvahemike leidmise viis valimeid simuleerides iseloomustab hästi andmeteadust. Enne arvuteid kujunenud statistika lähenemine usalduvahemike leidmisele põhineb rohkem matekaatika teoorial.
+
+Paljusid nähtusi iseloomustavad väärtused järgivad jaotuses sageli normaaljaotust, aga ka sellele sarnast t-jaotust. Võime oletada, et ka kogumis on väärtused jaotunud vastavalt t-jaotusele.
+
+```{r}
+tjaotus <- rt(1000, length(tasu$salary)) * sd(tasu$salary) + mean(tasu$salary)
+par(mfrow = 1:2)
+hist(tasu$salary, main = "Jaotus valimis", 20)
+hist(tjaotus, main = "Eeldatav jaotus kogumis", 20)
+```
+
+Näeme, et meie küsitletute seas on jaotus veidi paremale kaldu, aga üldiselt siiski sarnane sellele vastavale t-jaotusele. Kui eeldame, et kogumis ongi väärtused jaotunud nii nagu t-jaotuse korral, siis saame usaldusvahemikud leida teoreetiliselt ilma suurel hulgal valimeid tekitamata.
+
+Nimetatud eeldusel saab usaldusvahemikud leida matemaatiliselt kasutades valemit 
+
+$$\bar{x} \pm z \frac{s}{\sqrt{n}}, $$
+
+kus $\bar{x}$ on keskmine, $z$ on t-jaotuse täiendkvantiil, $s$ valimi standardviga ja $n$ valimi suurus.
+
+Kirjutame selle valemi R käskudena.
+
+```{r}
+z <- qt(0.975, length(tasu$salary) - 1) # T-jaotuse täiendkvantiil
+viga <- z * (sd(tasu$salary) / sqrt(length(tasu$salary))) # Viga keskmisest
+mean(tasu$salary) - viga # Alumine 2.5% piir
+mean(tasu$salary) + viga # Ülemine 2.5% piir
+```
+
+Näeme, et töötasu 95% usaldusvahemik on `r round(mean(tasu$salary) - viga)` ja `r round(mean(tasu$salary) + viga)` euro vahel. Sama tulemuse saame ka lihtsamalt, kasutades ära funktsiooni `t.test()`.
+
+``` {r}
+t.test(tasu$salary)
+```
+
+Need matemaatiliselt leitud usaldusvahemikud on väga sarnased varem korduvvaliku teel leitud usaldusvahemikele, milleks olid `r quantile(keskmised, .025) %>% round` ja  `r quantile(keskmised, .975) %>% round`.
+
+<!--
+
+```{r}
+# Tekitame valimid
+valimM <- replicate(1000, 
+sample(tasu$salary[tasu$gender == "Male"], 
+length(tasu$salary[tasu$gender == "Female"]),
+replace = T),
+simplify = FALSE)
+valimN <- replicate(1000, 
+sample(tasu$salary[tasu$gender == "Female"], 
+length(tasu$salary[tasu$gender == "Female"]),
+replace = T),
+simplify = FALSE)
+# Arvutame keskmised
+keskmisedM <- sapply(valimM, mean)
+keskmisedN <- sapply(valimN, mean)
+```
+
+```{r}
+quantile(keskmisedM, .025)
+quantile(keskmisedM, .975)
+quantile(keskmisedN, .025)
+quantile(keskmisedN, .975)
+```
+-->

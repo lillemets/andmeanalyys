@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus</title>
+<title>Oijee! Andmeteadus - 9&nbsp; Valim ja kogum</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./andmeteadus.html" rel="next">
+<link href="./valikunihe.html" rel="next">
+<link href="./tunnused.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -60,13 +61,13 @@ ul.task-list{list-style: none;}
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Oijee! Andmeteadus</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -94,7 +95,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Saateks</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -167,7 +168,7 @@ ul.task-list{list-style: none;}
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  <a href="./valim.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,20 +233,14 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Sisukord</h2>
-   
-  <ul>
-  <li><a href="#saateks" id="toc-saateks" class="nav-link active" data-scroll-target="#saateks">Saateks</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Oijee! Andmeteadus</h1>
+<h1 class="title"><span id="sec-valim" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></span></h1>
 </div>
 
 
@@ -259,14 +254,29 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="saateks" class="level1 unnumbered">
-<h1 class="unnumbered">Saateks</h1>
-<p>Sellel lehel on esitatud õpik, mida võib käsitleda sissejuhatusena kaasaegsesse kvantitatiivsesse andmeanalüüsi. Nii ei ole siin esitatud kuigi palju traditsioonilist statistikat ega muude kui arvandmete analüüsimist. Andmeteadusele kohaselt on enamuse käsitletavate meetodite eesmärk prognoosimine, mitte selgitamine. Rõhuasetus on meetodite praktilisel rakendamisel, mitte nende teoreetilise tausta selgitamisel.</p>
-<p>Õpik on abivahend kursuse Sissejuhatus andmeteadusesse ja -analüüsi jaoks Eesti Maaülikoolis.</p>
-<p><em>Logol on kujutatud andmeanalüüs <a href="https://www.craiyon.com">DALL-E masinõppe mudeli</a> nägemuses.</em></p>
+<!--
+[[Sample and population]]
+[[Statistical uncertainty]]
+-->
+<p>Sageli on meil andmestik, mis hõlmab ainult väikest osa kõikidest vaatlustest, mida soovime kirjeldada. Seda osa vaatlustest ja ka nende kohta teada olevat nimetataksegi <strong>valimiks</strong>, mis on võetud <strong>kogumist</strong>. Kogumist valimi võtmiseks on palju viise, aga enamasti valitakse kogumist vaatlused võimalikult juhuslikult. Sellisel juhul esindab piisavalt suur valim kogumit ja nii saame teha valimi alusel järeldusi kogumi kohta ehk kirjeldada kogumit isegi siis, kui meil ei ole selle kohta täielikku teadmist.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Märkus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Valim peaks olema üldjuhul juhuslik, aga see ei tähenda alati mitmekesisust. Kui kogum on ühetaoline, siis peaks olema ühetaoline ka valim ja vastupidi. Valim peaks võimalikult täpselt peegeldama kogumit.</p>
+</div>
+</div>
+<p>Isegi juhul, kui meil on andmed kõikide vaatluste kohta, mida soovime kirjeldada, siis <em>võib olla kasulik mõelda ka kogumist kui valimist</em>. Mõnikord saame nii teha üldistusi ka nende aegade kohta, mis jäävad väljapoole tehtud mõõtmisi. Samuti saame nii olla kindlamad, et järeldusi mõjutavad vähem mõõtmisvead.</p>
+<div class="page-columns page-full"><p>Valimi kasutamine ongi sageli põhjuseks, miks me ei ole päris kindlad statistilistes mõõtmistes. Kui meil on ainult osa kirjeldatavast kogumist, siis isegi juhul, kui see osa valiti juhuslikult, ei saa me kunagi täiesti kindlad olla, et valim peegeldab kogumit täpselt. See valim võis ka juhuslikult kujuneda nii, et see esindab ainult ühte äärmust kogumist<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Sellisest ebakindlusest tulenevalt nimetatakse statistikas valimi alusel arvutatud väärtusi <strong>hinnanguteks</strong> (<a href="usaldusvahemikud.html"><span>Peatükk&nbsp;17</span></a>).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Kui soovime kirjeldada erakondade toetust, siis võivad meie valimisse ka juhuslikul teel sattuda peaaegu ainult ühe erakonna toetajad.</p></li></div></div>
 
 
-</section>
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -368,10 +378,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./tunnused.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./andmeteadus.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./valikunihe.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,22 @@
+# Valikunihe {#sec-valikunihe}
+
+<!--
+[[Selection bias]]
+[[Always be mindful of what you can not see]]
+-->
+
+Valikunihe (*selection bias*) iseloomustab olukorda, kus  meil ei ole uuritava nähtuse kohta täielikke andmeid ja olemasolevad andmed ei ole esinduslikud, vaid on mingis suunas kallutatud. Andmeanalüüsis tekib valikunihe enamasti siis, kui valim ei ole valitud kogumist juhuslikult, vaid on nihkega. Sellisel juhul ei ole tehtud järeldused kogumi suhtes täpsed, vaid on teatud suunas kallutatud.
+
+Valikunihe ei mõjuta järeldusi aga mitte alati. Kui nihet põhjustav tunnus ei ole kuidagi seotud tunnusega, mille alusel teeme järeldused, siis ei mõjuta valikunihe ka järeldusi. 
+
+Tingimusi valikunihke tekkimiseks on erinevaid: 
+
++ mittejuhuslik valim ehk valiminihe (*sample bias*): 
+	+ vaatluste määramine valimisse, 
+	+ vaatluste poolne valik valimisse sattumiseks vabatahtliku valimi korral, 
+	+ valimist välja langemine; 
++ andmete kogumine või analüüsi kordamine niikaua, kuni saadakse soovitud tulemus; 
++ sobivate vaatluste valimine; 
++ andmekogumise ajastus või ajaline valik analüüsil.
+
+Valikunihe ei teki mitte ainult andmete analüüsimisel. Ainult olemasoleva teadmise alusel järelduste tegemine võib viia nihkega hinnanguni misiganes olukorras. Pea alati meeles ka seda, mida sa ei näe!

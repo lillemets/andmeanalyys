@@ -49,7 +49,7 @@ Kõige otstarbekam on joonise vormistuse valimisel lähtuda andmete visualiseeri
 - koostist (nt ring-, pindala-, puujoonis), 
 - vooge (Sankey joonis), 
 - muutust (joon), 
-- seost (nt hajumis-, seosejoonis), 
+- seost (nt hajumisjoonis, seosekaart), 
 - jaotust (nt histogramm, tihedus-, karpjoonis), 
 - ruumilist jaotust (punkt-, koropleetkaart), 
 - võrgustikku (võrgustikjoonis).

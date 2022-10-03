@@ -1,1 +1,16 @@
 # Valim ja kogum {#sec-valim}
+
+<!--
+[[Sample and population]]
+[[Statistical uncertainty]]
+-->
+
+Sageli on meil andmestik, mis hõlmab ainult väikest osa kõikidest vaatlustest, mida soovime kirjeldada. Seda osa vaatlustest ja ka nende kohta teada olevat nimetataksegi **valimiks**, mis on võetud **kogumist**. Kogumist valimi võtmiseks on palju viise, aga enamasti valitakse kogumist vaatlused võimalikult juhuslikult. Sellisel juhul esindab piisavalt suur valim kogumit ja nii saame teha valimi alusel järeldusi kogumi kohta ehk kirjeldada kogumit isegi siis, kui meil ei ole selle kohta täielikku teadmist.
+
+:::{.callout-note}
+Valim peaks olema üldjuhul juhuslik, aga see ei tähenda alati mitmekesisust. Kui kogum on ühetaoline, siis peaks olema ühetaoline ka valim ja vastupidi. Valim peaks võimalikult täpselt peegeldama kogumit.
+:::
+
+Isegi juhul, kui meil on andmed kõikide vaatluste kohta, mida soovime kirjeldada, siis *võib olla kasulik mõelda ka kogumist kui valimist*. Mõnikord saame nii teha üldistusi ka nende aegade kohta, mis jäävad väljapoole tehtud mõõtmisi. Samuti saame nii olla kindlamad, et järeldusi mõjutavad vähem mõõtmisvead.
+
+Valimi kasutamine ongi sageli põhjuseks, miks me ei ole päris kindlad statistilistes mõõtmistes. Kui meil on ainult osa kirjeldatavast kogumist, siis isegi juhul, kui see  osa valiti juhuslikult, ei saa me kunagi täiesti kindlad olla, et valim peegeldab kogumit täpselt. See valim võis ka juhuslikult kujuneda nii, et see esindab ainult ühte äärmust kogumist^[Kui soovime kirjeldada erakondade toetust, siis võivad meie valimisse ka juhuslikul teel sattuda peaaegu ainult ühe erakonna toetajad.]. Sellisest ebakindlusest tulenevalt nimetatakse statistikas valimi alusel arvutatud väärtusi **hinnanguteks** (@sec-usaldusvahemikud).

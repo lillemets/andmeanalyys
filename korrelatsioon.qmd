@@ -12,7 +12,7 @@ Korrelatsioonikoefitsiendi väärtusel on kolm omadust, mille alusel saab teha j
 	- väärtus 0 näitab seose puudumist ja 
 	- väärtus -1 või 1 näitab täielikku seost; 
 - selle märk näitab seose suunda, kus
-	- positiivne väärtus tähendab positiivset seost ehk ühe tunnuse väärtuste suurenedes suurenevad ka teise tunnuse väärtused
+	- positiivne väärtus tähendab positiivset seost ehk ühe tunnuse väärtuste suurenedes suurenevad ka teise tunnuse väärtused, 
 	- negatiivne väärtus näitab negatiivset seost.
 :::
 
@@ -28,20 +28,22 @@ Harva huvitab meid üksik korrelatsioonikordaja kahe tunnuse vahel. Enamasti soo
 
 R keeles on korrelatsioonide leidmiseks funktsioon `cor()`, mis vaikimisi arvutab Pearsoni korrelatsioonikordaja. 
 
+<!--
+[[World countries]]
+-->
+
 ``` {r}
 #| message: false
 # Laadime laienduse tidyverse
 library('tidyverse')
 # Sisestame andmed
 riigid <- read.csv('andmed/countries.csv')
-# Jätame veerunimetustes alles vaid enne punkti oleva
-names(riigid) %<>% strsplit('\\.') %>% sapply(`[`, 1)
 # Kuvame andmetabeli ülevaate
 str(riigid)
-# Jätame ainult valitud tunnused ja seejärel eemaldame puuduvad väärtused
-riigid <- riigid[, 3:17] %>% na.omit
+# Jätame ainult valitud tunnused
+riigid <- riigid[, 3:17]
 # Arvutame korrelatsioonid
-korrelatsioonid <- cor(riigid)
+korrelatsioonid <- cor(riigid, use = 'pairwise.complete.obs')
 ```
 
 ``` {r}
@@ -53,6 +55,12 @@ round(korrelatsioonid, 2)
 ```
 
 Näeme, et nt kirjaoskuse ja sündimuse vahel on tugev negatiivne korrelatsioon ning rahvaarv korreleerub tugevalt ainult riigi pindalaga.
+
+Korrelatsioonimaatriks ei pea olema sümmeetriline tunnuste suhtes, vaid ridades ja veergudes võivad olla ka erinevad tunnused.
+
+``` {r}
+heatmap(korrelatsioonid)
+```
 
 Korrelatsioonimaatriksi kuvamiseks joonisena saame kasutada funktsiooni `heatmap()`. Vaikimisi järjestatkse tunnused selliselt, et sarnaste korrelatsioonidega tunnused oleksid lähestikku.
 

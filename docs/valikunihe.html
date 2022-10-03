@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus</title>
+<title>Oijee! Andmeteadus - 10&nbsp; Valikunihe</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./andmeteadus.html" rel="next">
+<link href="./taasvalik.html" rel="next">
+<link href="./valim.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,7 +67,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Oijee! Andmeteadus</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -94,7 +95,7 @@ ul.task-list{list-style: none;}
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Saateks</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -172,7 +173,7 @@ ul.task-list{list-style: none;}
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,20 +233,14 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">Sisukord</h2>
-   
-  <ul>
-  <li><a href="#saateks" id="toc-saateks" class="nav-link active" data-scroll-target="#saateks">Saateks</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Oijee! Andmeteadus</h1>
+<h1 class="title"><span id="sec-valikunihe" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></span></h1>
 </div>
 
 
@@ -259,14 +254,27 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="saateks" class="level1 unnumbered">
-<h1 class="unnumbered">Saateks</h1>
-<p>Sellel lehel on esitatud õpik, mida võib käsitleda sissejuhatusena kaasaegsesse kvantitatiivsesse andmeanalüüsi. Nii ei ole siin esitatud kuigi palju traditsioonilist statistikat ega muude kui arvandmete analüüsimist. Andmeteadusele kohaselt on enamuse käsitletavate meetodite eesmärk prognoosimine, mitte selgitamine. Rõhuasetus on meetodite praktilisel rakendamisel, mitte nende teoreetilise tausta selgitamisel.</p>
-<p>Õpik on abivahend kursuse Sissejuhatus andmeteadusesse ja -analüüsi jaoks Eesti Maaülikoolis.</p>
-<p><em>Logol on kujutatud andmeanalüüs <a href="https://www.craiyon.com">DALL-E masinõppe mudeli</a> nägemuses.</em></p>
+<!--
+[[Selection bias]]
+[[Always be mindful of what you can not see]]
+-->
+<p>Valikunihe (<em>selection bias</em>) iseloomustab olukorda, kus meil ei ole uuritava nähtuse kohta täielikke andmeid ja olemasolevad andmed ei ole esinduslikud, vaid on mingis suunas kallutatud. Andmeanalüüsis tekib valikunihe enamasti siis, kui valim ei ole valitud kogumist juhuslikult, vaid on nihkega. Sellisel juhul ei ole tehtud järeldused kogumi suhtes täpsed, vaid on teatud suunas kallutatud.</p>
+<p>Valikunihe ei mõjuta järeldusi aga mitte alati. Kui nihet põhjustav tunnus ei ole kuidagi seotud tunnusega, mille alusel teeme järeldused, siis ei mõjuta valikunihe ka järeldusi.</p>
+<p>Tingimusi valikunihke tekkimiseks on erinevaid:</p>
+<ul>
+<li>mittejuhuslik valim ehk valiminihe (<em>sample bias</em>):
+<ul>
+<li>vaatluste määramine valimisse,</li>
+<li>vaatluste poolne valik valimisse sattumiseks vabatahtliku valimi korral,</li>
+<li>valimist välja langemine;</li>
+</ul></li>
+<li>andmete kogumine või analüüsi kordamine niikaua, kuni saadakse soovitud tulemus;</li>
+<li>sobivate vaatluste valimine;</li>
+<li>andmekogumise ajastus või ajaline valik analüüsil.</li>
+</ul>
+<p>Valikunihe ei teki mitte ainult andmete analüüsimisel. Ainult olemasoleva teadmise alusel järelduste tegemine võib viia nihkega hinnanguni misiganes olukorras. Pea alati meeles ka seda, mida sa ei näe!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -368,10 +376,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./valim.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./andmeteadus.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./taasvalik.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

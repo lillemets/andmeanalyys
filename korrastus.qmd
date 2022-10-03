@@ -172,6 +172,8 @@ Teine võimalus on kasutada funktsiooni `complete.cases()`, mis väljastab andme
 ``` {r}
 # Valime read, kus on ainult täielikud vaatlused
 palk <- palk[complete.cases(palk), ]
+# Eemaldame puuduvate väärtustega read
+palk <- na.omit(palk)
 ```
 
 <!--
@@ -189,7 +191,9 @@ Mõnikord esineb andmetes väärtusi, mis ei ole teoreetiliselt võimalikud. Sel
 Kui oletame, et meie andmetabelis oleval ajavahemikul oli alampalk kõige vähem 278 eurot kuus, siis ei tohiks olla väärtuseid, kus keskmine brutokuupalk on sellest madalam.
 
 ``` {r}
-bruto <- filter(palk, Näitaja == 'Keskmine brutokuupalk, eurot' &
+# Tekitame uue andmetabeli ainult kõikide tegevusalade keskmise kuupalgaga
+bruto <- filter(palk, 
+                Näitaja == 'Keskmine brutokuupalk, eurot' &
                   Tegevusala == 'Kokku – kõik tegevusalad')
 # Määrame väärtuseks 278 juhtudel, kus väärtus on vähem kui 278
 bruto$väärtus[bruto$väärtus < 278] <- 278
