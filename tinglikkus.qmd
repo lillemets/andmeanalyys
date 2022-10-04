@@ -19,5 +19,6 @@ Interaktsioon iseloomustab olukorda, kus kahe tunnuse vaheline seos muutub märk
 :::
 
 <!--
-[[Conditionality]] 
+[[Conditionality]]
+[[Heart disease indicators]]
 -->

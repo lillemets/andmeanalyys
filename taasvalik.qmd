@@ -14,10 +14,10 @@ Taasvaliku rakendamiseks ehk andmetes valimite võtmiseks on palju erinevaid vii
 - ristvalideerimine (*cross-validation*), 
 - erinevad Monte Carlo meetodid.
 
-Korduvvaliku käigus võetakse andmetest juhuslikult vaatlusi selliselt, et üks ja sama vaatlus võib korduvvaliku valimis esineda rohkem kui ühe korra. Sealjuures on igas valimis sama palju vaatlusi kui andmetes. Sobivaks valimite arvuks peetakse enamasti vähemalt 1000 valimit. Sarnaselt teistele taasvaliku meetoditele ei sea (mitteparameetriline) korduvvalik eeldusi andmete jaotusele, kuid eeldab, et andmed esindavad piisavalt täpselt kogumit, mille kohta soovitakse teha andmete alusel järeldusi. Taasvalikut kasutatakse enamasti hinnangute valimijaotuste moodustamiseks.
+**Korduvvaliku** käigus võetakse andmetest juhuslikult vaatlusi selliselt, et üks ja sama vaatlus võib korduvvaliku valimis esineda rohkem kui ühe korra. Sealjuures on igas valimis sama palju vaatlusi kui andmetes. Sobivaks valimite arvuks peetakse enamasti vähemalt 1000 valimit. Sarnaselt teistele taasvaliku meetoditele ei sea (mitteparameetriline) korduvvalik eeldusi andmete jaotusele, kuid eeldab, et andmed esindavad piisavalt täpselt kogumit, mille kohta soovitakse teha andmete alusel järeldusi. Taasvalikut kasutatakse enamasti hinnangute valimijaotuste moodustamiseks.
 
 :::{.callout-warning}
 Taasvaliku alusel leitud hinnangud parameetri kohta kehtivad juhul, kui andmetes olev valim peegeldab kogumit piisavalt täpselt ehk on kogumi suhtes piisavalt esinduslik.
 :::
 
-Kui arvutame iga taasvaliku teel saadud valimi alusel mõne parameetri väärtuse, siis need parmeetri väärtused koonduvad enamasti mingi konkreetse väärtuse ümber ja järgivad mingit jaotust. Sellist paljude valimite alusel leitud parameetri jaotust nimetatakse **valimijaotuseks**^[Nt tsentraalse piirteoreemi järgi järgib aritmeetilise keskmise valimijaotus normaaljaotust]. 
+Kui arvutame iga taasvaliku teel saadud valimi alusel mõne parameetri väärtuse, siis need parmeetri väärtused koonduvad enamasti mingi konkreetse väärtuse ümber ja järgivad mingit jaotust. Sellist paljude valimite alusel leitud parameetri jaotust nimetatakse **valimijaotuseks**^[Nt tsentraalse piirteoreemi järgi järgib aritmeetilise keskmise valimijaotus alati normaaljaotust]. 

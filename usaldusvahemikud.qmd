@@ -7,16 +7,15 @@
 Tihti peame üldistusi tegema valimi alusel (@sec-valim). Selline olukord tekib näiteks juhul, kui kasutame küsitluse teel kogutud andmeid ja soovime nende alusel teha järeldusi ka isikute kohta, kes küsitluses ei osalenud. Sellisel juhul ei iseloomusta aga valimi alusel arvutatud mõõdik otseselt kogumit, vaid on ainult hinnang. Sellist konkreetset hinnangut nimetatakse **punkthinnanguks**. Ei ole aga tõenäoline, et mingi konkreetne valimi alusel arvutatud mõõdiku väärtus on täpselt sama, mis vastavas kogumis. Seetõttu arvutatakse mõõdiku väärtusele ka vahemikud, milles tegelik, kogumiku väärtus teatud tõenäosusega asetseb. Selliselt arvutatud hinnangut nimetatakse **vahemikhinnanguks**, mis enamasti tähendab usaldusvahemikke.
 
 :::{.callout-important}
-Usaldusvahemikud (*confidence intervals*) on vahemikhinnangud mingi parameetri tegeliku väärtuse kohta. See väärtus asub usaldusvahemike piirides teatud kindlusega, millest lähtutakse usaldusvahemike arvutamisel.
+**Usaldusvahemikud** (*confidence intervals*) on vahemikhinnangud mingi parameetri tegeliku väärtuse kohta. See väärtus asub usaldusvahemike piirides *teatud kindlusega*, millest lähtutakse usaldusvahemike arvutamisel.
 :::
 
 Usaldusvahemike arvutamiseks on kaks viisi:
 
 - eeldame, et kogumis on väärtuste jaotus samasugune nagu valimis, mistõttu saame valimist omakorda valimeid võttes ja nende alusel leitud paljude punkthinnangute alusel leida vahemikhinnangu; 
-- eeldame, et kogumis on väärtus mingi konkreetse teoreetilise jaotusega, mis võimaldab üksikute valimi omaduste alusel matemaatiliselt leida vahemikhinangu.
+- eeldame, et kogumis on väärtus mingi konkreetse teoreetilise jaotusega, mis võimaldab üksikute valimi omaduste alusel matemaatiliselt leida vahemikhinnangu.
 
-
-Siin vaatame eelkõige esimest, taasvalikut hõlmavat lähenemist, aga lõpus uurime lühidalt ka teoreetilse jaotuse abil usalduvahemiku arvutamist.
+Siin vaatame eelkõige esimest, taasvalikut hõlmavat lähenemist, aga lõpus uurime lühidalt ka teoreetilise jaotuse abil usaldusvahemiku arvutamist.
 
 ## Ühe tunnuse usaldusvahemikud
 
@@ -45,7 +44,7 @@ str(tasu)
 [[IT salary]]
 -->
 
-Veerus `salary` on aastane brutotöötasu eurodes ilma lisatasudeta. Teisendame selle meile tuttavaaks kuutöötasuks ja uurime, kuidas tasud jaotuvad.
+Veerus `salary` on aastane brutotöötasu eurodes ilma lisatasudeta. Teisendame selle meile tuttavaks kuutöötasuks ja uurime, kuidas tasud jaotuvad.
 
 ```{r}
 tasu %<>% mutate(salary = salary / 12)
@@ -77,7 +76,7 @@ hist(keskmised)
 
 Histogrammilt näeme, et suur osa valimite keskmistest jäävad väärtuste `r quantile(keskmised, .025) %>% round(-2)` ja `r quantile(keskmised, .975) %>% round(-2)` vahele. 
 
-Kuna usaldusvahemik oleneb sellest, kui kindlad me tahame olla, et tegelik väärtus seal asub, siis peame selle kindluse määrama. Enamasti leitakse usaldusvahemik kindusega 95%. Taasvalikut rakendadades tähendab see, et usaldusvahemiku määravad need piirid, kuhul jääb 95% kõikidest leitud valimite keskmistest. Seega alumine töötasu piir peab olema selline, millest väiksemaid väärtusi on 2,5% ja ülemisest piirist suuremaid väärtusi 2,5%. Sinna vahele jääb 95% kõikide valimite alusel leitud keskmistest töötasudest. Vastavate kvantiilide leidmiseks saame kasutada funktsiooni `quantile()`.
+Kuna usaldusvahemik oleneb sellest, kui kindlad me tahame olla, et tegelik väärtus seal asub, siis peame selle kindluse määrama. Enamasti leitakse usaldusvahemik kindlusega 95%. Taasvalikut rakendades tähendab see, et usaldusvahemiku määravad need piirid, juhul jääb 95% kõikidest leitud valimite keskmistest. Seega alumine töötasu piir peab olema selline, millest väiksemaid väärtusi on 2,5% ja ülemisest piirist suuremaid väärtusi 2,5%. Sinna vahele jääb 95% kõikide valimite alusel leitud keskmistest töötasudest. Vastavate kvantiilide leidmiseks saame kasutada funktsiooni `quantile()`.
 
 ``` {r}
 quantile(keskmised, .025) # Alumine 2.5% piir
@@ -150,7 +149,7 @@ Näeme, et 95% valimite korral on naiste tegelik keskmine töötasu `r uvN[1]` j
 
 Saame selle erinevuse joonistada ka valimijaotuste tihendusfunktsioonina koos varem leitud üldise keskmise töötasu valimijaotusega.
 
-````{r}
+```{r}
 hist(keskmised, freq = FALSE, xlim = c(4500,6500))
 lines(density(keskmisedN$t), col = 'red') # Naiste tõõtasu punasega
 lines(density(keskmisedM$t), col = 'blue') # Meeste tõõtasu sinisega
@@ -185,7 +184,7 @@ Näeme, et meie valimis on tunnuste vahel keskmise või mõõduka tugevusega pos
 Arvutame usaldusvahemikud jällegi laienduse `boot` funktsioone kasutades. 
 
 ```{r}
-korrelatsioonid <- boot(tasu[, c('salary', 'experience')], 
+korrelatsioonid <- boot(tasu, 
                         function(x,i) cor(x[i, 'salary'], x[i, 'experience']), 
                         1000)
 boot.ci(korrelatsioonid, type = 'norm')

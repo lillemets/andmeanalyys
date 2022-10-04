@@ -25,3 +25,11 @@ tasu %<>% na.omit
 äärmus <- quantile(tasu$experience, .75) + IQR(tasu$experience)*1.5
 tasu %<>% filter(experience < äärmus)
 write.csv(tasu, 'andmed/itsalary.csv', row.names = F)
+
+# Heat disease indicators
+bmi <- read.csv('assets/heartdisease.csv')
+Kus <- (nrow(bmi)/500+1) %>% round %>% rep(500) %>% cumsum # Take every nth observation so that there are 1000 observations
+bmi <- bmi[Kus, ]
+#t.test(BMI ~ PhysicalActivity, bmi)
+bmi %<>% select(BMI, HeartDisease, PhysicalHealth)
+write.csv(bmi, 'andmed/bmi.csv', row.names = F)
