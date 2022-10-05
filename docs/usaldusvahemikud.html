@@ -301,10 +301,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Sisukord</h2>
    
   <ul>
-  <li><a href="#ühe-tunnuse-usaldusvahemikud" id="toc-ühe-tunnuse-usaldusvahemikud" class="nav-link active" data-scroll-target="#ühe-tunnuse-usaldusvahemikud"> <span class="header-section-number">17.1</span> Ühe tunnuse usaldusvahemikud</a></li>
+  <li><a href="#ühe-tunnuse-usaldusvahemik" id="toc-ühe-tunnuse-usaldusvahemik" class="nav-link active" data-scroll-target="#ühe-tunnuse-usaldusvahemik"> <span class="header-section-number">17.1</span> Ühe tunnuse usaldusvahemik</a></li>
   <li><a href="#kahe-rühma-võrdlemine" id="toc-kahe-rühma-võrdlemine" class="nav-link" data-scroll-target="#kahe-rühma-võrdlemine"> <span class="header-section-number">17.2</span> Kahe rühma võrdlemine</a></li>
-  <li><a href="#seose-usaldusvahemikud" id="toc-seose-usaldusvahemikud" class="nav-link" data-scroll-target="#seose-usaldusvahemikud"> <span class="header-section-number">17.3</span> Seose usaldusvahemikud</a></li>
-  <li><a href="#usaldusvahemikud-statistika-lähenemises" id="toc-usaldusvahemikud-statistika-lähenemises" class="nav-link" data-scroll-target="#usaldusvahemikud-statistika-lähenemises"> <span class="header-section-number">17.4</span> Usaldusvahemikud statistika lähenemises</a></li>
+  <li><a href="#seose-usaldusvahemik" id="toc-seose-usaldusvahemik" class="nav-link" data-scroll-target="#seose-usaldusvahemik"> <span class="header-section-number">17.3</span> Seose usaldusvahemik</a></li>
+  <li><a href="#usaldusvahemik-statistika-lähenemises" id="toc-usaldusvahemik-statistika-lähenemises" class="nav-link" data-scroll-target="#usaldusvahemik-statistika-lähenemises"> <span class="header-section-number">17.4</span> Usaldusvahemik statistika lähenemises</a></li>
   </ul>
 </nav>
     </div>
@@ -330,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- 
 [[Confidence intervals (CI)]]
 -->
-<p>Tihti peame üldistusi tegema valimi alusel (<a href="valim.html"><span>Peatükk&nbsp;9</span></a>). Selline olukord tekib näiteks juhul, kui kasutame küsitluse teel kogutud andmeid ja soovime nende alusel teha järeldusi ka isikute kohta, kes küsitluses ei osalenud. Sellisel juhul ei iseloomusta aga valimi alusel arvutatud mõõdik otseselt kogumit, vaid on ainult hinnang. Sellist konkreetset hinnangut nimetatakse <strong>punkthinnanguks</strong>. Ei ole aga tõenäoline, et mingi konkreetne valimi alusel arvutatud mõõdiku väärtus on täpselt sama, mis vastavas kogumis. Seetõttu arvutatakse mõõdiku väärtusele ka vahemikud, milles tegelik, kogumiku väärtus teatud tõenäosusega asetseb. Selliselt arvutatud hinnangut nimetatakse <strong>vahemikhinnanguks</strong>, mis enamasti tähendab usaldusvahemikke.</p>
+<p>Tihti peame üldistusi tegema valimi alusel (<a href="valim.html"><span>Peatükk&nbsp;9</span></a>). Selline olukord tekib näiteks juhul, kui kasutame küsitluse teel kogutud andmeid ja soovime nende alusel teha järeldusi ka isikute kohta, kes küsitluses ei osalenud. Sellisel juhul ei iseloomusta aga valimi alusel arvutatud mõõdik otseselt kogumit, vaid on ainult hinnang. Sellist konkreetset hinnangut nimetatakse <strong>punkthinnanguks</strong>. Ei ole aga tõenäoline, et mingi konkreetne valimi alusel arvutatud mõõdiku väärtus on täpselt sama, mis vastavas kogumis. Seetõttu arvutatakse mõõdiku väärtusele ka vahemikud, milles tegelik, kogumiku väärtus teatud tõenäosusega asetseb. Selliselt arvutatud hinnangut nimetatakse <strong>vahemikhinnanguks</strong>, mis enamasti tähendab usaldusvahemikku.</p>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -341,17 +341,17 @@ Mõiste
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Usaldusvahemikud (<em>confidence intervals</em>) on vahemikhinnangud mingi parameetri tegeliku väärtuse kohta. See väärtus asub usaldusvahemike piirides teatud kindlusega, millest lähtutakse usaldusvahemike arvutamisel.</p>
+<p><strong>Usaldusvahemik</strong> (<em>confidence intervals</em>) on vahemikhinnang mingi parameetri tegeliku väärtuse kohta. See väärtus asub usaldusvahemiku piirides <em>teatud kindlusega</em>, millest lähtutakse usaldusvahemiku arvutamisel.</p>
 </div>
 </div>
-<p>Usaldusvahemike arvutamiseks on kaks viisi:</p>
+<p>Usaldusvahemiku arvutamiseks on kaks viisi:</p>
 <ul>
 <li>eeldame, et kogumis on väärtuste jaotus samasugune nagu valimis, mistõttu saame valimist omakorda valimeid võttes ja nende alusel leitud paljude punkthinnangute alusel leida vahemikhinnangu;</li>
-<li>eeldame, et kogumis on väärtus mingi konkreetse teoreetilise jaotusega, mis võimaldab üksikute valimi omaduste alusel matemaatiliselt leida vahemikhinangu.</li>
+<li>eeldame, et kogumis on väärtus mingi konkreetse teoreetilise jaotusega, mis võimaldab üksikute valimi omaduste alusel matemaatiliselt leida vahemikhinnangu.</li>
 </ul>
-<p>Siin vaatame eelkõige esimest, taasvalikut hõlmavat lähenemist, aga lõpus uurime lühidalt ka teoreetilse jaotuse abil usalduvahemiku arvutamist.</p>
-<section id="ühe-tunnuse-usaldusvahemikud" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="ühe-tunnuse-usaldusvahemikud"><span class="header-section-number">17.1</span> Ühe tunnuse usaldusvahemikud</h2>
+<p>Siin vaatame eelkõige esimest, taasvalikut hõlmavat lähenemist, aga lõpus uurime lühidalt ka teoreetilise jaotuse abil usaldusvahemiku arvutamist.</p>
+<section id="ühe-tunnuse-usaldusvahemik" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="ühe-tunnuse-usaldusvahemik"><span class="header-section-number">17.1</span> Ühe tunnuse usaldusvahemik</h2>
 <p>Alustame vajalike laienduste töölauale laadimisega.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
@@ -372,7 +372,7 @@ Mõiste
 <!--
 [[IT salary]]
 -->
-<p>Veerus <code>salary</code> on aastane brutotöötasu eurodes ilma lisatasudeta. Teisendame selle meile tuttavaaks kuutöötasuks ja uurime, kuidas tasud jaotuvad.</p>
+<p>Veerus <code>salary</code> on aastane brutotöötasu eurodes ilma lisatasudeta. Teisendame selle meile tuttavaks kuutöötasuks ja uurime, kuidas tasud jaotuvad.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tasu <span class="sc">%&lt;&gt;%</span> <span class="fu">mutate</span>(<span class="at">salary =</span> salary <span class="sc">/</span> <span class="dv">12</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tasu<span class="sc">$</span>salary)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -384,8 +384,8 @@ Mõiste
 <pre><code>[1] 5656.305</code></pre>
 </div>
 </div>
-<p>Näeme, et keskmine kuutöötasu on 5656 eurot. Kui tõenäoline on, et ka tegelikult oli Saksamaal 2020. aastal IT valdkonna töötajate kuutöötasu täpselt 5656 eurot? Mitte eriti. Usutavama hinnangu saaksime anda siis, kui leiame hoopis vahemiku, milles see hinnang mingi kindlusega on. Seega peaksime leidma usaldusvahemikud.</p>
-<p>Usaldusvahemike leidmiseks kõige intuitiivsem viis on kasutada Korduvvalikut (<em>bootstrapping</em>). Selleks võtame esmalt andmetest mingil hulgal juhuslikult valimeid nii, et iga leitud valim on sama suur kui algne andmestik, aga osad väärtused (isikud) valimites korduvad ja osad on puudu (<a href="taasvalik.html"><span>Peatükk&nbsp;11</span></a>). Valimi võtmiseks saame kasutada funktsiooni <code>sample()</code> ja selle tegevuse kordamiseks funktsiooni <code>replicate()</code>.</p>
+<p>Näeme, et keskmine kuutöötasu on 5656 eurot. Kui tõenäoline on, et ka tegelikult oli Saksamaal 2020. aastal IT valdkonna töötajate kuutöötasu täpselt 5656 eurot? Mitte eriti. Usutavama hinnangu saaksime anda siis, kui leiame hoopis vahemiku, milles see hinnang mingi kindlusega on. Seega peaksime leidma usaldusvahemiku.</p>
+<p>Usaldusvahemiku leidmiseks kõige intuitiivsem viis on kasutada Korduvvalikut (<em>bootstrapping</em>). Selleks võtame esmalt andmetest mingil hulgal juhuslikult valimeid nii, et iga leitud valim on sama suur kui algne andmestik, aga osad väärtused (isikud) valimites korduvad ja osad on puudu (<a href="taasvalik.html"><span>Peatükk&nbsp;11</span></a>). Valimi võtmiseks saame kasutada funktsiooni <code>sample()</code> ja selle tegevuse kordamiseks funktsiooni <code>replicate()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>valimid <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="co"># Korrata järgnevat käsku 1000 korda</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">sample</span>(tasu<span class="sc">$</span>salary, <span class="co"># Võtta valim töötasude seast</span></span>
@@ -413,7 +413,7 @@ Mõiste
 </div>
 </div>
 <p>Histogrammilt näeme, et suur osa valimite keskmistest jäävad väärtuste 5600 ja 5700 vahele.</p>
-<p>Kuna usaldusvahemik oleneb sellest, kui kindlad me tahame olla, et tegelik väärtus seal asub, siis peame selle kindluse määrama. Enamasti leitakse usaldusvahemik kindusega 95%. Taasvalikut rakendadades tähendab see, et usaldusvahemiku määravad need piirid, kuhul jääb 95% kõikidest leitud valimite keskmistest. Seega alumine töötasu piir peab olema selline, millest väiksemaid väärtusi on 2,5% ja ülemisest piirist suuremaid väärtusi 2,5%. Sinna vahele jääb 95% kõikide valimite alusel leitud keskmistest töötasudest. Vastavate kvantiilide leidmiseks saame kasutada funktsiooni <code>quantile()</code>.</p>
+<p>Kuna usaldusvahemik oleneb sellest, kui kindlad me tahame olla, et tegelik väärtus seal asub, siis peame selle kindluse määrama. Enamasti leitakse usaldusvahemik kindlusega 95%. Taasvalikut rakendades tähendab see, et usaldusvahemiku määravad need piirid, juhul jääb 95% kõikidest leitud valimite keskmistest. Seega alumine töötasu piir peab olema selline, millest väiksemaid väärtusi on 2,5% ja ülemisest piirist suuremaid väärtusi 2,5%. Sinna vahele jääb 95% kõikide valimite alusel leitud keskmistest töötasudest. Vastavate kvantiilide leidmiseks saame kasutada funktsiooni <code>quantile()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(keskmised, .<span class="dv">025</span>) <span class="co"># Alumine 2.5% piir</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -426,8 +426,8 @@ Mõiste
 5735.849 </code></pre>
 </div>
 </div>
-<p>Need kaks töötasu väärtust 5570 ja 5736 ongi 95% usaldusvahemikud, mille vahele jääb suure tõenäosusega tegelik töötasu.</p>
-<p>All oleval joonisel on leitud usaldusvahemikud kujutatud töötasu valimijaotuse tihedusfunktsioonil. Joontena esitatud usaldusvahemike vahele jääb 95% tihendusfunktsiooni kõvera alusest pindalast.</p>
+<p>Need kaks töötasu väärtust 5570 ja 5736 ongi 95% usaldusvahemik, mille vahele jääb suure tõenäosusega tegelik töötasu.</p>
+<p>All oleval joonisel on leitud usaldusvahemik kujutatud töötasu valimijaotuse tihedusfunktsioonil. Joontena esitatud usaldusvahemiku vahele jääb 95% tihendusfunktsiooni kõvera alusest pindalast.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(keskmised))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">quantile</span>(keskmised, .<span class="dv">025</span>))</span>
@@ -436,7 +436,7 @@ Mõiste
 <p><img src="usaldusvahemikud_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Eelnevate arvutuste üks mõte oli usaldusvahemike leidmise selgitamine. Tegelikult saab korduvvaliku alusel usaldusvahemikke leida ka lühemalt, kasutades funktsioone <code>boot()</code> ja <code>boot.ci()</code> vastavast laiendusest. Sellisel juhul tuleb kasutatav mõõdik vormistada veidi keerulisemalt, käsitsi loodava funktsioonina.</p>
+<p>Eelnevate arvutuste üks mõte oli usaldusvahemiku leidmise selgitamine. Tegelikult saab korduvvaliku alusel usaldusvahemikku leida ka lühemalt, kasutades funktsioone <code>boot()</code> ja <code>boot.ci()</code> vastavast laiendusest. Sellisel juhul tuleb kasutatav mõõdik vormistada veidi keerulisemalt, käsitsi loodava funktsioonina.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'boot'</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Leiame 1000 korduvvaliku teel saadud valimi keskmised </span></span>
@@ -458,7 +458,7 @@ Level      Normal
 Calculations and Intervals on Original Scale</code></pre>
 </div>
 </div>
-<p>Näeme, et leitud töötasu usaldusvahemikud on sarnased varem käsitsi leitud usaldusvahemikele 5570 ja 5736.</p>
+<p>Näeme, et leitud töötasu usaldusvahemik on sarnane varem käsitsi leitud usaldusvahemikule 5570 ja 5736.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -469,7 +469,7 @@ Pea meeles!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Korduvvaliku käigus võetakse valimid juhuslikult. Seetõttu saame korduvvalikut korrates peaaegu alati veidi erineva valimi ja seega ka erinevad usaldusvahemikud. See erinevus on aga piisavalt väike, et hinnngut mitte märkimisväärselt muuta.</p>
+<p>Korduvvaliku käigus võetakse valimid juhuslikult. Seetõttu saame korduvvalikut korrates peaaegu alati veidi erineva valimi ja seega ka erineva usaldusvahemiku. See erinevus on aga piisavalt väike, et hinnngut mitte märkimisväärselt muuta.</p>
 </div>
 </div>
 </section>
@@ -492,9 +492,9 @@ Pea meeles!
 <pre><code>[1] 5799.612</code></pre>
 </div>
 </div>
-<p>Näeme, et naiste keskmine töötasu on tunduvalt madalam kui meestel, kuigi töötasude jaotused suurel määral kattuvad. Enne järelduste tegemist tuleb aga meeles pidada, et andmestikus on ainult valim ja tegelikult, kogumis ei pruugi üldse erinevust olla. Usutavama järeldus saame teha usaldusvahemike alusel. Leiame järgnevalt usaldusvahemikud naiste ja meeste töötasude kohta eraldi.</p>
+<p>Näeme, et naiste keskmine töötasu on tunduvalt madalam kui meestel, kuigi töötasude jaotused suurel määral kattuvad. Enne järelduste tegemist tuleb aga meeles pidada, et andmestikus on ainult valim ja tegelikult, kogumis ei pruugi üldse erinevust olla. Usutavama järeldus saame teha usaldusvahemiku alusel. Leiame järgnevalt usaldusvahemiku naiste ja meeste töötasude kohta eraldi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naiste töötasu usaldusvahemikud</span></span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naiste töötasu usaldusvahemik</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>keskmisedN <span class="ot">&lt;-</span> <span class="fu">boot</span>(tasu<span class="sc">$</span>salary[tasu<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Female"</span>], </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">function</span>(x,i) <span class="fu">mean</span>(x[i]), </span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1000</span>) </span>
@@ -511,7 +511,7 @@ Level      Normal
 95%   (4730, 5068 )  
 Calculations and Intervals on Original Scale</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Meeste töötasu usaldusvahemikud</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Meeste töötasu usaldusvahemik</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>keskmisedM <span class="ot">&lt;-</span> <span class="fu">boot</span>(tasu<span class="sc">$</span>salary[tasu<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Male"</span>], </span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                   <span class="cf">function</span>(x,i) <span class="fu">mean</span>(x[i]), </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1000</span>) </span>
@@ -550,13 +550,13 @@ Pea meeles!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Usaldusvahemikel on palju tõlgendusviise. Õige on öelda, et usaldusvahemikud kehtivad 95% valimite korral ja tegemist on 95% usaldusvahemikega. Korduvvaliku alusel leitud usaldusvahemike korral ei ole aga ka täiesti vale öelda, et need kehtivad 95% tõenäosusega või et teglik väärtus jääb usaldusvahemikku 95% tõenäosusega.</p>
+<p>Usaldusvahemikul on palju tõlgendusviise. Õige on öelda, et usaldusvahemik kehtib 95% valimite korral ja tegemist on 95% usaldusvahemikuga. Korduvvaliku alusel leitud usaldusvahemiku korral ei ole aga ka täiesti vale öelda, et need kehtivad 95% tõenäosusega või et teglik väärtus jääb usaldusvahemikku 95% tõenäosusega.</p>
 </div>
 </div>
 </section>
-<section id="seose-usaldusvahemikud" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="seose-usaldusvahemikud"><span class="header-section-number">17.3</span> Seose usaldusvahemikud</h2>
-<p>Korduvvalik ei võimalda usaldusvahemikke leida mitte ainult keskväärtuse, vaid mistahes parameetri jaoks. Alloleval joonisel paistab, et töökogemuse (<code>experience</code>) kasvades suureneb ka keskmiselt töötasu (<code>salary</code>). Meid võib huvitada, kas see seos kehtib ainult meie valimis või ka tegelikkuses.</p>
+<section id="seose-usaldusvahemik" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="seose-usaldusvahemik"><span class="header-section-number">17.3</span> Seose usaldusvahemik</h2>
+<p>Korduvvalik ei võimalda usaldusvahemikku leida mitte ainult keskväärtuse, vaid mistahes parameetri jaoks. Alloleval joonisel paistab, et töökogemuse (<code>experience</code>) kasvades suureneb ka keskmiselt töötasu (<code>salary</code>). Meid võib huvitada, kas see seos kehtib ainult meie valimis või ka tegelikkuses.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tasu) <span class="sc">+</span> </span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> experience, <span class="at">y =</span> salary) <span class="sc">+</span> </span>
@@ -578,9 +578,9 @@ Pea meeles!
 </div>
 </div>
 <p>Näeme, et meie valimis on tunnuste vahel keskmise või mõõduka tugevusega positiive seos.</p>
-<p>Arvutame usaldusvahemikud jällegi laienduse <code>boot</code> funktsioone kasutades.</p>
+<p>Arvutame usaldusvahemiku jällegi laienduse <code>boot</code> funktsioone kasutades.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>korrelatsioonid <span class="ot">&lt;-</span> <span class="fu">boot</span>(tasu[, <span class="fu">c</span>(<span class="st">'salary'</span>, <span class="st">'experience'</span>)], </span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>korrelatsioonid <span class="ot">&lt;-</span> <span class="fu">boot</span>(tasu, </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">function</span>(x,i) <span class="fu">cor</span>(x[i, <span class="st">'salary'</span>], x[i, <span class="st">'experience'</span>]), </span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1000</span>)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boot.ci</span>(korrelatsioonid, <span class="at">type =</span> <span class="st">'norm'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -605,11 +605,11 @@ Calculations and Intervals on Original Scale</code></pre>
 <p><img src="usaldusvahemikud_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>On selge, et 95% usaldusvahemikud ei kata nullpunkti. Sellest võime järeldada, et mitte ainult meie valimis, vaid ka üldiselt, kogumis on kogemuse ja töötasu vahel positiivne seos. Usaldusvahemike alusel võime järeldada, et korrelatsioonikordaja kogemuse ja töötasu vahel on kogumis 95% kindlusega vähemalt 0.37, aga mitte üle 0.37.</p>
+<p>On selge, et 95% usaldusvahemik ei kata nullpunkti. Sellest võime järeldada, et mitte ainult meie valimis, vaid ka üldiselt, kogumis on kogemuse ja töötasu vahel positiivne seos. Usaldusvahemiku alusel võime järeldada, et korrelatsioonikordaja kogemuse ja töötasu vahel on kogumis 95% kindlusega vähemalt 0.37, aga mitte üle 0.48.</p>
 </section>
-<section id="usaldusvahemikud-statistika-lähenemises" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="usaldusvahemikud-statistika-lähenemises"><span class="header-section-number">17.4</span> Usaldusvahemikud statistika lähenemises</h2>
-<p>Eelnev usaldusvahemike leidmise viis valimeid simuleerides iseloomustab hästi andmeteadust. Enne arvuteid kujunenud statistika lähenemine usalduvahemike leidmisele põhineb rohkem matekaatika teoorial.</p>
+<section id="usaldusvahemik-statistika-lähenemises" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="usaldusvahemik-statistika-lähenemises"><span class="header-section-number">17.4</span> Usaldusvahemik statistika lähenemises</h2>
+<p>Eelnev usaldusvahemiku leidmise viis valimeid simuleerides iseloomustab hästi andmeteadust. Enne arvuteid kujunenud statistika lähenemine usalduvahemike leidmisele põhineb rohkem matekaatika teoorial.</p>
 <p>Paljusid nähtusi iseloomustavad väärtused järgivad jaotuses sageli normaaljaotust, aga ka sellele sarnast t-jaotust. Võime oletada, et ka kogumis on väärtused jaotunud vastavalt t-jaotusele.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tjaotus <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="fu">length</span>(tasu<span class="sc">$</span>salary)) <span class="sc">*</span> <span class="fu">sd</span>(tasu<span class="sc">$</span>salary) <span class="sc">+</span> <span class="fu">mean</span>(tasu<span class="sc">$</span>salary)</span>
@@ -620,8 +620,8 @@ Calculations and Intervals on Original Scale</code></pre>
 <p><img src="usaldusvahemikud_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Näeme, et meie küsitletute seas on jaotus veidi paremale kaldu, aga üldiselt siiski sarnane sellele vastavale t-jaotusele. Kui eeldame, et kogumis ongi väärtused jaotunud nii nagu t-jaotuse korral, siis saame usaldusvahemikud leida teoreetiliselt ilma suurel hulgal valimeid tekitamata.</p>
-<p>Nimetatud eeldusel saab usaldusvahemikud leida matemaatiliselt kasutades valemit</p>
+<p>Näeme, et meie küsitletute seas on jaotus veidi paremale kaldu, aga üldiselt siiski sarnane sellele vastavale t-jaotusele. Kui eeldame, et kogumis ongi väärtused jaotunud nii nagu t-jaotuse korral, siis saame usaldusvahemiku leida teoreetiliselt ilma suurel hulgal valimeid tekitamata.</p>
+<p>Nimetatud eeldusel saab usaldusvahemiku leida matemaatiliselt kasutades valemit</p>
 <p><span class="math display">\[\bar{x} \pm z \frac{s}{\sqrt{n}}, \]</span></p>
 <p>kus <span class="math inline">\(\bar{x}\)</span> on keskmine, <span class="math inline">\(z\)</span> on t-jaotuse täiendkvantiil, <span class="math inline">\(s\)</span> valimi standardviga ja <span class="math inline">\(n\)</span> valimi suurus.</p>
 <p>Kirjutame selle valemi R käskudena.</p>
@@ -654,7 +654,7 @@ mean of x
  5656.305 </code></pre>
 </div>
 </div>
-<p>Need matemaatiliselt leitud usaldusvahemikud on väga sarnased varem korduvvaliku teel leitud usaldusvahemikele, milleks olid 5570 ja 5736.</p>
+<p>Need matemaatiliselt leitud usaldusvahemik on väga sarnane varem korduvvaliku teel leitud usaldusvahemikule, mis oli 5570 ja 5736.</p>
 <!--
 
 

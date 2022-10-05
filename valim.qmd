@@ -13,7 +13,7 @@ Kui andmetes on ainult osa vaatlustest, mida soovime kirjeldada, siis on tegemis
 
 Kogumist valimi võtmiseks on palju viise, aga enamasti valitakse kogumist vaatlused võimalikult juhuslikult. Sellisel juhul esindab piisavalt suur valim kogumit ja nii saame teha valimi alusel järeldusi kogumi kohta ehk kirjeldada kogumit isegi siis, kui meil ei ole selle kohta täielikku teadmist.
 
-:::{.callout-note}
+:::{.callout-warning}
 Valim peaks võimalikult täpselt peegeldama kogumit. Seda saab saavutada juhuvalik. Juhuslik valik ei tähenda alati mitmekesisust. Kui kogum on ühetaoline, siis peaks olema ühetaoline ka valim ja vastupidi.
 :::
 
