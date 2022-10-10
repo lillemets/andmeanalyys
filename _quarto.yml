@@ -41,7 +41,7 @@ book:
     - korrelatsioon.qmd
     - seosereeglid.qmd
     - usaldusvahemikud.qmd
-#    - linreg.qmd
+    - linreg.qmd
 #    - logreg.qmd
 #    - klassifitseerimine.qmd
 #    - klasterdamine.qmd

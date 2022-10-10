@@ -27,8 +27,8 @@ names(riigid) %<>% strsplit('\\.') %>% sapply(`[`, 1)
 names(riigid)[names(riigid) == 'Net'] <- 'Migration'
 write.csv(riigid, 'andmed/countries.csv', row.names = F)
 
-# IT survey
-# 04_usaldusvahemikud
+# IT salary
+# usaldusvahemikud
 tasu <- read.csv('assets/itsalary.csv', na.strings = '')
 tasu %<>% 
   select(Gender, 
@@ -60,3 +60,12 @@ set.seed(0); lunch %<>% slice_sample(n = 1e4)
 lunch %<>% select(date, city, name, offer, price_euro)
 lunch %<>% rename(price = price_euro)
 write.csv(lunch, 'andmed/lunchoffers.csv', row.names = F)
+
+# Housing prices
+# linreg
+majad <- read.csv('assets/housingprices.csv')
+mudel <- lm(price ~ area, majad)
+majad %<>% filter(cooks.distance(mudel) < .0005) #%>% plot(price ~ area, .)
+#set.seed(0); majad %<>% slice_sample(n = 123)
+majad %<>% filter(price < boxplot.stats(majad$price)$out)
+write.csv(majad, 'andmed/housingprices.csv', row.names = F)

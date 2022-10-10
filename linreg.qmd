@@ -1,5 +1,290 @@
-# Lineaarne regressioon {#sec-linreg}
+# Lineaarne regressioon {#sec-regressioon}
 
 <!--
-[[Belarus used cars]]
+[[Regression analysis]]
+[[Linear regression]]
 -->
+
+Korrelatsioonanalüüsis uurisime seost kahe tunnuse vahel, võtmata arvesse  põhjuslikku seost nende vahel (@sec-seosed). Lineaarse regressiooni korral mõõdame samuti seost tunnuste vahel, aga selliselt, et üks tunnustest on alati määratud ühest või mitmest tunnusest sõltuvaks. See sõltuvus on sealjuures puhtalt matemaatiline ega tähenda põhjuslikku seost (@sec-põhjuslikkus).
+
+::: {.callout-important}
+**Regressioonanalüüsi** (*regression analysis*) käigus leitakse regressioonimudel, mis kirjeldab, kuidas väljundtunnus sõltub keskmiselt ühest või mitmest sisendtunnusest. Lisaks seoste kirjeldamisele võimaldab mudel prognoosida väljundtunnuse väärtusi. 
+:::
+
+Regressioonanalüüs ei ole üks konkreetne statistiline protseduur, vaid see mõiste hõlmab palju mitmesuguseid statistilisi mudeli kujusid ja nende hindamise viise. Sealjuures on loodud ka väga keerukaid matemaatilisi seletusi sellele, kuidas tunnused omavahel seotud on. Käesolevas peatükis kirjeldatakse regressioonanalüüsi lihtsustatult. Siinkohal on regressioonimudel nn must kast, mis kirjeldab, kuidas sisendtunnus(t)e alusel tuletada pideval skaalal mõõdetud väljundtunnuse väärtused.
+
+Regressioonanalüüs on peamine analüütiline meetod majandusteadustes ja kogu ökonomeetria põhineb erineva matemaatilise kujuga regressioonimudelitel. Regressioonanalüüsi kasutades saab vastata küsimustele, mille korral meid huvitab, kuidas sõltub üks tunnus teisest või teistest.
+
+- Kui palju kasutab mingit teenust teatud tunnustega klient?
+- Millest sõltub kasutatud auto hind?
+- Kui suur on kasum, kui turundusele kulutada teatud summa?
+
+Järgnevalt üritame regressioonanalüüsi abil seletada ja prognoosida majade hindasid. 
+
+```{r}
+majad <- read.csv('andmed/housingprices.csv')
+majad$price <- majad$price / 1e6 # Teisedname hinna miljonitesse
+majad$area <- majad$area / 10.764 # Teisendame ruutjalad ruutmeetriteks
+```
+
+<!--
+[[Housing prices]]
+-->
+
+Soovime määrata majale hinna, mis vastaks võimalikult täpselt selle turuväärtusele. Kuidas seda teha? Mõistlik oleks lähtuda teiste sarnaste majade hindadest. Võiksime otsida sarnase pinna, tubade arvu ja teiste asjakohaste tunnustega maju. Konkreetse maja hinna saaksime määrata umbkaudselt sarnase majade hindade alusel. Täpsema turuväärtuse saaksime aga siis, kui leiaksime matemaatilise seose majade erinevate tunnuste ja hindade vahel.
+
+Vaatame kuidas on majade väärtused seotud nt pinnaga. 
+
+```{r}
+#| echo: false
+library('magrittr')
+library('ggplot2')
+joonis <- ggplot(majad) + aes(x = area, y = price) + 
+  scale_x_continuous(limits = c(0, max(majad$area))) + 
+  labs(x = "Pind, m^2 (area)", y = "Hind, mln USD (price)") + 
+  geom_point(alpha = .2) + 
+  theme_minimal()
+joonis
+```
+
+Maja pinna ja hinna vahel paistab olevat positiivne seos: mida suurem maja, seda kõrgem hind. Kõige lihtsam oleks sobivama hinna leidmiseks arvutada lihtsalt kõikide majade keskmine hind. See oleks kõige parem pakkumine juhul, kui meil ei oleks majade kohta mingit muud teavet peale hinna. Aga kui kasutame lihtsalt keskmist, siis kui täpse tulemuse saaksime majade pindasid arvesse võttes?
+
+```{r}
+#| echo: false
+joonis + 
+  geom_hline(yintercept = mean(majad$price), color = 'tomato')
+```
+
+Näeme et kui pakume kõikide majade väärtuseks keskmise hinna, siis saaksime antud juhul täpse tulemuse ainult keskmise pinnaga majade korral. Võime iga maja kohta arvutada ja joonisel kujutada ka hinna määramisel keskmist kasutades tehtud vea.
+
+```{r}
+#| echo: false
+joonis + 
+  geom_hline(yintercept = mean(majad$price), color = 'black') + 
+  geom_segment(aes(xend = area, yend = mean(price)), color = 'tomato', lwd = .2)
+```
+
+Väiksemate majade väärtust hindame liiga suureks, samas kui suurte majade väärtust alahindame. Seega võiksime sirgele määrata sellise alguspunkti ja tõusu, et see väljundtunnuse suhtes võimalikult täpselt punktipilve läbiks. Selline sirge on järgneval joonisel @fig-arvtunnus.
+
+```{r}
+#| echo: false
+#| label: fig-arvtunnus
+#| fig-cap: Regressioonisirge
+joonis + 
+  geom_smooth(method = 'lm', formula = y ~ x, se = F, color = 'black', lwd = .5)
+```
+
+Kuidas selline sirge leida? Et võimalikult täpselt määrata iga maja hind lähtudes pinnast, tuleks leida selline sirge, mille korral hinna määramisel tehtud viga oleks võimalikult väike.
+
+```{r}
+#| echo: false
+joonis + 
+  geom_smooth(method = 'lm', formula = y ~ x, se = F, color = 'black', lwd = .5) + 
+  geom_segment(aes(xend = area, yend = fitted(lm(price ~ area, majad))), color = 'tomato', lwd = .2)
+```
+
+Kirjeldatud protseduuri võib nimetada vähimruutude meetodiks.
+
+## Regressioonimudel
+
+Matemaatiliselt kõige lihtsam viis regressioonimudeli parameetreid hinnata ongi **vähimruutude meetod**. Selle korral leitakse maatriksalgebra alusel selline mudeli vabaliige ja sisendtunnuste tõusud, mille korral regressioonisirge teeks võimalikult väikse vea väljundtunnuse väärtuste seletamisel. Empiiriliselt ongi regressioonimudelis põhjuslik seos seetõttu, et selle hindamisel on eesmärk võimalikult täpselt seletada just väljundtunnuse väärtusi.
+
+Lihtsustatult võib regressioonimudelist mõelda kui mistahes mudelist. See kirjeldab lihtsalt seost sisend- ja väljundtunnuste vahel ning võimaldab selle kirjelduse alusel väljundtunnuse väärtusi prognoosida.
+
+```{mermaid}
+flowchart LR
+i["Sisendtunnus(ed)"] --> m[Mudel] --> o[Väljundtunnus]
+```
+
+::: {.callout-important}
+**Regressioonimudel** määrab seose ühe või enama sisendtunnuse ja ühe väljundtunnuse vahel selliselt, et viga väljundtunnuse prognoosimisel oleks võimalikult väike. Regressioonimudelit saab kasutada
+
+- seoste kirjeldamiseks iga sisendtunnuse ja väljundtunnuse vahel ning
+- väljundtunnuse väärtuse prognoosimiseks teatud sisendtunnus(t)e väärtuste alusel.
+:::
+
+R keeles saab vähimruutude meetodit rakendada funktsiooniga `lm()` (ehk lineaarne mudel). Leiame mudeli, mis selgitab, kuidas maja pind (`area`) määrab maja hinna (`price`). Selleks tuleb funktsioonis mudel määratleda valemi kujul `price ~ area`.
+
+```{r}
+mPind <- lm(price ~ area, majad)
+```
+
+Vähimruutude meetodi alusel saab arvutada ka mudeleid, milles sisendtunnus on mõõdetud nimiskaalal. Vaatame nt, kuidas lähedus suurele teele (`mainroad`) on seotud maja hinnaga.
+
+```{r}
+mTee <- lm(price ~ mainroad, majad)
+```
+
+Regressioonimudelisse saame lisada ka mitu tunnust korraga, nt mõlemad eelnevalt nimetatud sisendtunnused.
+
+```{r}
+mPindTee <- lm(price ~ area + mainroad, majad)
+```
+
+Üks võimalik lähenemine regressioonanalüüsile on lisada mudelisse kõik sisendtunnused, mis teoreetiliselt võiksid seletada väljundtunnuse väärtusi. Järgnevas näites lisame sisendtunnustena kõik andmetabelis olevad tunnused, va väljundtunnus.
+
+```{r}
+mKõik <- lm(price ~ ., majad)
+```
+
+## Regressioonikordajad
+
+### Arvtunnus
+
+Eelnevalt hinnatud regressioonimudel maja hinnna leidmiseks pinna alusel sisaldab kahte regressioonikordajat. 
+
+```{r}
+mPind
+```
+
+Neist esimene on vabaliige (*Intercept*) ehk väljundtunnuse väärtus seal, kus sirge ristub sisendtunnuse teljega. See on maja hind juhul, kui maja pinna väärtus on null. Antud juhul näeme, et ilma pinnata maja hind oleks empiiriliselt `r mPind$coefficients[1] %>% round(1)` mln USD. Kuna kasutatud andmetes päriselt ilma pinnata majasid ei ole, siis ei ole mõtet vabaliikmele ka tähendust omistada. 
+
+Vabaliikmele järgneb sisendtunnuste kordaja ehk sirge tõus sisendtunnuse suurenemisel ühe ühiku võrra. See näitab, kui mitme mln USD võrra on suurem maja hind, kui pind on suurem ühe ruutmeetri võrra. Näeme, et iga ruutmeeter lisab maja hinnale `r mPind$coefficients[2] %>% round(3)` mln USD ehk `r (mPind$coefficients[2]*1e6) %>% round` USD. See tõus on kujutatud joonisel @fig-arvtunnus. 
+
+### Nimitunnus
+
+Kui mudelis on nimitunnused, siis on regressioonikordajate tõlgendused veidi erinevad. Üks tunnuse väärtustest on aluseks teis(t)ele, mis muudab regressioonikordajate tõlgendamise veidi keerulisemaks. 
+
+```{r}
+mTee
+```
+
+Vabaliige näitab sellisel juhul maja hinda juhul, kui maja ei asu tee lähenduses (`mainroad == 'no'`), sest tunnuse kordaja on `mainroadyes` ehk `mainroad == yes`. Tunnuse kordaja näitab, kui mitme USD võrra on sellest kallim maja, mis asub tee lähenduses. Järgneval joonisel @fig-nimitunnus on vabaliige ja tunnuse kordaja esitatud vastavalt pideva ja katkendliku joonega. 
+
+```{r}
+#| echo: false
+#| label: fig-nimitunnus
+#| fig-cap: Nimitunnus regressioonimudelis
+ggplot(majad) + aes(x = mainroad, y = price, color = mainroad) + 
+  labs(x = "Suure tee lähedal (mainroad)", y = "Hind, mln USD (price)") + 
+  geom_jitter(alpha = .2, width = .1) + 
+  geom_hline(yintercept = mean(majad$price[majad$mainroad == 'no']), 
+             color = 'black') + 
+  geom_hline(yintercept = mean(majad$price[majad$mainroad == 'yes']), 
+             color = 'black', linetype = 'dashed') + 
+  theme_minimal()
+```
+
+Näeme, et suurest teest eemal asuva maja (`mainroad == 'no'`) hind on keskmiselt `r mTee$coefficients[1] %>% round(2)` mln USD. Suurel teel asuva maja väärtus on aga sellest `r mTee$coefficients[2] %>% round(2)` mln USD võrra kõrgem ehk `r sum(mTee$coefficients) %>% round(2)` mln USD.
+
+::: {.callout-warning}
+Tunnuste liik R keele objektis määrab, mil viisil hinnatakse seos tunnuste vahel. Nt kui nimitunnus on sisestatud arvudena, siis väljastab vastav R keele funktsioon regressioonikordaja, hoolimata sellest, et sellel sisulist tähendust ei ole.
+:::
+
+### Arv- ja nimitunnused
+
+Kui mudelis on mitu tunnust, siis jääb kordajate tõlgendus samaks. 
+
+```{r}
+mPindTee
+```
+
+Küll aga näeme, et kordajad on erinevad võrreldes eelnevate ühe sisendtunnusega mudelitega. Põhjus on selles, et sisendtunnused on omavahel seotud ja mõjutavad seetõttu teineteise seost väljundtunnusega (vt @sec-tinglikkus). 
+
+```{r}
+#| echo: false
+ei <- list(area = majad$area, mainroad = rep('no', nrow(majad)))
+jah <- list(area = majad$area, mainroad = rep('yes', nrow(majad)))
+joonis + aes(color = mainroad) + 
+  labs(color = "Suure tee\nlähedal\n(mainroad)") + 
+  geom_line(aes(y = predict(mPindTee, ei)), color = 'black') + 
+  geom_line(aes(y = predict(mPindTee, jah)), color = 'black', linetype = 'dashed')
+```
+
+Jooniselt näeme, et iga ruutmeetriga kaasneb `r mPindTee$coefficients[2] %>% round(3)` mln USD võrra kõrgem hind. Suure tee lähendus (katkendlik sirge) lisab hinnale `r mPindTee$coefficients[3] %>% round(3)` mln USD.
+
+### Regressioonikordajate usaldusvahemik
+
+Enamasti leiame regressioonikordajad valimi alusel, mistõttu on tegemist (punkt)hinnangutega. Nii saa me olla kindlad, kas kordajad ja vastavad seosed ka üldiselt kehtivad. Regressioonikordajate kehtivust saame hinnata usaldusvahemike alusel (@sec-usaldusvahemikud). 
+
+R keeles saame regressioonimudeli kordajate usaldusvahemikke kuvada funktsiooniga `confint()`. See funktsioon kuvab teoreetiliselt arvutatud, mitte taasvaliku alusel leitud usaldusvahemikud.
+
+```{r}
+mudel <- lm(price ~ ., majad)
+confint(mudel, level = .95)
+```
+
+Kordajate korral tuleb uurida, kas usaldusvahemik katab nulli või mitte. 
+
+- Kui katab, siis me ei saa olla kindlad, et kordaja ei ole 0 ehk seos võib ka puududa. 
+- Kui ei kata, siis võime järeldada, et seos kehtib. 
+
+Eelnevalt esitatud usaldusvahemikke aitab ehk paremini mõista nende uurimine joonisel.
+
+```{r}
+#| echo: false
+kindlused <- confint(mKõik, level = .95) %>% as.data.frame
+names(kindlused) <- c('min','max')
+kindlused$koef <- mKõik$coef
+kindlused$tunnus <- rownames(kindlused)
+ggplot(kindlused) + aes(x = tunnus, y = koef) +
+  labs(x = "Regressioonikordaja", y = "Usaldusvahemik") + 
+  coord_flip() +
+  geom_hline(yintercept = 0, color = 'tomato') + 
+  geom_errorbar(aes(ymin = min, ymax = max)) + 
+  geom_point() + 
+  theme_minimal()
+```
+
+Näeme, et posiivne seos hinnaga on tunnustel `stories`, `prefarea`, `guestroom`, `bathroom` ja `airconditioning`. Maja hind on aga madalam, kui tunnus `furnishingstatus == unfurnished`.
+
+Enamasti kasutatakse regressioonikordajate üldistatavuse hindamiseks aga statistilist hüpoteeside testimist. Vastavate p-väärtuste kuvamiseks saab kasutada funktsiooni `summary()`.
+
+```{r}
+mudel <- lm(price ~ ., majad)
+summary(mudel)
+```
+
+## Jääk
+
+Nagu nägime ka eelnevatest näidetest, siis regressioonimudelit iseloomustav sirge ei kata peaaegu kunagi kõiki vaatlusi. 
+
+```{r}
+#| echo: false
+#| label: fig-jääk
+#| fig-cap: Regressiooni jäägid
+joonis + 
+  geom_smooth(method = 'lm', formula = y ~ x, se = F, color = 'black', lwd = .5) + 
+  geom_segment(aes(xend = area, yend = fitted(lm(price ~ area, majad))), color = 'tomato', lwd = .2)
+```
+
+Nagu näeme, siis vähemalt enamike majade korral ei ole hind täpselt selline nagu mudeli alusel oletada võiks. Ehk alati esinevad **regressiooni jäägid** (*residuals*), mis joonisel @fig-jääk on esitatud punasega. Need jäägid saame aga arvutada ja seejärel kasutada regressioonimudeli headuse hindamiseks. Väikeste vigadega regressioonimudel on mõistagi parem kui mudel, mis teeb suuri vigasid. 
+
+Regressioonimudeli headuse hindamiseks jääkide alusel on välja mõeldud palju erinevaid mõõdikuid, sh R-ruut, keskmine ruutviga, keskmine absoluutviga.
+
+Jääkide alusel saame hinnata ka seda, kas regressioonimudel vastab mitmesugustele eeldustele. Üks eeldus regressioonimudeli kehtimiseks on jääkide allumine normaaljaotusele ehk nulli lähedal olevaid jääke peaks olema rohkem kui nullist palju erinevaid jääke.
+
+```{r}
+ggplot() + aes(x = residuals(mPind)) + 
+  labs(x = "Jäägid", y = "Sagedus") + 
+  geom_histogram(bins = 30, alpha = .5) + theme_minimal()
+```
+
+## Prognoosimine
+
+Eelnevalt kasutasime regressioonimudelit, et kirjeldada mil viisil sõltuvad väljundtunnuse väärtused sisendtunnus(t)e väärtustest. Kuna teame seda sõltuvust, siis saame ka arvutada konkreetsete tunnustega maja hinna. Kui meid huvitab nt 456 ruutmeetrise maja hind, siis peaksime valima regressioonisirgel sellise hinna, mille korral pind on 456.
+
+```{r}
+#| echo: false
+joonis + 
+  geom_smooth(method = 'lm', formula = y ~ x, se = F, color = 'black', lwd = .5) + 
+  geom_vline(xintercept = 456, color = 'tomato')
+```
+
+R keeles saame mudeli alusel prognoosimiseks kasutada funktsiooni `predict()` alljärgnevalt.
+
+```{r}
+mudel <- lm(price ~ area, majad)
+predict(mudel, list(area = 456))
+```
+
+Näeme, et 456 ruutmeetrise maja turuväärtus on keskmiselt `r predict(mudel, list(area = 456)) %>% round(2)` mln USD.
+
+Mitme sisendtunnusega mudeli korral peame prognoosimiseks määrama mitu sisendtunnuse väärtust.
+
+```{r}
+mudel <- lm(price ~ area + bedrooms, majad)
+predict(mudel, list(area = 678, bedrooms = 3))
+```
+
+Kolme magamistoaga 678 ruutmeetrise maja turule vastav hind on aga `r predict(mudel, list(area = 678, bedrooms = 3)) %>% round(2)` mln USD.
