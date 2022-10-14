@@ -212,7 +212,7 @@ Eelnev usaldusvahemiku leidmise viis valimeid simuleerides iseloomustab hästi a
 Paljusid nähtusi iseloomustavad väärtused järgivad jaotuses sageli normaaljaotust, aga ka sellele sarnast t-jaotust. Võime oletada, et ka kogumis on väärtused jaotunud vastavalt t-jaotusele.
 
 ```{r}
-tjaotus <- rt(1000, length(tasu$salary)) * sd(tasu$salary) + mean(tasu$salary)
+tjaotus <- rt(1e4, length(tasu$salary)) * sd(tasu$salary) + mean(tasu$salary)
 par(mfrow = 1:2)
 hist(tasu$salary, main = "Jaotus valimis", 20)
 hist(tjaotus, main = "Eeldatav jaotus kogumis", 20)

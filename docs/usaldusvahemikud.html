@@ -290,6 +290,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -617,7 +622,7 @@ Calculations and Intervals on Original Scale</code></pre>
 <p>Eelnev usaldusvahemiku leidmise viis valimeid simuleerides iseloomustab hästi andmeteadust. Enne arvuteid kujunenud statistika lähenemine usalduvahemike leidmisele põhineb rohkem matekaatika teoorial.</p>
 <p>Paljusid nähtusi iseloomustavad väärtused järgivad jaotuses sageli normaaljaotust, aga ka sellele sarnast t-jaotust. Võime oletada, et ka kogumis on väärtused jaotunud vastavalt t-jaotusele.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tjaotus <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">1000</span>, <span class="fu">length</span>(tasu<span class="sc">$</span>salary)) <span class="sc">*</span> <span class="fu">sd</span>(tasu<span class="sc">$</span>salary) <span class="sc">+</span> <span class="fu">mean</span>(tasu<span class="sc">$</span>salary)</span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tjaotus <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="fl">1e4</span>, <span class="fu">length</span>(tasu<span class="sc">$</span>salary)) <span class="sc">*</span> <span class="fu">sd</span>(tasu<span class="sc">$</span>salary) <span class="sc">+</span> <span class="fu">mean</span>(tasu<span class="sc">$</span>salary)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tasu<span class="sc">$</span>salary, <span class="at">main =</span> <span class="st">"Jaotus valimis"</span>, <span class="dv">20</span>)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tjaotus, <span class="at">main =</span> <span class="st">"Eeldatav jaotus kogumis"</span>, <span class="dv">20</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -692,7 +697,7 @@ quantile(keskmisedM, .025)
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5% 
-5596.618 
+5587.862 
 ```
 :::
 
@@ -703,7 +708,7 @@ quantile(keskmisedM, .975)
 ::: {.cell-output .cell-output-stdout}
 ```
    97.5% 
-5994.981 
+6017.533 
 ```
 :::
 
@@ -714,7 +719,7 @@ quantile(keskmisedN, .025)
 ::: {.cell-output .cell-output-stdout}
 ```
     2.5% 
-4735.629 
+4729.672 
 ```
 :::
 
@@ -725,7 +730,7 @@ quantile(keskmisedN, .975)
 ::: {.cell-output .cell-output-stdout}
 ```
    97.5% 
-5076.926 
+5083.331 
 ```
 :::
 :::

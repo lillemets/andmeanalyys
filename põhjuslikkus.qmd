@@ -9,14 +9,15 @@ Paljud statistilised protseduurid võimaldavad määrata, kas ja mil määral on
 Mitte ükski statistiline arvutus ei näita seose põhjuslikkust. Põhjuslike seoste näitamiseks on vajalikud juhusliku katse tingimustes kogutud andmed.
 :::
 
-Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslik katse (*randomized controlled trial* ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest^[Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.].  Kui loodusteadustes on juhuslikud katsed tavalised, siis majandus- ja ühiskonnateadustes on need enamasti kulukad või eetilistel põhjustel sobimatud^[Siiski on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.].
+Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslikustatud katse (*randomized controlled trial* ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest^[Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.].  Kui loodusteadustes on juhuslikud katsed tavalised, siis majandus- ja ühiskonnateadustes on need enamasti kulukad või eetilistel põhjustel sobimatud^[Siiski on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.].
 
 :::{.callout-important}
-Juhusliku katse käigus määratakse uuritavad objektid juhuslkult katse- ja kontrollrühma. Kuna seetõttu on rühmade ainus erinevus katserühmal rakendatav tegevus, siis on igasugune hilisem erinevus rühmade vahel seletatav ainult selle tegevuse mõjuga.
+**Juhuslikustatud katse** käigus määratakse uuritavad objektid juhuslkult katse- ja kontrollrühma. Kuna seetõttu on rühmade ainus erinevus katserühmal rakendatav tegevus, siis on igasugune hilisem erinevus rühmade vahel seletatav ainult selle tegevuse mõjuga.
 :::
 
 Üks nähtus võib otseselt mõjutada teist ($X \rightarrow Y$). Lisaks sellele on veel mitu seletust statistilise protseduuri abil leitud seostele tunnuste vahel:
-- seos on vastasikune 
+
+- seos on vastastikkune 
   $$X \leftrightarrow Y,$$ 
 - mingi kolmas nähtus mõjutab mõlemat uuritavat nähtust ja viimaste vahel vastastikkune mõju puudub: 
 	$$\displaylines{Z \rightarrow X \\ Z \rightarrow Y},$$

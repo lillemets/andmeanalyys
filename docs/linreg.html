@@ -88,7 +88,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./viited.html" rel="next">
+<link href="./logreg.html" rel="next">
 <link href="./usaldusvahemikud.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -123,6 +123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -292,6 +293,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./linreg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -314,10 +320,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#arvtunnus" id="toc-arvtunnus" class="nav-link" data-scroll-target="#arvtunnus"> <span class="header-section-number">18.2.1</span> Arvtunnus</a></li>
   <li><a href="#nimitunnus" id="toc-nimitunnus" class="nav-link" data-scroll-target="#nimitunnus"> <span class="header-section-number">18.2.2</span> Nimitunnus</a></li>
   <li><a href="#arv--ja-nimitunnused" id="toc-arv--ja-nimitunnused" class="nav-link" data-scroll-target="#arv--ja-nimitunnused"> <span class="header-section-number">18.2.3</span> Arv- ja nimitunnused</a></li>
-  <li><a href="#regressioonikordajate-usaldusvahemik" id="toc-regressioonikordajate-usaldusvahemik" class="nav-link" data-scroll-target="#regressioonikordajate-usaldusvahemik"> <span class="header-section-number">18.2.4</span> Regressioonikordajate usaldusvahemik</a></li>
   </ul></li>
-  <li><a href="#jääk" id="toc-jääk" class="nav-link" data-scroll-target="#jääk"> <span class="header-section-number">18.3</span> Jääk</a></li>
-  <li><a href="#prognoosimine" id="toc-prognoosimine" class="nav-link" data-scroll-target="#prognoosimine"> <span class="header-section-number">18.4</span> Prognoosimine</a></li>
+  <li><a href="#regressioonikordajate-usaldusvahemik" id="toc-regressioonikordajate-usaldusvahemik" class="nav-link" data-scroll-target="#regressioonikordajate-usaldusvahemik"> <span class="header-section-number">18.3</span> Regressioonikordajate usaldusvahemik</a></li>
+  <li><a href="#mudeli-jäägid" id="toc-mudeli-jäägid" class="nav-link" data-scroll-target="#mudeli-jäägid"> <span class="header-section-number">18.4</span> Mudeli jäägid</a></li>
+  <li><a href="#prognoosimine" id="toc-prognoosimine" class="nav-link" data-scroll-target="#prognoosimine"> <span class="header-section-number">18.5</span> Prognoosimine</a></li>
   </ul>
 </nav>
     </div>
@@ -355,10 +361,10 @@ Mõiste
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Regressioonanalüüsi</strong> (<em>regression analysis</em>) käigus leitakse regressioonimudel, mis kirjeldab, kuidas väljundtunnus sõltub keskmiselt ühest või mitmest sisendtunnusest. Lisaks seoste kirjeldamisele võimaldab mudel prognoosida väljundtunnuse väärtusi.</p>
+<p><strong>Regressioonanalüüsi</strong> (<em>regression analysis</em>) käigus leitakse ja kirjeldatakse regressioonimudel, mis näitab, kuidas väljundtunnus sõltub keskmiselt ühest või mitmest sisendtunnusest. Lisaks seoste kirjeldamisele võimaldab leitud mudel prognoosida väljundtunnuse väärtusi.</p>
 </div>
 </div>
-<p>Regressioonanalüüs ei ole üks konkreetne statistiline protseduur, vaid see mõiste hõlmab palju mitmesuguseid statistilisi mudeli kujusid ja nende hindamise viise. Sealjuures on loodud ka väga keerukaid matemaatilisi seletusi sellele, kuidas tunnused omavahel seotud on. Käesolevas peatükis kirjeldatakse regressioonanalüüsi lihtsustatult. Siinkohal on regressioonimudel nn must kast, mis kirjeldab, kuidas sisendtunnus(t)e alusel tuletada pideval skaalal mõõdetud väljundtunnuse väärtused.</p>
+<p>Regressioonanalüüs ei ole üks konkreetne statistiline protseduur, vaid see mõiste hõlmab palju mitmesuguseid statistilisi mudeli kujusid ja nende hindamise viise. Sealjuures on loodud ka väga keerukaid matemaatilisi seletusi sellele, kuidas tunnused omavahel seotud on. Käesolevas õpikus kasutatakse regressioonanalüüsiga seotud mõisteid lihtsustatult: - lineaarne regressioon viitab ainult vähimruutude meetodil leitud lineaarsele regressioonile ning - logistilise regressioonina käsitletakse regressioonanalüüsi logit-mudeli alusel, mis üldiselt on samuti lineaarne regressioonimudel.</p>
 <p>Regressioonanalüüs on peamine analüütiline meetod majandusteadustes ja kogu ökonomeetria põhineb erineva matemaatilise kujuga regressioonimudelitel. Regressioonanalüüsi kasutades saab vastata küsimustele, mille korral meid huvitab, kuidas sõltub üks tunnus teisest või teistest.</p>
 <ul>
 <li>Kui palju kasutab mingit teenust teatud tunnustega klient?</li>
@@ -367,9 +373,25 @@ Mõiste
 </ul>
 <p>Järgnevalt üritame regressioonanalüüsi abil seletada ja prognoosida majade hindasid.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>majad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/housingprices.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>majad<span class="sc">$</span>price <span class="ot">&lt;-</span> majad<span class="sc">$</span>price <span class="sc">/</span> <span class="fl">1e6</span> <span class="co"># Teisedname hinna miljonitesse</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>majad<span class="sc">$</span>area <span class="ot">&lt;-</span> majad<span class="sc">$</span>area <span class="sc">/</span> <span class="fl">10.764</span> <span class="co"># Teisendame ruutjalad ruutmeetriteks</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>majad <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/housingprices.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   277 obs. of  13 variables:
+ $ price           : num  6.93 6.51 6.47 6.44 6.42 ...
+ $ area            : num  825 766 688 797 627 ...
+ $ bedrooms        : int  3 3 3 5 2 3 3 3 3 3 ...
+ $ bathrooms       : int  2 2 1 3 1 2 1 1 2 2 ...
+ $ stories         : int  2 3 1 2 1 1 1 1 3 1 ...
+ $ mainroad        : chr  "yes" "yes" "yes" "yes" ...
+ $ guestroom       : chr  "no" "no" "yes" "no" ...
+ $ basement        : chr  "yes" "no" "yes" "no" ...
+ $ hotwaterheating : chr  "no" "no" "no" "no" ...
+ $ airconditioning : chr  "yes" "yes" "yes" "no" ...
+ $ parking         : int  1 0 2 2 2 3 1 1 0 0 ...
+ $ prefarea        : chr  "no" "no" "yes" "no" ...
+ $ furnishingstatus: chr  "furnished" "furnished" "unfurnished" "furnished" ...</code></pre>
+</div>
 </div>
 <!--
 [[Housing prices]]
@@ -393,7 +415,7 @@ Mõiste
 <p><img src="linreg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Väiksemate majade väärtust hindame liiga suureks, samas kui suurte majade väärtust alahindame. Seega võiksime sirgele määrata sellise alguspunkti ja tõusu, et see väljundtunnuse suhtes võimalikult täpselt punktipilve läbiks. Selline sirge on järgneval joonisel <a href="#fig-arvtunnus">Joonis&nbsp;<span>18.1</span></a>.</p>
+<p>Väiksemate majade väärtust hindame liiga suureks, samas kui suurte majade väärtust alahindame. Seega võiksime sirgele määrata sellise asukoha ja tõusu, et see väljundtunnuse suhtes võimalikult täpselt punktipilve läbiks. Selline sirge on järgneval joonisel <a href="#fig-arvtunnus">Joonis&nbsp;<span>18.1</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-arvtunnus" class="quarto-figure quarto-figure-center anchored">
@@ -413,14 +435,27 @@ Mõiste
 <p>Kirjeldatud protseduuri võib nimetada vähimruutude meetodiks.</p>
 <section id="regressioonimudel" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="regressioonimudel"><span class="header-section-number">18.1</span> Regressioonimudel</h2>
-<p>Matemaatiliselt kõige lihtsam viis regressioonimudeli parameetreid hinnata ongi <strong>vähimruutude meetod</strong>. Selle korral leitakse maatriksalgebra alusel selline mudeli vabaliige ja sisendtunnuste tõusud, mille korral regressioonisirge teeks võimalikult väikse vea väljundtunnuse väärtuste seletamisel. Empiiriliselt ongi regressioonimudelis põhjuslik seos seetõttu, et selle hindamisel on eesmärk võimalikult täpselt seletada just väljundtunnuse väärtusi.</p>
-<p>Lihtsustatult võib regressioonimudelist mõelda kui mistahes mudelist. See kirjeldab lihtsalt seost sisend- ja väljundtunnuste vahel ning võimaldab selle kirjelduse alusel väljundtunnuse väärtusi prognoosida.</p>
+<p>Matemaatiliselt kõige lihtsam viis arvskaalal väljundtunnusega regressioonimudeli parameetreid hinnata ongi vähimruutude meetod.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Lihtne vähimruutude meetod</strong> (<em>ordinary least squares</em>) on regressioonmudeli parameetrite leidmise viis. Selle käigus leitakse maatriksalgebra alusel selline mudeli vabaliige ja sisendtunnus(t)e kordaja(d), mille korral regressioonisirge teeks võimalikult väikse vea väljundtunnuse väärtuste seletamisel.</p>
+</div>
+</div>
+<p>Empiiriliselt ongi regressioonimudelis põhjuslik seos seetõttu, et selle hindamisel on eesmärk võimalikult täpselt seletada just väljundtunnuse väärtusi. Lihtsustatult võib regressioonimudelist mõelda kui mistahes statistilisest mudelist. See kirjeldab lihtsalt seost sisend- ja väljundtunnuste vahel ning võimaldab selle kirjelduse alusel väljundtunnuse väärtusi prognoosida.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <p>
 </p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
-i["Sisendtunnus(ed)"] --&gt; m[Mudel] --&gt; o[Väljundtunnus]
+i["Sisendtunnus(ed)"] --&gt; m(Mudel) --&gt; o[Väljundtunnus]
 </pre>
 <div id="mermaid-tooltip-1" class="mermaidTooltip">
 
@@ -448,19 +483,19 @@ Mõiste
 </div>
 <p>R keeles saab vähimruutude meetodit rakendada funktsiooniga <code>lm()</code> (ehk lineaarne mudel). Leiame mudeli, mis selgitab, kuidas maja pind (<code>area</code>) määrab maja hinna (<code>price</code>). Selleks tuleb funktsioonis mudel määratleda valemi kujul <code>price ~ area</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mPind <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mPind <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vähimruutude meetodi alusel saab arvutada ka mudeleid, milles sisendtunnus on mõõdetud nimiskaalal. Vaatame nt, kuidas lähedus suurele teele (<code>mainroad</code>) on seotud maja hinnaga.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mTee <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> mainroad, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mTee <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> mainroad, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Regressioonimudelisse saame lisada ka mitu tunnust korraga, nt mõlemad eelnevalt nimetatud sisendtunnused.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mPindTee <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area <span class="sc">+</span> mainroad, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mPindTee <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area <span class="sc">+</span> mainroad, majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Üks võimalik lähenemine regressioonanalüüsile on lisada mudelisse kõik sisendtunnused, mis teoreetiliselt võiksid seletada väljundtunnuse väärtusi. Järgnevas näites lisame sisendtunnustena kõik andmetabelis olevad tunnused, va väljundtunnus.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mKõik <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mKõik <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="regressioonikordajad" class="level2" data-number="18.2">
@@ -469,7 +504,7 @@ Mõiste
 <h3 data-number="18.2.1" class="anchored" data-anchor-id="arvtunnus"><span class="header-section-number">18.2.1</span> Arvtunnus</h3>
 <p>Eelnevalt hinnatud regressioonimudel maja hinnna leidmiseks pinna alusel sisaldab kahte regressioonikordajat.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mPind</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mPind</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -481,13 +516,27 @@ Coefficients:
 </div>
 </div>
 <p>Neist esimene on vabaliige (<em>Intercept</em>) ehk väljundtunnuse väärtus seal, kus sirge ristub sisendtunnuse teljega. See on maja hind juhul, kui maja pinna väärtus on null. Antud juhul näeme, et ilma pinnata maja hind oleks empiiriliselt 2.1 mln USD. Kuna kasutatud andmetes päriselt ilma pinnata majasid ei ole, siis ei ole mõtet vabaliikmele ka tähendust omistada.</p>
-<p>Vabaliikmele järgneb sisendtunnuste kordaja ehk sirge tõus sisendtunnuse suurenemisel ühe ühiku võrra. See näitab, kui mitme mln USD võrra on suurem maja hind, kui pind on suurem ühe ruutmeetri võrra. Näeme, et iga ruutmeeter lisab maja hinnale 0.005 mln USD ehk 5460 USD. See tõus on kujutatud joonisel <a href="#fig-arvtunnus">Joonis&nbsp;<span>18.1</span></a>.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Märkus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vähimruutude meetodil leitud regresioonimudeli arvtunnuse kordaja näitab, kui mitme ühiku võrra suureneb väljundtunnuse väärtus, kui sisendtunnuse väärtus suureneb ühe ühiku võrra.</p>
+</div>
+</div>
+<p>Vabaliikmele järgneb sisendtunnuste kordaja ehk sirge tõus sisendtunnuse suurenemisel ühe ühiku võrra. See näitab, kui mitme mln USD võrra on suurem maja hind, kui pind on suurem ühe ruutmeetri võrra. Näeme, et iga ruutmeeter lisab maja hinnale 0.00546 mln USD ehk 5460 USD. See tõus on kujutatud joonisel <a href="#fig-arvtunnus">Joonis&nbsp;<span>18.1</span></a>.</p>
+<p>Kui meid huvitab väljundtunnuse muutus sisendtunnuse mitme ühikulise kasvu korral, siis võime kordaja vastava konstandiga korrutada. Nt 1000 ruutmeetrit pinda lisab eelneva mudeli alusel maja hinnale <span class="math inline">\(0.005 \times 1000 = 5\)</span> mln USD.</p>
 </section>
 <section id="nimitunnus" class="level3" data-number="18.2.2">
 <h3 data-number="18.2.2" class="anchored" data-anchor-id="nimitunnus"><span class="header-section-number">18.2.2</span> Nimitunnus</h3>
 <p>Kui mudelis on nimitunnused, siis on regressioonikordajate tõlgendused veidi erinevad. Üks tunnuse väärtustest on aluseks teis(t)ele, mis muudab regressioonikordajate tõlgendamise veidi keerulisemaks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mTee</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mTee</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -498,7 +547,7 @@ Coefficients:
      3.7923       0.7071  </code></pre>
 </div>
 </div>
-<p>Vabaliige näitab sellisel juhul maja hinda juhul, kui maja ei asu tee lähenduses (<code>mainroad == 'no'</code>), sest tunnuse kordaja on <code>mainroadyes</code> ehk <code>mainroad == yes</code>. Tunnuse kordaja näitab, kui mitme USD võrra on sellest kallim maja, mis asub tee lähenduses. Järgneval joonisel <a href="#fig-nimitunnus">Joonis&nbsp;<span>18.2</span></a> on vabaliige ja tunnuse kordaja esitatud vastavalt pideva ja katkendliku joonega.</p>
+<p>Vabaliige näitab sellisel juhul maja hinda juhul, kui maja ei asu tee lähenduses (<code>mainroad == 'no'</code>), sest tunnuse kordaja on <code>mainroadyes</code> ehk <code>mainroad == yes</code>. Ehk tunnuse <code>mainroad</code> väärtus <code>no</code> on võrdlusväärtus. Tunnuse kordaja (<code>mainroadyes</code>) näitab, kui mitme USD võrra on sellest kallim maja, mis asub tee lähenduses. Järgneval joonisel <a href="#fig-nimitunnus">Joonis&nbsp;<span>18.2</span></a> on vabaliige ja tunnuse kordaja esitatud vastavalt pideva ja katkendliku joonega.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-nimitunnus" class="quarto-figure quarto-figure-center anchored">
@@ -510,6 +559,19 @@ Coefficients:
 </div>
 </div>
 <p>Näeme, et suurest teest eemal asuva maja (<code>mainroad == 'no'</code>) hind on keskmiselt 3.79 mln USD. Suurel teel asuva maja väärtus on aga sellest 0.71 mln USD võrra kõrgem ehk 4.5 mln USD.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Märkus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vähimruutude meetodil leitud regresioonimudeli vabaliige näitab väljundtunnuse väärtust sisendtunnuse võrdlusväärtuse korral. Nimitunnuse muude väärtuste kordajad näitavad, kui mitme ühiku võrra on väljundtunnuse väärtus suurem võrreldes nimitunnuse võrdlusväärtusega.</p>
+</div>
+</div>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -528,7 +590,7 @@ Pea meeles!
 <h3 data-number="18.2.3" class="anchored" data-anchor-id="arv--ja-nimitunnused"><span class="header-section-number">18.2.3</span> Arv- ja nimitunnused</h3>
 <p>Kui mudelis on mitu tunnust, siis jääb kordajate tõlgendus samaks.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mPindTee</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mPindTee</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -546,14 +608,29 @@ Coefficients:
 </div>
 </div>
 <p>Jooniselt näeme, et iga ruutmeetriga kaasneb 0.005 mln USD võrra kõrgem hind. Suure tee lähendus (katkendlik sirge) lisab hinnale 0.127 mln USD.</p>
+<p>Samuti märkame, et suure tee läheduse kordaja oluliselt on viimases mudelis tunduvalt madalam kui eelnevas ilma pinnata mudelis. See tähendab, et suur osa suure tee lähendusega seletatavast hinna hajuvusest tuleneb hoopis majade pinnast.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pea meeles!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sisendtunnuste regressioonikordajad on enamasti teineteisest sõltuvad. Mida suurem on korrelatsioon nende vahel, seda enam muutub ühe sisendtunnuse kordaja, kui lisame mudelisse või eemaldame mudelist teise.</p>
+</div>
+</div>
 </section>
-<section id="regressioonikordajate-usaldusvahemik" class="level3" data-number="18.2.4">
-<h3 data-number="18.2.4" class="anchored" data-anchor-id="regressioonikordajate-usaldusvahemik"><span class="header-section-number">18.2.4</span> Regressioonikordajate usaldusvahemik</h3>
+</section>
+<section id="regressioonikordajate-usaldusvahemik" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="regressioonikordajate-usaldusvahemik"><span class="header-section-number">18.3</span> Regressioonikordajate usaldusvahemik</h2>
 <p>Enamasti leiame regressioonikordajad valimi alusel, mistõttu on tegemist (punkt)hinnangutega. Nii saa me olla kindlad, kas kordajad ja vastavad seosed ka üldiselt kehtivad. Regressioonikordajate kehtivust saame hinnata usaldusvahemike alusel (<a href="usaldusvahemikud.html"><span>Peatükk&nbsp;17</span></a>).</p>
 <p>R keeles saame regressioonimudeli kordajate usaldusvahemikke kuvada funktsiooniga <code>confint()</code>. See funktsioon kuvab teoreetiliselt arvutatud, mitte taasvaliku alusel leitud usaldusvahemikud.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mudel, <span class="at">level =</span> .<span class="dv">95</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(mudel, <span class="at">level =</span> .<span class="dv">95</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                      2.5 %       97.5 %
 (Intercept)                     1.093198328  1.734167689
@@ -586,8 +663,8 @@ furnishingstatusunfurnished    -0.311617770 -0.013714692</code></pre>
 <p>Näeme, et posiivne seos hinnaga on tunnustel <code>stories</code>, <code>prefarea</code>, <code>guestroom</code>, <code>bathroom</code> ja <code>airconditioning</code>. Maja hind on aga madalam, kui tunnus <code>furnishingstatus == unfurnished</code>.</p>
 <p>Enamasti kasutatakse regressioonikordajate üldistatavuse hindamiseks aga statistilist hüpoteeside testimist. Vastavate p-väärtuste kuvamiseks saab kasutada funktsiooni <code>summary()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mudel)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> ., majad)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mudel)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -622,9 +699,8 @@ F-statistic: 73.04 on 13 and 263 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="jääk" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="jääk"><span class="header-section-number">18.3</span> Jääk</h2>
+<section id="mudeli-jäägid" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="mudeli-jäägid"><span class="header-section-number">18.4</span> Mudeli jäägid</h2>
 <p>Nagu nägime ka eelnevatest näidetest, siis regressioonimudelit iseloomustav sirge ei kata peaaegu kunagi kõiki vaatlusi.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -640,17 +716,14 @@ F-statistic: 73.04 on 13 and 263 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Regressioonimudeli headuse hindamiseks jääkide alusel on välja mõeldud palju erinevaid mõõdikuid, sh R-ruut, keskmine ruutviga, keskmine absoluutviga.</p>
 <p>Jääkide alusel saame hinnata ka seda, kas regressioonimudel vastab mitmesugustele eeldustele. Üks eeldus regressioonimudeli kehtimiseks on jääkide allumine normaaljaotusele ehk nulli lähedal olevaid jääke peaks olema rohkem kui nullist palju erinevaid jääke.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">residuals</span>(mPind)) <span class="sc">+</span> </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Jäägid"</span>, <span class="at">y =</span> <span class="st">"Sagedus"</span>) <span class="sc">+</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="linreg_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="prognoosimine" class="level2" data-number="18.4">
-<h2 data-number="18.4" class="anchored" data-anchor-id="prognoosimine"><span class="header-section-number">18.4</span> Prognoosimine</h2>
-<p>Eelnevalt kasutasime regressioonimudelit, et kirjeldada mil viisil sõltuvad väljundtunnuse väärtused sisendtunnus(t)e väärtustest. Kuna teame seda sõltuvust, siis saame ka arvutada konkreetsete tunnustega maja hinna. Kui meid huvitab nt 456 ruutmeetrise maja hind, siis peaksime valima regressioonisirgel sellise hinna, mille korral pind on 456.</p>
+<section id="prognoosimine" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="prognoosimine"><span class="header-section-number">18.5</span> Prognoosimine</h2>
+<p>Eelnevalt kasutasime regressioonimudelit, et kirjeldada mil viisil sõltuvad väljundtunnuse väärtused sisendtunnus(t)e väärtustest. Kuna teame seda sõltuvust, siis saame ka arvutada konkreetsete tunnustega maja hinna. Kui meid huvitab nt 700 ruutmeetrise maja hind, siis peaksime valima regressioonisirgel sellise hinna, mille korral pind on 700 ruutmeetrit.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="linreg_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
@@ -659,10 +732,10 @@ F-statistic: 73.04 on 13 and 263 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>R keeles saame mudeli alusel prognoosimiseks kasutada funktsiooni <code>predict()</code> alljärgnevalt.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> area, majad)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mudel, <span class="fu">list</span>(<span class="at">area =</span> <span class="dv">456</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mudel, <span class="fu">list</span>(<span class="at">area =</span> <span class="dv">700</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1 
-4.591854 </code></pre>
+5.924087 </code></pre>
 </div>
 </div>
 <p>Näeme, et 456 ruutmeetrise maja turuväärtus on keskmiselt 4.59 mln USD.</p>
@@ -785,8 +858,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./viited.html" class="pagination-link">
-        <span class="nav-page-text">Viited</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./logreg.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

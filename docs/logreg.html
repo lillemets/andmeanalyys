@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 19&nbsp; Logistiline regressioon</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./viited.html" rel="next">
+<link href="./linreg.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Sisukord</h2>
+   
+  <ul>
+  <li><a href="#logistiline-mudel" id="toc-logistiline-mudel" class="nav-link active" data-scroll-target="#logistiline-mudel"> <span class="header-section-number">19.1</span> Logistiline mudel</a></li>
+  <li><a href="#regressioonikordajad" id="toc-regressioonikordajad" class="nav-link" data-scroll-target="#regressioonikordajad"> <span class="header-section-number">19.2</span> Regressioonikordajad</a></li>
+  <li><a href="#prognoosimine" id="toc-prognoosimine" class="nav-link" data-scroll-target="#prognoosimine"> <span class="header-section-number">19.3</span> Prognoosimine</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-logreg" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!--
+[[Logistic regression]]
+-->
+<p>Vähimruutude meetodi alusel arvutatud lineaarse mudeli kehtivuse eeldus on, et regressioonijäägid on normaaljaotusega. See eeldus kehtib sageli siis, kui väljundtunnuseks on pideval skaalal mõõdetud arvtunnus. Muudel juhtudel ei saa aga regressioonijäägid peaaegu kunagi olla normaajaotusega. Üheks selliseks juhuks on olukord, kus soovime regressioonanalüüsi abil seletada binaartunnuste väärtusi ehk mõnda nähtust, millel saab olla ainult kaks tulemust. Statistikas sõnastatakse arvutused binaartunnuse kohta tihti sündmuse toimumise või mitte toimumisena. Praktikas tähendab see enamasti seda, kas vaatlusel on mingi omadus või ei ole. Selliste väljundtunnuste seletamiseks sisendtunnuste alusel peaksime leidma regressioonimudeli mitte vähimruutude põhimõttel, vaid kasutama logistilist regressiooni.</p>
+<p>Logistist regressiooni abil saab vastata küsimustele selle kohta, kas ja miks mingi sündmus toimub:</p>
+<ul>
+<li>Millest sõltub, kas klient valib toote või mitte?</li>
+<li>Kas teatud tunnustega patsiendil on haigus või mitte?</li>
+<li>Mis seletab kasutaja teenusest loobumist?</li>
+<li>Kas konkreetne e-kiri on rämpspost või mitte?</li>
+</ul>
+<p>Järgnevalt üritame regressioonanalüüsi alusel selgitada, millest sõltub krediidisaajate võimekus laenu teenindada. Kasutame selleks andmeid krediitkaardi krediidi (laenude) kohta, mis on kogutud 2005. aastal Taiwanis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>laenud <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/creditdefault.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(laenud)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   1000 obs. of  6 variables:
+ $ credit       : int  200000 200000 320000 80000 120000 320000 100000 80000 50000 100000 ...
+ $ gender       : chr  "Female" "Female" "Male" "Female" ...
+ $ education    : chr  "University" "Graduate school" "Graduate school" "University" ...
+ $ maritalstatus: chr  "Married" "Married" "Married" "Married" ...
+ $ age          : int  32 49 40 42 28 42 27 52 56 27 ...
+ $ default      : int  0 0 0 1 0 0 1 0 0 0 ...</code></pre>
+</div>
+</div>
+<!--
+[[Credit card default]]
+-->
+<p>Meile huvipakkuvaks tunnuseks on kliendi maksevõimetus (<code>default</code>). Uurime, kuidas seda on mõõdetud.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Binaarse tunnuse jaotus histogrammil</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Histogrammilt nähtub, et tunnuse väärtusteks võib olla 0 ja 1. Need tähendavad vastavalt laenukohustuste täitmise jätkamist ja täitmise katkestamist ehk maksevõimetust. Maksevõimetuid kliente oli peaaegu neljandik, mis iseloomustab hästi 2006. aastal alanud laenukriisi Taiwanis, millega kaasnesid kodutuse ja enesetappude sagenemine ning muud sotsiaalsed probleemid.</p>
+<p>Leiame meile juba tuttava regressioonimudeli, mis seletaks maksevõimetust krediidi limiidi (<code>credit</code>) alusel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">9</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">lm</span>(default <span class="sc">~</span> credit, laenud)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mudel</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = default ~ credit, data = laenud)
+
+Coefficients:
+ (Intercept)        credit  
+ 0.316479596  -0.000000482  </code></pre>
+</div>
+</div>
+<p>Näeme, et 1000 iga dollarit krediidi limiiti vähendab maksevõimetust -0.000482 võrra, millel iseenesest ei ole tähendust. Piirefekti (<em>marginal effect</em>) lähenemist kasutades võib aga öelda, et vastavalt väheneb tõenäosus, et klient on maksevõimetu.</p>
+<p>Vähimruutude meetodi sobimatus binaartunnuse seletamisel saab aga ilmsiks, kui uurime regressioonijääke.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Vähimruutude meetodi regressioonijäägid binaartunnuse seletamisel</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Regressioonijäägid ei ole normaaljaotusega, vaid jaotus on hoopis kahetipuline (<em>bimodal</em>), mis tähendab, et vähimruutude meetodil leitud regressioonimudel antud juhul ei kehti. Sellele viitab ka regressioonimudelit iseloomustav sirge.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Vähimruutude meetodil leitud regressioonimudel binaartunnuse korral</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Jooniselt näeme, et vähimruutude meetodil arvutatud regressioonimudel ei ole sobilik ka seetõttu, et selle alusel prognoositavad väärtused võivad olla ka väiksemad kui 0.</p>
+<section id="logistiline-mudel" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="logistiline-mudel"><span class="header-section-number">19.1</span> Logistiline mudel</h2>
+<p>Binaartunnuse korral eeldame, et selle väärtused järgivad binoomjaotust. Seetõttu peame regressioonmudeli arvutamiseks leidma lineaarse mudeli üldistatud kujul (<em>generalized linear model</em> ehk GLM). Üldistatud lineaarse mudeli kordajaid ei saa me aga arvutada vähimruutude meetodil, vaid peame kasutama suurima tõepära hindamist (<em>maximum likelihood estimation</em> ehk MLE), mille käigus leiame mudeli parameetrid, mille korral meie andmed kõige tõenäolisemad on. Nende tegevuste käigus leitakse logistiline mudel.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Logistiline mudel</strong> (<em>logistic model</em>) on regressioonimudel, mis seletab binaarskaalal mõõdetud väljundtunnuse väärtuseid sisendtunnus(t)e alusel.</p>
+</div>
+</div>
+<p>Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni <code>glm()</code> üldistatud lineaarse mudeli leidmiseks, määrates argumendi <code>family = binomial(link = 'logit')</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mudel</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  glm(formula = default ~ credit, family = binomial(link = "logit"), 
+    data = laenud)
+
+Coefficients:
+ (Intercept)        credit  
+-0.703935391  -0.000003078  
+
+Degrees of Freedom: 999 Total (i.e. Null);  998 Residual
+Null Deviance:      1090 
+Residual Deviance: 1066     AIC: 1070</code></pre>
+</div>
+</div>
+<p>Kuigi regressioonikordaja on sarnane vähimruutude meetodil leitule, siis logistiline mudel määrab seose tunnuste vahel erinevalt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Logistiline mudel</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Näeme, et logistine mudel ei ole graafiliselt mitte sirge, vaid kõver, mis on piiratud väljundtunnuse väärtuste 0 ja 1 vahele. See logistilise mudeli omadus ilmneb selgemalt, kui vaatame all esiatud mudelit, kus sisendtunnus eraldab väljundtunnuse väärtused selgemini.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-autod" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/fig-autod-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Joonis 19.1: Logistiline mudel</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Jooniselt selgub ka, et me ei saa tõlgendada logistilise mudeli kordajaid nii nagu vähimruutude meetodi alusel leitud mudeli korral. Väljundtunnuse muutus sisendtunnuse muutuse korral oleneb sellest, millise konkreetse väärtuse juures me sisendtunnust vaatame.</p>
+</section>
+<section id="regressioonikordajad" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="regressioonikordajad"><span class="header-section-number">19.2</span> Regressioonikordajad</h2>
+<p>Logistilise mudeli kordaja näitab, kui palju suureneb sisendtunnuse ühe ühikulise suurenemise korral väljundtunnuseks oleva sündmuse toimumise logaritmiline šanss. Selle saab šanssiks teisendada võttes kordaja eksponendi. <strong>Šanss</strong> (<em>log odds</em>) on sündmuse toimumise ja mitte toimumise jagatis ning näitab seega sündmuse toimumise ja mitte toimumise suhet.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Märkus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Logistilise mudeli kordaja märk näitab, kas sisendtunnuse väärtuse kasvades väljundtunnuseks oleva sündmuse toimumise šanss suureneb või väheneb.</p>
+<p>Kordaja eksponent näitab, kui mitu korda on väljundtunnuseks oleva sündmuse toimumise šanss suurem selle mitte toimumisest, kui vastav sisendtunnus on ühe ühiku võrra suurem.</p>
+</div>
+</div>
+<p>Uurime, millised šansid ilmnevad, kui lisame mudelisse ka krediidisaaja tausta iseloomustavad tunnused: vanus (<code>age</code>), sugu (<code>gender</code>), haridustase (<code>education</code>) ja perekondlik seis (<code>maritalstatus</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> education <span class="sc">+</span> maritalstatus, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mudel<span class="sc">$</span>coefficients <span class="co"># Kordajad</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)               credit                  age 
+     -0.796736765011      -0.000002939894      -0.000311098193 
+          genderMale educationHigh school      educationOthers 
+      0.321119125002       0.224516997261     -13.086064657195 
+ educationUniversity  maritalstatusOthers  maritalstatusSingle 
+      0.186010296421      -0.144848303107      -0.280845535283 </code></pre>
+</div>
+</div>
+<p>Lihtsuse huvides jätame praegu kõrvale kordjate usaldusvahemikud. Näeme, et üks dollar krediidi limiiti ja üks aasta vanust vähendavad maksevõimetust, sest vastavad kordajad on negatiivsed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(mudel<span class="sc">$</span>coefficients) <span class="co"># Kordajate eksponedndid</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         (Intercept)               credit                  age 
+      0.450797625104       0.999997060111       0.999688950193 
+          genderMale educationHigh school      educationOthers 
+      1.378669805156       1.251717986945       0.000002073931 
+ educationUniversity  maritalstatusOthers  maritalstatusSingle 
+      1.204434661681       0.865153524259       0.755144969726 </code></pre>
+</div>
+</div>
+<p>Nende kordajate eksponendid ehk šanssid näitavad aga mõlema tunnuse korral, et nende ühe ühikulise suurenemise korral suureneb tõenäosus olla maksevõimetu vastavalt 0.9999971 ja 0.999689 korda. Kuna suurenemine <span class="math inline">\(&lt;1\)</span> tähendab vähenemist, siis iga dollar krediidi limiiti ja iga aasta vanust vähendavad väga vähesel määral šanssi olla maksevõimetu.</p>
+<p>Nimitunnuste tõlgendamiseks peame arvesse võtma nende võrdlusväärtusi.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>laenud[, <span class="fu">c</span>(<span class="st">'gender'</span>, <span class="st">'education'</span>, <span class="st">'maritalstatus'</span>)] <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(unique)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$gender
+[1] "Female" "Male"  
+
+$education
+[1] "University"      "Graduate school" "High school"     NA               
+[5] "Others"         
+
+$maritalstatus
+[1] "Married" "Single"  "Others"  NA       </code></pre>
+</div>
+</div>
+<p>Nagu näeme eelnevast, siis eksponent kordajast <code>genderMale</code> on <span class="math inline">\(e^{0.3211191} = 1.3786698\)</span>. See tähendab, et meestel on võrreldes naistega 1.38 korda suurem šanss olla maksevõimetu kui mitte.</p>
+<p>Sarnaselt saame järeldada, et šanss olla maksevõimetu on suurem madalama haridustaseme korral ja abielus olles. Järelduste tegemisel tasub jällegi meelde tuletada valikunihet (<a href="valikunihe.html"><span>Peatükk&nbsp;10</span></a>), sest võib-olla pakuti nt abielus olijatele kergemini krediiti.</p>
+</section>
+<section id="prognoosimine" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="prognoosimine"><span class="header-section-number">19.3</span> Prognoosimine</h2>
+<p>Logistilise mudeli alusel on võimalik prognoosida väljundtunnuse väärtusi sisendtunnuse väärtuste alusel. Prognoos on sellisel juhul väärtus vahemikus 0 kuni 1 (vt <a href="#fig-autod">Joonis&nbsp;<span>19.1</span></a>) ja saadud prognoosi võib tõlgendada sündmuse toimumise tõenäosusena vastvate sisendtunnuste väärtuste korral. Tõenäosuste prognoosimiseks üldistatud lineaarse mudeli korral peame funktsiooni <code>predict()</code> lisama argumendi <code>type = 'response'</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> education, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tõenäosus <span class="ot">&lt;-</span> <span class="fu">predict</span>(mudel, <span class="fu">list</span>(<span class="at">age =</span> <span class="dv">23</span>, <span class="at">gender =</span> <span class="st">'Female'</span>, <span class="at">education =</span> <span class="st">'University'</span>), <span class="at">type =</span> <span class="st">'response'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tõenäosus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1 
+0.2403401 </code></pre>
+</div>
+</div>
+<p>Näeme, et 23 aastasel ülikooliharidusega naise tõenäosus olla maksevõimetu on 0.24 ehk 24%.</p>
+<p>Sageli on vajalik prognoos aga algsel binaarskaalal ehk määrata mitte sündmuse toimumise tõenäosus, vaid konkreetsemalt, kas sündmus mingite sisendtunnuste väärtuste korral toimub või mitte. Sellisel juhul tuleb valida <strong>tõenäosuse lävend</strong> (<em>threshold</em>), millest alates määratakse sündmus toimunuks. Selliste prognooside täpsuse hindamiseks saame tekitada tabeli, mis näitab prognooside õigsust empiirilise sündmuse toimumise suhtes.</p>
+<p>Mudeli prognoose olemasolevate vaatluste kohta näitab funktsioon <code>fitted()</code>. Kuvame need prognoosid histogrammil.</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="logreg_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Prognooside sagedused</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Kõikide andmetes olevate tunnustega mudel prognoosib kõikidele isikutele tõenäosuse olla maksevõimetu alla 0.5. Seega võiksime tõenäosuse lävendiks võtta nt 0.4 ja uurida, kui suur osa maksevõimetutest isikutest prognoositakse õigesti. Selleks saame kasutada <strong>veatabelit</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fitted</span>(mudel) <span class="sc">&gt;</span> <span class="fl">0.4</span>, mudel<span class="sc">$</span>model<span class="sc">$</span>default <span class="sc">==</span> <span class="dv">1</span>, <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">'Prognoos'</span>, <span class="st">'Tegelik'</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Tegelik
+Prognoos FALSE TRUE
+   FALSE   732  226
+   TRUE     13    9</code></pre>
+</div>
+</div>
+<p>Tabelist selgub, et tõenäosuse lävendi 0.4 korral tuvastab mudel õigesti ainult 9 maksevõimetut, samas kui 226 tegelikult maksevõimetut isikut mudel selliseks ei pea. See näitab, et mudel ei ole maksevõimetuse prognoosimisel eriti täpne. Kasutatud andmed laenusaajate kohta ei ole piisavad selleks, et eristada maksevõimetuid teistest.</p>
+<p>Lisaks kasutatud veatabelile on klassifitseerimise täpsuse hindamiseks loodud veel palju mitmesuguseid mõõdikuid.</p>
+<!--
+[[veatabel]]
+    [[Confusion matrix]]
+-->
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./linreg.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./viited.html" class="pagination-link">
+        <span class="nav-page-text">Viited</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

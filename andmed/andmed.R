@@ -3,7 +3,7 @@
 
 # Load packages
 library('magrittr')
-library('tidyverse')
+library('dplyr')
 
 # Diabetes
 # test_03_seosed
@@ -66,6 +66,45 @@ write.csv(lunch, 'andmed/lunchoffers.csv', row.names = F)
 majad <- read.csv('assets/housingprices.csv')
 mudel <- lm(price ~ area, majad)
 majad %<>% filter(cooks.distance(mudel) < .0005) #%>% plot(price ~ area, .)
-#set.seed(0); majad %<>% slice_sample(n = 123)
-majad %<>% filter(price < boxplot.stats(majad$price)$out)
+majad %<>% filter(price < min(boxplot.stats(majad$price)$out))
+majad$price <- majad$price / 1e6 # Teisendame hinna miljonitesse
+majad$area <- majad$area / 10.764 # Teisendame ruutjalad ruutmeetriteks
 write.csv(majad, 'andmed/housingprices.csv', row.names = F)
+
+# Spotify 2000
+# praktikum_05_linreg
+laulud <- read.csv('assets/spotify2000.csv')
+## Tõlgime veergude nimetused
+names(laulud) <- c('nr','pealkiri', 'esitaja', 'liik', 'aasta', 
+                   'taktsagedus', 'elavus', 'tantsitavus', 'valjusus', 
+                   'publik', 'rõõmsus', 'pikkus', 'akustilisus', 'kõne', 
+                   'menukus')
+## Jäta lineaarselt seotud
+mudel <- lm(menukus ~ ., laulud[c(5:11, 13:15)])
+laulud %<>% filter(cooks.distance(mudel) < .0001) #%>% plot(Popularity ~ Loudness..dB. , .)
+## Vähenda liike
+liigid <- table(laulud$liik) %>% sort %>% tail(20) %>% names
+laulud$liik <- ifelse(laulud$liik %in% liigid, laulud$liik, 'other')
+write.csv(laulud, 'andmed/spotify2000.csv', row.names = F)
+
+# Belarus used cars
+# test_05_linreg
+autod <- read.csv('assets/belaruscars.csv')
+autod <- autod[, -12]
+names(autod) <- c(
+  'make', 'model', 'price.usd', 'year', 'condition', 'mileage.km', 'fuel', 
+  'volume.l', 'color', 'transmission', 'drive')
+autod$volume.l %<>% `/`(1e3)
+set.seed(0); autod %<>% slice_sample(n = 1e3)
+write.csv(autod, 'andmed/belaruscars.csv', row.names = F)
+
+# Credit card default prediction
+# logreg
+laenud <- read.csv('assets/creditdefault.csv', skip = 1)
+set.seed(0); laenud %<>% slice_sample(n = 1e3)
+laenud %<>% .[c(2:6,25)]
+names(laenud) <- c('credit', 'gender', 'education', 'maritalstatus', 'age', 'default')
+laenud$gender %<>% factor(levels = 1:2, labels = c('Male', 'Female'))
+laenud$education %<>% factor(levels = 1:4, labels = c('Graduate school', 'University', 'High school', 'Others'))
+laenud$maritalstatus %<>% factor(levels = 1:3, labels = c('Married', 'Single', 'Others'))
+write.csv(laenud, 'andmed/creditdefault.csv', row.names = F)

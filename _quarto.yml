@@ -42,7 +42,7 @@ book:
     - seosereeglid.qmd
     - usaldusvahemikud.qmd
     - linreg.qmd
-#    - logreg.qmd
+    - logreg.qmd
 #    - klassifitseerimine.qmd
 #    - klasterdamine.qmd
 #    - mõõtmevähendus.qmd

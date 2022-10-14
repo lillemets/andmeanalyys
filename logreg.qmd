@@ -1,5 +1,197 @@
 # Logistiline regressioon {#sec-logreg}
 
 <!--
-Data ethics
+[[Logistic regression]]
+-->
+
+Vähimruutude meetodi alusel arvutatud lineaarse mudeli kehtivuse eeldus on, et regressioonijäägid on normaaljaotusega. See eeldus kehtib sageli siis, kui väljundtunnuseks on pideval skaalal mõõdetud arvtunnus. Muudel juhtudel ei saa aga regressioonijäägid peaaegu kunagi olla normaajaotusega. Üheks selliseks juhuks on olukord, kus soovime regressioonanalüüsi abil seletada binaartunnuste väärtusi ehk mõnda nähtust, millel saab olla ainult kaks tulemust. Statistikas sõnastatakse arvutused binaartunnuse kohta tihti sündmuse toimumise või mitte toimumisena. Praktikas tähendab see enamasti seda, kas vaatlusel on mingi omadus või ei ole. Selliste väljundtunnuste seletamiseks sisendtunnuste alusel peaksime leidma regressioonimudeli mitte vähimruutude põhimõttel, vaid kasutama logistilist regressiooni.
+
+Logistist regressiooni abil saab vastata küsimustele selle kohta, kas ja miks mingi sündmus toimub:
+
+- Millest sõltub, kas klient valib toote või mitte?
+- Kas teatud tunnustega patsiendil on haigus või mitte?
+- Mis seletab kasutaja teenusest loobumist?
+- Kas konkreetne e-kiri on rämpspost või mitte?
+
+Järgnevalt üritame regressioonanalüüsi alusel selgitada, millest sõltub krediidisaajate võimekus laenu teenindada. Kasutame selleks andmeid krediitkaardi krediidi (laenude) kohta, mis on kogutud 2005. aastal Taiwanis.
+
+```{r}
+library('magrittr')
+laenud <- read.csv('andmed/creditdefault.csv')
+str(laenud)
+```
+
+<!--
+[[Credit card default]]
+-->
+
+Meile huvipakkuvaks tunnuseks on kliendi maksevõimetus (`default`). Uurime, kuidas seda on mõõdetud. 
+
+```{r}
+#| echo: false
+#| fig-cap: Binaarse tunnuse jaotus histogrammil
+library('ggplot2')
+ggplot(laenud) + aes(x = default) + 
+  labs(x = "Maksevõimetus (default)", y = "Sagedus") + 
+  geom_histogram(bins = 30, alpha = .5) + 
+  theme_minimal()
+```
+
+Histogrammilt nähtub, et tunnuse väärtusteks võib olla 0 ja 1. Need tähendavad vastavalt laenukohustuste täitmise jätkamist ja täitmise katkestamist ehk maksevõimetust. Maksevõimetuid kliente oli peaaegu neljandik, mis iseloomustab hästi 2006. aastal alanud laenukriisi Taiwanis, millega kaasnesid kodutuse ja enesetappude sagenemine ning muud sotsiaalsed probleemid.
+
+Leiame meile juba tuttava regressioonimudeli, mis seletaks maksevõimetust krediidi limiidi (`credit`) alusel. 
+
+```{r}
+options(scipen = 9)
+mudel <- lm(default ~ credit, laenud)
+mudel
+```
+
+Näeme, et 1000 iga dollarit krediidi limiiti vähendab maksevõimetust `r mudel$coef['credit']*1e3` võrra, millel iseenesest ei ole tähendust. Piirefekti (*marginal effect*) lähenemist kasutades võib aga öelda, et vastavalt väheneb tõenäosus, et klient on maksevõimetu. 
+
+Vähimruutude meetodi sobimatus binaartunnuse seletamisel saab aga ilmsiks, kui uurime regressioonijääke.
+
+```{r}
+#| echo: false
+#| fig-cap: Vähimruutude meetodi regressioonijäägid binaartunnuse seletamisel
+ggplot() + aes(x = residuals(mudel)) + 
+  labs(x = "Jäägid", y = "Sagedus") + 
+  geom_histogram(bins = 30, alpha = .5) + 
+  theme_minimal()
+```
+
+Regressioonijäägid ei ole normaaljaotusega, vaid jaotus on hoopis kahetipuline (*bimodal*), mis tähendab, et vähimruutude meetodil leitud regressioonimudel antud juhul ei kehti. Sellele viitab ka regressioonimudelit iseloomustav sirge.
+
+```{r}
+#| echo: false
+#| fig-cap: Vähimruutude meetodil leitud regressioonimudel binaartunnuse korral
+library('magrittr')
+joonis <- ggplot(laenud) + aes(x = credit/1e3, y = default) + 
+  labs(x = "Krediidi limiit, tuhat TWD (credit)", y = "Maksevõimetus (default)") + 
+  geom_jitter(height = .05, alpha = .1) + 
+  theme_minimal()
+joonis + 
+  geom_smooth(method = 'lm', formula = y ~ x, se = F, color = 'black', lwd = .5)
+```
+
+Jooniselt näeme, et vähimruutude meetodil arvutatud regressioonimudel ei ole sobilik ka seetõttu, et selle alusel prognoositavad väärtused võivad olla ka väiksemad kui 0.
+
+## Logistiline mudel
+
+Binaartunnuse korral eeldame, et selle väärtused järgivad binoomjaotust. Seetõttu peame regressioonmudeli arvutamiseks leidma lineaarse mudeli üldistatud kujul (*generalized linear model* ehk GLM). Üldistatud lineaarse mudeli kordajaid ei saa me aga arvutada vähimruutude meetodil, vaid peame kasutama suurima tõepära hindamist (*maximum likelihood estimation* ehk MLE), mille käigus leiame mudeli parameetrid, mille korral meie andmed kõige tõenäolisemad on. Nende tegevuste käigus leitakse logistiline mudel.
+
+::: {.callout-important}
+**Logistiline mudel** (*logistic model*) on regressioonimudel, mis seletab binaarskaalal mõõdetud väljundtunnuse väärtuseid sisendtunnus(t)e alusel.
+:::
+
+Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni `glm()` üldistatud lineaarse mudeli leidmiseks, määrates argumendi `family = binomial(link = 'logit')`. 
+
+```{r}
+mudel <- glm(default ~ credit, laenud, family = binomial(link = 'logit'))
+mudel
+```
+
+Kuigi regressioonikordaja on sarnane vähimruutude meetodil leitule, siis logistiline mudel määrab seose tunnuste vahel erinevalt.
+
+```{r}
+#| echo: false
+#| fig-cap: Logistiline mudel
+library('magrittr')
+joonis + 
+  geom_smooth(method = 'glm', formula = y ~ x, se = F, color = 'black', lwd = .5, 
+              method.args = list(family = binomial(link = 'logit')))
+```
+
+Näeme, et logistine mudel ei ole graafiliselt mitte sirge, vaid kõver, mis on piiratud väljundtunnuse väärtuste 0 ja 1 vahele. See logistilise mudeli omadus ilmneb selgemalt, kui vaatame all esiatud mudelit, kus sisendtunnus eraldab väljundtunnuse väärtused selgemini.
+
+```{r}
+#| echo: false
+#| label: fig-autod
+#| fig-cap: Logistiline mudel
+ggplot(mtcars) + aes(x = wt/2.205, y = am) + 
+  labs(x = "Auto kaal, tonni", y = "Käigukast, 0 - automaatne ja 1 - manuaalne") + 
+  geom_jitter(height = .05, alpha = .2) + 
+    geom_smooth(method = 'glm', formula = y ~ x, se = F, color = 'black', lwd = .5, 
+              method.args = list(family = binomial(link = 'logit'))) +
+  theme_minimal()
+```
+
+Jooniselt selgub ka, et me ei saa tõlgendada logistilise mudeli kordajaid nii nagu vähimruutude meetodi alusel leitud mudeli korral. Väljundtunnuse muutus sisendtunnuse muutuse korral oleneb sellest, millise konkreetse väärtuse juures me sisendtunnust vaatame.
+
+## Regressioonikordajad
+
+Logistilise mudeli kordaja näitab, kui palju suureneb sisendtunnuse ühe ühikulise suurenemise korral väljundtunnuseks oleva sündmuse toimumise logaritmiline šanss. Selle saab šanssiks teisendada võttes kordaja eksponendi. **Šanss** (*log odds*) on sündmuse toimumise ja mitte toimumise jagatis ning näitab seega sündmuse toimumise ja mitte toimumise suhet. 
+
+:::{.callout-note}
+Logistilise mudeli kordaja märk näitab, kas sisendtunnuse väärtuse kasvades väljundtunnuseks oleva sündmuse toimumise šanss suureneb või väheneb. 
+
+Kordaja eksponent näitab, kui mitu korda on väljundtunnuseks oleva sündmuse toimumise šanss suurem selle mitte toimumisest, kui vastav sisendtunnus on ühe ühiku võrra suurem. 
+:::
+
+Uurime, millised šansid ilmnevad, kui lisame mudelisse ka krediidisaaja tausta iseloomustavad tunnused: vanus (`age`), sugu (`gender`), haridustase (`education`) ja perekondlik seis (`maritalstatus`). 
+
+```{r}
+mudel <- glm(default ~ credit + age + gender + education + maritalstatus, laenud, family = binomial(link = 'logit'))
+mudel$coefficients # Kordajad
+```
+
+Lihtsuse huvides jätame praegu kõrvale kordjate usaldusvahemikud. Näeme, et üks dollar krediidi limiiti ja üks aasta vanust vähendavad maksevõimetust, sest vastavad kordajad on negatiivsed. 
+
+```{r}
+exp(mudel$coefficients) # Kordajate eksponedndid
+```
+
+Nende kordajate eksponendid ehk šanssid näitavad aga mõlema tunnuse korral, et nende ühe ühikulise suurenemise korral suureneb tõenäosus olla maksevõimetu vastavalt `r exp(mudel$coefficients['credit'])` ja `r exp(mudel$coefficients['age'])` korda. Kuna suurenemine $<1$ tähendab vähenemist, siis iga dollar krediidi limiiti ja iga aasta vanust vähendavad väga vähesel määral šanssi olla maksevõimetu.
+
+Nimitunnuste tõlgendamiseks peame arvesse võtma nende võrdlusväärtusi.
+
+```{r}
+laenud[, c('gender', 'education', 'maritalstatus')] %>% sapply(unique)
+```
+
+Nagu näeme eelnevast, siis eksponent kordajast `genderMale` on $e^{`r mudel$coefficients['genderMale']`} = `r exp(mudel$coefficients['genderMale'])`$. See tähendab, et meestel on võrreldes naistega `r exp(mudel$coefficients['genderMale']) %>% round(2)` korda suurem šanss olla maksevõimetu kui mitte.
+
+Sarnaselt saame järeldada, et šanss olla maksevõimetu on suurem madalama haridustaseme korral ja abielus olles. Järelduste tegemisel tasub jällegi meelde tuletada valikunihet (@sec-valikunihe), sest võib-olla pakuti nt abielus olijatele kergemini krediiti.
+
+## Prognoosimine
+
+Logistilise mudeli alusel on võimalik prognoosida väljundtunnuse väärtusi sisendtunnuse väärtuste alusel. Prognoos on sellisel juhul väärtus vahemikus 0 kuni 1 (vt @fig-autod) ja saadud prognoosi võib tõlgendada sündmuse toimumise tõenäosusena vastvate sisendtunnuste väärtuste korral. Tõenäosuste prognoosimiseks üldistatud lineaarse mudeli korral peame funktsiooni `predict()` lisama argumendi `type = 'response'`.
+
+```{r}
+mudel <- glm(default ~ age + gender + education, laenud, family = binomial(link = 'logit'))
+tõenäosus <- predict(mudel, list(age = 23, gender = 'Female', education = 'University'), type = 'response')
+tõenäosus
+```
+
+Näeme, et 23 aastasel ülikooliharidusega naise tõenäosus olla maksevõimetu on `r round(tõenäosus, 2)` ehk `r round(tõenäosus*100)`%.
+
+Sageli on vajalik prognoos aga algsel binaarskaalal ehk määrata mitte sündmuse toimumise tõenäosus, vaid konkreetsemalt, kas sündmus mingite sisendtunnuste väärtuste korral toimub või mitte. Sellisel juhul tuleb valida **tõenäosuse lävend** (*threshold*), millest alates määratakse sündmus toimunuks. Selliste prognooside täpsuse hindamiseks saame tekitada tabeli, mis näitab prognooside õigsust empiirilise sündmuse toimumise suhtes.
+
+Mudeli prognoose olemasolevate vaatluste kohta näitab funktsioon `fitted()`. Kuvame need prognoosid histogrammil.
+
+```{r}
+#| echo: false
+#| fig-cap: Prognooside sagedused
+mudel <- glm(default ~ ., laenud, family = binomial(link = 'logit'))
+library('ggplot2')
+ggplot() + aes(x = mudel$fitted.values) + 
+  scale_x_continuous(limits = 0:1) + 
+  labs(x = "Prognoositud maksevõimetus (fitted(mudel))", y = "Sagedus") + 
+  geom_histogram(bins = 30, alpha = .5) + 
+  theme_minimal()
+```
+
+Kõikide andmetes olevate tunnustega mudel prognoosib kõikidele isikutele tõenäosuse olla maksevõimetu alla 0.5. Seega võiksime tõenäosuse lävendiks võtta nt 0.4 ja uurida, kui suur osa maksevõimetutest isikutest prognoositakse õigesti. Selleks saame kasutada **veatabelit**.
+
+```{r}
+table(fitted(mudel) > 0.4, mudel$model$default == 1, dnn = c('Prognoos', 'Tegelik'))
+```
+
+Tabelist selgub, et tõenäosuse lävendi 0.4 korral tuvastab mudel õigesti ainult 9 maksevõimetut, samas kui 226 tegelikult maksevõimetut isikut mudel selliseks ei pea. See näitab, et mudel ei ole maksevõimetuse prognoosimisel eriti täpne. Kasutatud andmed laenusaajate kohta ei ole piisavad selleks, et eristada maksevõimetuid teistest..
+
+Lisaks kasutatud veatabelile on klassifitseerimise täpsuse hindamiseks loodud veel palju mitmesuguseid mõõdikuid.
+
+<!--
+[[veatabel]]
+	[[Confusion matrix]]
 -->

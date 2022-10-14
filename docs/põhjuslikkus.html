@@ -227,6 +227,11 @@ ul.task-list{list-style: none;}
   <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -278,7 +283,7 @@ Pea meeles!
 <p>Mitte ükski statistiline arvutus ei näita seose põhjuslikkust. Põhjuslike seoste näitamiseks on vajalikud juhusliku katse tingimustes kogutud andmed.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslik katse (<em>randomized controlled trial</em> ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Kui loodusteadustes on juhuslikud katsed tavalised, siis majandus- ja ühiskonnateadustes on need enamasti kulukad või eetilistel põhjustel sobimatud<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.</p></li><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Siiski on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.</p></li></div></div>
+<div class="page-columns page-full"><p>Põhjuslikke seoseid saame näidata ainult eksperimendi tingimustes kogutud andmetega. Teadustöös on tunnustatud viis põhjuslike seoste määratlemiseks juhuslikustatud katse (<em>randomized controlled trial</em> ehk RCT). Selle käigus jagatakse uuritavad objektid juhuslikult katse- ja kontrollrühma nii, et ainus erinevus nende vahel on põhjusliku tunnusena käsitletav uuritav nähtus. Nii saab igasugune erinevus mingis tagajärgses tunnuses nende rühmade vahel tuleneda ainult sellest uuritavast nähtusest<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Kui loodusteadustes on juhuslikud katsed tavalised, siis majandus- ja ühiskonnateadustes on need enamasti kulukad või eetilistel põhjustel sobimatud<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Nt kui kahe rühma ainus erinevus seisneb ravimi manustamises, siis igasugune hilisem erinevus nende rühmade vahel on seletatav ravimi mõjuga.</p></li><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Siiski on mitmes riigis määratud juhuslikult kodanikupalga saajad, et uurida selle mõju inimeste käitumisele.</p></li></div></div>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -289,12 +294,13 @@ Mõiste
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Juhusliku katse käigus määratakse uuritavad objektid juhuslkult katse- ja kontrollrühma. Kuna seetõttu on rühmade ainus erinevus katserühmal rakendatav tegevus, siis on igasugune hilisem erinevus rühmade vahel seletatav ainult selle tegevuse mõjuga.</p>
+<p><strong>Juhuslikustatud katse</strong> käigus määratakse uuritavad objektid juhuslkult katse- ja kontrollrühma. Kuna seetõttu on rühmade ainus erinevus katserühmal rakendatav tegevus, siis on igasugune hilisem erinevus rühmade vahel seletatav ainult selle tegevuse mõjuga.</p>
 </div>
 </div>
-<p>Üks nähtus võib otseselt mõjutada teist (<span class="math inline">\(X \rightarrow Y\)</span>). Lisaks sellele on veel mitu seletust statistilise protseduuri abil leitud seostele tunnuste vahel: - seos on vastasikune</p>
-<p><span class="math display">\[X \leftrightarrow Y,\]</span></p>
+<p>Üks nähtus võib otseselt mõjutada teist (<span class="math inline">\(X \rightarrow Y\)</span>). Lisaks sellele on veel mitu seletust statistilise protseduuri abil leitud seostele tunnuste vahel:</p>
 <ul>
+<li><p>seos on vastastikkune</p>
+<p><span class="math display">\[X \leftrightarrow Y,\]</span></p></li>
 <li><p>mingi kolmas nähtus mõjutab mõlemat uuritavat nähtust ja viimaste vahel vastastikkune mõju puudub:</p>
 <p><span class="math display">\[\displaylines{Z \rightarrow X \\ Z \rightarrow Y},\]</span></p></li>
 <li><p>mingi kolmas nähtus vahendab ühe nähtuse mõju teisele ja mõju uuritavate nähtuste vahel on kaudne:</p>

@@ -1,0 +1,1001 @@
+"credit","gender","education","maritalstatus","age","default"
+200000,"Female","University","Married",32,0
+200000,"Female","Graduate school","Married",49,0
+320000,"Male","Graduate school","Married",40,0
+80000,"Female","University","Married",42,1
+120000,"Male","Graduate school","Single",28,0
+320000,"Female","Graduate school","Married",42,0
+100000,"Female","Graduate school","Married",27,1
+80000,"Female","University","Single",52,0
+50000,"Female","High school","Married",56,0
+100000,"Female","University","Single",27,0
+160000,"Male","University","Married",40,0
+180000,"Female","High school","Married",41,1
+200000,"Male","University","Single",30,1
+110000,"Female","Graduate school","Single",36,0
+80000,"Female","University","Single",22,0
+50000,"Female","High school","Married",35,0
+20000,"Male","High school","Married",57,1
+200000,"Male","University","Married",32,0
+240000,"Male","University","Single",30,0
+50000,"Female","University","Married",41,1
+180000,"Female","High school","Married",43,1
+160000,"Male","Graduate school","Married",51,1
+280000,"Female","Graduate school","Married",29,0
+40000,"Female","University","Married",33,1
+100000,"Female","Graduate school","Single",25,0
+280000,"Female","University","Single",27,0
+50000,"Male","Graduate school","Single",55,0
+50000,"Male","Graduate school","Single",30,1
+400000,"Female","University","Single",31,0
+330000,"Female","University","Married",30,0
+210000,"Female","Graduate school","Married",39,0
+80000,"Female","High school","Married",29,0
+400000,"Female","Graduate school","Single",32,1
+70000,"Female","Graduate school","Married",32,1
+110000,"Female","University","Single",45,0
+120000,"Female","University","Single",26,0
+200000,"Male","University","Married",44,0
+20000,"Male","University","Married",36,1
+20000,"Female","University","Single",22,0
+150000,"Female","University","Single",24,0
+20000,"Male","University","Single",28,0
+320000,"Male","Graduate school","Married",33,0
+80000,"Female","University","Single",29,1
+360000,"Female","University","Married",50,0
+60000,"Female","University","Single",28,0
+80000,"Female","University","Single",27,0
+130000,"Female","University","Others",48,0
+80000,"Female","Graduate school","Single",44,1
+50000,"Female","High school","Married",46,1
+30000,"Female","University","Married",30,0
+20000,"Male","High school","Single",22,1
+30000,"Male","University","Married",36,0
+30000,"Female","Graduate school","Single",24,0
+500000,"Male","Graduate school","Married",55,0
+30000,"Male","Graduate school","Single",24,0
+100000,"Male","University","Single",34,0
+30000,"Female","University","Married",42,1
+200000,"Female","Graduate school","Single",25,0
+450000,"Male","Graduate school","Married",41,0
+90000,"Male","High school","Married",46,0
+20000,"Female","University","Married",46,1
+30000,"Female","Graduate school","Single",25,0
+320000,"Male","High school","Single",28,0
+160000,"Female","Graduate school","Single",29,0
+30000,"Female","High school","Single",22,0
+60000,"Female","University","Married",35,0
+60000,"Female","University","Single",23,0
+20000,"Female","Graduate school","Single",29,0
+200000,"Male","Graduate school","Single",30,0
+110000,"Female","Graduate school","Single",28,0
+220000,"Male","University","Single",39,0
+160000,"Female","High school","Married",39,0
+220000,"Female","Graduate school","Married",48,0
+360000,"Female","Graduate school","Single",37,0
+320000,"Male","Graduate school","Married",50,0
+20000,"Male","High school","Single",40,0
+270000,"Female","University","Married",37,0
+170000,"Female","University","Single",29,0
+200000,"Female","High school","Single",33,0
+290000,"Female","University","Married",33,1
+80000,"Male","University","Single",25,1
+500000,"Male","High school","Single",53,0
+380000,"Male","Graduate school","Married",48,0
+80000,"Female","High school","Single",23,0
+310000,"Male","Graduate school","Married",41,0
+170000,"Male","University","Married",59,1
+100000,"Female","University","Married",46,0
+180000,"Male",NA,"Married",34,0
+280000,"Male","Graduate school","Single",35,0
+10000,"Male","University","Single",22,1
+360000,"Male",NA,"Single",30,0
+80000,"Female","University","Single",27,1
+160000,"Female","Graduate school","Married",36,0
+220000,"Female","Graduate school","Married",36,0
+140000,"Female","University","Married",37,0
+50000,"Female","University","Single",24,1
+50000,"Female","Graduate school","Single",24,0
+100000,"Female","University","Single",25,0
+50000,"Male","University","Married",43,0
+30000,"Female","University","Single",24,0
+310000,"Female","Graduate school","Married",47,0
+260000,"Female","High school","Single",49,0
+360000,"Female","University","Married",29,0
+100000,"Female","High school","Married",43,1
+150000,"Male","Graduate school","Single",28,1
+240000,"Female","Graduate school","Married",45,0
+70000,"Male","High school","Single",25,1
+140000,"Female","University","Single",25,0
+180000,"Male","Graduate school","Single",27,0
+220000,"Male","University","Married",47,1
+180000,"Male","Graduate school","Single",32,1
+120000,"Male","Graduate school","Single",34,0
+30000,"Female","High school","Single",27,0
+30000,"Male","University","Married",46,0
+70000,"Male","University","Single",26,0
+340000,"Female","University","Married",46,0
+20000,"Female","University","Married",39,0
+90000,"Female","University","Married",36,0
+450000,"Male","Graduate school","Single",28,0
+80000,"Female","Graduate school","Married",45,0
+130000,"Female","University","Single",25,1
+50000,"Female","University","Single",56,0
+20000,"Male","High school","Single",32,1
+30000,"Female","University","Married",38,0
+50000,"Female","Graduate school","Single",50,0
+190000,"Female","Graduate school","Single",26,1
+120000,"Female","Graduate school","Single",40,0
+50000,"Male","High school","Married",52,0
+340000,"Male","High school","Married",48,0
+50000,"Male","University","Married",37,0
+50000,"Male","University","Single",28,1
+150000,"Female","University","Single",34,0
+70000,"Female","High school","Single",42,0
+50000,"Male","University","Married",29,0
+490000,"Female","Graduate school","Single",29,0
+250000,"Male","High school","Married",39,0
+20000,"Female","University","Single",21,0
+320000,"Male","Graduate school","Married",40,0
+50000,"Female","High school","Married",47,0
+360000,"Male","High school","Married",34,0
+360000,"Male","High school","Married",53,0
+140000,"Female","University","Single",24,0
+100000,"Male","Graduate school","Single",33,0
+200000,"Male","Graduate school","Single",32,0
+80000,"Female","University","Single",28,0
+210000,"Female","University","Single",28,0
+140000,"Male","University","Single",25,0
+50000,"Female","High school","Single",23,1
+260000,"Male","University","Married",42,0
+100000,"Male","High school","Single",44,1
+150000,"Female","Graduate school","Single",33,0
+500000,"Female","Graduate school","Single",29,0
+400000,"Female","Graduate school","Single",33,0
+230000,"Female","Graduate school","Single",27,1
+20000,"Male","University","Single",26,0
+170000,"Female","Graduate school","Single",28,0
+160000,"Female","High school","Married",44,1
+450000,"Female","University","Married",42,0
+310000,"Male","Graduate school","Married",39,0
+250000,"Female","Graduate school","Single",34,0
+190000,"Male","University","Married",37,1
+20000,"Female","University","Single",23,0
+300000,"Female","Graduate school","Single",26,0
+210000,"Female","Graduate school","Married",47,0
+220000,"Female","Graduate school","Single",38,0
+210000,"Female","University","Married",34,0
+90000,"Female","Graduate school","Single",27,0
+110000,"Female","High school",NA,31,0
+30000,"Male","High school","Single",33,1
+400000,"Female","Graduate school","Single",29,0
+390000,"Male","Graduate school","Married",64,0
+260000,"Female","Graduate school","Married",42,0
+400000,"Female","University","Married",55,0
+280000,"Female","Graduate school","Single",32,0
+10000,"Male","High school","Single",45,0
+320000,"Female","University","Married",31,0
+130000,"Female","High school","Single",27,0
+510000,"Female","Graduate school","Single",30,0
+160000,"Female","University","Single",25,0
+200000,"Female","University","Married",34,0
+30000,"Female","University","Single",36,0
+120000,"Female","High school","Married",30,1
+200000,"Male","High school","Married",44,1
+80000,"Female","University","Single",26,0
+180000,"Female","University","Married",35,0
+20000,"Male","University","Single",25,0
+210000,"Female","High school","Single",46,1
+140000,"Female","Graduate school","Single",33,0
+100000,"Male","University","Married",29,0
+340000,"Female","Graduate school","Married",30,0
+20000,"Male","University","Married",38,0
+470000,"Male","University","Single",31,0
+20000,"Male","University","Single",35,1
+70000,"Female","Graduate school","Single",24,0
+270000,"Female","University","Single",29,0
+100000,"Female","University","Married",37,0
+70000,"Male","Graduate school","Single",28,0
+500000,"Male","Graduate school","Single",32,0
+20000,"Female","High school","Single",52,0
+20000,"Female","University","Single",22,0
+30000,"Male","University","Single",38,0
+50000,"Male","High school","Married",40,1
+220000,"Female","Graduate school","Single",29,1
+390000,"Female","Graduate school","Single",27,1
+50000,"Female","University","Married",46,0
+380000,"Male","University","Married",39,0
+50000,"Male","Graduate school","Single",22,0
+420000,"Female","University","Single",25,0
+150000,"Female","Graduate school","Married",35,0
+160000,"Female","High school","Married",44,0
+430000,"Male","Graduate school","Married",48,0
+160000,"Male","University","Married",35,1
+150000,"Female","Graduate school","Married",38,0
+120000,"Female","University","Married",35,0
+290000,"Male","Graduate school","Married",46,0
+220000,"Male","Graduate school","Single",33,1
+30000,"Male","Graduate school","Single",34,0
+450000,"Female","Graduate school","Married",39,0
+200000,"Female","University","Single",35,0
+50000,"Male","High school","Married",23,0
+50000,"Female","University","Married",37,0
+210000,"Female","University","Married",43,0
+110000,"Male","Graduate school","Single",39,0
+210000,"Female","Graduate school","Single",31,0
+180000,"Female","Graduate school","Single",32,1
+240000,"Male","High school","Married",33,0
+300000,"Male","University","Single",31,0
+180000,"Male","Graduate school","Married",42,0
+60000,"Male","University","Married",30,0
+170000,"Female","University","Single",45,0
+90000,"Female","University","Single",47,0
+100000,"Female","Graduate school","Single",28,0
+50000,"Female","High school","Single",26,0
+100000,"Female","High school","Married",40,0
+50000,"Female","Graduate school","Single",25,0
+130000,"Male","University","Married",44,1
+70000,"Female","University","Married",41,1
+260000,"Male","Graduate school","Single",37,0
+180000,"Female","University","Single",36,0
+150000,"Male","University","Married",33,0
+700000,"Male","Graduate school","Married",34,0
+120000,"Male","University","Single",51,1
+210000,"Female","Graduate school","Single",27,1
+150000,"Male","University","Married",45,0
+10000,"Male","University","Married",24,1
+100000,"Male","Graduate school","Married",42,1
+150000,"Male","University","Single",35,0
+290000,"Male","Others","Married",52,0
+90000,"Female","University","Married",37,1
+50000,"Male","University","Single",29,1
+100000,"Male","University","Single",35,0
+260000,"Male","University","Married",54,0
+220000,"Female","High school","Married",37,1
+90000,"Female","University","Married",39,1
+110000,"Female","High school","Married",49,0
+80000,"Male","University","Married",36,1
+200000,"Male","University","Single",30,0
+80000,"Female","University","Single",61,1
+110000,"Female","Graduate school","Single",29,0
+110000,"Male","University","Single",26,0
+230000,"Male","University","Married",34,0
+190000,"Male","Graduate school","Married",44,0
+70000,"Female","University","Married",41,1
+30000,"Female","University","Married",44,0
+380000,"Male","Graduate school","Married",40,0
+20000,"Female","High school","Single",35,0
+140000,"Female","University","Married",39,0
+50000,"Female","University","Single",23,1
+280000,"Female","Graduate school","Married",46,1
+90000,"Male","University","Married",30,0
+80000,"Female","Graduate school","Single",29,0
+80000,"Male","University","Single",42,0
+140000,"Female","Graduate school","Single",35,0
+140000,"Female","University","Single",26,0
+20000,"Female","University","Married",22,1
+80000,"Male","High school","Single",32,0
+250000,"Female","University","Married",28,0
+50000,"Male","University","Single",28,0
+50000,"Male","High school","Married",43,0
+70000,"Male","Graduate school","Single",32,1
+480000,"Female","Graduate school","Single",33,0
+50000,"Male","University","Single",27,1
+30000,"Male","University","Single",21,0
+60000,"Female","Graduate school","Married",45,1
+180000,"Female","University","Married",30,0
+500000,"Male","Graduate school","Single",42,1
+200000,"Female","University","Married",29,0
+230000,"Female","University","Married",31,0
+40000,"Male","University","Single",47,1
+20000,"Female","High school","Married",36,0
+150000,"Female","High school","Married",43,1
+360000,"Male","University","Single",33,0
+40000,"Male","University","Single",27,0
+50000,"Male","University","Single",25,0
+70000,"Male","Graduate school","Single",28,1
+60000,"Female","High school","Single",37,0
+10000,"Male","University","Single",26,0
+200000,"Female","University","Single",25,0
+180000,"Female","University","Single",31,0
+150000,"Female","Graduate school","Single",28,1
+500000,"Male","University","Single",38,0
+80000,"Female","University","Married",45,0
+10000,"Male","High school","Single",24,0
+120000,"Female","University","Married",34,1
+110000,"Female","Graduate school","Married",52,0
+140000,"Female","University","Single",40,0
+50000,"Male","University","Single",46,0
+50000,"Male","University","Single",23,1
+100000,"Male","Graduate school","Married",43,0
+180000,"Female","Graduate school","Single",30,0
+30000,"Female","University","Single",22,0
+110000,"Male","University","Married",32,0
+90000,"Female","High school","Single",42,0
+100000,"Male","High school","Single",32,0
+30000,"Male","University","Married",30,0
+30000,"Male","High school","Married",44,0
+80000,"Male","University","Single",36,0
+240000,"Female","Graduate school","Single",28,0
+300000,"Male","University","Married",43,1
+20000,"Female","University","Married",25,1
+360000,"Female","University","Married",37,0
+200000,"Female","Graduate school","Single",35,0
+20000,"Male","University","Single",31,1
+230000,"Female","High school","Married",54,0
+80000,"Female","University","Single",24,0
+50000,"Female","University","Single",31,0
+500000,"Male","Graduate school","Single",30,0
+380000,"Female","University","Married",30,0
+500000,"Female","Graduate school","Single",27,0
+80000,"Male","University","Married",34,0
+230000,"Female","Graduate school","Married",34,0
+130000,"Female","University","Single",31,0
+190000,"Female","Graduate school","Married",36,0
+230000,"Male","Graduate school","Single",28,0
+10000,"Female","High school","Married",44,1
+420000,"Male","Graduate school","Single",35,0
+160000,"Female",NA,"Married",35,0
+50000,"Male","High school","Married",52,1
+210000,"Female","High school","Married",27,0
+90000,"Male","University","Single",25,0
+80000,"Female","University","Married",42,0
+230000,"Female","High school","Single",46,0
+90000,"Female","University","Single",24,0
+50000,"Female","Graduate school","Single",23,0
+200000,"Female","Graduate school","Single",28,0
+130000,"Female","University","Single",24,0
+160000,"Female","Graduate school","Married",35,1
+30000,"Female","High school","Married",21,0
+30000,"Female","University","Married",43,0
+190000,"Male","Graduate school","Single",30,0
+50000,"Male","High school","Single",23,0
+140000,"Female","University","Single",26,0
+80000,"Female","University","Married",36,0
+50000,"Female","University","Married",47,0
+150000,"Female","Graduate school","Married",32,0
+60000,"Female","Graduate school","Single",31,0
+200000,"Male","Graduate school","Single",26,0
+80000,"Female","University","Single",32,0
+240000,"Male","Graduate school","Married",46,0
+90000,"Female","University","Married",27,0
+50000,"Male","University","Others",46,1
+80000,"Female","University","Married",35,0
+100000,"Female","High school",NA,56,0
+130000,"Male","University","Single",32,0
+60000,"Male","University","Single",24,1
+30000,"Female","University","Single",24,0
+50000,"Female","High school","Single",26,0
+130000,"Female","University","Married",48,0
+230000,"Female","High school","Married",39,0
+200000,"Female","University","Single",41,0
+50000,"Female","Graduate school","Single",28,0
+160000,"Female","University","Single",28,0
+150000,"Female","Graduate school","Married",33,0
+60000,"Male","Graduate school","Married",38,1
+490000,"Male","Graduate school","Single",41,0
+110000,"Female","University","Married",37,0
+500000,"Male","Graduate school","Married",36,0
+20000,"Male","High school","Married",53,0
+130000,"Male","Graduate school","Single",30,0
+170000,"Female","University","Single",34,0
+230000,"Male","High school","Married",39,0
+90000,"Female","Graduate school","Married",38,0
+180000,"Female","University","Married",36,1
+150000,"Female","University","Single",28,1
+150000,"Male","Graduate school","Married",36,0
+60000,"Female","University","Married",40,0
+80000,"Male","Graduate school","Single",24,0
+180000,"Male","Graduate school","Single",31,0
+50000,"Male","High school","Married",51,0
+110000,"Male","University","Married",38,1
+230000,"Female",NA,"Single",40,0
+50000,"Male","University","Single",35,0
+320000,"Female","High school","Married",30,0
+190000,"Male","High school","Married",64,0
+100000,"Female","Graduate school","Single",33,0
+200000,"Female","Others","Single",42,0
+500000,"Female","Graduate school","Married",45,0
+60000,"Female","University","Married",49,1
+40000,"Female","University","Married",39,0
+90000,"Female","University","Single",23,0
+320000,"Male","Graduate school","Single",25,0
+50000,"Female","High school","Married",36,0
+160000,"Female","Graduate school","Single",40,0
+170000,"Male","Graduate school","Single",36,0
+70000,"Male","University","Married",39,1
+150000,"Male","University","Married",31,0
+170000,"Female","University","Single",34,1
+500000,"Male","Graduate school","Married",46,0
+410000,"Female","Graduate school","Married",53,0
+50000,"Female","University","Single",23,0
+180000,"Female","Graduate school","Single",30,0
+100000,"Female","University","Married",39,0
+50000,"Female","High school","Married",27,0
+200000,"Male","High school","Single",52,0
+280000,"Female","Graduate school","Married",35,0
+60000,"Female","University","Single",24,1
+240000,"Female","University","Married",35,1
+500000,"Female","Graduate school","Single",28,1
+80000,"Female","University","Married",47,0
+80000,"Male","University","Single",23,0
+220000,"Female","University","Married",52,0
+300000,"Female","High school","Married",28,1
+130000,"Male","University","Single",30,0
+160000,"Female","Graduate school","Married",27,0
+270000,"Female","University","Married",51,0
+50000,"Female","University","Single",29,0
+500000,"Male","Graduate school","Married",56,0
+60000,"Female","University","Single",23,1
+380000,"Male","High school","Married",52,0
+180000,"Female","Graduate school","Single",27,0
+80000,"Female","Graduate school","Others",25,0
+210000,"Female","High school","Married",33,0
+200000,"Male","Graduate school","Single",34,0
+20000,"Male","Graduate school","Single",23,0
+50000,"Male","High school","Single",37,1
+130000,"Male","University","Married",46,0
+500000,"Male","Graduate school","Married",51,0
+130000,"Female","Others","Single",28,0
+200000,"Female","Graduate school","Married",36,0
+300000,"Female","University","Married",40,0
+50000,"Female","University","Married",42,0
+200000,"Female","Graduate school","Single",33,0
+50000,"Female","University","Married",42,0
+50000,"Male","High school","Married",54,0
+120000,"Female","Graduate school","Single",32,0
+390000,"Male","High school","Married",39,0
+100000,"Male","University","Married",31,1
+10000,"Female","Graduate school","Single",24,0
+220000,"Female","Graduate school","Single",35,0
+200000,"Female","Graduate school","Single",33,0
+80000,"Female","High school","Married",32,0
+340000,"Female","University","Married",37,0
+230000,"Male","University","Married",35,0
+50000,"Male","Graduate school","Single",23,0
+350000,"Male","University","Single",33,0
+10000,"Male","University","Single",46,1
+230000,"Female","Graduate school","Married",24,0
+340000,"Female","Graduate school","Single",42,1
+210000,"Female","Graduate school","Single",34,1
+200000,"Female","Graduate school","Married",33,0
+360000,"Female","University","Single",39,0
+170000,"Female","University","Single",24,0
+60000,"Male","University","Married",36,0
+150000,"Female","High school","Single",23,0
+20000,"Female","University","Married",29,0
+260000,"Female","High school","Single",42,1
+160000,"Female","Graduate school","Married",33,1
+100000,"Female","High school","Single",28,0
+140000,"Female","Graduate school","Married",40,1
+390000,"Female","University","Single",39,0
+20000,"Male","High school","Single",57,0
+100000,"Female","High school","Married",36,0
+470000,"Female","University","Single",26,0
+250000,"Female","University","Married",29,0
+120000,"Male","University","Single",45,0
+220000,"Male","University","Married",49,0
+50000,"Male","Graduate school","Single",30,0
+430000,"Male","High school","Single",26,0
+50000,"Female","Graduate school","Single",29,0
+140000,"Male","University","Married",48,0
+130000,"Female","Graduate school","Single",33,0
+340000,"Male","University","Single",30,1
+20000,"Male","University","Single",30,0
+10000,"Female","University","Single",23,0
+360000,"Female","Graduate school","Single",29,0
+130000,"Female","University","Married",40,0
+210000,"Male","University","Single",47,1
+110000,"Female","High school","Married",44,0
+180000,"Female","Graduate school","Single",28,0
+110000,"Male","Graduate school","Single",29,0
+240000,"Female","Graduate school","Married",34,0
+320000,"Male","Graduate school","Married",47,0
+50000,"Male","High school","Single",26,0
+40000,"Female","University","Married",53,1
+450000,"Male","Graduate school","Married",61,1
+360000,"Male","University","Single",31,1
+10000,"Female","University","Single",40,0
+370000,"Male","University","Single",39,0
+20000,"Female","High school","Single",22,1
+210000,"Male","University","Single",26,1
+200000,"Male","Graduate school","Single",36,0
+260000,"Female",NA,"Married",28,0
+30000,"Female","University","Single",22,0
+200000,"Male","Graduate school","Single",27,1
+130000,"Female","University","Married",45,0
+50000,"Female","University","Single",27,0
+130000,"Female","University","Married",53,0
+290000,"Female","University","Single",29,0
+310000,"Female","Graduate school","Married",38,1
+150000,"Male","University","Married",40,1
+60000,"Male","University","Single",24,1
+50000,"Male","Graduate school","Single",48,0
+50000,"Female","University","Married",27,0
+190000,"Female","University","Single",31,0
+220000,"Female","Graduate school","Single",30,0
+240000,"Male","University","Single",27,0
+90000,"Female","University","Others",36,0
+500000,"Male","Graduate school","Married",46,0
+200000,"Female","High school","Married",35,0
+140000,"Male",NA,"Single",30,0
+400000,"Male","Graduate school","Married",44,0
+180000,"Male","University","Single",26,0
+30000,"Male","University","Single",51,1
+200000,"Male","High school","Single",31,0
+230000,"Female","High school","Single",42,1
+110000,"Female","University","Single",36,0
+60000,"Male","University","Single",28,1
+270000,"Male","Graduate school","Married",50,0
+80000,"Female","University","Married",29,1
+20000,"Male","University","Married",49,1
+30000,"Female","University","Married",33,1
+100000,"Female","Graduate school","Single",25,0
+60000,"Male","University","Married",32,0
+160000,"Male","University","Married",43,0
+50000,"Male","University","Married",32,1
+210000,"Female","Graduate school","Single",29,0
+360000,"Female","Graduate school","Single",27,1
+30000,"Female","High school","Married",49,0
+50000,"Female","University","Married",41,1
+530000,"Female","University","Married",44,1
+120000,"Female","University","Single",26,0
+50000,"Female","High school","Married",47,1
+180000,"Female","Graduate school","Single",33,1
+440000,"Female","Graduate school","Married",37,0
+100000,"Male","Graduate school","Single",28,0
+100000,"Female","University","Single",24,1
+380000,"Male","Graduate school","Single",32,0
+30000,"Male","High school","Single",58,0
+320000,"Female","Graduate school","Married",29,0
+290000,"Female","University","Single",29,0
+500000,"Female","Graduate school","Married",45,0
+230000,"Female","High school","Married",37,0
+200000,"Female","High school","Married",42,0
+90000,"Female","High school","Married",37,0
+100000,"Female","University","Married",42,1
+430000,"Male","Graduate school","Married",51,0
+180000,"Female","University","Single",28,1
+50000,"Male","High school","Single",43,0
+150000,"Male","Graduate school","Single",35,0
+340000,"Female","Graduate school","Others",42,0
+500000,"Female","Graduate school","Single",28,0
+280000,"Male","University","Single",30,0
+170000,"Male","Graduate school","Single",25,0
+60000,"Female","University","Single",22,1
+30000,"Male","Graduate school","Single",33,0
+80000,"Male","University","Single",48,0
+60000,"Male","University","Married",51,0
+60000,"Male","University","Single",27,1
+170000,"Female","University","Married",50,0
+240000,"Female","University","Married",53,0
+220000,"Male","Graduate school","Married",39,1
+80000,"Female","University","Married",35,1
+360000,"Female","University","Single",53,0
+500000,"Female","University","Married",39,0
+170000,"Female","Graduate school","Single",37,0
+390000,"Female","High school","Married",38,1
+330000,"Female","High school","Married",50,0
+70000,"Female","University","Single",23,1
+150000,"Female","University","Single",31,0
+180000,"Female","University","Married",44,0
+480000,"Female","High school","Married",41,0
+90000,"Female","High school","Married",53,1
+290000,"Female","University","Single",34,0
+210000,"Female","Graduate school","Single",35,0
+100000,"Female","University","Single",30,0
+360000,"Male","Graduate school","Married",48,0
+300000,"Male","University","Married",40,0
+50000,"Female","High school","Single",56,1
+110000,"Male","High school","Single",27,0
+480000,"Male","Graduate school","Married",41,0
+360000,"Female","University","Married",36,0
+200000,"Female","Graduate school","Single",41,0
+20000,"Male","Graduate school","Single",24,1
+430000,"Female","Graduate school","Single",30,0
+20000,"Male","University","Married",27,0
+360000,"Male","High school","Married",42,0
+500000,"Female","Graduate school","Married",38,0
+120000,"Male","University","Single",27,1
+110000,"Female","University","Single",59,0
+230000,"Female","University","Married",46,0
+90000,"Female","High school","Single",24,1
+160000,"Female","University","Single",39,1
+80000,"Female","University","Married",37,1
+30000,"Male","Graduate school","Single",24,1
+200000,"Male","University","Married",51,1
+200000,"Female","University","Married",50,0
+50000,"Male","University","Single",29,0
+360000,"Female","Graduate school","Married",32,0
+450000,"Male","Graduate school","Married",45,0
+20000,"Female","High school","Single",28,1
+300000,"Male","High school","Married",56,0
+30000,"Female","Graduate school","Single",25,0
+140000,"Female","High school","Single",57,1
+20000,"Male","University","Single",33,0
+140000,"Male","High school","Married",36,0
+80000,"Female","University","Married",25,0
+130000,"Female","University","Married",26,0
+360000,"Female","University","Single",53,0
+160000,"Male","University","Single",57,1
+160000,"Female","Graduate school","Married",53,0
+90000,"Male","High school","Married",48,0
+80000,"Male","Graduate school","Single",39,0
+20000,"Female","University","Single",22,0
+280000,"Female","University","Married",26,0
+70000,"Male","University","Single",41,0
+220000,"Female","University","Single",30,1
+20000,"Female","University","Married",63,0
+160000,"Female","High school","Married",41,0
+280000,"Female","Graduate school","Married",37,0
+300000,"Female",NA,"Married",50,0
+50000,"Male","High school","Married",31,0
+270000,"Female","Graduate school","Single",31,0
+50000,"Male","High school","Married",22,0
+40000,"Female","University","Single",23,0
+230000,"Female","University","Married",38,0
+400000,"Female","Graduate school","Married",40,0
+180000,"Female","Graduate school","Single",28,0
+80000,"Male","University","Single",37,1
+240000,"Male","University","Single",33,1
+50000,"Female","Graduate school","Single",25,1
+780000,"Female","University","Single",41,0
+110000,"Female","University","Married",40,0
+300000,"Female","High school","Married",31,0
+110000,"Female","High school","Single",45,0
+120000,"Female","Graduate school","Single",25,0
+560000,"Female","University","Married",45,1
+20000,"Male","Graduate school","Single",40,0
+50000,"Female","University","Married",45,0
+50000,"Female","University","Married",51,0
+150000,"Female","High school","Single",43,0
+170000,"Female","University","Single",28,0
+30000,"Female","High school","Married",34,1
+150000,"Female","Graduate school","Single",27,0
+260000,"Male","High school","Married",39,0
+400000,"Female","Graduate school","Single",30,0
+400000,"Female","University","Single",38,0
+20000,"Male","High school","Married",38,1
+70000,"Female","University","Married",28,1
+80000,"Female","High school","Married",59,0
+500000,"Female","Graduate school","Single",31,1
+130000,"Female","Graduate school","Single",32,0
+400000,"Female","High school","Married",40,0
+150000,"Female","University","Single",25,0
+50000,"Female","University","Single",26,0
+200000,"Female","University","Married",33,0
+50000,"Male","Graduate school","Single",23,1
+90000,"Female","Graduate school","Single",31,1
+400000,"Female","University","Married",30,0
+150000,"Male","Graduate school","Married",47,0
+30000,"Female","University","Married",55,1
+40000,"Female","University","Single",53,0
+50000,"Male","Graduate school","Single",34,0
+200000,"Female","University","Single",29,0
+20000,"Female","Graduate school","Single",26,0
+20000,"Female","University","Married",42,0
+120000,"Female","Graduate school","Married",35,0
+120000,"Male","University","Single",34,0
+50000,"Female","Graduate school","Single",30,0
+500000,"Female",NA,"Married",32,0
+70000,"Female","University","Single",23,0
+20000,"Female","University","Married",39,0
+300000,"Female","Graduate school","Married",29,0
+260000,"Male","Graduate school","Single",32,0
+100000,"Female","University","Married",58,1
+50000,"Male","Graduate school","Single",27,1
+30000,"Female","High school","Others",48,0
+210000,"Female","University","Married",34,0
+80000,"Male","Graduate school","Single",36,0
+360000,"Female","Graduate school","Single",29,1
+450000,"Female","Graduate school","Others",37,0
+220000,"Male","University","Married",35,1
+220000,"Female","University","Single",26,0
+230000,"Male","Graduate school","Married",40,0
+30000,"Female","High school","Married",35,0
+120000,"Male","Graduate school","Single",31,0
+20000,"Female","High school","Married",35,0
+20000,"Female","University","Single",24,0
+80000,"Male","High school","Married",29,1
+30000,"Female","University","Single",22,1
+20000,"Male","High school","Single",22,1
+150000,"Female","Graduate school","Married",36,0
+50000,"Male","University","Single",51,0
+290000,"Female","University","Married",49,1
+200000,"Female","Others","Single",34,0
+50000,"Female","University","Single",23,0
+50000,"Female","High school","Married",46,0
+100000,"Female","Graduate school","Married",33,1
+80000,"Female","Graduate school","Married",34,1
+20000,"Female","University","Single",32,0
+20000,"Female","High school","Single",56,0
+20000,"Female","University","Single",38,0
+50000,"Female","University","Single",35,0
+270000,"Male","Graduate school","Married",51,1
+360000,"Male","Graduate school","Married",33,0
+190000,"Female","Graduate school","Single",33,0
+30000,"Female","University","Married",33,0
+100000,"Female","University","Single",41,0
+260000,"Female","Graduate school","Single",33,1
+30000,"Female","University","Single",25,1
+50000,"Female","University","Married",43,0
+130000,"Male","High school","Married",34,1
+460000,"Female","Graduate school","Married",38,0
+180000,"Female","Graduate school","Married",35,0
+50000,"Female","University","Married",31,1
+260000,"Male","Graduate school","Single",34,0
+50000,"Female","University","Single",48,0
+200000,"Female","Graduate school","Single",27,0
+90000,"Female","High school","Married",35,0
+150000,"Female","High school","Single",28,0
+300000,"Male","Graduate school","Single",34,0
+340000,"Female","University","Single",27,0
+340000,"Male","High school","Married",43,0
+110000,"Female",NA,"Single",32,0
+110000,"Male","University","Single",29,0
+110000,"Female","University","Married",34,0
+90000,"Female","High school","Married",53,0
+410000,"Female","Graduate school","Married",37,0
+340000,"Male","Graduate school","Married",41,0
+460000,"Male","Graduate school","Single",31,0
+490000,"Male","Graduate school","Married",41,0
+440000,"Female","University","Married",45,1
+20000,"Male","Graduate school","Single",27,0
+250000,"Male","Graduate school","Married",44,0
+90000,"Male","Graduate school","Single",30,0
+290000,"Male","University","Single",28,0
+110000,"Male","University","Married",37,0
+320000,"Female","University","Single",35,0
+80000,"Male","University","Married",52,0
+110000,"Female","University","Married",41,0
+320000,"Female","University","Married",32,0
+420000,"Female","University","Single",28,0
+300000,"Male","Graduate school",NA,37,0
+50000,"Male","University","Single",32,0
+120000,"Female","University","Single",23,0
+30000,"Male","University","Single",24,1
+130000,"Female","High school","Married",42,0
+240000,"Female","University","Married",28,0
+200000,"Female","Graduate school","Married",41,0
+100000,"Male","University","Single",29,1
+230000,"Male","Graduate school","Married",46,0
+120000,"Male","Graduate school","Single",30,0
+60000,"Female","University","Single",26,0
+500000,"Female","University","Married",39,0
+500000,"Female","University","Married",42,0
+50000,"Female","High school","Married",39,0
+10000,"Female","University","Single",22,1
+60000,"Female","University","Single",24,1
+20000,"Female","University","Single",40,0
+140000,"Female","High school","Single",53,0
+350000,"Male","University","Married",37,0
+120000,"Female","Graduate school","Single",33,0
+130000,"Male","University","Married",49,0
+360000,"Male","Graduate school","Single",35,0
+20000,"Male","High school","Married",48,1
+210000,"Female","Graduate school","Single",29,0
+160000,"Male","High school","Single",44,0
+50000,"Female","University","Single",23,0
+500000,"Male","Graduate school","Married",40,1
+20000,"Female","University","Single",22,1
+170000,"Male","Others","Single",30,0
+30000,"Female","University","Single",23,0
+70000,"Male","Graduate school","Single",51,0
+30000,"Male",NA,"Married",56,0
+30000,"Female","University","Single",23,1
+360000,"Female","University","Single",25,0
+30000,"Female","High school","Married",67,0
+80000,"Female","University","Married",35,1
+50000,"Female","University","Single",22,0
+100000,"Female","University","Married",33,0
+490000,"Male","Graduate school","Married",54,1
+320000,"Female","Graduate school","Single",32,0
+100000,"Female","University","Single",23,0
+360000,"Female","Graduate school","Married",45,1
+200000,"Female","Graduate school","Single",32,0
+90000,"Male",NA,"Single",34,0
+20000,"Female","University","Single",27,0
+230000,"Female","Graduate school","Single",29,0
+10000,"Female","High school","Married",51,0
+240000,"Female","Graduate school","Single",27,0
+200000,"Male","University","Single",25,1
+230000,"Male","Graduate school","Married",39,0
+50000,"Male","University","Single",28,0
+80000,"Female","University","Single",22,0
+160000,"Female","High school","Single",35,0
+80000,"Male","University","Single",30,0
+310000,"Female","Graduate school","Single",36,0
+10000,"Male","University","Married",31,0
+240000,"Male","Graduate school","Married",50,0
+20000,"Male","Graduate school","Single",25,0
+70000,"Male","Graduate school","Single",27,0
+360000,"Female","University","Single",34,0
+20000,"Female","University","Married",45,0
+360000,"Male","Graduate school","Married",36,0
+50000,"Female","University","Single",23,1
+490000,"Male","Graduate school","Single",30,0
+50000,"Female","University","Single",27,0
+110000,"Male","University","Single",26,0
+80000,"Female","Graduate school","Married",44,0
+110000,"Female","Graduate school","Single",32,0
+360000,"Female","University","Married",27,0
+20000,"Male","High school","Married",56,0
+270000,"Female","University","Single",25,0
+50000,"Male","High school","Single",60,0
+10000,"Male","University","Single",54,0
+220000,"Female","Graduate school","Married",31,0
+380000,"Male","Graduate school","Married",34,0
+300000,"Female","Graduate school","Single",39,0
+60000,"Female","High school","Married",28,0
+180000,"Male","Graduate school","Married",36,1
+40000,"Female",NA,"Married",48,0
+90000,"Female","Graduate school","Single",29,0
+360000,"Female","Graduate school","Single",26,0
+120000,"Male","University","Single",45,1
+20000,"Male","High school","Single",24,0
+470000,"Female","University","Married",49,1
+240000,"Female","High school","Married",55,0
+20000,"Female","University","Single",33,0
+290000,"Female","University","Married",34,0
+120000,"Male","High school",NA,26,0
+190000,"Female","University","Single",30,1
+240000,"Male","Graduate school","Married",55,1
+50000,"Male","Graduate school","Single",29,0
+180000,"Male","Graduate school","Married",48,0
+100000,"Male","High school","Single",48,1
+300000,"Male","Graduate school","Single",33,0
+100000,"Male",NA,"Married",38,0
+260000,"Male","Graduate school","Married",38,0
+160000,"Male","University","Single",37,0
+20000,"Female","University","Single",22,1
+150000,"Female","High school","Married",45,0
+180000,"Female","Graduate school","Married",44,0
+210000,"Male","Graduate school","Single",41,1
+200000,"Female","High school","Married",52,0
+160000,"Female","University","Single",29,0
+360000,"Female","University","Single",25,0
+80000,"Female","University","Single",28,0
+370000,"Male","University","Single",28,0
+210000,"Female","High school","Married",44,1
+280000,"Female","Graduate school","Married",56,0
+40000,"Female","High school","Married",39,0
+250000,"Female","Graduate school","Single",30,0
+200000,"Female","University","Married",46,1
+190000,"Male","Graduate school","Single",33,0
+320000,"Female","University","Married",33,0
+130000,"Female","High school","Married",43,1
+20000,"Female","High school","Married",42,1
+490000,"Male","High school","Married",51,1
+140000,"Female","University","Married",33,0
+170000,"Female","Graduate school","Married",35,0
+30000,"Female","University","Married",43,0
+80000,"Female","University","Married",50,0
+100000,"Female","University","Married",37,0
+240000,"Female","Graduate school","Married",41,0
+200000,"Female","Graduate school","Single",27,0
+20000,"Female","Graduate school","Single",27,0
+420000,"Female","Graduate school","Married",32,0
+10000,"Female","University","Married",40,0
+100000,"Female","University","Married",29,0
+20000,"Male","Graduate school","Single",37,1
+280000,"Female","University","Married",38,0
+120000,"Male","Graduate school","Married",54,1
+70000,"Female","University","Single",22,0
+160000,"Female","Graduate school","Single",28,0
+400000,"Female","University","Single",35,0
+200000,"Female","Graduate school","Single",25,0
+50000,"Male","Graduate school","Married",60,0
+300000,"Male","Graduate school","Single",32,1
+50000,"Male","High school","Married",38,0
+40000,"Female","Graduate school","Single",26,1
+30000,"Male","University","Single",34,0
+50000,"Female","High school","Married",46,1
+50000,"Female","University","Married",36,1
+180000,"Female","Graduate school","Single",32,0
+500000,"Male","Graduate school","Married",51,0
+460000,"Female","Graduate school","Single",29,0
+140000,"Male","Graduate school","Married",40,1
+200000,"Male","Graduate school","Single",31,0
+360000,"Female","Graduate school","Single",29,0
+50000,"Female","University","Married",32,0
+80000,"Female","University","Single",26,0
+90000,"Female","High school","Single",29,0
+240000,"Female","Graduate school","Married",43,0
+230000,"Female","Graduate school","Married",31,0
+140000,"Female","High school","Married",48,0
+90000,"Male","Graduate school","Married",38,1
+160000,"Female","University","Single",38,0
+230000,"Female","Graduate school","Single",26,1
+30000,"Female","University","Single",39,0
+30000,"Male","High school","Married",58,0
+120000,"Male","University","Single",32,0
+150000,"Female","Graduate school","Single",23,0
+200000,"Female","High school","Married",46,0
+360000,"Male","University","Married",46,0
+300000,"Female","University","Single",40,0
+70000,"Female","High school","Married",32,0
+10000,"Male","University","Married",28,0
+50000,"Female","High school","Married",39,0
+180000,"Female","University","Single",39,0
+200000,"Male","High school","Single",33,0
+400000,"Female","High school","Married",25,0
+170000,"Female","University","Single",33,0
+260000,"Female","High school","Single",38,0
+50000,"Female","University","Single",48,0
+140000,"Female","University","Single",23,0
+110000,"Male","High school","Married",51,0
+280000,"Female","University","Single",36,0
+420000,"Male","Graduate school","Single",32,0
+80000,"Female","University","Married",46,0
+130000,"Female",NA,"Married",32,0
+350000,"Male","Graduate school","Single",52,0
+490000,"Male","Graduate school","Married",57,0
+50000,"Male","University","Single",26,0
+140000,"Female","Graduate school","Single",25,1
+80000,"Female",NA,"Married",52,0
+30000,"Female","Graduate school","Single",37,1
+30000,"Male","High school","Single",36,1
+50000,"Female","High school","Married",49,1
+260000,"Female","Graduate school","Married",41,0
+100000,"Male","High school","Single",24,0
+100000,"Male","University","Single",40,0
+200000,"Female","Graduate school","Married",39,1
+140000,"Male","Graduate school","Single",27,0
+110000,"Female","University","Single",40,0
+100000,"Female","University","Married",43,0
+200000,"Male","Graduate school","Married",63,0
+20000,"Male","High school","Others",48,1
+50000,"Female","High school","Single",25,0
+20000,"Male","University","Married",36,1
+90000,"Female","University","Married",27,1
+30000,"Male","High school","Married",50,1
+30000,"Female","Graduate school","Married",32,1
+440000,"Male","Graduate school","Married",64,0
+200000,"Female","University","Married",37,0
+60000,"Male","University","Married",37,0
+420000,"Male","University","Married",34,0
+210000,"Female","University","Married",48,0
+180000,"Female","University","Married",34,1
+140000,"Female","University","Single",30,1
+410000,"Female",NA,"Married",42,0
+120000,"Male","High school","Married",47,0
+90000,"Male","University","Single",35,1
+50000,"Female","Graduate school","Single",25,0
+100000,"Female","Graduate school","Single",24,0
+50000,"Male","University","Single",23,0
+50000,"Female","University","Married",30,1
+310000,"Female","University","Single",42,0
+280000,"Male","University","Married",34,0
+20000,"Male","High school","Single",47,1
+230000,"Female","Graduate school","Married",42,0
+260000,"Female","Graduate school","Single",30,0
+200000,"Male","Graduate school","Married",43,0
+50000,"Male","University","Married",44,1
+500000,"Male","Graduate school","Married",35,0
+50000,"Female","Graduate school","Single",28,0
+50000,"Female","High school","Married",49,1
+50000,"Female","High school","Married",32,1
+170000,"Male","University","Single",27,0
+120000,"Female","University","Single",26,0
+110000,"Female","University","Single",51,0
+30000,"Female","University","Married",47,1
+50000,"Female","University","Single",36,1
+400000,"Female","Graduate school","Married",38,0
+120000,"Male","University","Single",25,0
+200000,"Male","University","Married",35,0
+250000,"Male","University","Single",25,0
+180000,"Male","Graduate school","Married",37,0
+50000,"Male","Graduate school","Single",24,0
+240000,"Female","University","Single",31,0
+130000,"Female","University","Single",24,0
+230000,"Female","Graduate school","Single",42,0
+30000,"Female","University","Single",22,1
+30000,"Male","University","Married",23,1
+60000,"Female","Graduate school","Single",27,0
+60000,"Male","High school","Married",31,1
+200000,"Male","Graduate school","Single",29,0
+30000,"Female","High school","Married",36,0
+30000,"Female","University","Married",43,0
+350000,"Female","Graduate school","Single",31,0
+270000,"Male","Graduate school","Married",37,1
+350000,"Female","Graduate school","Single",32,0
