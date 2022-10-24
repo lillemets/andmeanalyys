@@ -73,7 +73,9 @@ Rohkem valikuid korrelatsioonimaartikis joonistamisel pakub funktsioon `heatmap.
 ```{r}
 #| message: false
 library('gplots')
-heatmap.2(korrelatsioonid)
+heatmap.2(korrelatsioonid, col = 'bluered', 
+          cellnote = round(korrelatsioonid, 2), notecol = 'black', 
+          srtRow = 45, srtCol = 45)
 ```
 
 Interaktiivse seosekaardi tekitamiseks saame kasutada funktsiooni `heatmaply()` samanimelisest laiendusest. 

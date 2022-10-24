@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 22&nbsp; Otsusepuu</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./lähinaabrid.html" rel="next">
+<link href="./logreg.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Otsusepuu</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-otsusepuu" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Otsusepuu</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!--
+[[Decision tree (DT)]]
+-->
+<p>Otsusepuu kujutab endast joonist, mis ilmestab otsuste hargnevust järgmiste otsusteni ja lõpuks mingi tulemuseni. Otsusepuud saab kasutada mitmesuguste otsustuseid hõlmavate probleemide lahendamisel, aga ka vaatluste jaotamiseks andmestikus. Vaatlused saab järk-järgult jaotada sisendtunnuste alusel nii, et ühes jaotuses on ainult sama väljundtunnuse väärtusega vaatlused.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Andmeanalüüsis on <strong>otsusepuu</strong> (<em>decision tree</em>) statistiline mudel, mis seisneb teatud reeglite hierarhias. Need reeglid määravad, kuidas jõuda väljundtunnuse väärtusteni jagades vaatlusi järk-järgult sisendtunnuste väärtuste alusel.</p>
+</div>
+</div>
+<p>Sisend- ja väljundtunnused võivad otsusepuul olla kas nimi- või arvtunnused. Nimiskaalal väljundtunnuse korral valitakse sõlmedes üks konkreetne väärtus, arvskaala korral aga vaatluste keskmine väärtus. Seega oleneb otsusepuu poolt lahendatav ülesanne väljundtunnuse skaalast:</p>
+<ul>
+<li>nimiskaalal väljundtunnuse korral on tegemist klassifitseerimisega,</li>
+<li>arvskaalal väljundtunnuse puhul rakendatakse aga sisuliselt regressiooni.</li>
+</ul>
+<p>Otsusepuu koosneb</p>
+<ul>
+<li>otsusesõlmedest, milles sisendtunnus jaotab vaatlused kaheks;<br>
+</li>
+<li>harudest sõlmede vahel;<br>
+</li>
+<li>lõppsõlmedest, millega hargnemine lõppeb ja millest igaühes on teatud osa vaatlustest.</li>
+</ul>
+<p>Sageli näitlikusatakse otsusepuud 1912. aastal uppunud reisilalaeva Titanic reisijate pääsemise näitel. Vaatame siin analoogset näidet parvlaev Estonia õnnetuse kohta aastal 1994.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>estonia <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/estoniapassengers.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(estonia)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   989 obs. of  8 variables:
+ $ passengerid: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ country    : chr  "Sweden" "Estonia" "Estonia" "Sweden" ...
+ $ firstname  : chr  "ARVID KALLE" "LEA" "AIRI" "JURI" ...
+ $ lastname   : chr  "AADLI" "AALISTE" "AAVASTE" "AAVIK" ...
+ $ sex        : chr  "M" "F" "F" "M" ...
+ $ age        : int  62 22 21 53 55 71 60 18 30 63 ...
+ $ category   : chr  "P" "C" "C" "C" ...
+ $ survived   : int  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+</div>
+</div>
+<p>Otsusepuu saame arvutada funktsiooni <code>rpart()</code> abil samanimelisest laiendusest. Uurime pääsemist (<code>survival</code>), võttes aluseks reisija soo (<code>sex</code>), vanuse (<code>age</code>) ja selle, kas tegemist oli reisija või meeskonnaliikmega (<code>category</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>puu <span class="ot">&lt;-</span> <span class="fu">rpart</span>(survived <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> category, estonia)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>puu</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>n= 989 
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+1) root 989 118.02220 0.13852380  
+  2) age&gt;=43.5 507  26.45365 0.05522682 *
+  3) age&lt; 43.5 482  84.35062 0.22614110  
+    6) sex=F 212  18.91981 0.09905660 *
+    7) sex=M 270  59.31852 0.32592590 *</code></pre>
+</div>
+</div>
+<p>Nagu üleval näha, siis funktsiooni <code>rpart()</code> tulemuse sisestamisel kuvatakse puu liigendatud loeteluna. Sama teabe saab vormistada ilmekamalt joonisena kasutades funktsiooni <code>rpart.plot()</code> sama nimega laiendusest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart.plot'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(puu)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-lihtne" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="otsusepuu_files/figure-html/fig-lihtne-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Joonis 22.1: Lihtne otsusepuu</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Sõlmedes on murdarvuna esitatud väljundtunnuse mingi väärtuse tõenäosus. Protsendina on esitatud eelnevas sõlmes olevale tingimusele vastavate või mitte vastavate vaatluste osakaal. Tingimustele vastavad vaatlused hargnevad vasakule ja mitte vastavad vaatlused hargnevad paremale.</p>
+<p>Joonisel <a href="#fig-lihtne">Joonis&nbsp;<span>22.1</span></a> esitatud näites on algses otsusesõlmes 100% vaatlustest, kellest 0.14 puhul oli tunnuse <code>survived</code> väärtuseks 1 ehk 14% kõikidest pardal olnutest pääsesid. Tingimusele <code>age &gt;= 44</code> vastavaid ehk vanuses 44 aastat või vanemaid oli pardal 51% ja nendest pääses 0.055 ehk 5,5%. Lõppsõlmede võrdluses kõige suurem pääsemise tõenäosus 33% oli alla 44-aastastel meestel (ei vastanud tingimusele <code>sex = F</code>). Viimased moodustasid pardal olnutest 27%.</p>
+<p>Sageli on arvutatud otsusepuu liiga lihtne, mida võib öelda ka eelneva näite kohta. Sellisel juhul saame täpsustada argumendi <code>control</code> abil muuhulgas järgnevaid parameetreid:</p>
+<ul>
+<li>väikseim vaatluste arv harus (<code>minsplit</code>);</li>
+<li>väikseim vaatluste arv lõppsõlmes (<code>minbucket</code>).</li>
+<li>keerukus (<code>cp</code>), mille puhul väiksem arv näitab suuremat keerukust;</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>puu <span class="ot">&lt;-</span> <span class="fu">rpart</span>(survived <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> category, estonia, </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">control =</span> <span class="fu">list</span>(<span class="at">minsplit =</span> <span class="dv">20</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">minbucket =</span> <span class="dv">10</span>, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">cp =</span> <span class="fl">0.005</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(puu)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-valikud" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="otsusepuu_files/figure-html/fig-valikud-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Joonis 22.2: Keerukam otsusepuu</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Kuna otsusepuu on statistiline mudel, siis saame seda kasutada prognoosimiseks. R keeles saame prognoosida kasutades funktsiooni <code>predict()</code>. Nt 23-aastase naissoost reisija pääsemise tõenäosuse saame leida alljärgnevalt. Kuigi tunnus <code>category</code> prognoosi ei mõjuta nagu näeme jooniselt <a href="#fig-valikud">Joonis&nbsp;<span>22.2</span></a>, peame selle siiski täpsustama.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(puu, <span class="fu">list</span>(<span class="at">sex =</span> <span class="st">'F'</span>, <span class="at">age =</span> <span class="dv">23</span>, <span class="at">category =</span> <span class="st">'P'</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1 
+0.1351351 </code></pre>
+</div>
+</div>
+<p>Näeme, et nimetatud tunnustega pardal viibija pääsemise tõenäosus oli umbes 0.14. Sama tulemuse saame tegelikult lugeda ka ilma prognoosimata jooniselt <a href="#fig-valikud">Joonis&nbsp;<span>22.2</span></a>.</p>
+<p>Saame otsusepuud kasutada ka mitme klassiga nimitunnuse seletamiseks. Käesoleva andmetabeli alusel võiksime kirjeldada nt reisijate päritoluriiki (<code>country</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'rpart'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>puu <span class="ot">&lt;-</span> <span class="fu">rpart</span>(country <span class="sc">~</span> sex <span class="sc">+</span> age <span class="sc">+</span> category, estonia)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(puu)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-riik" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="otsusepuu_files/figure-html/fig-riik-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Joonis 22.3: Mitut klassi prognoosiv otsusepuu</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mitme klassiga väljundtunnuse korral kuvatakse otsusepuu sõlmedes vastavalt legendis esitatud järjestusele eraldi iga klassi tõenäosus. Sõlme värv vastab kõige suurema tõenäosusega (osakaaluga) klassile ja klassid, mis üheski sõlmes ei domineeri, on legendis märkega “(unused)”. Näeme, et kui pardal viibija oli meeskonnaliige (<code>category = C</code>), siis oli ta 88% juhtudest pärit Eestist. Kui isik ei olnud meeskonnaliige (mitte <code>category = C</code>) ja oli 42-aastane või vanem (mitte <code>age &lt; 42</code>), siis oli ta 85% tõenäosusega pärit Rootsist ja ainult 10% juhtudest Eestist.</p>
+<p>Otsusepuu iga hargnemine oleneb sellest, mis sisendtunnus ja millised selle sisendtunnuse väärtused vaatluste jaotamisel aluseks võetakse. Igas sõlmes valitakse selline sisendtunnus ja selle väärtus või lävend, mis jagaksid vaatlused väljundtunnuse väärtuste osas võimalikult selgelt kaheks. Või siis teistipidi, hargnemise tulemusel peaks vähenema andmetes olev <strong>entroopiat</strong> ehk korratus. Eesmärk on jõuda selliste harudeni, milles oleksid võimalikult sarnase väljundtunnuse väärtusega vaatlused. Nt joonisel <a href="#fig-lihtne">Joonis&nbsp;<span>22.1</span></a> esitatud otsusepuu alusel võime öelda, et kõige selgemini jaotab reisijad pääsenuteks ja mitte pääsenuteks nende vanus ning lävend on sealjuures 44 eluaastat.</p>
+<p>Otsusepuul on palju eeliseid teiste meetodite ees:</p>
+<ul>
+<li>otsusepuu on mudelina lihtsasti tõlgendatav ja arusaadav igaühele,</li>
+<li>erinevalt paljudest teistest mudelitest ei sea otsusepuu piiranguid kasutavate tunnuste mõõtmisskaalale,</li>
+<li>puuduvad väärtused saab enamike algoritmide korral määratleda eraldi tunnuse väärtusena,</li>
+<li>erindid on tuvastatavad ega mõjuta ülejäänud mudelit,</li>
+<li>interaktsioonid on puu ülesehituses ja neid ei pea eraldi määratlema.</li>
+</ul>
+<p>Otsusepuu puuduseks on selle tundlikkus andmetes oleva müra suhtes. See tähendab, et otsusepuu kirjeldab liiga täpselt selle aluseks olevaid andmeid ega sobi seega prognoosimiseks. Seetõttu kasutatakse prognoosimiseks hoopis korraga suurel hulgal juhuslikke otsusepuusid ehk <strong>juhumetsa</strong> (<em>random forest</em>).</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./logreg.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./lähinaabrid.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

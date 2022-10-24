@@ -1,1 +1,23 @@
 # Klassifitseerimine {#sec-klassifitseerimine}
+
+<!--
+[[Classification]]
+-->
+
+Üldises mõttes on **klassifitseerimine** (*classification*) vaatluste jaotamine klassidesse. Selle käigus määratakse vaatlusele kõige sobivam klass lähtuvalt mudelist, mida võib nimetada ka klassifitseerijaks (*classifier*). Selle mudeli aluseks sisendtunnus(ed) ja väljundtunnus, mis sisaldab klasse. Seega saab seda mudelit kasutada ka klassi prognoosimiseks ehk vastava nimitunnuse väärtuse määramiseks, võttes aluseks sisendtunnuste väärtused. Klassifitseerimise praktiline väärtus seisnebki eelkõige klassi määramisel vaatlustele, mille korral see teada ei ole.
+
+::: {.callout-important}
+Andmeanalüüsis on **klass** (*class*) sellise nimitunnuse väärtus, mis prognoosimiseks mõeldud mudelis on määratud väljundtunnuseks. Klassifitseerimisel on väljundtunnuse klasse enamasti rohkem kui kaks, aga ka klassid võivad moodustuda ka binaartunnuse alusel.
+:::
+
+Kõige sobiva klassi määramiseks on niisiis *vaja teada vastava nimitunnuse väärtusi* vähemalt osade vaatluste kohta. Nii erineb klassifitseerimine klasterdamisest, mille korral vaatlused jaotatakse klastritesse ainult sisendtunnuse väärtuste alusel. 
+
+Klassifitseerimine ei ole konkreetne meetod, vaid üldnimetus meetoditele, mida saab kasutada vaatluste klassifitseerimiseks jaotamiseks. Sealjuures on asjakohased meetodid 
+
+- lähinaabrid (@sec-lähinaabrid), 
+- otsusepuu (@sec-otsusepuu) sh juhumets,
+- tugivektor, 
+- logistiline (@sec-logreg) ja multinomiaalne regressioon. 
+- tehisnärvivõrgud.
+
+Klassifitseerimise täpsust saab hinnata veatabeli (@sec-logreg) ja sellega seotud mõõdikute alusel.

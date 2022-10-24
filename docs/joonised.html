@@ -278,6 +278,16 @@ div.csl-indent {
   <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -290,27 +300,37 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
   </div>
 </li>
       </ul>
@@ -340,7 +360,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-joonised" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></h1>
 </div>
 
 
@@ -354,6 +374,12 @@ div.csl-indent {
 
 </header>
 
+<!--
+[[Statistical plots]]
+[[Visualization]]
+[[Prefer simplicity to sophistication]]
+[[Colors in data visualization]]
+-->
 <p>Andmete esitamine ilmekate joonistena võib tundunda lihtsakoelisena. Siiski on enamikes olukodades andmete visualiseerimine kasulikum kui nende esitamine mahuka teksti või keerukate tabelitena. Andmete visualiseerimine on teabe esitamine graafilisel kujul ja sellel on eelnevalt nimetatu ees mitu eelist <span class="citation" data-cites="saltz17introduction">(<a href="viited.html#ref-saltz17introduction" role="doc-biblioref">Saltz &amp; Stanton, 2017</a>)</span>:</p>
 <ul>
 <li>joonistelt saab teabe kätte kiiremini,</li>
@@ -494,10 +520,8 @@ div.csl-indent {
 </div>
 <p>Laienduse <code>ggplot2</code> kasutamise kohta on internetis hulgaliselt selgitusi ja näiteid. Nt võib selle abil joonistamisel võtta kõrvale <a href="https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf">juhendi</a>.</p>
 <!--
-[[Statistical plots]]
-[[Visualization]]
-[[Prefer simplicity to sophistication]]
-[[Colors in data visualization]]
+install.packages('scatterplot3d')
+library('scatterplot3d')
 -->
 
 

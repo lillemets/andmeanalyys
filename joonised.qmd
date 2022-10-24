@@ -1,4 +1,11 @@
-# Joonised {#sec-joonised}
+# Joonised 
+
+<!--
+[[Statistical plots]]
+[[Visualization]]
+[[Prefer simplicity to sophistication]]
+[[Colors in data visualization]]
+-->
 
 Andmete esitamine ilmekate joonistena võib tundunda lihtsakoelisena. Siiski on enamikes olukodades andmete visualiseerimine kasulikum kui nende esitamine mahuka teksti või keerukate tabelitena. Andmete visualiseerimine on teabe esitamine graafilisel kujul ja sellel on eelnevalt nimetatu ees mitu eelist [@saltz17introduction]:
 
@@ -126,8 +133,6 @@ ggplot(riigid) +
 Laienduse `ggplot2` kasutamise kohta on internetis hulgaliselt selgitusi ja näiteid. Nt võib selle abil joonistamisel võtta kõrvale [juhendi](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf).
 
 <!--
-[[Statistical plots]]
-[[Visualization]]
-[[Prefer simplicity to sophistication]]
-[[Colors in data visualization]]
+install.packages('scatterplot3d')
+library('scatterplot3d')
 -->

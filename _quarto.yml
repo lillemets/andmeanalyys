@@ -33,6 +33,8 @@ book:
     - seosed.qmd
     - põhjuslikkus.qmd
     - tinglikkus.qmd
+    - klassifitseerimine.qmd
+    - kaugus.qmd
 #    - sobitamine.qmd
 #    - standardiseerimine.qmd
 #    - veatabel.qmd
@@ -43,7 +45,8 @@ book:
     - usaldusvahemikud.qmd
     - linreg.qmd
     - logreg.qmd
-#    - klassifitseerimine.qmd
+    - otsusepuu.qmd
+    - lähinaabrid.qmd
 #    - klasterdamine.qmd
 #    - mõõtmevähendus.qmd
 #    - tekstikaeve.qmd

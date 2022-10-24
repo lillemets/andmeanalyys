@@ -1,10 +1,10 @@
 # Korrastus {#sec-korrastus}
 
-Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi kõige aeganõudvam osa. Andmeanalüütikud ise on hinnanud, et kogu andmeanalüüsi käigus veedavad nad umbes 80% ajast andmeid korrastades [@wickham14tidy; @kelleher18data]. Sekundaarandmed ei ole peaaegu kunagi täpselt selliselt vormistatnud nagu meie poolt valitud protseduur seda eeldab, mistõttu ilma oskuseta andmeid korrastada ei ole nendega enamasti suurt midagi teha.
-
 <!--
 Data preparation
 -->
+
+Andmete edasiseks analüüsimiseks ette valmistamine kipub olema kogu andmeanalüüsi kõige aeganõudvam osa. Andmeanalüütikud ise on hinnanud, et kogu andmeanalüüsi käigus veedavad nad umbes 80% ajast andmeid korrastades [@wickham14tidy; @kelleher18data]. Sekundaarandmed ei ole peaaegu kunagi täpselt selliselt vormistatnud nagu meie poolt valitud protseduur seda eeldab, mistõttu ilma oskuseta andmeid korrastada ei ole nendega enamasti suurt midagi teha.
 
 Alljärgnevalt uurime keskmist brutopalka ja palgalõhet Eestis ning nendega seotud näitajaid.
 
@@ -407,3 +407,7 @@ ggplot(palkLõhe) +
   facet_wrap(~tegevusala, ncol = 3) +
   theme_minimal()
 ```
+
+<!--
+case_when()
+-->

@@ -270,7 +270,7 @@ joonis +
   geom_segment(aes(xend = area, yend = fitted(lm(price ~ area, majad))), color = 'tomato', lwd = .2)
 ```
 
-Nagu näeme, siis vähemalt enamike majade korral ei ole hind täpselt selline nagu mudeli alusel oletada võiks. Ehk alati esinevad **regressiooni jäägid** (*residuals*), mis joonisel @fig-jääk on esitatud punasega. Need jäägid saame aga arvutada ja seejärel kasutada regressioonimudeli headuse hindamiseks. Väikeste vigadega regressioonimudel on mõistagi parem kui mudel, mis teeb suuri vigasid. 
+Nagu näeme, siis vähemalt enamike majade korral ei ole hind täpselt selline nagu mudeli alusel oletada võiks. Ehk alati esinevad **regressiooni jäägid** (*residuals*), mis joonisel @fig-jääk on esitatud punasega. Jääke saame kuvada funktsiooniga `residuals()`, mille argumendiks on regressioonimudel. Need jäägid saame aga arvutada ja seejärel kasutada regressioonimudeli headuse hindamiseks. Väikeste vigadega regressioonimudel on mõistagi parem kui mudel, mis teeb suuri vigasid. 
 
 Regressioonimudeli headuse hindamiseks jääkide alusel on välja mõeldud palju erinevaid mõõdikuid, sh R-ruut, keskmine ruutviga, keskmine absoluutviga.
 

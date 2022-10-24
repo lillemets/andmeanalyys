@@ -1,0 +1,95 @@
+# Lähinaabrid {#sec-lähinaabrid}
+
+<!--
+[[k-nearest neighbors (k-NN)]]
+-->
+
+Vaatluse lähimad naabrid on sellised vaatlused, mis valitud tunnuse väärtuste mõttes on meid huvitavale vaatlusele kõige sarnasemad ehk asuvad sellele kõige lähemal. Läheduse määrab statistiline kaugus, mistõttu sarnasuse aluseks olevad tunnused peavad olema mõõdetud arvskaalal. Lähinaabrite meetodil ei ole muid eeldusi, aga tuleb arvestada, et liiga suure arvu tunnuste alusel kauguse mõõtmisega kaasnevad ka suured kaugused. Selle tulemusel ei pruugi kaugused enam vaatluste sarnasust hästi iseloomustada (*curse of dimensionality*). 
+
+::: {.callout-important}
+**Lähinaabrid** (*k-nearest neighbors*) tähendab lihtsalt igale vaatlusele kõige sarnasemate vaatluse valimist tunnuste ruumis lähtudes statistilisest kaugusest. Sealjuures peab olema eelnevalt määratud valitavate vaatluste arv $k$. Vaatluste võrdlemisel lähimate naabritega saame prognoosida selliste tunnuste väärtusi, mida me ei kasutanud kauguste arvutamisel.
+:::
+
+Lähinaabrite meetodit võib niisiis käsitleda ka statistilise mudeli või vähemalt algoritmina, milles sisendtunnusteks on kauguse arvutamisel aluseks olevad tunnused. Kui ei ole teada mõni vaatluse väljundtunnuse väärtus, siis selle saab tuletada lähimate naabrite vastava tunnuse väärtuste alusel. Sealjuures on prognoosimisel tegemist klassifitseerimisega nimiskaalal väljundtunnuse korral ja regressiooniga kui väljundtunnus on arvskaalal.
+
+Lähinaabrite meetodi rakendamine prognoosimiseks koosneb alljärgnevatest sammudest.
+
+1. Valime lähimate naabrite arvu $k$. Kõige sobivama $k$ leidmiseks saame kogu tegevust erinevate $k$ väärtustega korrata ja valida sellise $k$, mis annab kõige täpsema prognoosi.
+2. Arvutame kõikide vaatluste vahel Eukleidilise kauguse tunnuste ruumis.
+3. Määrame igale vaatlusele arvu $k$ lähimad vaatlused.
+4. Nimiskaalal väljundtunnuse korral määrame igale vaatlustele naabrite seas kõige sagedasema nimitunnuse väärtuse. Arvskaalal väljundtunnuse puhul on prognoos aga naabrite väärtuste nt aritmeetiline keskmine.
+
+Lähinaabrite meetodi alusel prognoosimise puuduseks on prognooside sõltuvus arvust $k$. Samuti on meetod arvutuslikult kulukas, sest iga vaatluse kohta tuleb kõik kaugused teistest vaatlustest eraldi leida.
+
+Kasutame järgnevas näites andmeid iirise taimede erinevate osade suuruste ja liigi kohta. Vaatame esimesi ridu ja loetleme liikide esinemissagedused.
+
+```{r}
+#| echo: false
+set.seed(0)
+data(iris)
+iris$Species[sample(1:nrow(iris), 20)] <- NA
+iris <- iris[sample(1:nrow(iris)), ]
+```
+
+```{r}
+head(iris)
+table(iris$Species, useNA = 'ifany')
+```
+
+Andmetabelis on õietupe (*sepal*) ja õiekrooni (*petal*) pikkused ja laiused ning liik (`Species`). Sagedustabelist ilmneb, et 20 taime puhul on liik teadmata. 
+
+Uurime seost õietupe suuruste ja liigi vahel.
+
+```{r}
+#| label: fig-asendamata
+#| fig-cap: Hajuvusjoonis õietupe mõõtmete kohta.
+library('ggplot2')
+ggplot(iris) + aes(x = Sepal.Length, y = Sepal.Width, color = Species) + 
+  geom_point() +
+  theme_minimal()
+```
+
+Näeme, et õietupe mõõtmete alusel on võimalik teatud juhtudel tuletada liik. Kasutame laiendusest `cccd` funktsiooni `nng()`, et leida ja joonistada iga punkti üks lähim naaber ($k = 1$). 
+
+```{r}
+#| warning: false
+#| label: fig-lähinaabrid
+#| fig-cap: Iirise taimede lähimad naabrid $k = 1$ korral.
+library('cccd')
+lnJoonis <- iris[, 1:2] %>% as.matrix %>% nng(k = 1)
+par(mar = rep(0,4))
+plot(lnJoonis, 
+     edge.arrow.size = .5, 
+     vertex.size = 5, vertex.label = NA, 
+     vertex.color = iris$Species)
+```
+
+Joonisel @fig-lähinaabrid on valgega tähistatud need taimed, mille liik on teadmata. Määrame selle liigi lähima naabri liigi alusel, kasutades funktsiooni `knn` laiendusest `class`. Selleks peame funktsiooni argumentidena andma sisendtunnuste väärtused eraldi teada olevate ja teadmata liikidega ridade kohta. Samuti peame andma liigid nende ridade kohta, kus see on teada.
+
+```{r}
+#| warning: false
+library('class')
+ln <- knn(train = iris[!is.na(iris$Species), 1:2], # Teada liigiga read
+          test = iris[is.na(iris$Species), 1:2], # Teadmata liigiga read
+          cl = iris[!is.na(iris$Species), 'Species'], # Teada liigid
+          k = 1) # Naabrite arv
+ln
+```
+
+Funktsioon `knn` väljastab prognoosid ridade kohta, mille korral liik oli teadmata. Saame nendega asendada puuduvad väärtused.
+
+```{r}
+iris[is.na(iris$Species), 'Species'] <- as.character(ln)
+```
+
+Kuvame joonisel @fig-asendamata esitatud seose uuesti, et näha ka prognoositud liike.
+
+```{r}
+#| label: fig-asendatud
+#| fig-cap: Lähimate naabrite alusel asendatud liikidega hajuvusjoonis õietupe mõõtmete kohta.
+ggplot(iris) + aes(x = Sepal.Length, y = Sepal.Width, color = Species) + 
+  geom_point() +
+  theme_minimal()
+```
+
+Võrdle tulemust joonistega @fig-asendamata ja @fig-lähinaabrid.

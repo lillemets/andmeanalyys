@@ -1,0 +1,45 @@
+# Statistiline kaugus {#sec-kaugused}
+
+<!--
+[[Statistical distance]]
+-->
+
+Mitmete meetodite puhul on klassifitseerimise ja klasterdamise aluseks erinevused vaatluste vahel. Sellised meetodid on nt lähinaabrid ja hierarhiline klasterdamine, aga ka k-keskmised. Sellisel juhul saab vaatluste erinevusi teineteisest mõõta statistilise kauguse alusel, eeldades et mingite tunnuste väärtustel alusel lähestikku asuvad vaatlusel on sarnased. 
+
+::: {.callout-important}
+**Statistiline kaugus** (*statistical distance*) iseloomustab erinevusi vaatluste vahel. Selle aluseks on vaatluste kaugus teineteisest mingite tunnuste väärtuste erinevuse alusel.
+:::
+
+Kaugust saab mõõta korraga kahe vaatluse vahel. Seega arvutatakse kaugused *paariviisiliselt* kõikide vaatluste omavahelise võrdlemise teel. Need kaugused esitatakse **kauguste maatriksina** (*distance matrix*), milles iga rida ja veerg esindab ühte vaatlust ning lahtrites on seega kaugused kõikide vaatluste vahel^[See on sarnane linnade vaheliste kauguste tabelitele, ainult et statistilise kauguse aluseks ei ole punkti paiknemine mitte füüsilises, vaid tunnuste alusel moodustunud ruumis.].
+
+Arvutuskäike kauguse mõõtmiseks on mitmeid, aga kõige sagedamini kasutatakse **Eukleidilist kaugust**, mille aluseks on Eukleidese teoreem. Kui meil on vaatlused $i$ ja $j$, siis tunnuste $x$ ja $y$ alusel leitakse nende vaheline kaugus $d(i,j)$ alljärgnevalt: 
+$$d(i,j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}.$$
+
+Mõnikord kasutatakse ka veidi lihtsamalt **Manhattani kaugust**: 
+$$|x_i - x_j| + |y_i - y_j|.$$
+
+Tunnuste ruumi saame kujutada hajuvusjoonisel.
+
+```{r}
+#| echo: false
+#| label: fig-autod
+#| fig-cap: Kahemõõtmeline tunnuste ruum
+autod <- mtcars[4:10, c('wt', 'mpg')]
+library('ggplot2')
+ggplot(autod) + aes(x = wt, y = mpg, label = rownames(autod)) + 
+  geom_point() + 
+  geom_text(hjust = 1.1) + 
+  xlim(3,3.6) + 
+  labs(x = "Kaal, tuhat naela", y = "Kütusekulu, miili galloni kohta") + 
+  theme_minimal()
+```
+
+R keeles saame kaugusi leida funktsiooni `dist()` abil, mille argument `method` võimaldab valida erinevate kauguste vahel.
+
+```{r}
+dist(autod, method = 'euclidean')
+```
+
+Nii tabelist kui ka jooniselt @fig-autod näeme, et mudelile *Hornet 4 Drive* on vaadeldavate tunnuste alusel kõige lähemal ja seega kõige sarnasem mudel *Merc 230*.
+
+Kaugus oleneb tunnuste mõõteskaaladest ja väärtuse hajuvusest. Tunnused, mille väärtused on suuremad ja mis hajuvad rohkem, mõjutavad suuremal määral ka kaugust kahe vaatluse vahel. Seetõttu viiakse enne kauguste arvutamist tunnused enamasti samale skaalale standardiseerimise teel.
