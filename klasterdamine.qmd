@@ -1,1 +1,30 @@
 # Klasterdamine {#sec-klasterdamine}
+
+Klasterdamise käigus jaotatakse objektid rühmadesse selliselt, et ühes rühmas olevad objektid on rohkem sarnased üksteisega kui teistes rühmades olevate objektidega. Nendeks objektideks on enamasti vaatlused, aga klasterdada saab ka tunnuseid. Tunnuste klasterdamisel võivad olla aluseks vaatlused, seosekaardi  puhul aga nt tunuste korrelatsioonid teiste tunnustega (@sec-korrelatsioon). Vaatluste sarnasust hinnatakse selle järgi, kui palju erinevad nende vaatluste mingite tunnuste väärtused. 
+
+Klastritesse jaotamine põhineb tavaliselt mitme tunnuse väärtustel, aga vaatlusi saab klasterdada ka ühe tunnuse alusel. Klastrite aluseks olevad tunnused peavad olema mõõdetud arvskaalal. Ka nimitunnuste alusel saab vaatlusi klasterdada, aga nende põhjal sarnasuse hindamiseks tuleb need esmalt arvskaalale teisendada. 
+
+::: {.callout-important}
+**Klasterdamine** (*clustering*) on objektide klastritesse määramine nende objektide sarnasuse alusel. Enamasti on nendeks objektideks vaatlused ja sellisel juhul on tekkivates klastrites üksteisega valitud tunnuste väärtuste alusel sarnased vaatlused nii, et sarnasus klastrite sees on suurem kui klastrite vahel.
+:::
+
+Sarnaselt klassifitseerimisega on ka klasterdamise tulemuseks vaatluste jagunemine rühmadesse. Siiski on tegemist põhimõtteliselt erinevate ülesannetega. Klasterdamise puhul ei ole tegelikud rühmad teada ja me ei saa seega hinnata ka selle tegevuse täpsust. Kui klassid esindavad enamasti tähenduslikke kogumeid, siis klasterdamise korral peame tekkinud klastritele ise tähenduse omistama.
+
+Klasterdamine ei ole üks konkreetne protseduur, vaid pigem ülesanne, mille lahendamiseks on palju erinevaid viise. Kuivõrd klasterdamise tulemus sõltub valitud protseduurist ja selle rakendamise parameetritest, siis on iga klasterdamise teel saadud objektide jaotamine rühmadesse vaid üks paljudest võimalikest. Nii ei paku klasteranalüüs erinevalt paljudest teistest andmeanalüüsi tegevustest unikaalset lahendust, mistõttu klasterdamise tulemust ei käsitleta sageli teaduslikuna. Klasterdamist saab kasutada aga nt andmete paremaks mõistmiseks enne edasist analüüsi (*exploratory data analysis*), vaatluste olemuse määratlemiseks (*profiling*) või erindite tuvastamiseks (*anomaly detection*).
+
+Klasteranalüüsi saab kasutada muuhulgas alljärgnevatele küsimustele vastamiseks.
+
+- Millistesse tüüpidesse jagunevad kliendid?
+- Mis tooted või teenused on sarnased?
+- Millised tehingud on tavapäratud?
+
+Viisid klasterdamiseks erinevad põhimõtte pooles selle järgi, mille alusel määratakse objektide sarnasus: 
+
+- kaugus
+	- objektide või 
+	- objektide ja klastrikeskmiste vahel, 
+- väärtuste jaotus, 
+- objektide tihedus,  
+- närvivõrgud.
+
+Kõige laialdasemalt kasutatakse klasterdamiseks ilmselt objektide kaugustel põhinevat hierarhilist klasterdamist (@sec-hierarhiline) ning objektide ja klastrikeskmiset kaugusel põhinevat K-keskmiste klasterdamist (@sec-kkeskmised).

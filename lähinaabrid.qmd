@@ -4,10 +4,10 @@
 [[k-nearest neighbors (k-NN)]]
 -->
 
-Vaatluse lähimad naabrid on sellised vaatlused, mis valitud tunnuse väärtuste mõttes on meid huvitavale vaatlusele kõige sarnasemad ehk asuvad sellele kõige lähemal. Läheduse määrab statistiline kaugus, mistõttu sarnasuse aluseks olevad tunnused peavad olema mõõdetud arvskaalal. Lähinaabrite meetodil ei ole muid eeldusi, aga tuleb arvestada, et liiga suure arvu tunnuste alusel kauguse mõõtmisega kaasnevad ka suured kaugused. Selle tulemusel ei pruugi kaugused enam vaatluste sarnasust hästi iseloomustada (*curse of dimensionality*). 
+Vaatluse lähimad naabrid on sellised vaatlused, mis valitud tunnuse väärtuste mõttes on meid huvitavale vaatlusele kõige sarnasemad ehk asuvad sellele kõige lähemal. Läheduse määrab statistiline kaugus (@sec-kaugus), mistõttu sarnasuse aluseks olevad tunnused peavad olema mõõdetud arvskaalal. Lähinaabrite meetodil ei ole muid eeldusi, aga tuleb arvestada, et liiga suure arvu tunnuste alusel kauguse mõõtmisega kaasnevad ka suured kaugused. Selle tulemusel ei pruugi kaugused enam vaatluste sarnasust hästi iseloomustada (*curse of dimensionality*). 
 
 ::: {.callout-important}
-**Lähinaabrid** (*k-nearest neighbors*) tähendab lihtsalt igale vaatlusele kõige sarnasemate vaatluse valimist tunnuste ruumis lähtudes statistilisest kaugusest. Sealjuures peab olema eelnevalt määratud valitavate vaatluste arv $k$. Vaatluste võrdlemisel lähimate naabritega saame prognoosida selliste tunnuste väärtusi, mida me ei kasutanud kauguste arvutamisel.
+**Lähinaabrid** (*k-nearest neighbors*) tähendab igale vaatlusele kõige sarnasemate vaatluse valimist tunnuste ruumis lähtudes statistilisest kaugusest. Sealjuures peab olema eelnevalt määratud lähimate vaatluste arv $k$. Vaatluste võrdlemisel lähimate naabritega saame prognoosida selliste tunnuste väärtusi, mida me ei kasutanud kauguste arvutamisel.
 :::
 
 Lähinaabrite meetodit võib niisiis käsitleda ka statistilise mudeli või vähemalt algoritmina, milles sisendtunnusteks on kauguse arvutamisel aluseks olevad tunnused. Kui ei ole teada mõni vaatluse väljundtunnuse väärtus, siis selle saab tuletada lähimate naabrite vastava tunnuse väärtuste alusel. Sealjuures on prognoosimisel tegemist klassifitseerimisega nimiskaalal väljundtunnuse korral ja regressiooniga kui väljundtunnus on arvskaalal.

@@ -35,6 +35,7 @@ book:
     - tinglikkus.qmd
     - klassifitseerimine.qmd
     - kaugus.qmd
+    - klasterdamine.qmd
 #    - sobitamine.qmd
 #    - standardiseerimine.qmd
 #    - veatabel.qmd
@@ -47,7 +48,8 @@ book:
     - logreg.qmd
     - otsusepuu.qmd
     - lähinaabrid.qmd
-#    - klasterdamine.qmd
+    - hierarhiline.qmd
+    - kkeskmised.qmd
 #    - mõõtmevähendus.qmd
 #    - tekstikaeve.qmd
 #    - maakaardid.qmd

@@ -1,4 +1,4 @@
-# Statistiline kaugus {#sec-kaugused}
+# Statistiline kaugus {#sec-kaugus}
 
 <!--
 [[Statistical distance]]
@@ -13,10 +13,10 @@ Mitmete meetodite puhul on klassifitseerimise ja klasterdamise aluseks erinevuse
 Kaugust saab mõõta korraga kahe vaatluse vahel. Seega arvutatakse kaugused *paariviisiliselt* kõikide vaatluste omavahelise võrdlemise teel. Need kaugused esitatakse **kauguste maatriksina** (*distance matrix*), milles iga rida ja veerg esindab ühte vaatlust ning lahtrites on seega kaugused kõikide vaatluste vahel^[See on sarnane linnade vaheliste kauguste tabelitele, ainult et statistilise kauguse aluseks ei ole punkti paiknemine mitte füüsilises, vaid tunnuste alusel moodustunud ruumis.].
 
 Arvutuskäike kauguse mõõtmiseks on mitmeid, aga kõige sagedamini kasutatakse **Eukleidilist kaugust**, mille aluseks on Eukleidese teoreem. Kui meil on vaatlused $i$ ja $j$, siis tunnuste $x$ ja $y$ alusel leitakse nende vaheline kaugus $d(i,j)$ alljärgnevalt: 
-$$d(i,j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}.$$
+$$d_E(i,j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}.$$
 
 Mõnikord kasutatakse ka veidi lihtsamalt **Manhattani kaugust**: 
-$$|x_i - x_j| + |y_i - y_j|.$$
+$$d_M(i,j) = |x_i - x_j| + |y_i - y_j|.$$
 
 Tunnuste ruumi saame kujutada hajuvusjoonisel.
 

@@ -58,10 +58,6 @@ Näeme, et nt kirjaoskuse ja sündimuse vahel on tugev negatiivne korrelatsioon 
 
 Korrelatsioonimaatriks ei pea olema sümmeetriline tunnuste suhtes, vaid ridades ja veergudes võivad olla ka erinevad tunnused.
 
-``` {r}
-heatmap(korrelatsioonid)
-```
-
 Korrelatsioonimaatriksi kuvamiseks joonisena saame kasutada funktsiooni `heatmap()`. Vaikimisi järjestatkse tunnused selliselt, et sarnaste korrelatsioonidega tunnused oleksid lähestikku.
 
 ``` {r}

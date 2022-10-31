@@ -7,11 +7,36 @@ library('dplyr')
 
 # Read, clean and save data sets (2022-10-23 09:30:09) ----------
 
+# World Values Survey
+# hierarhiline
+wvs <- read.csv('assets/WVSbycountry.csv')
+wvs %<>% 
+  select(Country, survself, TRADRAT5, Wave) %>%  #, X011, X025, X044)
+  na.omit %>% 
+  arrange(desc(Wave)) %>% distinct(Country, .keep_all=TRUE) %>% 
+  select(-Wave)
+names(wvs) <- c('country', 'survexp', 'tradsec') #, 'children', 'education', 'savings')
+write.csv(wvs, 'andmed/wvsmap.csv', row.names = F)
+
+# Vehicles 1983
+autod <- read.csv('assets/vehicles1983.csv')
+autod$origin %<>% recode(`1` = 'American', `2` = 'European', `3` = 'Japanese')
+write.csv(autod, 'andmed/vehicles1983.csv', row.names = F)
+
+# Wholesale customers
+# test_08_klasterdamine
+kliendid <- read.csv('assets/wholesalecustomers.csv')
+kliendid %<>% lapply(function(x) ifelse(x %in% boxplot.stats(x)$out, NA, x)) %>% # Eemalda erindid
+  as.data.frame
+kliendid$Channel %<>% recode(`1` = 'HoReCa', `2` = 'Retail')
+kliendid$Region %<>% recode(`1` = 'Lisnon', `2` = 'Oporto', `3` = 'Other')
+write.csv(kliendid, 'andmed/wholesalecustomers.csv', row.names = F)
+
 # Estonia passengers
 # otsusepuu
 estonia <- read.csv('assets/estoniapassengers.csv')
 names(estonia) %<>% tolower
-write.csv(estonia, 'andmed/est]oniapassengers.csv', row.names = F)
+write.csv(estonia, 'andmed/estoniapassengers.csv', row.names = F)
 
 # Heart disease indicators
 # test_07_klassifitseerimine

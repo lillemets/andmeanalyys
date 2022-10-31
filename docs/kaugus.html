@@ -88,7 +88,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./korrelatsioon.html" rel="next">
+<link href="./klasterdamine.html" rel="next">
 <link href="./klassifitseerimine.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -270,6 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./kaugus.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -282,37 +287,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
   </div>
 </li>
       </ul>
@@ -334,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-kaugused" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></span></h1>
+<h1 class="title"><span id="sec-kaugus" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></span></h1>
 </div>
 
 
@@ -367,9 +382,9 @@ Mõiste
 </div>
 <div class="page-columns page-full"><p>Kaugust saab mõõta korraga kahe vaatluse vahel. Seega arvutatakse kaugused <em>paariviisiliselt</em> kõikide vaatluste omavahelise võrdlemise teel. Need kaugused esitatakse <strong>kauguste maatriksina</strong> (<em>distance matrix</em>), milles iga rida ja veerg esindab ühte vaatlust ning lahtrites on seega kaugused kõikide vaatluste vahel<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;See on sarnane linnade vaheliste kauguste tabelitele, ainult et statistilise kauguse aluseks ei ole punkti paiknemine mitte füüsilises, vaid tunnuste alusel moodustunud ruumis.</p></li></div></div>
 <p>Arvutuskäike kauguse mõõtmiseks on mitmeid, aga kõige sagedamini kasutatakse <strong>Eukleidilist kaugust</strong>, mille aluseks on Eukleidese teoreem. Kui meil on vaatlused <span class="math inline">\(i\)</span> ja <span class="math inline">\(j\)</span>, siis tunnuste <span class="math inline">\(x\)</span> ja <span class="math inline">\(y\)</span> alusel leitakse nende vaheline kaugus <span class="math inline">\(d(i,j)\)</span> alljärgnevalt:</p>
-<p><span class="math display">\[d(i,j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}.\]</span></p>
+<p><span class="math display">\[d_E(i,j) = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}.\]</span></p>
 <p>Mõnikord kasutatakse ka veidi lihtsamalt <strong>Manhattani kaugust</strong>:</p>
-<p><span class="math display">\[|x_i - x_j| + |y_i - y_j|.\]</span></p>
+<p><span class="math display">\[d_M(i,j) = |x_i - x_j| + |y_i - y_j|.\]</span></p>
 <p>Tunnuste ruumi saame kujutada hajuvusjoonisel.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -401,7 +416,7 @@ Merc 230           1.6004999
 Merc 280           5.2060061  3.6116617</code></pre>
 </div>
 </div>
-<p>Nii tabelist kui ka jooniselt <a href="logreg.html#fig-autod">Joonis&nbsp;<span>21.1</span></a> näeme, et mudelile <em>Hornet 4 Drive</em> on vaadeldavate tunnuste alusel kõige lähemal ja seega kõige sarnasem mudel <em>Merc 230</em>.</p>
+<p>Nii tabelist kui ka jooniselt <a href="logreg.html#fig-autod">Joonis&nbsp;<span>22.1</span></a> näeme, et mudelile <em>Hornet 4 Drive</em> on vaadeldavate tunnuste alusel kõige lähemal ja seega kõige sarnasem mudel <em>Merc 230</em>.</p>
 <p>Kaugus oleneb tunnuste mõõteskaaladest ja väärtuse hajuvusest. Tunnused, mille väärtused on suuremad ja mis hajuvad rohkem, mõjutavad suuremal määral ka kaugust kahe vaatluse vahel. Seetõttu viiakse enne kauguste arvutamist tunnused enamasti samale skaalale standardiseerimise teel.</p>
 
 
@@ -512,8 +527,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./korrelatsioon.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./klasterdamine.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

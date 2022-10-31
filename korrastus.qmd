@@ -410,4 +410,5 @@ ggplot(palkLõhe) +
 
 <!--
 case_when()
+recode()
 -->
