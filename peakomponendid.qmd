@@ -1,0 +1,254 @@
+# Peakomponentide analüüs {#sec-peakomponendid}
+
+<!--
+[[Principal component analysis (PCA)]]
+-->
+
+Nii nagu peaaegu kõik nähtused on seotud mõne teise nähtusega, on ka ühte andmetabelisse sattunud tunnuste vahel enamasti vähemalt nõrk korrelatsioon.  Ühe tunnuse hajuvus on seega vähemalt osaliselt peaaegu alati seletatav mõne teise tunnuse hajuvusega. Seda kattuvust tunnuste hajuvuses saame kasutada selleks, et koondada mitu tunnust üheks või mitmeks uueks tunnuseks nii, et võimalikult vähe teavet läheb kaduma. Just see ongi lihtsustatult peakomponentide analüüsi tööpõhimõte.
+
+::: {.callout-important}
+**Peakomponentide analüüsi** (*principal component analysis*, *PCA*) käigus koondatakse mitu tunnust peakomponentideks nii, et võimalikult suur osa algsest hajuvusest oleks koondunud esimestesse peakomponentidesse.
+:::
+
+Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel.
+
+``` {r}
+library('magrittr')
+kv <- read.csv('andmed/decathlon2004.csv')
+rownames(kv) <- kv$athlets
+kv$athlets <- NULL
+head(kv)
+```
+
+## Peakomponentide tähendus
+
+Peakomponentide analüüsi eesmärk on niisiis võtta kokku algsete tunnuste ühine hajuvus väiksema arvu uue tunnusena. Täpsemalt on eesmärk leida *algsete tunnuste standardiseeritud lineaarsed kombinatsioonid, mis seletaksid võimalikult suurt osa hajuvusest andmetes*. Iga lineaarne kombinatsioon esindab ühte viisi, kuidas teisendada algsed tunnused uuteks tunnusteks. Mõnel juhul piisab meile ainult paarist sellisest lineaarsest kombinatsioonist, aga sõltuvalt analüüsi probleemist võime kasutada ka mitut. 
+
+Iga lineaarne kombinatsioon on **peakomponent**, mis võtab kokku kordumatu osa andmetes esinevast hajuvusest. Peakomponente võib esitada kujul 
+$$\xi_j = b_{j1}x_1 + b_{j2}x_2+ ... a_{jp}x_p,$$ 
+kus $b_{jp}$ on tunnuse $x_p$ kaal  $j$ndas peakomponendis $\xi_j$ . Nii võib peakomponente mõista sisuliselt *tunnuste kaalude kogumitena*. Peakomponentide järjestus või järjekorranumber on sealjuures tähtis: esimene peakomponent seletab võimalikult suure osa hajuvusest andmetes ja iga järgnev eelnevate poolt selemata jäänud osa. 
+
+Suurim võimalik peakomponentide arv on $min(p, n-1)$, kus $p$ on tunnuste ja $n$ vaatluste arv. Kuna enamasti $p > n$ , siis leitakse tavaliselt nii palju peakomponente kui oli algseid tunnuseid. Kõik peakomponendid kokku sisaldavad seega kogu hajuvust nende aluseks olevates andmetes selliselt, et võimalikult suur osa hajuvusest on koondatud esimestesse peakomponentidesse. Seega kui valime ainult esimesed peakomponendid, siis läheb kaduma küll osa hajuvusest, aga see kadu on võimalikult väike.
+
+## Peakomponentide leidmine
+
+On mitu viisi, kuidas mõtestada peakomponentide leidmist. Kõige loomulikum lähenemine on kujutada vaatlusi andmepilvena tunnuste ruumis. Mitme tunnuse hajuvuse saame kokku võtta, kui tõmbame sellest andmepilvena järjest läbi jooni, millest igaüks esindab ühte peakomponenti. Alustame sealjuures esimesest peakomponendist, mis peaks *võtma kokku võimalikult suure osa hajuvusest andmepilves*. Esimene peakomponent arvutatakse seega nii, et see
+
+- järgiks ja esindaks suurimat hajuvust andmepilves ja 
+- on sirgena võimalikult lähedal kõikidele andmepunktidele arvestades täisnurkset (ortogonaalset) kaugust.
+
+Näeme jooniselt, et kuulitõuke ja kettaheite soorituste vahel on positiivne korrelatsioon. Seega saame vähemal osaliselt nende kahe tunnuse hajuvuse kokku võtta peakomponendiga, mida näitab punane joon.
+
+```{r}
+#| echo: false
+# Prepare data
+vars <- kv[, c('shotput', 'discus')]
+vars <- list(Raw = vars, 
+             Center = vars %>% lapply(scale, scale = F) %>% data.frame, 
+             Scale = vars %>% lapply(scale) %>% data.frame)
+plotEst <- function(data, xlab = "Kuulitõuge", ylab = "Kettaheide", ...) {
+  par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,2,2), pty = 's')
+  plot(data[[2]] ~ data[[1]], xlab = xlab, ylab = ylab,
+       pch = 20, cex = 1, col = '#00000055', ...)
+}
+# PC1
+plotEst(vars$Raw)
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = 'red')
+```
+
+Selliselt on esimese peakomponendi leidmine *sarnane vähimruutude meetodile* 
+(@sec-linreg). Erinevalt vähimruutude meetodil leitud regressioonsirgest esimene peakomponent aga
+
+- seletab kõikide tunnuste hajuvust võrdväärselt ja mitte ainult tagajärgse tunnuse hajuvust, 
+- ei sõltu otseselt ruuthälvetest.
+
+Suurima hajuvuse tuvastamiseks teisendatakse andmepilv (andmemaatriks) uuele koordinaattasandile. See hõlmab enamasti alljärgnevaid samme: 
+
+1. andmepilv keskmistatakse, 
+2. koordinaatteljed teisendatakse samale skaalale, 
+3. koordinaatteljed pööratakse vastavusse peakomponentidega. 
+
+Sealjuures toimub viimasel sammul telgede pööramine nii, et esimene peakomponent seletab võimalikult suure osa hajuvusest andmepilves ja iga järgnev peakomponent on lihtsalt täisnurkne (ortogonaalne) eelneva suhtes. 
+
+Eelnevalt kirjeldatud samme näitlikustab alljärgnev joonis.
+
+``` {r}
+#| echo: false
+
+par(mfrow = c(2,2))
+# Legend
+pcLeg <- function() {
+  legend('topleft', legend = c('PC1', 'PC2'), col = c('red', 'blue'),
+         lwd = 1, border = NA, box.col = NA)
+}
+# Raw
+plotEst(vars$Raw, main = "Algsed tunnused")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = 'red')
+lines(vars$Raw[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Raw[[2]])), 
+      col = 'blue')
+pcLeg() # Legend
+# Center
+plotEst(vars$Cen, main = "Keskmistatud tunnused")
+eigHiLo <- cov(vars$Cen) %>% eigen
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = 'red')
+lines(vars$Cen[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Cen[[1]] + mean(vars$Cen[[2]])), 
+      col = 'blue')
+pcLeg() # Legend
+# Scale
+plotEst(vars$Scale, main = "Skaleeritud tunnused")
+eigHiLo <- cov(vars$Scale) %>% eigen
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,1]/eigHiLo$vec[1,1] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = 'red')
+lines(vars$Scale[[1]], 
+      (eigHiLo$vec[2,2]/eigHiLo$vec[1,2] * vars$Scale[[1]] + mean(vars$Scale[[2]])), 
+      col = 'blue')
+pcLeg() # Legend
+# Rotate
+pcaHiLo <- prcomp(vars$Raw, scale = T) %>% summary
+par(bty = 'n', family = 'RobotoCondensed', mar = c(4,4,0,0), pty = 's')
+plotEst(as.data.frame.matrix(pcaHiLo$x), main = "Pööratud koordinaatteljestik", 
+        xlab = "PC1", ylab = "PC2")
+abline(h = 0, col = 'red')
+abline(v = 0, col = 'blue')
+pcLeg() # Legend
+```
+
+Seega sõltuvad leitud peakomponendid andmepilve asukohast ja hajuvusest telgedel. 
+
+::: {.callout-warning}
+Peakomponendide analüüsil tuleb silmas pidada algsete tunnuste keskmisi väärtuseid ja standardhälbeid.
+
+- Tunnused peaksid olema keskmistatud ehk igast tunnuse väärtusest tuleb lahutada kogu tunnuse keskmine väärtus.
+- Tunnused võib skaleerida ehk iga tunnuse väärtused võib jagada läbi tunnuse standardhälbega. Kui tunnused on mõõdetud samal skaalal, siis võib olla parem seda mitte teha. 
+:::
+
+Matemaatiliselt arvutatakse peakomponendid kas korrelatsiooni-, kovariatsiooni või andmemaatriksi dekomponeerimise alusel. Selle tulemusel leitakse andmete 
+
+ - skaleerimist kirjeldavad **omaväärtused**  (*eigenvalues*) ehk iga peakomponendi kordajad ja 
+ - pööramist kirjeldavad **omavektorid** (*eigenvectors*) ehk iga peakomponendi pool seletatud hajuvus.
+ 
+R keeles saame peakomponentide leidmiseks kasutada funktsiooni `prcomp()`. Tunnused keskmistatakse vaikimisi (`center = TRUE`), aga enamasti peaksime lisama ka argumendi `scale = TRUE`, et lisaks sellele tunnuse väärtused ka skaleerida.
+
+```{r}
+peakomp <- prcomp(kv, scale = TRUE)
+```
+
+
+## Eeldused
+
+Kõige olulisem peakomponentide analüüsi eeldus puudutab tunnuste mõõteskaalasid: ühist hajuvust saab leida võtta ainult *pideval või vähemalt arvskaalal mõõdetud tunnuste korral*. Nimi ja järjestustunnusete alusel saab leida peakomponendid, kui need eelnevalt pidevateks tunnusteks teisendada.
+
+Tunnuste koondamiseks ühise hajuvuse alusel peab see ühine hajuvus andmetes olemas olema. Seega peab tunnuste vahel esineva *piisav lineaarne korrelatsioon*.
+
+Kümnevõistluse võistlusalade vahel esinevad üldiselt ootuspärased ja sageli tugevad korrelatsioonid.
+
+``` {r}
+cor(kv)
+```
+
+Kui vaatluste seas esineb *erindeid*, siis need võivad märkimisväärselt mõjutada  peakomponentide aluseks olevat andmepilve teisendamist. 
+
+## Peakomponentide arv
+
+Kuigi enamasti leitakse analüüsi käigus peakomponente sama palju kui oli nende aluseks olevaid tunnuseid, siis on asjakohased tavaliselt ainult esimesed nendest. Mitut esimest peakomponenti tõlgendada või edasises analüüsis kasutada, sõltub sellest, kui mitut on vaja analüüsi probleemi lahendamiseks[^Nt vaatluste klasterdamise tulemuse näitlikustamiseks tunnuste alusel kahemõõtmelisel joonisel piisab kahest peakomponendist.]. 
+
+::: {.callout-tip}
+Sobiva arvu komponentide määramisel võib lähtuda alljärgnevatest tingimustest.
+
+ - Määra kõige madalam hajuvus andmetes, mida peakomponendid seletama peaksid ja vali nii palju peakomponente kui on selleks vajalik.
+ - Kasuta peakomponende, mille omaväärtus on vähemalt üks. 
+ - Leia omaväärtuse joonisel nö õlg ja vali peakomponendid enne seda.
+:::
+
+Peakomponentide poolt seletatud hajuvust saab joonisel kujutada mitmel viisl.
+
+``` {r}
+par(bty = 'n', mfrow = c(1,3))
+plot(peakomp$sdev^2 * 100/length(peakomp$sdev), type = 'b', ylim = c(0,100), 
+     xlab = "Peakomponent", ylab = "Komponendi poolt seletatud hajuvus, %")
+plot(cumsum(peakomp$sdev^2 * 100/length(peakomp$sdev)), type = 'b', ylim = c(0,100), 
+     xlab = "Peakomponent", ylab = "Seletatud hajuvus kumulatiivselt, %")
+plot(peakomp$sdev^2, type = 'p', 
+     xlab = "Peakomponent", ylab = "Omaväärtus")
+abline(h = 1)
+```
+
+Näeme nt, et esimene peakomponent üksi seletab `r paste0(round(peakomp$sdev[1]^2 * 100/length(peakomp$sdev)), '%')` kogu hajuvusest ja 80% hajuvuse seletamiseks on vaja vähemalt viite peakomponenti. Kõige parempoolsel, omaväärtuse joonisel (*scree plot*) näeme, et nö õlg on pärast neljandat peakomponenti, nii et antud andmete korral võiksimegi piirduda nelja peakomponendiga.
+
+## Tõlgendamine
+
+### Seletatud hajuvus
+
+Osakaal koguhajuvusest andmetes, mille $j$ndas peakomponent seletab on arvutatav  omaväärtuste $\lambda$ alusel: see on vastava omaväärtuse osa omaväärtuste summast ehk $\lambda_j / \Sigma^p_{j=1} \lambda$. 
+
+Peakomponentide omaväärtused saame R keeles, kui võtame peakomponentide standardhälbed ruutu.
+
+```{r}
+peakomp$sdev^2 %>% round(3)
+```
+
+Näeme, et esimene peakomponent esindab umbes `r round(peakomp$sdev^2)[1]` tunnuse hajuvust.
+
+Kuna omaväärtuste summa $\Sigma^p_{j=1} \lambda$ on võrdne tunnuste arvuga, siis peakomponendi **omaväärtus** näitab, *kui mitme algse tunnuse hajuvust või kui mitut algset tunnust vastav peakomponent esindab*. Seega saame iga peakomponendi poolt seletatud hajuvuse osakaalu, kui jagame vastava omaväärtuse tunnuste arvuga.
+
+```{r}
+(peakomp$sdev^2 / ncol(kv)) %>% round(3)
+```
+
+Näeme, et esimene peakomponent seletab `r paste0(round(peakomp$sdev[1]^2 * 100/length(peakomp$sdev)), '%')` hajuvusest andmepilves ja kaks esimest peakomponenti üle poole. Sama tulemuse saame ka peakomponendi objekti kokkuvõttest funktsiooni `summary()` abil.
+
+```{r}
+summary(peakomp)
+```
+
+Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletataud hajuvus, kui *suur osa andmetes olevast teabes jääb alles*, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.
+
+### Kordajad
+
+Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja seda  laadimist mõõdab vastav kordaja või **laadung** (*loading*). Neid võib mõista ka kui tunnuste kaale. 
+
+R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti.
+
+```{r}
+peakomp
+```
+
+Neid kordajaid saame kasutada selleks, et leida peakomponentide väärtused iga vaatluse jaoks. Kui korrutame iga kordaja sellele vastava tunnuse väärtustega, siis saame peakomponentide **skoorid**. Need on peakomponente esindavad uued tunnused, mis näitavad peakomponendi väärtust iga `r nrow(kv)` võistleja kohta.
+
+```{r}
+peakomp$x
+```
+
+Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus. Nt eelnevalt esitatud kordajatest näeme, et  esimene peakomponent on seotud võistleja üldise võimekusega.
+
+Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega $-1$. Nt kümnevõistluse andmetes võiks seda teha jooksmisaladel, kus praegu kõrgem tulemus näitab aeglasemat sooritust.
+
+::: {.callout-warning}
+Esimese peakomponendi suund uuel koordinaatteljestikul on juhuslik. Seetõttu on igal peakomponentide arvutamisel kordajate absoluutväärtused küll samad, aga positiivsed märgid võivad järgmisel arvutamisel olla negatiivsed ja vastupidi. 
+:::
+
+# Peakomponentide joonis
+
+Kahte esimest peakomponenti saame kujutada erilisel peakomponentide hajuvusjoonisel (*biplot*), millel on esitatud ühtaegu vaatlused ja tunnused.
+
+- Punktid näitavad vaatluste paiknemist kahe esimese peakomponendi suhtes.
+- Joonte suund näitab iga tunnuse ja vastava peakomponendi laadimise suunda.
+- Joonte pikkus näitab kordaja absoluutväärtust.
+- Nurk joonte vahel iseloomustab vastavate tunnuste omavahelist korrelatsiooni.
+
+```{r}
+par(mar = c(4,4,2,4))
+biplot(peakomp)
+```
+

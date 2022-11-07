@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -293,6 +298,11 @@ div.csl-indent {
   <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -305,47 +315,57 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
   </div>
 </li>
       </ul>
@@ -360,23 +380,23 @@ div.csl-indent {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sisukord</h2>
    
   <ul>
-  <li><a href="#veeru-nimetused" id="toc-veeru-nimetused" class="nav-link active" data-scroll-target="#veeru-nimetused"> <span class="header-section-number">6.1</span> Veeru nimetused</a></li>
-  <li><a href="#tunnuse-tüüp" id="toc-tunnuse-tüüp" class="nav-link" data-scroll-target="#tunnuse-tüüp"> <span class="header-section-number">6.2</span> Tunnuse tüüp</a></li>
-  <li><a href="#kordumatud-väärtused" id="toc-kordumatud-väärtused" class="nav-link" data-scroll-target="#kordumatud-väärtused"> <span class="header-section-number">6.3</span> Kordumatud väärtused</a></li>
-  <li><a href="#puuduvad-väärtused" id="toc-puuduvad-väärtused" class="nav-link" data-scroll-target="#puuduvad-väärtused"> <span class="header-section-number">6.4</span> Puuduvad väärtused</a></li>
-  <li><a href="#väärtuste-asendamine" id="toc-väärtuste-asendamine" class="nav-link" data-scroll-target="#väärtuste-asendamine"> <span class="header-section-number">6.5</span> Väärtuste asendamine</a></li>
-  <li><a href="#väärtuste-teisendamine" id="toc-väärtuste-teisendamine" class="nav-link" data-scroll-target="#väärtuste-teisendamine"> <span class="header-section-number">6.6</span> Väärtuste teisendamine</a></li>
-  <li><a href="#korrasandmed" id="toc-korrasandmed" class="nav-link" data-scroll-target="#korrasandmed"> <span class="header-section-number">6.7</span> Korrasandmed</a>
+  <li><a href="#veeru-nimetused" id="toc-veeru-nimetused" class="nav-link active" data-scroll-target="#veeru-nimetused"><span class="toc-section-number">6.1</span>  Veeru nimetused</a></li>
+  <li><a href="#tunnuse-tüüp" id="toc-tunnuse-tüüp" class="nav-link" data-scroll-target="#tunnuse-tüüp"><span class="toc-section-number">6.2</span>  Tunnuse tüüp</a></li>
+  <li><a href="#kordumatud-väärtused" id="toc-kordumatud-väärtused" class="nav-link" data-scroll-target="#kordumatud-väärtused"><span class="toc-section-number">6.3</span>  Kordumatud väärtused</a></li>
+  <li><a href="#puuduvad-väärtused" id="toc-puuduvad-väärtused" class="nav-link" data-scroll-target="#puuduvad-väärtused"><span class="toc-section-number">6.4</span>  Puuduvad väärtused</a></li>
+  <li><a href="#väärtuste-asendamine" id="toc-väärtuste-asendamine" class="nav-link" data-scroll-target="#väärtuste-asendamine"><span class="toc-section-number">6.5</span>  Väärtuste asendamine</a></li>
+  <li><a href="#väärtuste-teisendamine" id="toc-väärtuste-teisendamine" class="nav-link" data-scroll-target="#väärtuste-teisendamine"><span class="toc-section-number">6.6</span>  Väärtuste teisendamine</a></li>
+  <li><a href="#korrasandmed" id="toc-korrasandmed" class="nav-link" data-scroll-target="#korrasandmed"><span class="toc-section-number">6.7</span>  Korrasandmed</a>
   <ul class="collapse">
-  <li><a href="#andmetabeli-laiendamine" id="toc-andmetabeli-laiendamine" class="nav-link" data-scroll-target="#andmetabeli-laiendamine"> <span class="header-section-number">6.7.1</span> Andmetabeli laiendamine</a></li>
-  <li><a href="#andmetabeli-kitsendamine" id="toc-andmetabeli-kitsendamine" class="nav-link" data-scroll-target="#andmetabeli-kitsendamine"> <span class="header-section-number">6.7.2</span> Andmetabeli kitsendamine</a></li>
+  <li><a href="#andmetabeli-laiendamine" id="toc-andmetabeli-laiendamine" class="nav-link" data-scroll-target="#andmetabeli-laiendamine"><span class="toc-section-number">6.7.1</span>  Andmetabeli laiendamine</a></li>
+  <li><a href="#andmetabeli-kitsendamine" id="toc-andmetabeli-kitsendamine" class="nav-link" data-scroll-target="#andmetabeli-kitsendamine"><span class="toc-section-number">6.7.2</span>  Andmetabeli kitsendamine</a></li>
   </ul></li>
-  <li><a href="#agregeerimine" id="toc-agregeerimine" class="nav-link" data-scroll-target="#agregeerimine"> <span class="header-section-number">6.8</span> Agregeerimine</a></li>
-  <li><a href="#tabelite-ühendamine" id="toc-tabelite-ühendamine" class="nav-link" data-scroll-target="#tabelite-ühendamine"> <span class="header-section-number">6.9</span> Tabelite ühendamine</a></li>
+  <li><a href="#agregeerimine" id="toc-agregeerimine" class="nav-link" data-scroll-target="#agregeerimine"><span class="toc-section-number">6.8</span>  Agregeerimine</a></li>
+  <li><a href="#tabelite-ühendamine" id="toc-tabelite-ühendamine" class="nav-link" data-scroll-target="#tabelite-ühendamine"><span class="toc-section-number">6.9</span>  Tabelite ühendamine</a></li>
   </ul>
 </nav>
     </div>
@@ -476,7 +496,7 @@ Pea meeles!
 <p>Tunnuse tüüp peab olema objektis määratud vastavalt tunnuse mõõtmise tasemele. Arvud peavad olema objektides salvestatud arvtunnusena ning sõnad ja laused nimitunnusena. Vastupidisel juhul käsitlevad funktsioonid tunnuseid valesti ega võimalda rakendada vajalikke tehteid.</p>
 </div>
 </div>
-<div class="page-columns page-full"><p>Tunnuse tüüp on oluline selleks et funktsioonid oskaksid neid õigesti kasutada. Nt kui arve sisaldav veerg on laaditud mingil põhjusel<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> objekti nimitunnusena, siis ei ole võimalik sellise tunnusega matemaatilisi tehteid teha. Kui aga andmetabelis on mingi vaatluse kood (nt isikukood), mille R keel tuvastab arvtunnusena, siis on mõistlik salvestada see nimitunnusena, et mitte selle alusel kogemata arvutusi teha. Tunnuste tüübi teisendamiseks saab kasutada funktsioone <code>as.character()</code> ja <code>as.numeric()</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Kui arve sisaldavasse veergu on sattunud mõni sõna, täht, kirjavahemärk vms, siis R loeb selles veerus olevad väärtused enamasti nimitunnusteks.</p></li></div></div>
+<div class="page-columns page-full"><p>Tunnuse tüüp on oluline selleks et funktsioonid oskaksid neid õigesti kasutada. Nt kui arve sisaldav veerg on laaditud mingil põhjusel<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> objekti nimitunnusena, siis ei ole võimalik sellise tunnusega matemaatilisi tehteid teha. Kui aga andmetabelis on mingi vaatluse kood (nt isikukood), mille R keel tuvastab arvtunnusena, siis on mõistlik salvestada see nimitunnusena, et mitte selle alusel kogemata arvutusi teha. Tunnuste tüübi teisendamiseks saab kasutada funktsioone <code>as.character()</code> ja <code>as.numeric()</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Kui arve sisaldavasse veergu on sattunud mõni sõna, täht, kirjavahemärk vms, siis R loeb selles veerus olevad väärtused enamasti nimitunnusteks.</p></li></div></div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kui arvud on salvestatud nimitunnusena, siis ei saa arvutata keskmist.</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>palk<span class="sc">$</span>väärtus <span class="ot">&lt;-</span> <span class="fu">as.character</span>(palk<span class="sc">$</span>väärtus)</span>
@@ -633,7 +653,7 @@ Data preparation
 <li>Teatud meetodid eeldavad, et andmed on mõõdetud samal skaalal ehk omavad sarnaseid väärtusi. Sellisel juhul saame väärtused standardiseerida<!--, millest on täpsemalt juttu @sec-standardiseerimine-->.</li>
 <li>Kui tunnusel on rohkem kordumatuid väärtusi kui soovime, siis saame väärtused intervallida.</li>
 </ul>
-<div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Kui tunnusel on palju äärmuslikult suuri jaotusi, siis naturaallogaritm väärtustest annab tulemuseks sümmeetrilise jaotuse.</p></li></div><p>Kui soovime keskmise brutokuupalga esitada 500 euro laiuste intervallidena, siis saame intervallimiseks kasutada funktsiooni <code>cut()</code>.</p>
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Kui tunnusel on palju äärmuslikult suuri jaotusi, siis naturaallogaritm väärtustest annab tulemuseks sümmeetrilise jaotuse.</p></li></div><p>Kui soovime keskmise brutokuupalga esitada 500 euro laiuste intervallidena, siis saame intervallimiseks kasutada funktsiooni <code>cut()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>bruto<span class="sc">$</span>intervallid <span class="ot">&lt;-</span> <span class="fu">cut</span>(bruto<span class="sc">$</span>väärtus, </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="cn">Inf</span>), </span>
@@ -694,7 +714,7 @@ Data preparation
 <!--
 Tidy data
 -->
-<div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;Nt tellimuste tabelis ei peaks olema kõiki tellija tunnuseid, vaid tellimused ja tellijad tuleks hoida eraldi tabeltes ning ainult vajaduse korral need tellija koodi alusel kokku viia.</p></li></div><section id="andmetabeli-laiendamine" class="level3" data-number="6.7.1">
+<div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Nt tellimuste tabelis ei peaks olema kõiki tellija tunnuseid, vaid tellimused ja tellijad tuleks hoida eraldi tabeltes ning ainult vajaduse korral need tellija koodi alusel kokku viia.</p></li></div><section id="andmetabeli-laiendamine" class="level3" data-number="6.7.1">
 <h3 data-number="6.7.1" class="anchored" data-anchor-id="andmetabeli-laiendamine"><span class="header-section-number">6.7.1</span> Andmetabeli laiendamine</h3>
 <p>Meie andmed brutotöötasu kohta vastavad tingimusele, et iga vaatlus (mõõtmine) on eraldi real. Kui lähtume aga sellest, et iga näitaja on omaette tunnus, siis peaks iga näitaja väärtused olema eraldi veerus, et meie andmed korrasandmete tingimusele vastaksid.</p>
 <div class="cell">
@@ -1203,7 +1223,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -27,4 +27,76 @@ Viisid klasterdamiseks erinevad põhimõtte pooles selle järgi, mille alusel m�
 - objektide tihedus,  
 - närvivõrgud.
 
-Kõige laialdasemalt kasutatakse klasterdamiseks ilmselt objektide kaugustel põhinevat hierarhilist klasterdamist (@sec-hierarhiline) ning objektide ja klastrikeskmiset kaugusel põhinevat K-keskmiste klasterdamist (@sec-kkeskmised).
+Kõige laialdasemalt kasutatakse klasterdamiseks ilmselt 
+
+- objektide kaugustel põhinevat hierarhilist klasterdamist (@sec-hierarhiline) ning 
+- objektide ja klastrikeskmiset kaugusel põhinevat K-keskmiste klasterdamist (@sec-kkeskmised).
+
+## Klastrite tõlgendamine
+
+Kuna klasterdamine lähtub ainult arvskaalal olevate tunnuste väärtusest, siis ei ole igal klastril konkreetset nimetust nii nagu klassifitseerimise korral. Klastritele sisulise tähenduse andmiseks peame klastreid võrdlema mingite tunnuste väärtuste alusel.
+
+Uurime järgnevalt võimalusi klastrite sisuliseks tõlgendamiseks maailma riikide klasterdamise näitel. Enne klasterdamist peaksime eemaldama puuduvate väärtustega riigid ja standardiseerima tunnuste väärtused. Arvutuste lihtsustamiseks võime sisestada arvtunnused eraldi andmetabelisse.
+
+```{r}
+library('magrittr')
+riigid <- read.csv('andmed/countries.csv')
+rownames(riigid) <- riigid$country
+riigid %<>% na.omit
+# Eralda arvtunnused
+arvtunnused <- riigid[, sapply(riigid, is.numeric)]
+arvtunnused %<>% scale
+# Määra klastrid
+set.seed(0)
+kkesk <- kmeans(arvtunnused, centers = 5, nstart = 50)
+klastrid <- kkesk$cluster
+```
+
+Kõige lihtsam on klastreid arvtunnuste alusel kujutada paariviisilistel hajuvusjoonistel.
+
+```{r}
+pairs(arvtunnused, cex = .5, col = klastrid)
+```
+
+Klasterdamise tulemuse esitamiseks võimalikult paljude arvtunnuste lõikes korraga saame kujutada vaatlusi ka kahe peakomponendi alusel hajuvusjoonisel. Klastreid saab kujutada esitades vaatlused klastrile vastava värvi või kujundiga.
+
+```{r}
+#| message: false
+library('factoextra')
+fviz_pca_biplot(prcomp(arvtunnused), habillage = klastrid)
+```
+
+Samuti saab koondada kõik vaatlusted klastri alusel ja võrrelda klastrite keskmisi tunnuste lõikes. Keskmise asemel võime kasutada ka mõnda muud mõõdikut. Klastrite kaupa saame andmetabeli kokku võtta, kasutades funktsiooni `aggregate()`. 
+
+```{r}
+aggregate(arvtunnused, list(klaster = klastrid), mean)[-1]
+```
+
+Mõnevõrra ilmekamalt saame klastrite keskmisi võrrelda seosekaardil.
+
+```{r}
+aggregate(arvtunnused, list(klaster = klastrid), mean)[-1] %>% t %>% heatmap
+```
+
+Klastreid aitab kirjeldada ka otsusepuu (@sec-otsusepuu), milles klaster on väljundtunnus ja klastreid kirjeldavad tunnused on sisendtunnusteks. Otsusesõlmede tingimused on sisukamad, kui valime sisendtunnusteks väärtused standardiseerimata kujul.
+
+```{r}
+library('rpart')
+library('rpart.plot')
+otsusepuu <- rpart(as.character(klastrid) ~ ., riigid[, -1])
+rpart.plot(otsusepuu)
+```
+
+Kui meie andmetes on vaatlustel mingi klass, siis saame uurida ka seda, kas ja kui hästi langeb see kokku leitud klastritega.
+
+```{r}
+table(klastrid, riigid$region)
+```
+
+Vajadusel võime anda igale klastrile ka numbri asemel nimetuse lähtudes eelnevast klastrite võrdlustest. Selle nimetuse saab määrata andmetabelisse igale vaatlusele edasiseks analüüsiks.
+
+```{r}
+nimed <- c('Arenguriigid', 'Arenevad riigid', 'Põllumajandusmaad', 'Arenenud riigid', 'Suured riigid')
+riigid$klaster <- nimed[klastrid]
+str(riigid)
+```

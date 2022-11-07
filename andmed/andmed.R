@@ -5,7 +5,91 @@
 library('magrittr')
 library('dplyr')
 
+
 # Read, clean and save data sets (2022-10-23 09:30:09) ----------
+
+# Eesti ettevõtete majandusnäitajad
+# praktikum_09_mõõtmevähendus
+## Päri
+library('pxweb')
+aadress <- 'https://andmed.stat.ee/api/v1/et/stat/EM001'
+#pxweb_get(aadress)$variables
+valikud <- list(
+  'Näitaja' = '*', 
+  'Tegevusala' = '*', 
+  'Tööga hõivatud isikute arv' = 'TOTAL', 
+  'Vaatlusperiood' = '2020') %>% 
+  lapply(as.character)
+päring <- pxweb_get_data(url = aadress, query = valikud)
+ettev <- päring
+## Korrasta
+ettev %<>% select(näitaja = Näitaja, tegevusala = Tegevusala, 
+                 väärtus = 'EM001: Ettevõtete majandusnäitajad')
+## Vali näitajad 
+set.seed(0);jätta <- unique(ettev$näitaja) %>% sample(20)
+ettev %<>% filter(näitaja %in% jätta)
+## Laienda
+library('tidyr')
+ettev %<>% pivot_wider(names_from = näitaja, values_from = väärtus)
+## Salvesta
+write.csv(ettev, 'andmed/ettevõtted.csv', row.names = F)
+
+# Death causes
+# faktoranalüüs
+surm <- read.csv('assets/deathcause.csv')
+surm[, -1] <- surm[, -1] / rowSums(surm[, -1], na.rm = T)
+write.csv(surm, 'andmed/deathcause.csv', row.names = F)
+
+# Decathlon
+# peakomponendid
+kv <- read.csv('assets/decathlon2004.csv')
+kv %<>% filter(Competition == 'OlympicG')
+kv %<>% select(Athlets, 
+               X100m, X400m, X1500m, X110m.hurdle, 
+               Long.jump, High.jump, Pole.vault, 
+               Shot.put, Discus, Javeline)
+names(kv) %<>% tolower %>% sub('\\.', '', .)
+write.csv(kv, 'andmed/decathlon2004.csv', row.names = F)
+
+# Eesti vallad
+# praktikum_08_klasterdamine
+## Päri
+library('pxweb')
+aadress <- 'https://andmed.stat.ee/api/v1/et/stat/RL21422'
+#pxweb_get(aadress)$variables
+valikud <- list(
+  'Aasta' = 2021, 
+  'Vanuserühm' = 2:6, 
+  'Elukoht' = '*', 
+  'Sugu' = 2:3, 
+  'Kodakondsus' = 2:6) %>% 
+  lapply(as.character)
+päring <- pxweb_get_data(url = aadress, query = valikud)
+ov <- päring
+## Jäta ainult vallad ja linnad
+ov %<>% subset(grepl('\\slinn$|\\svald$|Tallinn$', ov$Elukoht))
+## Korrasta
+names(ov)[names(ov) == 'Elukoht'] <- 'kov'
+ov$kov <- sub('^\\.\\.', '', ov$kov)
+names(ov)[ncol(ov)] <- 'väärtus'
+ov %<>% select(-Aasta)
+## Arvuta hilisemaks kogu elanike arv KOVides
+kokku <- aggregate(väärtus ~ kov, ov, sum)
+## Laienda
+library('tidyr')
+#ov %>% pivot_wider(names_from = c('Sugu', 'Kodakondsus', 'Vanuserühm'), values_from = väärtus)
+ov <- lapply(ov[, c('Sugu', 'Kodakondsus', 'Vanuserühm')], function(x) {
+  aggregate(ov$väärtus, list(kov = ov$kov, tunnus = x), sum) %>% 
+    pivot_wider(names_from = tunnus, values_from = x)
+})
+ov <- do.call('cbind', ov)
+## Korrasta veerud
+ov[, grep('kov', names(ov))[-1]] <- NULL
+names(ov)[grep('kov', names(ov))] <- 'kov'
+## Arvuta osakaalud
+ov[, -1] %<>% sapply(`/`, kokku$väärtus)
+## Salvesta
+write.csv(ov, 'andmed/kovrahvastik.csv', row.names = F)
 
 # World Values Survey
 # hierarhiline
@@ -19,6 +103,7 @@ names(wvs) <- c('country', 'survexp', 'tradsec') #, 'children', 'education', 'sa
 write.csv(wvs, 'andmed/wvsmap.csv', row.names = F)
 
 # Vehicles 1983
+# kkeskmised
 autod <- read.csv('assets/vehicles1983.csv')
 autod$origin %<>% recode(`1` = 'American', `2` = 'European', `3` = 'Japanese')
 write.csv(autod, 'andmed/vehicles1983.csv', row.names = F)
@@ -28,8 +113,9 @@ write.csv(autod, 'andmed/vehicles1983.csv', row.names = F)
 kliendid <- read.csv('assets/wholesalecustomers.csv')
 kliendid %<>% lapply(function(x) ifelse(x %in% boxplot.stats(x)$out, NA, x)) %>% # Eemalda erindid
   as.data.frame
-kliendid$Channel %<>% recode(`1` = 'HoReCa', `2` = 'Retail')
-kliendid$Region %<>% recode(`1` = 'Lisnon', `2` = 'Oporto', `3` = 'Other')
+kliendid$Channel %<>% recode(`1` = 'horeca', `2` = 'retail')
+kliendid$Region %<>% recode(`1` = 'Lisbon', `2` = 'Oporto', `3` = 'Other')
+names(kliendid) <- c('channel', 'region', 'fresh', 'milk', 'groceries', 'frozen', 'cleaning', 'meat')
 write.csv(kliendid, 'andmed/wholesalecustomers.csv', row.names = F)
 
 # Estonia passengers
@@ -77,8 +163,26 @@ write.table(orders, 'andmed/orders.csv', sep = ',', quote = F, row.names = F, co
 # Countries
 # 03_seosed
 riigid <- read.csv('assets/countries.csv')
+riigid[, 1] %<>% trimws
 names(riigid) %<>% strsplit('\\.') %>% sapply(`[`, 1)
-names(riigid)[names(riigid) == 'Net'] <- 'Migration'
+names(riigid) %<>% tolower
+names(riigid)[names(riigid) == 'net'] <- 'netmigration'
+riigid %<>% select(country, region, population, area, 
+                   netmigration, gdp, literacy, phones, 
+                   arable, agriculture)
+riigid$region %<>% recode(
+  "ASIA (EX. NEAR EAST)" = 'Asia', 
+  "BALTICS" = 'Eastern Europe', 
+  "C.W. OF IND. STATES" = 'Asia', 
+  "EASTERN EUROPE" = 'Eastern Europe', 
+  "LATIN AMER. & CARIB" = 'South America', 
+  "NEAR EAST" = 'Asia', 
+  "NORTHERN AFRICA" = 'Africa', 
+  "NORTHERN AMERICA" = 'North America', 
+  "OCEANIA" = 'Oceania', 
+  "SUB-SAHARAN AFRICA" = 'Africa', 
+  "WESTERN EUROPE" = 'Western Europe'
+)
 write.csv(riigid, 'andmed/countries.csv', row.names = F)
 
 # IT salary

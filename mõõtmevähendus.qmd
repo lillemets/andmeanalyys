@@ -1,1 +1,26 @@
 # Mõõtmevähendus {#sec-mõõtmevähendus}
+
+<!--
+[[Dimensionality reduction]]
+-->
+
+Andmed on enamasti paigutatud kahemõõtmelistesse tabelitesse, kus vaatlused on ridades ja tunnused veergudes. Sellist tabelit võib käsitleda maatriksina, kus iga rida ja veerg on omaette arvude hulk ehk vektor. Mõõtmete vähendamine tähendab nende vektorite koondamist, mille tulemusel ridade või veergude arv andmetabelis väheneb. Selle tulemusel tekivad uued vaatlused või tunnused. Need esindavad algseid vektoreid, sest mõõtmevähenduse käigus säilitatakse eelkõige meile huvipakkuv osa hajuvusest andmetes.
+
+::: {.callout-important}
+**Mõõtmevähenduse** (*dimensionality reduction*) käigus koondatakse hulk vaatlusi või tunnuseid väiksemasse arvu vaatlustesse või tunnustesse nii, et säilib kõige asjakohasem osa nende tunnuste hajuvusest.
+:::
+
+Põhjused mõõtmete vähendamiseks on seotud eelkõige andmete kirjeldamise või teiste protseduuride rakendamisega. Mõõtmete vähendamine võimaldab 
+
+- valida paljude tunnuste seast välja ainult asjakohasemad; 
+- koondada mitme tunnuse hajuvus ühte tunnusesse; 
+- vähendada vaatluste omavahelisi kaugusi tunnuste arvu vähendamise teel, et kaugused oleksid sisukamad;
+- klasterdada ehk jagada vaatlused või tunnused sisulistesse rühmadesse; 
+- kõrvaldada tunnuste hajuvusest juhuslikku müra; 
+- lihtsustada andmemaatriksit ja seeläbi kiirendada arvutusi; 
+- kujutada üheaegselt mitut mõõdet kahemõõtmelisel joonisel.
+
+Lisaks vaatluste vähendamist võimaldavale klasterdamisele (@sec-klasterdamine) võib esitada ka meetodid, mille abil saab kokku võtta tunnuseid: 
+
+- peakomponentide analüüs (@sec-peakomponendid) ja 
+- faktoranalüüs (@sec-faktoranalüüs). 

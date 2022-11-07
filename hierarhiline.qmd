@@ -33,14 +33,16 @@ Sisestame andmetabeli, milles on uuringusse kaasatud riikide elanike väärtushi
 
 ```{r}
 library('magrittr')
-wvs <- read.csv('andmed/wvsmap.csv', row.names = 1)
+wvs <- read.csv('andmed/wvsmap.csv')
+rownames(wvs) <- wvs$country
+wvs$country <- NULL
 head(wvs)
 ```
 
 Ka hierarhilisel klasterdamisel peaksime viima väärtused võrreldavale skaalale Antud juhul on kõik väärtushinnangud mõõdetud samal skaalal, seega ei ole standardiseerimine vajalik. Võime seda siiski teha, et lihtsamini hinnata riikide paiknemist keskmise suhtes.
 
 ```{r}
-wvs[] %<>% sapply(scale)
+wvs %<>% lapply(scale) %>% as.data.frame
 ```
 
 Joonistame nö kultuurilise kaardi, mis iseloomustab riikide paiknemist väärtushinnangute ruumis.
@@ -134,7 +136,7 @@ wvs$klaster <- klastridK
 head(wvs)
 ```
 
-Klastrite iseloomustamiseks on palju võimalusi (@sec-kkeskmised). Antud andmete korral võiksime eristada klastreid nö kultuurilisel kaardil.
+Klastrite iseloomustamiseks on palju võimalusi (@sec-klasterdamine). Antud andmete korral võiksime eristada klastreid nö kultuurilisel kaardil.
 
 ```{r}
 Seos + 

@@ -36,6 +36,7 @@ book:
     - klassifitseerimine.qmd
     - kaugus.qmd
     - klasterdamine.qmd
+    - mõõtmevähendus.qmd
 #    - sobitamine.qmd
 #    - standardiseerimine.qmd
 #    - veatabel.qmd
@@ -50,7 +51,8 @@ book:
     - lähinaabrid.qmd
     - hierarhiline.qmd
     - kkeskmised.qmd
-#    - mõõtmevähendus.qmd
+    - peakomponendid.qmd
+    - faktoranalüüs.qmd
 #    - tekstikaeve.qmd
 #    - maakaardid.qmd
 #    - masinõpe.qmd

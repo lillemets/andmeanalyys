@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 29&nbsp; Faktoranalüüs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./viited.html" rel="next">
+<link href="./peakomponendid.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sisukord</h2>
+   
+  <ul>
+  <li><a href="#faktormudel" id="toc-faktormudel" class="nav-link active" data-scroll-target="#faktormudel"><span class="toc-section-number">29.1</span>  Faktormudel</a></li>
+  <li><a href="#faktorite-arv" id="toc-faktorite-arv" class="nav-link" data-scroll-target="#faktorite-arv"><span class="toc-section-number">29.2</span>  Faktorite arv</a></li>
+  <li><a href="#pööramine" id="toc-pööramine" class="nav-link" data-scroll-target="#pööramine"><span class="toc-section-number">29.3</span>  Pööramine</a></li>
+  <li><a href="#eeldused" id="toc-eeldused" class="nav-link" data-scroll-target="#eeldused"><span class="toc-section-number">29.4</span>  Eeldused</a></li>
+  <li><a href="#tõlgendamine" id="toc-tõlgendamine" class="nav-link" data-scroll-target="#tõlgendamine"><span class="toc-section-number">29.5</span>  Tõlgendamine</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-faktoranalüüs" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!--
+[[Factor analysis (FA)]]
+-->
+<p>Tunnuste vahel esineb peaaegu alati korrelatsioon, mis ühtlasi viitab tunnuste jagatud hajuvusele. Selle ühise hajuvuse arvutamiseks ja mõtestamiseks on palju võimalusi. Üks lähenemine on koondada võimalikult suur osa hajuvusest esimestesse peakomponentidesse, mis on sel juhul laetud tunnuste poolt. Faktoranalüüsi lähenemine on aga teatud mõttes vastupidine. Selle käigus leitavaid faktorid käsitletakse varjatud tunnustena, mis seletavad hoopis analüüsi kaasatud tunnuseid.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Faktoranalüüsi</strong> (<em>factor analysis</em>) käigus leitakse tunnuste ühise hajuvuse alusel faktorid.</p>
+<p><strong>Faktorid</strong> on selles tähenduses varjatud muutujad (<em>latent variables</em>), mis seletavad olemasolevaid tunnuseid.</p>
+</div>
+</div>
+<p>Faktorid niisiis andmetes eraldi tunnustena ei esine. Oletame, et need on tegelikult olemas, esinevad teatud määral olemasolevates tunnustes ja nende alusel tuletatavad. Iga faktor on niisiis seotud ainult teatud tunnustega.</p>
+<p>Enamasti kasutatakse faktoranalüüsi andmete esialgseks uurimiseks, sest sellel puudub paljude arvutusviiside tõttu üksainus ja nö õige lahendus. Siiski on olemas erinevaid protseduure nende lahenduste testimiseks ja kinnitamiseks, mille võib kokku võtta mõistega <strong>struktuurvõrrandite mudelid</strong>.</p>
+<p>Uurime järgnevalt surmapõhjuste osakaale maailma riikides. Võime oletada, et erinevate põhjuste taga võivad olla samad varjatud tunnused, mille kohta meil või üleüldse andmeid ei ole.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>surm <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/deathcause.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(surm) <span class="ot">&lt;-</span> surm<span class="sc">$</span>Country.Name</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>surm<span class="sc">$</span>Country.Name <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(surm)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   191 obs. of  31 variables:
+ $ Covid.19.Deaths                           : num  0.01002 0.05055 0.01416 0.12519 0.00019 ...
+ $ Cardiovascular.diseases                   : num  0.282 0.552 0.502 0.252 0.148 ...
+ $ Respiratory.diseases                      : num  0.0322 0.0349 0.0386 0.0581 0.0227 ...
+ $ Kidney.diseases                           : num  0.0257 0.0141 0.042 0.0238 0.0142 ...
+ $ Neonatal.disorders                        : num  0.10787 0.00689 0.04489 0 0.10493 ...
+ $ Meningitis                                : num  0.007114 0.000556 0.001497 0 0.014538 ...
+ $ Malaria                                   : num  0.00241 0 0 0 0.06221 ...
+ $ Interpersonal.violence                    : num  0.02283 0.00244 0.00235 0 0.00562 ...
+ $ HIV.AIDS                                  : num  1.45e-03 8.56e-05 1.35e-03 4.47e-03 9.69e-02 ...
+ $ Tuberculosis                              : num  0.016508 0.000471 0.002281 0 0.067796 ...
+ $ Maternal.disorders                        : num  0.018378 0.000128 0.003271 0 0.011936 ...
+ $ Lower.respiratory.infections              : num  0.0851 0.0196 0.0297 0.0298 0.0737 ...
+ $ Alcohol.use.disorders                     : num  0.000669 0.00077 0.000569 0.00149 0.001217 ...
+ $ Diarrheal.diseases                        : num  0.01966 0.0003 0.0027 0.00149 0.07463 ...
+ $ Poisoning                                 : num  0.002389 0.000471 0.0018 0 0.002498 ...
+ $ Nutritional.deficiencies                  : num  0.005662 0.000214 0.000584 0 0.017393 ...
+ $ Alzheimer.s.disease                       : num  0.00808 0.03925 0.02671 0.05365 0.00659 ...
+ $ Parkinson.s.disease                       : num  0.00255 0.01061 0.00658 0.01043 0.00154 ...
+ $ Acute.hepatitis                           : num  8.83e-03 4.28e-05 1.33e-03 1.49e-03 1.42e-03 ...
+ $ Digestive.diseases                        : num  0.0315 0.0226 0.0328 0.0402 0.0518 ...
+ $ Cirrhosis.and.other.chronic.liver.diseases: num  0.0173 0.0143 0.0207 0.0179 0.0327 ...
+ $ Protein.energy.malnutrition               : num  0.005507 0.000128 0.000472 0 0.016764 ...
+ $ Neoplasms                                 : num  0.0967 0.2014 0.1221 0.3428 0.0738 ...
+ $ Fire..heat                                : num  0.00221 0.00077 0.00401 0 0.00296 ...
+ $ Drowning                                  : num  0.00768 0.00154 0.0027 0 0.00457 ...
+ $ Drug.use.disorders                        : num  0.001848 0.001241 0.002697 0 0.000462 ...
+ $ Road.injuries                             : num  0.0376 0.0104 0.0567 0.0119 0.0534 ...
+ $ Environmental.heat.and.cold.exposure      : num  0.000269 0.000171 0.000205 0 0.000658 ...
+ $ Self.harm                                 : num  0.00734 0.00651 0.00777 0.01192 0.01112 ...
+ $ Conflict.and.terrorism                    : num  1.11e-01 0.00 6.67e-05 0.00 9.23e-05 ...
+ $ Diabetes                                  : num  0.02192 0.00749 0.02732 0.01341 0.02327 ...</code></pre>
+</div>
+</div>
+<section id="faktormudel" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="faktormudel"><span class="header-section-number">29.1</span> Faktormudel</h2>
+<p>Faktoranalüüsi käsitluses laadivad tunnuseid faktorid ehk mingid varjatud tunnused. Seega saame <strong>faktormudeli</strong> abil selgitada iga tunnuse väärtusi faktorite kordajate lineaarsete kombinatsioonidena:</p>
+<p><span class="math display">\[x_j = q_{jl} F_l + U_j +\mu_j,\]</span> kus</p>
+<ul>
+<li><span class="math inline">\(x_j\)</span> on tunnus <span class="math inline">\(j\)</span>,</li>
+<li><span class="math inline">\(q_{jl}\)</span> on <span class="math inline">\(j\)</span>nda tunnuse <span class="math inline">\(l\)</span>nda faktori kordaja,</li>
+<li><span class="math inline">\(F_l\)</span> on <span class="math inline">\(l\)</span>ndas faktor,</li>
+<li><span class="math inline">\(U_j\)</span> on <span class="math inline">\(j\)</span>th ainult tunnusele omane (unikaalne) hajuvus ja<br>
+</li>
+<li><span class="math inline">\(\mu_j\)</span> on tunnuse <span class="math inline">\(x_j\)</span> keskmine väärtus.</li>
+</ul>
+<p>Enne faktoranalüüsi kajastavad tunnuste väärtused ainult tunnustele omast hajuvust <span class="math inline">\(U_j\)</span> koos tunnuse keskmisega <span class="math inline">\(\mu_j\)</span>. Faktoranalüüsi tulemusel eraldatakse sellest faktor <span class="math inline">\(q_{jl} F_l\)</span>, mida saame seejärel kirjeldada. Faktorite arvutamiseks kasutatakse tunnustevahelisi korrelatsioone, millest faktorite tuletamiseks on mitu viisi.</p>
+<p>Kuigi R keeles on funktsioon <code>factanal()</code>, siis palju rohkem võimalusi pakub funktsioon <code>fa()</code> laiendusest <code>psych</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'psych'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>faktorid <span class="ot">&lt;-</span> <span class="fu">fa</span>(surm, <span class="at">nfactors =</span> <span class="dv">7</span>, <span class="at">rotate =</span> <span class="st">'none'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+The estimated weights for the factor scores are probably incorrect. Try a
+different factor score estimation method.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+ultra-Heywood case was detected. Examine the results carefully</code></pre>
+</div>
+</div>
+</section>
+<section id="faktorite-arv" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="faktorite-arv"><span class="header-section-number">29.2</span> Faktorite arv</h2>
+<p>Sobiva arvu faktorite määramisel võib jällegi kasutada samasid põhimõtteid, mida peakomponentide analüüsi korral. Kuna faktoranalüüs on mõneti loomingulisem, siis võib vabamalt läheneda ka faktorite valikule. Näiteks võib lähtuda faktorite kordajatest või unikaalsusest. Kui mõnel tunnusel on väga kõrge unikaalsus, siis faktorite lisamine võib aidata sellist tunnust lisanduva faktori abil seletada.</p>
+<p>Kõige lihtsam on selgitada sobiv faktorite arv ilmselt funktsiooniga <code>fa.parallel()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(surm)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+The estimated weights for the factor scores are probably incorrect. Try a
+different factor score estimation method.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parallel analysis suggests that the number of factors =  7  and the number of components =  6 </code></pre>
+</div>
+</div>
+</section>
+<section id="pööramine" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="pööramine"><span class="header-section-number">29.3</span> Pööramine</h2>
+<p>Faktoranalüüsi eesmärgiks on enamasti saada sellised faktorid, millest igaüks seletaks võimalikult täpselt konkreetse tunnuse väärtusi nii, et iga tunnus saaks kokkuvõtteks seletatud. Selleks pööratakse algset faktorikordajate maatriksit nii, et faktorid oleksid teineteisest erinevad. Kuna pööramiseks on palju erinevaid viise, millest igaüks annab enamasti erineva tulemuse, siis toob see analüüsi erapoolikust. Teisalt lihtsustab pööramine tavaliselt faktorite tõlgendamist.</p>
+<p>Enamasti rakendatakse ühte kolmest alljärgnevast pööramisest. Sealjuures tasub tähele panna, et faktorite täisnurksust säilitatavate pööramistega kaasnevad eripärasemad faktorid, aga faktorid ise ei ole nii palju seotud konkreetsete tunnustega.</p>
+<ul>
+<li><strong>Varimax</strong> pööramise korral maksimeeritakse kordajate ruutude hajuvust <em>faktorite siseselt</em>. Faktorite vahel puudub korrelatsioon. Selle tulemusel on <em>igal faktor seotud võimalikult väheste tunnustega</em>.</li>
+<li><strong>Oblimin</strong> pööramisel maksimeeritakse samuti kordajate ruutude hajuvust <em>faktorite siseselt</em>, aga selliselt, et faktorite vahel võib olla ka korrelatsioon. Võrreldes varimax pööramisega on tulemuseks küll mitte nii selgelt eristuvad faktorid, aga faktorite siseselt eristuvad selgemalt tunnused.</li>
+<li><strong>Quartimax</strong> pööramise eesmärk on maksimeerida faktori kordajate ruutude hajuvust erinevalt eelnevatest hoopis <em>tunnuste siseselt</em>. Selle tulemusel on iga tunnus seotud võimalikult väheste faktoritega.</li>
+</ul>
+<p>Soovitud pööramise saame faktorite arvutamisel täpsustada argumendiga <code>rotate</code>. Võrdleme, kuidas paiknevad faktorite kordajad erinevatel pööramistel kahe esimese faktori suhtes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>faktorid <span class="ot">&lt;-</span> <span class="fu">fa</span>(surm, <span class="at">nfactors =</span> <span class="dv">7</span>, <span class="at">rotate =</span> <span class="st">'varimax'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+The estimated weights for the factor scores are probably incorrect. Try a
+different factor score estimation method.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+ultra-Heywood case was detected. Examine the results carefully</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(faktorid<span class="sc">$</span>loadings[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>faktorid <span class="ot">&lt;-</span> <span class="fu">fa</span>(surm, <span class="at">nfactors =</span> <span class="dv">7</span>, <span class="at">rotate =</span> <span class="st">'oblimin'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: GPArotation</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+am sorry, to do these rotations requires the GPArotation package to be installed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+The estimated weights for the factor scores are probably incorrect. Try a
+different factor score estimation method.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+ultra-Heywood case was detected. Examine the results carefully</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(faktorid<span class="sc">$</span>loadings[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="eeldused" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="eeldused"><span class="header-section-number">29.4</span> Eeldused</h2>
+<p>Üldiselt kehtivad faktoranalüüsile samad eeldused, mis peakomponentide analüüsi puhul. Veelgi olulisem on aga veenduda selles, et tunnuste vaheline jagatud hajuvus on piisav selleks, et</p>
+<ul>
+<li>andmepilv ei ole sfääriline (<em>sphericity</em>) ja</li>
+<li>iga tunnus ei ole seotud ainult ühe faktoriga (<em>sampling adequacy</em>).</li>
+</ul>
+<p>Nende kahe eelduse testimiseks saab kasutada vastavalt funktsioone <code>cortest.bartlett()</code> ja <code>KMO()</code> laiendusest <code>psych</code>.</p>
+</section>
+<section id="tõlgendamine" class="level2 page-columns page-full" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="tõlgendamine"><span class="header-section-number">29.5</span> Tõlgendamine</h2>
+<p>Lähtudes faktormudelist näitavad faktorite <strong>kordajad</strong> iga faktori mõju tunnusele. Nii on need kordajad tähenduselt mingil määral sarnased regressioonmudeli kordajatele, kus kordaja märk näitab seose suunda ja absoluutväärtus seose tugevust. Sageli võetakse arvesse ainult neid kordajaid mille väärtus on kõrgem kui nt 0,3 või 0,5 selleks, et iga faktor oleks selgemini seotud konkreetsete tunnustega või vastupidi.</p>
+<p>Kordajad saame kätte faktori objekti osisest <code>loadings</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>faktorid <span class="ot">&lt;-</span> <span class="fu">fa</span>(surm, <span class="at">nfactors =</span> <span class="dv">7</span>, <span class="at">rotate =</span> <span class="st">'oblimin'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: GPArotation</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : I
+am sorry, to do these rotations requires the GPArotation package to be installed</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fa.stats(r = r, f = f, phi = phi, n.obs = n.obs, np.obs = np.obs, :
+The estimated weights for the factor scores are probably incorrect. Try a
+different factor score estimation method.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in fac(r = r, nfactors = nfactors, n.obs = n.obs, rotate = rotate, : An
+ultra-Heywood case was detected. Examine the results carefully</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>faktorid<span class="sc">$</span>loadings</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+                                           MR1    MR2    MR3    MR4    MR5   
+Covid.19.Deaths                            -0.386                            
+Cardiovascular.diseases                    -0.632  0.283  0.282 -0.434 -0.233
+Respiratory.diseases                       -0.241        -0.106        -0.211
+Kidney.diseases                            -0.229  0.277 -0.645  0.228  0.177
+Neonatal.disorders                          0.922 -0.110                     
+Meningitis                                  0.889 -0.258                     
+Malaria                                     0.732 -0.255                     
+Interpersonal.violence                      0.144  0.302 -0.305  0.235  0.337
+HIV.AIDS                                    0.499                       0.192
+Tuberculosis                                0.839                            
+Maternal.disorders                          0.891 -0.138                     
+Lower.respiratory.infections                0.681 -0.227 -0.101  0.194       
+Alcohol.use.disorders                      -0.251  0.376  0.381  0.194  0.460
+Diarrheal.diseases                          0.855 -0.212                     
+Poisoning                                   0.762  0.165  0.319 -0.177       
+Nutritional.deficiencies                    0.748 -0.165         0.194  0.197
+Alzheimer.s.disease                        -0.719 -0.445  0.147  0.231       
+Parkinson.s.disease                        -0.799 -0.426         0.195       
+Acute.hepatitis                             0.621               -0.128 -0.324
+Digestive.diseases                                 0.525  0.187  0.765 -0.296
+Cirrhosis.and.other.chronic.liver.diseases  0.200  0.676  0.147  0.460 -0.353
+Protein.energy.malnutrition                 0.742 -0.173         0.191  0.208
+Neoplasms                                  -0.808 -0.361  0.164  0.162  0.109
+Fire..heat                                  0.496  0.314        -0.396  0.176
+Drowning                                    0.230  0.506 -0.263 -0.145       
+Drug.use.disorders                         -0.257         0.150 -0.187       
+Road.injuries                               0.200  0.346 -0.263 -0.352       
+Environmental.heat.and.cold.exposure               0.383  0.782         0.278
+Self.harm                                  -0.170  0.248  0.211         0.286
+Conflict.and.terrorism                      0.121               -0.233 -0.165
+Diabetes                                   -0.125  0.256 -0.639         0.180
+                                           MR6    MR7   
+Covid.19.Deaths                            -0.283  0.325
+Cardiovascular.diseases                    -0.275 -0.272
+Respiratory.diseases                        0.458 -0.162
+Kidney.diseases                                         
+Neonatal.disorders                                      
+Meningitis                                              
+Malaria                                                 
+Interpersonal.violence                     -0.166       
+HIV.AIDS                                                
+Tuberculosis                                            
+Maternal.disorders                                      
+Lower.respiratory.infections                0.180       
+Alcohol.use.disorders                                   
+Diarrheal.diseases                                      
+Poisoning                                               
+Nutritional.deficiencies                                
+Alzheimer.s.disease                                0.100
+Parkinson.s.disease                         0.201       
+Acute.hepatitis                             0.156       
+Digestive.diseases                                      
+Cirrhosis.and.other.chronic.liver.diseases              
+Protein.energy.malnutrition                             
+Neoplasms                                   0.213       
+Fire..heat                                  0.106  0.118
+Drowning                                    0.291 -0.248
+Drug.use.disorders                          0.285  0.317
+Road.injuries                               0.170  0.532
+Environmental.heat.and.cold.exposure                    
+Self.harm                                   0.429       
+Conflict.and.terrorism                                  
+Diabetes                                          -0.250
+
+                  MR1   MR2   MR3   MR4   MR5   MR6   MR7
+SS loadings    10.257 2.740 2.225 1.841 1.191 0.972 0.797
+Proportion Var  0.331 0.088 0.072 0.059 0.038 0.031 0.026
+Cumulative Var  0.331 0.419 0.491 0.550 0.589 0.620 0.646</code></pre>
+</div>
+</div>
+<p>Kordajate alusel saame muuhulgas anda faktoritele tähenduse. Nt esimene faktor võiks iseloomustada arsiabi kättesaadavust, kuna on seotud eelkõige nakkushaiguste ja lihtsamini ravitavate surmapõhjustega. Teine faktor mõjutab muuhulgas õnnetustega seotud surmapõhjusi, nii et võiks iseloomustada elukeskkonna ohtlikkust.</p>
+<p>Üks viis faktorite kordajaid joonistada on kasutada seosekaarti.</p>
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'gplots'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'gplots'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    lowess</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap.2</span>(faktorid<span class="sc">$</span>loadings, <span class="at">col =</span> <span class="st">'bluered'</span>, <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">12</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display column-page-right">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Teine võimalus on kuvada tunnused ja faktorid ning nende vahelised seosed joontena, millel on kordajad.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(faktorid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Sarnaselt peakomponentide analüüsile saame ka faktoranalüüsis leida igale vaatlusele nende paiknemise faktori skaalal ehk <strong>faktorskoorid</strong> (<em>factor scores</em>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(faktorid<span class="sc">$</span>scores)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           MR1        MR2        MR3        MR4        MR5
+Afghanistan          1.2837410 -0.1114036 -0.8188728 -1.7174264 -1.3218726
+Albania             -0.9621016 -1.0332814  0.5246546 -1.5734375 -0.8608276
+Algeria             -0.3205165  0.3941513  0.2469887 -1.8875429 -1.4263518
+Andorra             -0.3191040 -1.6884350 -1.9617702  1.0227512  1.6965491
+Angola               1.7674327 -0.1049126  0.1219444  0.3027988 -0.1638401
+Antigua and Barbuda -0.2872706  0.1574415 -1.9210794  0.5530720  2.1891926
+                           MR6        MR7
+Afghanistan          0.7131453  0.7246590
+Albania             -1.1414748 -0.9942366
+Algeria             -0.6594341 -0.1066433
+Andorra              0.8659360  3.5498961
+Angola               0.1329637  0.7311467
+Antigua and Barbuda  0.1021627  0.5483677</code></pre>
+</div>
+</div>
+<p>Iga tunnuse kohta saame arvutada <strong>unikaalsuse</strong> (<em>uniqueness</em>), mis näitab faktorite poolt seletamata jäänud osa tunnuse hajuvusest. <strong>Kommunaliteet</strong> (<em>communality</em>) on selle pöördväärtus ja näitab seega, kui suur osa tunnuse hajuvusest on seletatav faktoritega.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(faktorid<span class="sc">$</span>uniqueness)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Covid.19.Deaths Cardiovascular.diseases    Respiratory.diseases 
+             0.64494328              0.04852938              0.64132597 
+        Kidney.diseases      Neonatal.disorders              Meningitis 
+             0.36835532              0.13262352              0.12744225 </code></pre>
+</div>
+</div>
+<p>Tunnuse <strong>keerukuse</strong> (<em>complexity</em>) saab leida samuti iga tunnuse kohta ja see näitab faktorite arvu, mis antud tunnust mõjutavad.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(faktorid<span class="sc">$</span>complexity)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Covid.19.Deaths Cardiovascular.diseases    Respiratory.diseases 
+               3.159435                4.073304                2.569134 
+        Kidney.diseases      Neonatal.disorders              Meningitis 
+               2.149664                1.039504                1.210875 </code></pre>
+</div>
+</div>
+<p>Kahte faktorit saame korraga kujutada hajuvusjoonisel.</p>
+<div class="cell page-columns page-full">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(faktorid<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],  <span class="fu">loadings</span>(faktorid), <span class="at">cex =</span> .<span class="dv">5</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display column-page-right">
+<p><img src="faktoranalüüs_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./peakomponendid.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./viited.html" class="pagination-link">
+        <span class="nav-page-text">Viited</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

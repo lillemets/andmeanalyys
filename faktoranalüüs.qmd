@@ -1,0 +1,156 @@
+# Faktoranalüüs {#sec-faktoranalüüs}
+
+<!--
+[[Factor analysis (FA)]]
+-->
+
+Tunnuste vahel esineb peaaegu alati korrelatsioon, mis ühtlasi viitab tunnuste jagatud hajuvusele. Selle ühise hajuvuse arvutamiseks ja mõtestamiseks on palju võimalusi. Üks lähenemine on koondada võimalikult suur osa hajuvusest esimestesse peakomponentidesse, mis on sel juhul laetud tunnuste poolt. Faktoranalüüsi lähenemine on aga teatud mõttes vastupidine. Selle käigus leitavaid faktorid käsitletakse varjatud tunnustena, mis seletavad hoopis analüüsi kaasatud tunnuseid. 
+
+::: {.callout-important}
+**Faktoranalüüsi** (*factor analysis*) käigus leitakse tunnuste ühise hajuvuse alusel faktorid. 
+
+**Faktorid** on selles tähenduses varjatud muutujad (*latent variables*), mis seletavad olemasolevaid tunnuseid.
+:::
+
+Faktorid  niisiis andmetes eraldi tunnustena ei esine. Oletame, et need on tegelikult olemas, esinevad teatud määral olemasolevates tunnustes ja nende alusel tuletatavad. Iga faktor on niisiis seotud ainult teatud tunnustega.
+
+Enamasti kasutatakse faktoranalüüsi andmete esialgseks uurimiseks, sest sellel puudub paljude arvutusviiside tõttu üksainus ja nö õige lahendus. Siiski on olemas erinevaid protseduure nende lahenduste testimiseks ja kinnitamiseks, mille võib kokku võtta mõistega **struktuurvõrrandite mudelid**. 
+
+Uurime järgnevalt surmapõhjuste osakaale maailma riikides. Võime oletada, et erinevate põhjuste taga võivad olla samad varjatud tunnused, mille kohta meil või üleüldse andmeid ei ole.
+
+```{r}
+surm <- read.csv('andmed/deathcause.csv')
+rownames(surm) <- surm$Country.Name
+surm$Country.Name <- NULL
+str(surm)
+```
+
+
+## Faktormudel
+
+Faktoranalüüsi käsitluses laadivad tunnuseid faktorid ehk mingid varjatud tunnused. Seega saame **faktormudeli** abil selgitada iga tunnuse väärtusi faktorite kordajate lineaarsete kombinatsioonidena: 
+
+$$x_j = q_{jl} F_l + U_j +\mu_j,$$
+kus 
+
+- $x_j$ on tunnus $j$, 
+- $q_{jl}$ on $j$nda tunnuse $l$nda faktori kordaja, 
+- $F_l$ on $l$ndas faktor, 
+- $U_j$ on $j$th ainult tunnusele omane (unikaalne) hajuvus ja  
+- $\mu_j$ on tunnuse $x_j$ keskmine väärtus. 
+
+Enne faktoranalüüsi kajastavad tunnuste väärtused ainult tunnustele omast hajuvust $U_j$ koos tunnuse keskmisega $\mu_j$. Faktoranalüüsi tulemusel eraldatakse sellest faktor $q_{jl} F_l$, mida saame seejärel kirjeldada. Faktorite arvutamiseks kasutatakse tunnustevahelisi korrelatsioone, millest faktorite tuletamiseks on mitu viisi.
+
+Kuigi R keeles on funktsioon `factanal()`, siis palju rohkem võimalusi pakub funktsioon `fa()` laiendusest `psych`. 
+
+```{r}
+library('psych')
+faktorid <- fa(surm, nfactors = 7, rotate = 'none')
+```
+
+## Faktorite arv
+
+Sobiva arvu faktorite määramisel võib jällegi kasutada samasid põhimõtteid, mida peakomponentide analüüsi korral. Kuna faktoranalüüs on mõneti loomingulisem, siis võib vabamalt läheneda ka faktorite valikule. Näiteks võib lähtuda faktorite kordajatest või unikaalsusest. Kui mõnel tunnusel on väga kõrge unikaalsus, siis faktorite lisamine võib aidata sellist tunnust lisanduva faktori abil seletada.
+
+Kõige lihtsam on selgitada sobiv faktorite arv ilmselt funktsiooniga `fa.parallel()`.
+
+```{r}
+fa.parallel(surm)
+```
+
+
+## Pööramine
+
+Faktoranalüüsi eesmärgiks on enamasti saada sellised faktorid, millest igaüks seletaks võimalikult täpselt konkreetse tunnuse väärtusi nii, et iga tunnus saaks kokkuvõtteks seletatud. Selleks pööratakse algset faktorikordajate maatriksit nii, et faktorid oleksid teineteisest erinevad. Kuna pööramiseks on palju erinevaid viise, millest igaüks annab enamasti erineva tulemuse, siis toob see analüüsi erapoolikust. Teisalt lihtsustab pööramine tavaliselt faktorite tõlgendamist. 
+
+Enamasti rakendatakse ühte kolmest alljärgnevast pööramisest. Sealjuures tasub tähele panna, et faktorite täisnurksust säilitatavate pööramistega kaasnevad eripärasemad faktorid, aga faktorid ise ei ole nii palju seotud konkreetsete tunnustega.
+
+- **Varimax** pööramise korral maksimeeritakse kordajate ruutude hajuvust *faktorite siseselt*. Faktorite vahel puudub korrelatsioon. Selle tulemusel on *igal faktor seotud võimalikult väheste tunnustega*.
+- **Oblimin** pööramisel maksimeeritakse samuti kordajate ruutude hajuvust *faktorite siseselt*, aga selliselt, et faktorite vahel võib olla ka korrelatsioon. Võrreldes varimax pööramisega on tulemuseks küll mitte nii selgelt eristuvad faktorid, aga faktorite siseselt eristuvad selgemalt tunnused.
+- **Quartimax** pööramise eesmärk on maksimeerida faktori kordajate ruutude hajuvust erinevalt eelnevatest hoopis *tunnuste siseselt*. Selle tulemusel on iga tunnus seotud võimalikult väheste faktoritega.
+
+Soovitud pööramise saame faktorite arvutamisel täpsustada argumendiga `rotate`. Võrdleme, kuidas paiknevad faktorite kordajad erinevatel pööramistel kahe esimese faktori suhtes.
+
+```{r}
+faktorid <- fa(surm, nfactors = 7, rotate = 'varimax')
+plot(faktorid$loadings[, 1:2])
+faktorid <- fa(surm, nfactors = 7, rotate = 'oblimin')
+plot(faktorid$loadings[, 1:2])
+```
+
+
+## Eeldused
+
+Üldiselt kehtivad faktoranalüüsile samad eeldused, mis peakomponentide analüüsi puhul. Veelgi olulisem on aga veenduda selles, et tunnuste vaheline jagatud hajuvus on piisav selleks, et 
+
+- andmepilv ei ole sfääriline (*sphericity*) ja 
+- iga tunnus ei ole seotud ainult ühe faktoriga (*sampling adequacy*).
+
+Nende kahe eelduse testimiseks saab kasutada vastavalt funktsioone `cortest.bartlett()` ja `KMO()` laiendusest `psych`.
+
+```{r}
+#| include: false
+
+# Bartletti test
+korrel <- cor(surm, use = 'pairwise.complete.obs')
+cortest.bartlett(korrel, n = nrow(surm))$p.value
+# KMO mõõdik
+KMO(surm)
+```
+
+## Tõlgendamine
+
+Lähtudes faktormudelist näitavad faktorite **kordajad** iga faktori mõju tunnusele. Nii on need kordajad tähenduselt mingil määral sarnased regressioonmudeli kordajatele, kus kordaja märk näitab seose suunda ja absoluutväärtus seose tugevust. Sageli võetakse arvesse ainult neid kordajaid mille väärtus on kõrgem kui nt 0,3 või 0,5 selleks, et iga faktor oleks selgemini seotud konkreetsete tunnustega või vastupidi.
+
+Kordajad saame kätte faktori objekti osisest `loadings`. 
+
+```{r}
+#| fig-height: 10
+faktorid <- fa(surm, nfactors = 7, rotate = 'oblimin')
+faktorid$loadings
+```
+Kordajate alusel saame muuhulgas anda faktoritele tähenduse. Nt esimene faktor võiks iseloomustada arsiabi kättesaadavust, kuna on seotud eelkõige nakkushaiguste ja lihtsamini ravitavate surmapõhjustega. Teine faktor mõjutab muuhulgas õnnetustega seotud surmapõhjusi, nii et võiks iseloomustada elukeskkonna ohtlikkust.
+
+Üks viis faktorite kordajaid joonistada on kasutada seosekaarti.
+
+```{r}
+#| column: page-right
+#| fig-height: 8
+library('gplots')
+heatmap.2(faktorid$loadings, col = 'bluered', margins = c(4,12))
+```
+
+Teine võimalus on kuvada tunnused ja faktorid ning nende vahelised seosed joontena, millel on kordajad.
+
+```{r}
+#| fig-height: 10
+fa.diagram(faktorid)
+```
+
+Sarnaselt peakomponentide analüüsile saame ka faktoranalüüsis leida igale vaatlusele nende paiknemise faktori skaalal ehk **faktorskoorid** (*factor scores*).
+
+```{r}
+head(faktorid$scores)
+```
+
+Iga tunnuse kohta saame arvutada **unikaalsuse** (*uniqueness*), mis näitab faktorite poolt seletamata jäänud osa tunnuse hajuvusest. **Kommunaliteet** (*communality*) on selle pöördväärtus ja näitab seega, kui suur osa tunnuse hajuvusest on seletatav faktoritega. 
+
+```{r}
+head(faktorid$uniqueness)
+```
+
+Tunnuse **keerukuse** (*complexity*) saab leida samuti iga tunnuse kohta ja see näitab faktorite arvu, mis antud tunnust mõjutavad. 
+
+```{r}
+head(faktorid$complexity)
+```
+
+Kahte faktorit saame korraga kujutada hajuvusjoonisel.
+
+```{r}
+#| column: page-right
+#| fig-height: 8
+#| fig-width: 8
+biplot(faktorid$scores[, 1:2],  loadings(faktorid), cex = .5)
+```
+

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Oijee! Andmeteadus - 28&nbsp; Peakomponentide analüüs</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./faktoranalüüs.html" rel="next">
+<link href="./kkeskmised.html" rel="prev">
+<link href="./logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Tulemusi ei ole",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Oijee! Andmeteadus</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sisukord</h2>
+   
+  <ul>
+  <li><a href="#peakomponentide-tähendus" id="toc-peakomponentide-tähendus" class="nav-link active" data-scroll-target="#peakomponentide-tähendus"><span class="toc-section-number">28.1</span>  Peakomponentide tähendus</a></li>
+  <li><a href="#peakomponentide-leidmine" id="toc-peakomponentide-leidmine" class="nav-link" data-scroll-target="#peakomponentide-leidmine"><span class="toc-section-number">28.2</span>  Peakomponentide leidmine</a></li>
+  <li><a href="#eeldused" id="toc-eeldused" class="nav-link" data-scroll-target="#eeldused"><span class="toc-section-number">28.3</span>  Eeldused</a></li>
+  <li><a href="#peakomponentide-arv" id="toc-peakomponentide-arv" class="nav-link" data-scroll-target="#peakomponentide-arv"><span class="toc-section-number">28.4</span>  Peakomponentide arv</a></li>
+  <li><a href="#tõlgendamine" id="toc-tõlgendamine" class="nav-link" data-scroll-target="#tõlgendamine"><span class="toc-section-number">28.5</span>  Tõlgendamine</a>
+  <ul class="collapse">
+  <li><a href="#seletatud-hajuvus" id="toc-seletatud-hajuvus" class="nav-link" data-scroll-target="#seletatud-hajuvus"><span class="toc-section-number">28.5.1</span>  Seletatud hajuvus</a></li>
+  <li><a href="#kordajad" id="toc-kordajad" class="nav-link" data-scroll-target="#kordajad"><span class="toc-section-number">28.5.2</span>  Kordajad</a></li>
+  </ul></li>
+  <li><a href="#peakomponentide-joonis" id="toc-peakomponentide-joonis" class="nav-link" data-scroll-target="#peakomponentide-joonis"><span class="toc-section-number">29</span>  Peakomponentide joonis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-peakomponendid" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!--
+[[Principal component analysis (PCA)]]
+-->
+<p>Nii nagu peaaegu kõik nähtused on seotud mõne teise nähtusega, on ka ühte andmetabelisse sattunud tunnuste vahel enamasti vähemalt nõrk korrelatsioon. Ühe tunnuse hajuvus on seega vähemalt osaliselt peaaegu alati seletatav mõne teise tunnuse hajuvusega. Seda kattuvust tunnuste hajuvuses saame kasutada selleks, et koondada mitu tunnust üheks või mitmeks uueks tunnuseks nii, et võimalikult vähe teavet läheb kaduma. Just see ongi lihtsustatult peakomponentide analüüsi tööpõhimõte.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Mõiste
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Peakomponentide analüüsi</strong> (<em>principal component analysis</em>, <em>PCA</em>) käigus koondatakse mitu tunnust peakomponentideks nii, et võimalikult suur osa algsest hajuvusest oleks koondunud esimestesse peakomponentidesse.</p>
+</div>
+</div>
+<p>Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>kv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/decathlon2004.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(kv) <span class="ot">&lt;-</span> kv<span class="sc">$</span>athlets</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>kv<span class="sc">$</span>athlets <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kv)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          x100m x400m x1500m x110mhurdle longjump highjump polevault shotput
+Sebrle    10.85 48.36 280.01       14.05     7.84     2.12       5.0   16.36
+Clay      10.44 49.19 282.00       14.13     7.96     2.06       4.9   15.23
+Karpov    10.50 46.81 278.11       13.97     7.81     2.09       4.6   15.93
+Macey     10.89 48.97 265.42       14.56     7.47     2.15       4.4   15.73
+Warners   10.62 47.97 278.05       14.01     7.74     1.97       4.9   14.48
+Zsivoczky 10.91 49.40 269.54       14.95     7.14     2.12       4.7   15.31
+          discus javeline
+Sebrle     48.72    70.52
+Clay       50.11    69.71
+Karpov     51.65    55.54
+Macey      48.34    58.46
+Warners    43.73    55.39
+Zsivoczky  45.62    63.45</code></pre>
+</div>
+</div>
+<section id="peakomponentide-tähendus" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="peakomponentide-tähendus"><span class="header-section-number">28.1</span> Peakomponentide tähendus</h2>
+<p>Peakomponentide analüüsi eesmärk on niisiis võtta kokku algsete tunnuste ühine hajuvus väiksema arvu uue tunnusena. Täpsemalt on eesmärk leida <em>algsete tunnuste standardiseeritud lineaarsed kombinatsioonid, mis seletaksid võimalikult suurt osa hajuvusest andmetes</em>. Iga lineaarne kombinatsioon esindab ühte viisi, kuidas teisendada algsed tunnused uuteks tunnusteks. Mõnel juhul piisab meile ainult paarist sellisest lineaarsest kombinatsioonist, aga sõltuvalt analüüsi probleemist võime kasutada ka mitut.</p>
+<p>Iga lineaarne kombinatsioon on <strong>peakomponent</strong>, mis võtab kokku kordumatu osa andmetes esinevast hajuvusest. Peakomponente võib esitada kujul <span class="math display">\[\xi_j = b_{j1}x_1 + b_{j2}x_2+ ... a_{jp}x_p,\]</span> kus <span class="math inline">\(b_{jp}\)</span> on tunnuse <span class="math inline">\(x_p\)</span> kaal <span class="math inline">\(j\)</span>ndas peakomponendis <span class="math inline">\(\xi_j\)</span> . Nii võib peakomponente mõista sisuliselt <em>tunnuste kaalude kogumitena</em>. Peakomponentide järjestus või järjekorranumber on sealjuures tähtis: esimene peakomponent seletab võimalikult suure osa hajuvusest andmetes ja iga järgnev eelnevate poolt selemata jäänud osa.</p>
+<p>Suurim võimalik peakomponentide arv on <span class="math inline">\(min(p, n-1)\)</span>, kus <span class="math inline">\(p\)</span> on tunnuste ja <span class="math inline">\(n\)</span> vaatluste arv. Kuna enamasti <span class="math inline">\(p &gt; n\)</span> , siis leitakse tavaliselt nii palju peakomponente kui oli algseid tunnuseid. Kõik peakomponendid kokku sisaldavad seega kogu hajuvust nende aluseks olevates andmetes selliselt, et võimalikult suur osa hajuvusest on koondatud esimestesse peakomponentidesse. Seega kui valime ainult esimesed peakomponendid, siis läheb kaduma küll osa hajuvusest, aga see kadu on võimalikult väike.</p>
+</section>
+<section id="peakomponentide-leidmine" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="peakomponentide-leidmine"><span class="header-section-number">28.2</span> Peakomponentide leidmine</h2>
+<p>On mitu viisi, kuidas mõtestada peakomponentide leidmist. Kõige loomulikum lähenemine on kujutada vaatlusi andmepilvena tunnuste ruumis. Mitme tunnuse hajuvuse saame kokku võtta, kui tõmbame sellest andmepilvena järjest läbi jooni, millest igaüks esindab ühte peakomponenti. Alustame sealjuures esimesest peakomponendist, mis peaks <em>võtma kokku võimalikult suure osa hajuvusest andmepilves</em>. Esimene peakomponent arvutatakse seega nii, et see</p>
+<ul>
+<li>järgiks ja esindaks suurimat hajuvust andmepilves ja</li>
+<li>on sirgena võimalikult lähedal kõikidele andmepunktidele arvestades täisnurkset (ortogonaalset) kaugust.</li>
+</ul>
+<p>Näeme jooniselt, et kuulitõuke ja kettaheite soorituste vahel on positiivne korrelatsioon. Seega saame vähemal osaliselt nende kahe tunnuse hajuvuse kokku võtta peakomponendiga, mida näitab punane joon.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="peakomponendid_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Selliselt on esimese peakomponendi leidmine <em>sarnane vähimruutude meetodile</em> (<span class="quarto-unresolved-ref">?sec-linreg</span>). Erinevalt vähimruutude meetodil leitud regressioonsirgest esimene peakomponent aga</p>
+<ul>
+<li>seletab kõikide tunnuste hajuvust võrdväärselt ja mitte ainult tagajärgse tunnuse hajuvust,</li>
+<li>ei sõltu otseselt ruuthälvetest.</li>
+</ul>
+<p>Suurima hajuvuse tuvastamiseks teisendatakse andmepilv (andmemaatriks) uuele koordinaattasandile. See hõlmab enamasti alljärgnevaid samme:</p>
+<ol type="1">
+<li>andmepilv keskmistatakse,</li>
+<li>koordinaatteljed teisendatakse samale skaalale,</li>
+<li>koordinaatteljed pööratakse vastavusse peakomponentidega.</li>
+</ol>
+<p>Sealjuures toimub viimasel sammul telgede pööramine nii, et esimene peakomponent seletab võimalikult suure osa hajuvusest andmepilves ja iga järgnev peakomponent on lihtsalt täisnurkne (ortogonaalne) eelneva suhtes.</p>
+<p>Eelnevalt kirjeldatud samme näitlikustab alljärgnev joonis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="peakomponendid_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Seega sõltuvad leitud peakomponendid andmepilve asukohast ja hajuvusest telgedel.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pea meeles!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Peakomponendide analüüsil tuleb silmas pidada algsete tunnuste keskmisi väärtuseid ja standardhälbeid.</p>
+<ul>
+<li>Tunnused peaksid olema keskmistatud ehk igast tunnuse väärtusest tuleb lahutada kogu tunnuse keskmine väärtus.</li>
+<li>Tunnused võib skaleerida ehk iga tunnuse väärtused võib jagada läbi tunnuse standardhälbega. Kui tunnused on mõõdetud samal skaalal, siis võib olla parem seda mitte teha.</li>
+</ul>
+</div>
+</div>
+<p>Matemaatiliselt arvutatakse peakomponendid kas korrelatsiooni-, kovariatsiooni või andmemaatriksi dekomponeerimise alusel. Selle tulemusel leitakse andmete</p>
+<ul>
+<li>skaleerimist kirjeldavad <strong>omaväärtused</strong> (<em>eigenvalues</em>) ehk iga peakomponendi kordajad ja</li>
+<li>pööramist kirjeldavad <strong>omavektorid</strong> (<em>eigenvectors</em>) ehk iga peakomponendi pool seletatud hajuvus.</li>
+</ul>
+<p>R keeles saame peakomponentide leidmiseks kasutada funktsiooni <code>prcomp()</code>. Tunnused keskmistatakse vaikimisi (<code>center = TRUE</code>), aga enamasti peaksime lisama ka argumendi <code>scale = TRUE</code>, et lisaks sellele tunnuse väärtused ka skaleerida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>peakomp <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(kv, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="eeldused" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="eeldused"><span class="header-section-number">28.3</span> Eeldused</h2>
+<p>Kõige olulisem peakomponentide analüüsi eeldus puudutab tunnuste mõõteskaalasid: ühist hajuvust saab leida võtta ainult <em>pideval või vähemalt arvskaalal mõõdetud tunnuste korral</em>. Nimi ja järjestustunnusete alusel saab leida peakomponendid, kui need eelnevalt pidevateks tunnusteks teisendada.</p>
+<p>Tunnuste koondamiseks ühise hajuvuse alusel peab see ühine hajuvus andmetes olemas olema. Seega peab tunnuste vahel esineva <em>piisav lineaarne korrelatsioon</em>.</p>
+<p>Kümnevõistluse võistlusalade vahel esinevad üldiselt ootuspärased ja sageli tugevad korrelatsioonid.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(kv)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  x100m       x400m       x1500m x110mhurdle    longjump
+x100m        1.00000000  0.63478518  0.058434406  0.54255793 -0.70496966
+x400m        0.63478518  1.00000000  0.551223700  0.51988045 -0.67111115
+x1500m       0.05843441  0.55122370  1.000000000  0.17904538 -0.14742605
+x110mhurdle  0.54255793  0.51988045  0.179045379  1.00000000 -0.53816329
+longjump    -0.70496966 -0.67111115 -0.147426053 -0.53816329  1.00000000
+highjump    -0.30928379 -0.16915905 -0.003496111 -0.32595769  0.34566209
+polevault   -0.26045206 -0.11542821  0.179471438 -0.15097483  0.28507937
+shotput     -0.36969566 -0.19930019  0.129543822 -0.24506987  0.19545125
+discus      -0.23331691 -0.14418633  0.220171580 -0.21687217  0.24990923
+javeline    -0.01168981 -0.05465387 -0.251505647 -0.07981966  0.09379205
+                highjump   polevault     shotput     discus    javeline
+x100m       -0.309283792 -0.26045206 -0.36969566 -0.2333169 -0.01168981
+x400m       -0.169159053 -0.11542821 -0.19930019 -0.1441863 -0.05465387
+x1500m      -0.003496111  0.17947144  0.12954382  0.2201716 -0.25150565
+x110mhurdle -0.325957691 -0.15097483 -0.24506987 -0.2168722 -0.07981966
+longjump     0.345662087  0.28507937  0.19545125  0.2499092  0.09379205
+highjump     1.000000000 -0.04238205  0.61258229  0.5169633  0.20448124
+polevault   -0.042382049  1.00000000  0.02369214 -0.1842115 -0.06610479
+shotput      0.612582295  0.02369214  1.00000000  0.6657743  0.38334308
+discus       0.516963291 -0.18421149  0.66577435  1.0000000  0.25485350
+javeline     0.204481236 -0.06610479  0.38334308  0.2548535  1.00000000</code></pre>
+</div>
+</div>
+<p>Kui vaatluste seas esineb <em>erindeid</em>, siis need võivad märkimisväärselt mõjutada peakomponentide aluseks olevat andmepilve teisendamist.</p>
+</section>
+<section id="peakomponentide-arv" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="peakomponentide-arv"><span class="header-section-number">28.4</span> Peakomponentide arv</h2>
+<p>Kuigi enamasti leitakse analüüsi käigus peakomponente sama palju kui oli nende aluseks olevaid tunnuseid, siis on asjakohased tavaliselt ainult esimesed nendest. Mitut esimest peakomponenti tõlgendada või edasises analüüsis kasutada, sõltub sellest, kui mitut on vaja analüüsi probleemi lahendamiseks[^Nt vaatluste klasterdamise tulemuse näitlikustamiseks tunnuste alusel kahemõõtmelisel joonisel piisab kahest peakomponendist.].</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Soovitus
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sobiva arvu komponentide määramisel võib lähtuda alljärgnevatest tingimustest.</p>
+<ul>
+<li>Määra kõige madalam hajuvus andmetes, mida peakomponendid seletama peaksid ja vali nii palju peakomponente kui on selleks vajalik.</li>
+<li>Kasuta peakomponende, mille omaväärtus on vähemalt üks.</li>
+<li>Leia omaväärtuse joonisel nö õlg ja vali peakomponendid enne seda.</li>
+</ul>
+</div>
+</div>
+<p>Peakomponentide poolt seletatud hajuvust saab joonisel kujutada mitmel viisl.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty =</span> <span class="st">'n'</span>, <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Komponendi poolt seletatud hajuvus, %"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev)), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Seletatud hajuvus kumulatiivselt, %"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>, <span class="at">type =</span> <span class="st">'p'</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Omaväärtus"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="peakomponendid_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Näeme nt, et esimene peakomponent üksi seletab 35% kogu hajuvusest ja 80% hajuvuse seletamiseks on vaja vähemalt viite peakomponenti. Kõige parempoolsel, omaväärtuse joonisel (<em>scree plot</em>) näeme, et nö õlg on pärast neljandat peakomponenti, nii et antud andmete korral võiksimegi piirduda nelja peakomponendiga.</p>
+</section>
+<section id="tõlgendamine" class="level2" data-number="28.5">
+<h2 data-number="28.5" class="anchored" data-anchor-id="tõlgendamine"><span class="header-section-number">28.5</span> Tõlgendamine</h2>
+<section id="seletatud-hajuvus" class="level3" data-number="28.5.1">
+<h3 data-number="28.5.1" class="anchored" data-anchor-id="seletatud-hajuvus"><span class="header-section-number">28.5.1</span> Seletatud hajuvus</h3>
+<p>Osakaal koguhajuvusest andmetes, mille <span class="math inline">\(j\)</span>ndas peakomponent seletab on arvutatav omaväärtuste <span class="math inline">\(\lambda\)</span> alusel: see on vastava omaväärtuse osa omaväärtuste summast ehk <span class="math inline">\(\lambda_j / \Sigma^p_{j=1} \lambda\)</span>.</p>
+<p>Peakomponentide omaväärtused saame R keeles, kui võtame peakomponentide standardhälbed ruutu.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 3.545 1.970 1.422 0.903 0.564 0.528 0.433 0.366 0.163 0.106</code></pre>
+</div>
+</div>
+<p>Näeme, et esimene peakomponent esindab umbes 4 tunnuse hajuvust.</p>
+<p>Kuna omaväärtuste summa <span class="math inline">\(\Sigma^p_{j=1} \lambda\)</span> on võrdne tunnuste arvuga, siis peakomponendi <strong>omaväärtus</strong> näitab, <em>kui mitme algse tunnuse hajuvust või kui mitut algset tunnust vastav peakomponent esindab</em>. Seega saame iga peakomponendi poolt seletatud hajuvuse osakaalu, kui jagame vastava omaväärtuse tunnuste arvuga.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">ncol</span>(kv)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.354 0.197 0.142 0.090 0.056 0.053 0.043 0.037 0.016 0.011</code></pre>
+</div>
+</div>
+<p>Näeme, et esimene peakomponent seletab 35% hajuvusest andmepilves ja kaks esimest peakomponenti üle poole. Sama tulemuse saame ka peakomponendi objekti kokkuvõttest funktsiooni <code>summary()</code> abil.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2    PC3     PC4     PC5     PC6     PC7
+Standard deviation     1.8827 1.4036 1.1924 0.95052 0.75075 0.72679 0.65792
+Proportion of Variance 0.3545 0.1970 0.1422 0.09035 0.05636 0.05282 0.04329
+Cumulative Proportion  0.3545 0.5515 0.6936 0.78398 0.84035 0.89317 0.93645
+                           PC8     PC9    PC10
+Standard deviation     0.60482 0.40435 0.32580
+Proportion of Variance 0.03658 0.01635 0.01061
+Cumulative Proportion  0.97304 0.98939 1.00000</code></pre>
+</div>
+</div>
+<p>Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletataud hajuvus, kui <em>suur osa andmetes olevast teabes jääb alles</em>, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.</p>
+</section>
+<section id="kordajad" class="level3" data-number="28.5.2">
+<h3 data-number="28.5.2" class="anchored" data-anchor-id="kordajad"><span class="header-section-number">28.5.2</span> Kordajad</h3>
+<p>Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja seda laadimist mõõdab vastav kordaja või <strong>laadung</strong> (<em>loading</em>). Neid võib mõista ka kui tunnuste kaale.</p>
+<p>R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>peakomp</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Standard deviations (1, .., p=10):
+ [1] 1.8827260 1.4035512 1.1923610 0.9505215 0.7507543 0.7267922 0.6579220
+ [8] 0.6048225 0.4043459 0.3257985
+
+Rotation (n x k) = (10 x 10):
+                    PC1        PC2         PC3          PC4         PC5
+x100m        0.42270533 -0.1806841  0.21199128  0.075009372  0.26789849
+x400m        0.38995573 -0.3524322 -0.19266472  0.116944533  0.23803531
+x1500m       0.11193576 -0.3372567 -0.65852601 -0.057300779 -0.19688585
+x110mhurdle  0.37654258 -0.1655859  0.03684219  0.115374735 -0.42065272
+longjump    -0.42146649  0.2315408 -0.13017356 -0.006144987 -0.17743002
+highjump    -0.33249211 -0.3362530  0.01083254 -0.111008069  0.66953192
+polevault   -0.09539301  0.2324861 -0.52373161  0.643167759  0.17200492
+shotput     -0.33407359 -0.4437320 -0.01889119  0.140442615 -0.04465308
+discus      -0.28793579 -0.4754243 -0.01497490 -0.206205419 -0.34333185
+javeline    -0.15213083 -0.2415176  0.43702142  0.689806306 -0.16323628
+                     PC6         PC7         PC8         PC9          PC10
+x100m       -0.056618774 -0.05240226  0.63689812  0.50441452  0.0176705450
+x400m       -0.226533124 -0.22460673 -0.20711435 -0.28117186 -0.6265382157
+x1500m      -0.266325449 -0.14934966 -0.14631249  0.29914373  0.4403356801
+x110mhurdle  0.754114522 -0.25080614 -0.06772435 -0.04124906  0.0360430980
+longjump     0.007907696 -0.64042684  0.13797493  0.36020077 -0.4016214326
+highjump     0.349143257 -0.32517751 -0.07319486 -0.09710709  0.2706309248
+polevault    0.197271047  0.16685064  0.33958689 -0.19295241 -0.0005052454
+shotput      0.218772160  0.51087037 -0.18356821  0.45339360 -0.3482944695
+discus      -0.082408644  0.02316552  0.57316389 -0.43859477 -0.0472544820
+javeline    -0.300544916 -0.23737211 -0.15343580 -0.03136519  0.2320772473</code></pre>
+</div>
+</div>
+<p>Neid kordajaid saame kasutada selleks, et leida peakomponentide väärtused iga vaatluse jaoks. Kui korrutame iga kordaja sellele vastava tunnuse väärtustega, siis saame peakomponentide <strong>skoorid</strong>. Need on peakomponente esindavad uued tunnused, mis näitavad peakomponendi väärtust iga 28 võistleja kohta.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>x</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    PC1        PC2        PC3         PC4        PC5
+Sebrle      -3.64687853 -1.5046838  0.2162631  1.74472299  0.1320463
+Clay        -3.60330295 -0.8537756 -0.3196647  1.16403050 -0.9258547
+Karpov      -4.20070330 -0.4155663 -0.3533370 -1.70482900 -0.6921033
+Macey       -1.90491357 -1.3402994  1.2384762 -1.09465304  0.5891693
+Warners     -1.89845545  1.6971105 -0.8885198 -0.49575117 -0.1461054
+Zsivoczky   -0.69529257 -1.2474627  1.0235787  0.53486534  0.5186979
+Hernu       -0.69023057  0.5068215  0.7320204 -0.17198585  0.8961809
+Nool        -0.17778111  1.7420595 -0.9865815  1.97322479 -0.7725929
+Bernard     -1.57350593 -0.1338441  0.1139975 -1.63517179  0.8666711
+Schwarzl     0.09249421  1.4510863 -0.7211613  0.49054597  0.6121554
+Pogorelov   -0.25580109 -0.6051491 -1.7486821 -0.22767233  1.3029163
+Schoenbeck   0.12114605  0.2872966 -0.5531648  1.00087299 -0.3590825
+Barras       0.28609389 -0.3817102  1.6529060  0.61055310  0.1267112
+Smith       -0.47451303 -1.1087005  1.5460578 -1.09545064 -0.7132538
+Averyanov   -0.21829441  1.7113985 -0.5069687 -0.28850069  0.2191547
+Ojaniemi    -0.11595075  0.7797977  0.1865277  0.10490637 -0.8478470
+Smirnov      0.62752609  1.0467549  1.2218190  0.31568082 -0.0963277
+Qi           0.72606940  0.1849499  1.0043829 -0.34313787 -0.2620548
+Drews        0.41555968  3.0780560 -0.8637160 -0.54571271  0.4654958
+Parkhomenko  1.31164623 -1.8259536  0.7181978  1.66622181  0.9682867
+Terek        0.89200732 -0.2586709 -2.3429373  0.24618999 -0.4132326
+Gomez        0.64388302  1.0754572  1.5068250 -0.16939887 -0.5581893
+Turi         1.80329186 -0.1925375 -0.8147291  0.36824998  1.7760567
+Lorenzo      2.57797811  1.5344745  1.6135571 -0.08449894 -0.8020661
+Karlivans    2.31672132  0.1869460  0.1352429 -1.17059258  0.4220580
+Korkizoglou  1.45766664 -1.7903823 -2.9486653 -0.88518819 -1.0268454
+Uldal        2.88307554 -0.1301175  0.5209506  0.04088944 -0.7369015
+Casarsa      3.30046389 -3.4933557 -0.3826751 -0.34841043 -0.5431435
+                    PC6         PC7         PC8         PC9        PC10
+Sebrle      -0.28721330 -0.43992842  0.52381924  0.78661915  0.19414387
+Clay        -0.81829975 -1.25732184 -0.29124374 -0.76727990 -0.08292689
+Karpov       0.31572834  0.39708170  0.45477790  0.06795759  0.23259849
+Macey        1.08182274 -0.21651578  0.20780929  0.07564549 -0.40387818
+Warners     -0.27783054 -0.03280092 -0.04804186  0.20901494  0.08682720
+Zsivoczky    1.30719006 -0.17928338 -0.21349764 -0.31187208  0.31751202
+Hernu        0.25930528  0.55127530  0.60689586 -0.21496932  0.08034359
+Nool         0.52783034 -0.06577984  0.35961298 -0.09181752  0.04928013
+Bernard      0.11024511 -0.46041811 -0.74814760 -0.02462770  0.07248185
+Schwarzl    -0.30098341 -0.14897229  0.67770758  0.01036976 -0.46797969
+Pogorelov   -0.08557371  0.16145179  0.19507180  0.14593348 -0.47025184
+Schoenbeck  -0.78500502  0.41847886  0.18195930 -0.11212534 -0.60994785
+Barras      -0.60059572  0.70568711  0.42239461  0.16627932  0.04817695
+Smith       -1.48128730  1.51228850 -0.13942539 -0.50710617  0.07236498
+Averyanov    0.18467237  0.34346911 -1.38182604 -0.38005239 -0.61419666
+Ojaniemi     0.90993686 -0.31565742 -1.42937004  0.59346139 -0.26380667
+Smirnov      0.37201387  0.09018128 -0.15641950 -0.64099111  0.25004150
+Qi          -0.12723536 -1.07718523  0.48777685 -0.28589992  0.22429619
+Drews       -0.67144267  0.24183632  0.44009467 -0.05705532  0.28811152
+Parkhomenko  0.39448584  0.87256867 -0.76957732  0.20686218  0.20828955
+Terek        1.51574202  1.30789742  0.69248322 -0.21200267  0.22235032
+Gomez       -0.67373434  0.46011865 -0.18717417  1.15336269 -0.03003729
+Turi        -1.12224525 -0.53702581 -0.69361085 -0.15046476  0.52773231
+Lorenzo      0.87714846 -0.34496108 -0.05466270 -0.14262657  0.15303233
+Karlivans    0.30058989 -1.12511207  0.93112916  0.31796671 -0.08900985
+Korkizoglou -0.30539606 -0.12819960 -0.62934549  0.30327219  0.54372871
+Uldal       -0.46470429 -0.53944807  0.19601146  0.04404792  0.02582958
+Casarsa     -0.15516448 -0.19372486  0.36479842 -0.18190205 -0.56510616</code></pre>
+</div>
+</div>
+<p>Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus. Nt eelnevalt esitatud kordajatest näeme, et esimene peakomponent on seotud võistleja üldise võimekusega.</p>
+<p>Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega <span class="math inline">\(-1\)</span>. Nt kümnevõistluse andmetes võiks seda teha jooksmisaladel, kus praegu kõrgem tulemus näitab aeglasemat sooritust.</p>
+<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Pea meeles!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Esimese peakomponendi suund uuel koordinaatteljestikul on juhuslik. Seetõttu on igal peakomponentide arvutamisel kordajate absoluutväärtused küll samad, aga positiivsed märgid võivad järgmisel arvutamisel olla negatiivsed ja vastupidi.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="peakomponentide-joonis" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> Peakomponentide joonis</h1>
+<p>Kahte esimest peakomponenti saame kujutada erilisel peakomponentide hajuvusjoonisel (<em>biplot</em>), millel on esitatud ühtaegu vaatlused ja tunnused.</p>
+<ul>
+<li>Punktid näitavad vaatluste paiknemist kahe esimese peakomponendi suhtes.</li>
+<li>Joonte suund näitab iga tunnuse ja vastava peakomponendi laadimise suunda.</li>
+<li>Joonte pikkus näitab kordaja absoluutväärtust.</li>
+<li>Nurk joonte vahel iseloomustab vastavate tunnuste omavahelist korrelatsiooni.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="peakomponendid_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopeeritud!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./kkeskmised.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./faktoranalüüs.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

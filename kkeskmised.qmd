@@ -77,27 +77,29 @@ Funktsioon `kmeans()` määrab klastri numbri juhuslikult, mistõttu võib samal
 
 ## Klastrite arv
 
-Kõige sobivama klastrite arvu määramiseks saame kasutada nn **Gap mõõdikut** (*Gap statistik*). Selle mõõdiku väärtus iseloomustab, kui palju väiksemad on klastrisisesed kaugused teatud klastrite arvu korral olemasolevate andmete ja ühtlase jaotusega andmete korral. Kui klastrite lisamine annab väiksemad klastrisisesed kaugused, siis peaksime kasutama rohkem klastreid ja vastupidi. Sealjuures peame arvesse võtma ka mõõdiku usaldusvahemikke. Saame seda näitlikustada joonisega, mille saab tekitada funktsiooniga `clusGap` laiendusest `cluster` alljärgnevalt. Et teada saada klasterdamise tulemus erinevate klastrite arvuga, tuleb klasterdamist korrata ja selleks tekitame funktsiooni `kmFun()`.
+Kuna k-keskmiste korral leitakse sobivamad klastrid vaatluste kogumi korduva tükeldamise teel, siis ei ole selle tulemuseks klastrite hierarhiat, mida saaks kujutada puujoonisel. Nii ei saa kasutada puujoonist ka klastrite valimiseks.
+
+Kõige sobivama klastrite arvu määramiseks saame aga kasutada nn **Gap mõõdikut** (*Gap statistic*). Selle mõõdiku väärtus iseloomustab, kui palju väiksemad on klastrisisesed kaugused teatud klastrite arvu korral olemasolevate andmete korral võrreldes ühtlase jaotusega andmetega. Kui klastrite lisamine annab väiksemad klastrisisesed kaugused, siis peaksime kasutama rohkem klastreid ja vastupidi. Sealjuures peame arvesse võtma ka mõõdiku usaldusvahemikke ja valima suurema klastrite arvu ainult juhul, kui mõõdiku vastavad usaldusvahemikud ei kattu mõõdiku usaldusvahemikega väiksema arvu klastrite korral. 
+
+Saame seda näitlikustada joonisega, mille saab tekitada funktsiooniga `clusGap` laiendusest `cluster` alljärgnevalt. Et teada saada klasterdamise tulemus erinevate klastrite arvuga, tuleb klasterdamist korrata ja selleks tekitame funktsiooni nimega `kmFun()`.
 
 ```{r}
 library('cluster')
-kmFun <- function(x, k) kmeans(x, k, iter.max = 50, nstart = 10)
-kmG <- clusGap(autotunnused, kmFun, K.max = 8, B = 10)
+kmFun <- function(x, k) kmeans(x, k, nstart = 10)
+kmG <- clusGap(autotunnused, kmFun, K.max = 10)
 plot(kmG)
 ```
 
-Näeme, et viienda klastri kasutamine ei anna väiksemaid klastrisiseseid kaugusi kui nelja klastri korral. Seega on nende andmete klasterdamiseks sobilik kasutada hoopis nelja klastrit. 
+Antud joonisel on kujutatud, kui ühtsed klastrid me erineval arvul klastrite leidmisel saame. Peame joonise abil välja selgitama, millise klastrite arvu juures nende lisamine enam ühtsemaid klastreid ei anna. Näeme, et viie klastri kasutamine ei anna väiksemaid klastrisiseseid kaugusi kui nelja klastri korral. Seega on nende andmete klasterdamiseks sobilik kasutada hoopis nelja klastrit. 
 
 ```{r}
 kkesk <- kmeans(autotunnused, centers = 4)
 autod$klaster <- kkesk$cluster
 ```
 
-## Klastrite näitlikustamine ja tõlgendamine
+## Klastrite esitamine
 
-Kuna k-keskmiste korral leitakse sobivamad klastrid vaatluste kogumi korduva tükeldamise teel, siis ei ole selle tulemuseks klastrite hierarhiat, mida saaks kujutada puujoonisel. 
-
-Selle asemel kujutatakse k-keskmiste alusel moodustunud klastreid enamasti hajuvusjoonisel, kus telgedel on kaks mõõtmevähenduse teel leitud mõõdet ja klastrid on kujutatud erinevate värvidega. Klasterdamise tulemuse esitamiseks võimalikult paljude tunnuste lõikes korraga saame seega kujutada autosid kahe peakomponendi alusel hajuvusjoonisel. Iga klastri saab kujutada nt erineva värviga.
+Klastrite hierarhia asemel kujutatakse k-keskmiste alusel moodustunud klastreid enamasti hajuvusjoonisel, kus telgedel on kaks tunnuste peakomponenti ja klastrid on kujutatud erinevate värvidega. 
 
 ```{r}
 plot(peakomponendid$x[, 1:2], pch = 20, col = autod$klaster)
@@ -105,30 +107,12 @@ plot(peakomponendid$x[, 1:2], pch = 20, col = autod$klaster)
 
 Näeme, et esitatud kahe mõõtme alusel suutis algoritm üsna usutavalt vaatlused klastritesse jagada.
 
-Samuti saab koondada kõik vaatlusted klastri alusel ja võrrelda klastrite keskmisi tunnuste lõikes. Funktsiooni `kmeans()` poolt väljastatud teabe seas on klasterdamiseks kasutatud tunnuste keskmised saadud klastrite lõikes. Vabalt valitud funktsiooni alusel saame ka ise klastrite kaupa andmetabeli kokku võtta, kasutades funktsiooni `aggregate()`. 
+Vaatluse klastri määrab k-keskmise meetodi korral kõige lähem klastri keskpunkt, mis selgus korduva vaatluste jaotamis tulemusel nagu eelnevalt kirjeldatud. Funktsiooni `kmeans()` poolt väljastatud teabe seas on ka need klasterdamiseks kasutatud tunnuste keskmised saadud klastrite lõikes. 
 
 ```{r}
-aggregate(autod[1:7], list(klaster = autod$klaster), mean)
+kkesk$centers
 ```
 
-Veidi täpsemalt saame klastreid hinnata kõikide autode alusel, tekitades iga huvipakkuva tunnuse kohta kastjoonise klastrite lõikes.
+Need tunnuste keskmised väärtused klastrite lõikes toovad enamasti ilmekalt esile klastrite eripärad.
 
-```{r}
-par(mfrow = c(2,3))
-for (i in c(1,3:7)) {
-  boxplot(autod[, i] ~ autod$klaster, xlab = "Cluster", ylab = names(autod)[i], 
-          col = unique(autod$klaster), notch = T)
-}
-```
-
-Näeme nt, et ühte klastritest kuuluvad raskemad, võimsama mootori ja suurema kütusekuluga autod. Ühes teises klastris on aga uuemad ja madalama kütusekuluga autod.
-
-Klastreid aitab kirjeldada ka otsusepuu (@sec-otsusepuu), milles klaster on väljundtunnus ja klastreid kirjeldavad tunused on sisendtunnusteks.
-
-Kui meie andmetes on vaatlustel mingi klass, siis saame uurida ka seda, kas ja kui hästi oli see tuvastatav klasterdamisega. Autode korral saame tekitada sagedustabeli klastri ja autode päritolukoha võrdlemiseks.
-
-```{r}
-table(autod$klaster, autod$origin)
-```
-
-Näeme, et kuigi klastrid ei lange kuigi suurel määral kokku autode päritolukohaga, siis kaks klastrit hõlmavad peaaegu ainult Ameerikast pärit autosid ja ühes klastris on kõige enam Euroopa autosid.
+Klastritele iseloomustamiseks on veel võimalusi esitatud peatükis @sec-klasterdamine.

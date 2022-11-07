@@ -2,19 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus - 25&nbsp; Hierarhiline klasterdamine</title>
+<title>Oijee! Andmeteadus - 26&nbsp; Hierarhiline klasterdamine</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -131,7 +136,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -275,6 +280,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -287,47 +297,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
   </div>
 </li>
       </ul>
@@ -342,13 +362,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sisukord</h2>
    
   <ul>
-  <li><a href="#klastrite-leidmine" id="toc-klastrite-leidmine" class="nav-link active" data-scroll-target="#klastrite-leidmine"> <span class="header-section-number">25.1</span> Klastrite leidmine</a></li>
-  <li><a href="#ühendamise-viisid" id="toc-ühendamise-viisid" class="nav-link" data-scroll-target="#ühendamise-viisid"> <span class="header-section-number">25.2</span> Ühendamise viisid</a></li>
-  <li><a href="#klastrite-arv-ja-puujoonis" id="toc-klastrite-arv-ja-puujoonis" class="nav-link" data-scroll-target="#klastrite-arv-ja-puujoonis"> <span class="header-section-number">25.3</span> Klastrite arv ja puujoonis</a></li>
+  <li><a href="#klastrite-leidmine" id="toc-klastrite-leidmine" class="nav-link active" data-scroll-target="#klastrite-leidmine"><span class="toc-section-number">26.1</span>  Klastrite leidmine</a></li>
+  <li><a href="#ühendamise-viisid" id="toc-ühendamise-viisid" class="nav-link" data-scroll-target="#ühendamise-viisid"><span class="toc-section-number">26.2</span>  Ühendamise viisid</a></li>
+  <li><a href="#klastrite-arv-ja-puujoonis" id="toc-klastrite-arv-ja-puujoonis" class="nav-link" data-scroll-target="#klastrite-arv-ja-puujoonis"><span class="toc-section-number">26.3</span>  Klastrite arv ja puujoonis</a></li>
   </ul>
 </nav>
     </div>
@@ -357,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-hierarhiline" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></span></h1>
+<h1 class="title"><span id="sec-hierarhiline" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></span></h1>
 </div>
 
 
@@ -403,14 +423,16 @@ Mõiste
 <li>on aeglane ja raskesti esitatav suure arvu objektide korral,</li>
 <li>ei võimalda klastreid prognoosida.</li>
 </ul>
-<section id="klastrite-leidmine" class="level2 page-columns page-full" data-number="25.1">
-<h2 data-number="25.1" class="anchored" data-anchor-id="klastrite-leidmine"><span class="header-section-number">25.1</span> Klastrite leidmine</h2>
-<div class="page-columns page-full"><p>Järgnevalt uurime erinevate riikide elanike seas valitseivaid väärtushinnanguid. <a href="https://www.worldvaluessurvey.org">Maailma Väärtusuuringu</a> käigus on küsitletud sadu tuhandeid inimesi erinevates maailma piirkondades. Selle tulemuseks on kultuurilised kaardid, milles on riikide asukoht kahel teljel: traditsioonilised või sekulaarsed väärtused ning ellu jäämise või eneseväljenduse väärtustamine<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Riigid on nendel kaartidel määratud kultuurilistesse rühmadesse tunnetuslikult. Vaatame, kas ja kui erinevad rühmad saame lähenedes hoopis statistiliselt, kasutades hierarhilist klasterdamist.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Vaata kaarte <a href="https://www.worldvaluessurvey.org/WVSContents.jsp?CMSID=Findings">uuringu kodulehelt</a>.</p></li></div></div>
+<section id="klastrite-leidmine" class="level2 page-columns page-full" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="klastrite-leidmine"><span class="header-section-number">26.1</span> Klastrite leidmine</h2>
+<div class="page-columns page-full"><p>Järgnevalt uurime erinevate riikide elanike seas valitseivaid väärtushinnanguid. <a href="https://www.worldvaluessurvey.org">Maailma Väärtusuuringu</a> käigus on küsitletud sadu tuhandeid inimesi erinevates maailma piirkondades. Selle tulemuseks on kultuurilised kaardid, milles on riikide asukoht kahel teljel: traditsioonilised või sekulaarsed väärtused ning ellu jäämise või eneseväljenduse väärtustamine<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Riigid on nendel kaartidel määratud kultuurilistesse rühmadesse tunnetuslikult. Vaatame, kas ja kui erinevad rühmad saame lähenedes hoopis statistiliselt, kasutades hierarhilist klasterdamist.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Vaata kaarte <a href="https://www.worldvaluessurvey.org/WVSContents.jsp?CMSID=Findings">uuringu kodulehelt</a>.</p></li></div></div>
 <p>Sisestame andmetabeli, milles on uuringusse kaasatud riikide elanike väärtushinnangute kahe telje keskmised väärtused. Kuigi hierarhilist klasterdamist saab rakendada ka suure tunnuste arvu korral, siis antud näites kasutame klasterdamise joonisel ilmestamiseks ainult kahte tunnust.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wvs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/wvsmap.csv'</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wvs)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>wvs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/wvsmap.csv'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(wvs) <span class="ot">&lt;-</span> wvs<span class="sc">$</span>country</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>wvs<span class="sc">$</span>country <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wvs)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             survexp   tradsec
 Algeria    0.5142540 0.4864377
@@ -423,7 +445,7 @@ Armenia    0.3812617 0.4294143</code></pre>
 </div>
 <p>Ka hierarhilisel klasterdamisel peaksime viima väärtused võrreldavale skaalale Antud juhul on kõik väärtushinnangud mõõdetud samal skaalal, seega ei ole standardiseerimine vajalik. Võime seda siiski teha, et lihtsamini hinnata riikide paiknemist keskmise suhtes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wvs[] <span class="sc">%&lt;&gt;%</span> <span class="fu">sapply</span>(scale)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wvs <span class="sc">%&lt;&gt;%</span> <span class="fu">lapply</span>(scale) <span class="sc">%&gt;%</span> as.data.frame</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Joonistame nö kultuurilise kaardi, mis iseloomustab riikide paiknemist väärtushinnangute ruumis.</p>
 <div class="cell">
@@ -438,7 +460,7 @@ Armenia    0.3812617 0.4294143</code></pre>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Seos</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 32 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 13 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
@@ -480,8 +502,8 @@ rect.dendrogram(puu, k = 6, lower_rect = -1)
 
 -->
 </section>
-<section id="ühendamise-viisid" class="level2 page-columns page-full" data-number="25.2">
-<h2 data-number="25.2" class="anchored" data-anchor-id="ühendamise-viisid"><span class="header-section-number">25.2</span> Ühendamise viisid</h2>
+<section id="ühendamise-viisid" class="level2 page-columns page-full" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="ühendamise-viisid"><span class="header-section-number">26.2</span> Ühendamise viisid</h2>
 <p>Kahe objekti korral on kauguste määramine lihtne, sest mõlemad objektid on esitatavad konkreetsete punktidena tunnuste ruumis. Kuidas mõõta aga kaugust mitmest objektist koosneva klastri ja mõne objekti vahel? Sellisel juhul tuleb otsustada, mis punkt esindab klastrit ja selleks on palju võimalusi. Kui soovime teada kaugust <span class="math inline">\(d\)</span> objekte <span class="math inline">\(i\)</span> ja <span class="math inline">\(j\)</span> sisaldava klastri <span class="math inline">\(L\)</span> ja kõikide teiste klastrite <span class="math inline">\(K\)</span> vahel, siis saame kasutada muuhulgas ühte alljärgnevatest <strong>ühendamise viisidest</strong> (<em>linkage method</em>):</p>
 <ul>
 <li>üksikühendus (<em>single linkage</em>): <span class="math inline">\(d_{L,k} = min(d_{i,K}, d_{j,K})\)</span>;</li>
@@ -501,8 +523,8 @@ rect.dendrogram(puu, k = 6, lower_rect = -1)
 </div>
 <p>Üksikühenduse korral kipuvad klastritesse lisanduma objektid järjest ahelana ja selle tulemuseks on enamasti suured ja mitte kuigi ühtsed klastrid. Täisühenduse korral tekivad vastupidiselt väikesed klastrid, mis on sarnased lähedal asuvate klastritega. Keskmine ühendus on kesktee nende vahel. Kuigi Wardi ühendus ei ole vaistlikult mõistetav, annab see enamasti kõige loomulikumad klastrid.</p>
 </section>
-<section id="klastrite-arv-ja-puujoonis" class="level2 page-columns page-full" data-number="25.3">
-<h2 data-number="25.3" class="anchored" data-anchor-id="klastrite-arv-ja-puujoonis"><span class="header-section-number">25.3</span> Klastrite arv ja puujoonis</h2>
+<section id="klastrite-arv-ja-puujoonis" class="level2 page-columns page-full" data-number="26.3">
+<h2 data-number="26.3" class="anchored" data-anchor-id="klastrite-arv-ja-puujoonis"><span class="header-section-number">26.3</span> Klastrite arv ja puujoonis</h2>
 <p>Tähtsaim hierarhilise klasterdamise eelis on selle tulemusel tekkiv puujoonis, mis näitlikustab klastrite järk-järgulist moodustumist ja hierarhilist ülesehitust. Klastripuud teatud kõrgusel lõigates jääb iga objekt konkreetsesse klastrisse ja nii saab puujoonist kasutada ka konkreetsete klastrite määramiseks objektidele. Vastava kõrguse määramine on paljuski tunnetuslik, aga soovitus on lõigata klastripuu sellisel kõrgusel, kus harud on pikimad.</p>
 <p>Klastrite määramiseks on kaks võimalust: lõigata puu teatud kõrgusel või teatud klastrite arvu juures. Saame vaadata, millised klastrid tekivad, kui lõikame puu nt kõrgusel 0,5 või selliselt, et klastreid oleks kuus.</p>
 <div class="cell page-columns page-full">
@@ -520,22 +542,22 @@ rect.dendrogram(puu, k = 6, lower_rect = -1)
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wvs<span class="sc">$</span>klaster <span class="ot">&lt;-</span> klastridK</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wvs)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>              survexp    tradsec klaster
-Algeria    -0.5534204 -0.7420832       1
-Azerbaijan -1.2414307 -0.5850448       1
-Argentina   0.5440756 -0.2346523       2
-Australia   1.9590629  0.7460210       3
-Bahrain    -0.6013524 -0.5053418       1
-Armenia    -1.0202307 -0.9618397       1</code></pre>
+<pre><code>     survexp    tradsec klaster
+1 -0.5534204 -0.7420832       1
+2 -1.2414307 -0.5850448       1
+3  0.5440756 -0.2346523       2
+4  1.9590629  0.7460210       3
+5 -0.6013524 -0.5053418       1
+6 -1.0202307 -0.9618397       1</code></pre>
 </div>
 </div>
-<p>Klastrite iseloomustamiseks on palju võimalusi (<a href="kkeskmised.html"><span>Peatükk&nbsp;26</span></a>). Antud andmete korral võiksime eristada klastreid nö kultuurilisel kaardil.</p>
+<p>Klastrite iseloomustamiseks on palju võimalusi (<a href="klasterdamine.html"><span>Peatükk&nbsp;17</span></a>). Antud andmete korral võiksime eristada klastreid nö kultuurilisel kaardil.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Seos <span class="sc">+</span> </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(klastridK)) <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Klaster"</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 35 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 20 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
@@ -618,7 +640,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
@@ -649,12 +672,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./lähinaabrid.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./kkeskmised.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">K-keskmised</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
