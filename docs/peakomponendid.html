@@ -415,28 +415,29 @@ Mõiste
 <p><strong>Peakomponentide analüüsi</strong> (<em>principal component analysis</em>, <em>PCA</em>) käigus koondatakse mitu tunnust peakomponentideks nii, et võimalikult suur osa algsest hajuvusest oleks koondunud esimestesse peakomponentidesse.</p>
 </div>
 </div>
-<p>Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel.</p>
+<p>Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel. Kuna jooksude korral näitab kõrgem väärtus kehvemat tulemust, siis muudame vastavate tunnuste väärtused negatiivseteks, et neid oleks hiljem lihtsam tõlgendada.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>kv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'andmed/decathlon2004.csv'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(kv) <span class="ot">&lt;-</span> kv<span class="sc">$</span>athlets</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>kv<span class="sc">$</span>athlets <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kv)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>kv[, <span class="fu">grep</span>(<span class="st">'run'</span>, <span class="fu">names</span>(kv))] <span class="sc">%&lt;&gt;%</span> <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kv)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          x100m x400m x1500m x110mhurdle longjump highjump polevault shotput
-Sebrle    10.85 48.36 280.01       14.05     7.84     2.12       5.0   16.36
-Clay      10.44 49.19 282.00       14.13     7.96     2.06       4.9   15.23
-Karpov    10.50 46.81 278.11       13.97     7.81     2.09       4.6   15.93
-Macey     10.89 48.97 265.42       14.56     7.47     2.15       4.4   15.73
-Warners   10.62 47.97 278.05       14.01     7.74     1.97       4.9   14.48
-Zsivoczky 10.91 49.40 269.54       14.95     7.14     2.12       4.7   15.31
-          discus javeline
-Sebrle     48.72    70.52
-Clay       50.11    69.71
-Karpov     51.65    55.54
-Macey      48.34    58.46
-Warners    43.73    55.39
-Zsivoczky  45.62    63.45</code></pre>
+<pre><code>          run100m run400m run1500m run110mhurdle longjump highjump polevault
+Sebrle     -10.85  -48.36  -280.01        -14.05     7.84     2.12       5.0
+Clay       -10.44  -49.19  -282.00        -14.13     7.96     2.06       4.9
+Karpov     -10.50  -46.81  -278.11        -13.97     7.81     2.09       4.6
+Macey      -10.89  -48.97  -265.42        -14.56     7.47     2.15       4.4
+Warners    -10.62  -47.97  -278.05        -14.01     7.74     1.97       4.9
+Zsivoczky  -10.91  -49.40  -269.54        -14.95     7.14     2.12       4.7
+          shotput discus javeline
+Sebrle      16.36  48.72    70.52
+Clay        15.23  50.11    69.71
+Karpov      15.93  51.65    55.54
+Macey       15.73  48.34    58.46
+Warners     14.48  43.73    55.39
+Zsivoczky   15.31  45.62    63.45</code></pre>
 </div>
 </div>
 <section id="peakomponentide-tähendus" class="level2" data-number="28.1">
@@ -458,7 +459,7 @@ Zsivoczky  45.62    63.45</code></pre>
 <p><img src="peakomponendid_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Selliselt on esimese peakomponendi leidmine <em>sarnane vähimruutude meetodile</em> (<span class="quarto-unresolved-ref">?sec-linreg</span>). Erinevalt vähimruutude meetodil leitud regressioonsirgest esimene peakomponent aga</p>
+<p>Selliselt on esimese peakomponendi leidmine <em>sarnane vähimruutude meetodile</em> (<a href="linreg.html"><span>Peatükk&nbsp;22</span></a>). Erinevalt vähimruutude meetodil leitud regressioonsirgest esimene peakomponent aga</p>
 <ul>
 <li>seletab kõikide tunnuste hajuvust võrdväärselt ja mitte ainult tagajärgse tunnuse hajuvust,</li>
 <li>ei sõltu otseselt ruuthälvetest.</li>
@@ -510,33 +511,22 @@ Pea meeles!
 <p>Tunnuste koondamiseks ühise hajuvuse alusel peab see ühine hajuvus andmetes olemas olema. Seega peab tunnuste vahel esineva <em>piisav lineaarne korrelatsioon</em>.</p>
 <p>Kümnevõistluse võistlusalade vahel esinevad üldiselt ootuspärased ja sageli tugevad korrelatsioonid.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(kv)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  x100m       x400m       x1500m x110mhurdle    longjump
-x100m        1.00000000  0.63478518  0.058434406  0.54255793 -0.70496966
-x400m        0.63478518  1.00000000  0.551223700  0.51988045 -0.67111115
-x1500m       0.05843441  0.55122370  1.000000000  0.17904538 -0.14742605
-x110mhurdle  0.54255793  0.51988045  0.179045379  1.00000000 -0.53816329
-longjump    -0.70496966 -0.67111115 -0.147426053 -0.53816329  1.00000000
-highjump    -0.30928379 -0.16915905 -0.003496111 -0.32595769  0.34566209
-polevault   -0.26045206 -0.11542821  0.179471438 -0.15097483  0.28507937
-shotput     -0.36969566 -0.19930019  0.129543822 -0.24506987  0.19545125
-discus      -0.23331691 -0.14418633  0.220171580 -0.21687217  0.24990923
-javeline    -0.01168981 -0.05465387 -0.251505647 -0.07981966  0.09379205
-                highjump   polevault     shotput     discus    javeline
-x100m       -0.309283792 -0.26045206 -0.36969566 -0.2333169 -0.01168981
-x400m       -0.169159053 -0.11542821 -0.19930019 -0.1441863 -0.05465387
-x1500m      -0.003496111  0.17947144  0.12954382  0.2201716 -0.25150565
-x110mhurdle -0.325957691 -0.15097483 -0.24506987 -0.2168722 -0.07981966
-longjump     0.345662087  0.28507937  0.19545125  0.2499092  0.09379205
-highjump     1.000000000 -0.04238205  0.61258229  0.5169633  0.20448124
-polevault   -0.042382049  1.00000000  0.02369214 -0.1842115 -0.06610479
-shotput      0.612582295  0.02369214  1.00000000  0.6657743  0.38334308
-discus       0.516963291 -0.18421149  0.66577435  1.0000000  0.25485350
-javeline     0.204481236 -0.06610479  0.38334308  0.2548535  1.00000000</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'gplots'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'gplots'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    lowess</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(kv) <span class="sc">%&gt;%</span> <span class="fu">heatmap.2</span>(<span class="at">col =</span> <span class="st">'bluered'</span>, <span class="at">margins =</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="peakomponendid_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Kui vaatluste seas esineb <em>erindeid</em>, siis need võivad märkimisväärselt mõjutada peakomponentide aluseks olevat andmepilve teisendamist.</p>
+<p>Kui vaatluste seas esineb erindeid, siis võivad need märkimisväärselt mõjutada peakomponentide aluseks olevat andmepilve teisendamist.</p>
 </section>
 <section id="peakomponentide-arv" class="level2" data-number="28.4">
 <h2 data-number="28.4" class="anchored" data-anchor-id="peakomponentide-arv"><span class="header-section-number">28.4</span> Peakomponentide arv</h2>
@@ -561,14 +551,14 @@ Soovitus
 </div>
 <p>Peakomponentide poolt seletatud hajuvust saab joonisel kujutada mitmel viisl.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty =</span> <span class="st">'n'</span>, <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Komponendi poolt seletatud hajuvus, %"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev)), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Seletatud hajuvus kumulatiivselt, %"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>, <span class="at">type =</span> <span class="st">'p'</span>, </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Omaväärtus"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty =</span> <span class="st">'n'</span>, <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Komponendi poolt seletatud hajuvus, %"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">cumsum</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> <span class="dv">100</span><span class="sc">/</span><span class="fu">length</span>(peakomp<span class="sc">$</span>sdev)), <span class="at">type =</span> <span class="st">'b'</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Seletatud hajuvus kumulatiivselt, %"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>, <span class="at">type =</span> <span class="st">'p'</span>, </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peakomponent"</span>, <span class="at">ylab =</span> <span class="st">"Omaväärtus"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="peakomponendid_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -582,22 +572,22 @@ Soovitus
 <p>Osakaal koguhajuvusest andmetes, mille <span class="math inline">\(j\)</span>ndas peakomponent seletab on arvutatav omaväärtuste <span class="math inline">\(\lambda\)</span> alusel: see on vastava omaväärtuse osa omaväärtuste summast ehk <span class="math inline">\(\lambda_j / \Sigma^p_{j=1} \lambda\)</span>.</p>
 <p>Peakomponentide omaväärtused saame R keeles, kui võtame peakomponentide standardhälbed ruutu.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 3.545 1.970 1.422 0.903 0.564 0.528 0.433 0.366 0.163 0.106</code></pre>
+<pre><code> [1] 3.54 1.97 1.42 0.90 0.56 0.53 0.43 0.37 0.16 0.11</code></pre>
 </div>
 </div>
 <p>Näeme, et esimene peakomponent esindab umbes 4 tunnuse hajuvust.</p>
 <p>Kuna omaväärtuste summa <span class="math inline">\(\Sigma^p_{j=1} \lambda\)</span> on võrdne tunnuste arvuga, siis peakomponendi <strong>omaväärtus</strong> näitab, <em>kui mitme algse tunnuse hajuvust või kui mitut algset tunnust vastav peakomponent esindab</em>. Seega saame iga peakomponendi poolt seletatud hajuvuse osakaalu, kui jagame vastava omaväärtuse tunnuste arvuga.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">ncol</span>(kv)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(peakomp<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">ncol</span>(kv)) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.354 0.197 0.142 0.090 0.056 0.053 0.043 0.037 0.016 0.011</code></pre>
+<pre><code> [1] 0.35 0.20 0.14 0.09 0.06 0.05 0.04 0.04 0.02 0.01</code></pre>
 </div>
 </div>
 <p>Näeme, et esimene peakomponent seletab 35% hajuvusest andmepilves ja kaks esimest peakomponenti üle poole. Sama tulemuse saame ka peakomponendi objekti kokkuvõttest funktsiooni <code>summary()</code> abil.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                           PC1    PC2    PC3     PC4     PC5     PC6     PC7
@@ -610,110 +600,66 @@ Proportion of Variance 0.03658 0.01635 0.01061
 Cumulative Proportion  0.97304 0.98939 1.00000</code></pre>
 </div>
 </div>
-<p>Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletataud hajuvus, kui <em>suur osa andmetes olevast teabes jääb alles</em>, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.</p>
+<p>Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletatud hajuvus, kui <em>suur osa andmetes olevast teabest jääb alles</em>, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.</p>
 </section>
 <section id="kordajad" class="level3" data-number="28.5.2">
 <h3 data-number="28.5.2" class="anchored" data-anchor-id="kordajad"><span class="header-section-number">28.5.2</span> Kordajad</h3>
-<p>Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja seda laadimist mõõdab vastav kordaja või <strong>laadung</strong> (<em>loading</em>). Neid võib mõista ka kui tunnuste kaale.</p>
-<p>R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti.</p>
+<p>Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja sedalaadimist mõõdab vastav kordaja või <strong>laadung</strong> (<em>loading</em>). Neid võib mõista ka kui tunnuste kaale. Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus.</p>
+<p>R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti või uurime selle objekti osist <code>rotation</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>peakomp</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>rotation <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Standard deviations (1, .., p=10):
- [1] 1.8827260 1.4035512 1.1923610 0.9505215 0.7507543 0.7267922 0.6579220
- [8] 0.6048225 0.4043459 0.3257985
-
-Rotation (n x k) = (10 x 10):
-                    PC1        PC2         PC3          PC4         PC5
-x100m        0.42270533 -0.1806841  0.21199128  0.075009372  0.26789849
-x400m        0.38995573 -0.3524322 -0.19266472  0.116944533  0.23803531
-x1500m       0.11193576 -0.3372567 -0.65852601 -0.057300779 -0.19688585
-x110mhurdle  0.37654258 -0.1655859  0.03684219  0.115374735 -0.42065272
-longjump    -0.42146649  0.2315408 -0.13017356 -0.006144987 -0.17743002
-highjump    -0.33249211 -0.3362530  0.01083254 -0.111008069  0.66953192
-polevault   -0.09539301  0.2324861 -0.52373161  0.643167759  0.17200492
-shotput     -0.33407359 -0.4437320 -0.01889119  0.140442615 -0.04465308
-discus      -0.28793579 -0.4754243 -0.01497490 -0.206205419 -0.34333185
-javeline    -0.15213083 -0.2415176  0.43702142  0.689806306 -0.16323628
-                     PC6         PC7         PC8         PC9          PC10
-x100m       -0.056618774 -0.05240226  0.63689812  0.50441452  0.0176705450
-x400m       -0.226533124 -0.22460673 -0.20711435 -0.28117186 -0.6265382157
-x1500m      -0.266325449 -0.14934966 -0.14631249  0.29914373  0.4403356801
-x110mhurdle  0.754114522 -0.25080614 -0.06772435 -0.04124906  0.0360430980
-longjump     0.007907696 -0.64042684  0.13797493  0.36020077 -0.4016214326
-highjump     0.349143257 -0.32517751 -0.07319486 -0.09710709  0.2706309248
-polevault    0.197271047  0.16685064  0.33958689 -0.19295241 -0.0005052454
-shotput      0.218772160  0.51087037 -0.18356821  0.45339360 -0.3482944695
-discus      -0.082408644  0.02316552  0.57316389 -0.43859477 -0.0472544820
-javeline    -0.300544916 -0.23737211 -0.15343580 -0.03136519  0.2320772473</code></pre>
+<pre><code>                PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8   PC9  PC10
+run100m       -0.42  0.18 -0.21 -0.08 -0.27  0.06  0.05 -0.64 -0.50 -0.02
+run400m       -0.39  0.35  0.19 -0.12 -0.24  0.23  0.22  0.21  0.28  0.63
+run1500m      -0.11  0.34  0.66  0.06  0.20  0.27  0.15  0.15 -0.30 -0.44
+run110mhurdle -0.38  0.17 -0.04 -0.12  0.42 -0.75  0.25  0.07  0.04 -0.04
+longjump      -0.42  0.23 -0.13 -0.01 -0.18  0.01 -0.64  0.14  0.36 -0.40
+highjump      -0.33 -0.34  0.01 -0.11  0.67  0.35 -0.33 -0.07 -0.10  0.27
+polevault     -0.10  0.23 -0.52  0.64  0.17  0.20  0.17  0.34 -0.19  0.00
+shotput       -0.33 -0.44 -0.02  0.14 -0.04  0.22  0.51 -0.18  0.45 -0.35
+discus        -0.29 -0.48 -0.01 -0.21 -0.34 -0.08  0.02  0.57 -0.44 -0.05
+javeline      -0.15 -0.24  0.44  0.69 -0.16 -0.30 -0.24 -0.15 -0.03  0.23</code></pre>
 </div>
 </div>
+<p>Näeme, et esimene peakomponent iseloomustab kõikide alade soorituste nõrkust, sest kõik kordajad on negatiivsed. Seega on iseloomustab esimene komponent võistleja üldist võimekust või kui arvestada negatiivseid kordajaid, siis võimetust. Teine komponent kirjeldab sooritust jooksudel, aga on negatiivselt seotud viskealadega (<code>shotput</code>, <code>discus</code>, <code>javeline</code>).</p>
 <p>Neid kordajaid saame kasutada selleks, et leida peakomponentide väärtused iga vaatluse jaoks. Kui korrutame iga kordaja sellele vastava tunnuse väärtustega, siis saame peakomponentide <strong>skoorid</strong>. Need on peakomponente esindavad uued tunnused, mis näitavad peakomponendi väärtust iga 28 võistleja kohta.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>x</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>peakomp<span class="sc">$</span>x <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                    PC1        PC2        PC3         PC4        PC5
-Sebrle      -3.64687853 -1.5046838  0.2162631  1.74472299  0.1320463
-Clay        -3.60330295 -0.8537756 -0.3196647  1.16403050 -0.9258547
-Karpov      -4.20070330 -0.4155663 -0.3533370 -1.70482900 -0.6921033
-Macey       -1.90491357 -1.3402994  1.2384762 -1.09465304  0.5891693
-Warners     -1.89845545  1.6971105 -0.8885198 -0.49575117 -0.1461054
-Zsivoczky   -0.69529257 -1.2474627  1.0235787  0.53486534  0.5186979
-Hernu       -0.69023057  0.5068215  0.7320204 -0.17198585  0.8961809
-Nool        -0.17778111  1.7420595 -0.9865815  1.97322479 -0.7725929
-Bernard     -1.57350593 -0.1338441  0.1139975 -1.63517179  0.8666711
-Schwarzl     0.09249421  1.4510863 -0.7211613  0.49054597  0.6121554
-Pogorelov   -0.25580109 -0.6051491 -1.7486821 -0.22767233  1.3029163
-Schoenbeck   0.12114605  0.2872966 -0.5531648  1.00087299 -0.3590825
-Barras       0.28609389 -0.3817102  1.6529060  0.61055310  0.1267112
-Smith       -0.47451303 -1.1087005  1.5460578 -1.09545064 -0.7132538
-Averyanov   -0.21829441  1.7113985 -0.5069687 -0.28850069  0.2191547
-Ojaniemi    -0.11595075  0.7797977  0.1865277  0.10490637 -0.8478470
-Smirnov      0.62752609  1.0467549  1.2218190  0.31568082 -0.0963277
-Qi           0.72606940  0.1849499  1.0043829 -0.34313787 -0.2620548
-Drews        0.41555968  3.0780560 -0.8637160 -0.54571271  0.4654958
-Parkhomenko  1.31164623 -1.8259536  0.7181978  1.66622181  0.9682867
-Terek        0.89200732 -0.2586709 -2.3429373  0.24618999 -0.4132326
-Gomez        0.64388302  1.0754572  1.5068250 -0.16939887 -0.5581893
-Turi         1.80329186 -0.1925375 -0.8147291  0.36824998  1.7760567
-Lorenzo      2.57797811  1.5344745  1.6135571 -0.08449894 -0.8020661
-Karlivans    2.31672132  0.1869460  0.1352429 -1.17059258  0.4220580
-Korkizoglou  1.45766664 -1.7903823 -2.9486653 -0.88518819 -1.0268454
-Uldal        2.88307554 -0.1301175  0.5209506  0.04088944 -0.7369015
-Casarsa      3.30046389 -3.4933557 -0.3826751 -0.34841043 -0.5431435
-                    PC6         PC7         PC8         PC9        PC10
-Sebrle      -0.28721330 -0.43992842  0.52381924  0.78661915  0.19414387
-Clay        -0.81829975 -1.25732184 -0.29124374 -0.76727990 -0.08292689
-Karpov       0.31572834  0.39708170  0.45477790  0.06795759  0.23259849
-Macey        1.08182274 -0.21651578  0.20780929  0.07564549 -0.40387818
-Warners     -0.27783054 -0.03280092 -0.04804186  0.20901494  0.08682720
-Zsivoczky    1.30719006 -0.17928338 -0.21349764 -0.31187208  0.31751202
-Hernu        0.25930528  0.55127530  0.60689586 -0.21496932  0.08034359
-Nool         0.52783034 -0.06577984  0.35961298 -0.09181752  0.04928013
-Bernard      0.11024511 -0.46041811 -0.74814760 -0.02462770  0.07248185
-Schwarzl    -0.30098341 -0.14897229  0.67770758  0.01036976 -0.46797969
-Pogorelov   -0.08557371  0.16145179  0.19507180  0.14593348 -0.47025184
-Schoenbeck  -0.78500502  0.41847886  0.18195930 -0.11212534 -0.60994785
-Barras      -0.60059572  0.70568711  0.42239461  0.16627932  0.04817695
-Smith       -1.48128730  1.51228850 -0.13942539 -0.50710617  0.07236498
-Averyanov    0.18467237  0.34346911 -1.38182604 -0.38005239 -0.61419666
-Ojaniemi     0.90993686 -0.31565742 -1.42937004  0.59346139 -0.26380667
-Smirnov      0.37201387  0.09018128 -0.15641950 -0.64099111  0.25004150
-Qi          -0.12723536 -1.07718523  0.48777685 -0.28589992  0.22429619
-Drews       -0.67144267  0.24183632  0.44009467 -0.05705532  0.28811152
-Parkhomenko  0.39448584  0.87256867 -0.76957732  0.20686218  0.20828955
-Terek        1.51574202  1.30789742  0.69248322 -0.21200267  0.22235032
-Gomez       -0.67373434  0.46011865 -0.18717417  1.15336269 -0.03003729
-Turi        -1.12224525 -0.53702581 -0.69361085 -0.15046476  0.52773231
-Lorenzo      0.87714846 -0.34496108 -0.05466270 -0.14262657  0.15303233
-Karlivans    0.30058989 -1.12511207  0.93112916  0.31796671 -0.08900985
-Korkizoglou -0.30539606 -0.12819960 -0.62934549  0.30327219  0.54372871
-Uldal       -0.46470429 -0.53944807  0.19601146  0.04404792  0.02582958
-Casarsa     -0.15516448 -0.19372486  0.36479842 -0.18190205 -0.56510616</code></pre>
+<pre><code>              PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8   PC9  PC10
+Sebrle      -3.65 -1.50  0.22  1.74  0.13 -0.29 -0.44  0.52  0.79  0.19
+Clay        -3.60 -0.85 -0.32  1.16 -0.93 -0.82 -1.26 -0.29 -0.77 -0.08
+Karpov      -4.20 -0.42 -0.35 -1.70 -0.69  0.32  0.40  0.45  0.07  0.23
+Macey       -1.90 -1.34  1.24 -1.09  0.59  1.08 -0.22  0.21  0.08 -0.40
+Warners     -1.90  1.70 -0.89 -0.50 -0.15 -0.28 -0.03 -0.05  0.21  0.09
+Zsivoczky   -0.70 -1.25  1.02  0.53  0.52  1.31 -0.18 -0.21 -0.31  0.32
+Hernu       -0.69  0.51  0.73 -0.17  0.90  0.26  0.55  0.61 -0.21  0.08
+Nool        -0.18  1.74 -0.99  1.97 -0.77  0.53 -0.07  0.36 -0.09  0.05
+Bernard     -1.57 -0.13  0.11 -1.64  0.87  0.11 -0.46 -0.75 -0.02  0.07
+Schwarzl     0.09  1.45 -0.72  0.49  0.61 -0.30 -0.15  0.68  0.01 -0.47
+Pogorelov   -0.26 -0.61 -1.75 -0.23  1.30 -0.09  0.16  0.20  0.15 -0.47
+Schoenbeck   0.12  0.29 -0.55  1.00 -0.36 -0.79  0.42  0.18 -0.11 -0.61
+Barras       0.29 -0.38  1.65  0.61  0.13 -0.60  0.71  0.42  0.17  0.05
+Smith       -0.47 -1.11  1.55 -1.10 -0.71 -1.48  1.51 -0.14 -0.51  0.07
+Averyanov   -0.22  1.71 -0.51 -0.29  0.22  0.18  0.34 -1.38 -0.38 -0.61
+Ojaniemi    -0.12  0.78  0.19  0.10 -0.85  0.91 -0.32 -1.43  0.59 -0.26
+Smirnov      0.63  1.05  1.22  0.32 -0.10  0.37  0.09 -0.16 -0.64  0.25
+Qi           0.73  0.18  1.00 -0.34 -0.26 -0.13 -1.08  0.49 -0.29  0.22
+Drews        0.42  3.08 -0.86 -0.55  0.47 -0.67  0.24  0.44 -0.06  0.29
+Parkhomenko  1.31 -1.83  0.72  1.67  0.97  0.39  0.87 -0.77  0.21  0.21
+Terek        0.89 -0.26 -2.34  0.25 -0.41  1.52  1.31  0.69 -0.21  0.22
+Gomez        0.64  1.08  1.51 -0.17 -0.56 -0.67  0.46 -0.19  1.15 -0.03
+Turi         1.80 -0.19 -0.81  0.37  1.78 -1.12 -0.54 -0.69 -0.15  0.53
+Lorenzo      2.58  1.53  1.61 -0.08 -0.80  0.88 -0.34 -0.05 -0.14  0.15
+Karlivans    2.32  0.19  0.14 -1.17  0.42  0.30 -1.13  0.93  0.32 -0.09
+Korkizoglou  1.46 -1.79 -2.95 -0.89 -1.03 -0.31 -0.13 -0.63  0.30  0.54
+Uldal        2.88 -0.13  0.52  0.04 -0.74 -0.46 -0.54  0.20  0.04  0.03
+Casarsa      3.30 -3.49 -0.38 -0.35 -0.54 -0.16 -0.19  0.36 -0.18 -0.57</code></pre>
 </div>
 </div>
-<p>Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus. Nt eelnevalt esitatud kordajatest näeme, et esimene peakomponent on seotud võistleja üldise võimekusega.</p>
-<p>Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega <span class="math inline">\(-1\)</span>. Nt kümnevõistluse andmetes võiks seda teha jooksmisaladel, kus praegu kõrgem tulemus näitab aeglasemat sooritust.</p>
+<p>Esimese peakomponendi skoore uurides näeme, et esimesed võistlejad on keskmisest märkimisväärselt võimekamad. Teise peakomponendi skoorid näitavad aga, et esimesed võistlejad on jooksualades keskmisest nõrgemad, aga paremad viskealadel.</p>
+<p>Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega <span class="math inline">\(-1\)</span>.</p>
 <div class="callout-warning callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -739,8 +685,8 @@ Pea meeles!
 <li>Nurk joonte vahel iseloomustab vastavate tunnuste omavahelist korrelatsiooni.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(peakomp)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="peakomponendid_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>

@@ -10,13 +10,14 @@ Nii nagu peaaegu kõik nähtused on seotud mõne teise nähtusega, on ka ühte a
 **Peakomponentide analüüsi** (*principal component analysis*, *PCA*) käigus koondatakse mitu tunnust peakomponentideks nii, et võimalikult suur osa algsest hajuvusest oleks koondunud esimestesse peakomponentidesse.
 :::
 
-Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel.
+Seega on peakomponentide analüüs sobilik olukorras, kus soovime võtta mitu tunnust kokku ühena. Selline probleem tekib nt kümnevõistlusel, kus paljude erinevate alade tulemuste alusel tuleks määrata igale võistleja punktisumma. Uurimegi järgnevalt peakomponentide analüüsi 2004. aasta olümpiamängude kümnevõistluse näitel. Kuna jooksude korral näitab kõrgem väärtus kehvemat tulemust, siis muudame vastavate tunnuste väärtused negatiivseteks, et neid oleks hiljem lihtsam tõlgendada.
 
 ``` {r}
 library('magrittr')
 kv <- read.csv('andmed/decathlon2004.csv')
 rownames(kv) <- kv$athlets
 kv$athlets <- NULL
+kv[, grep('run', names(kv))] %<>% `*`(-1)
 head(kv)
 ```
 
@@ -154,10 +155,11 @@ Tunnuste koondamiseks ühise hajuvuse alusel peab see ühine hajuvus andmetes ol
 Kümnevõistluse võistlusalade vahel esinevad üldiselt ootuspärased ja sageli tugevad korrelatsioonid.
 
 ``` {r}
-cor(kv)
+library('gplots')
+cor(kv) %>% heatmap.2(col = 'bluered', margins = c(8,8))
 ```
 
-Kui vaatluste seas esineb *erindeid*, siis need võivad märkimisväärselt mõjutada  peakomponentide aluseks olevat andmepilve teisendamist. 
+Kui vaatluste seas esineb erindeid, siis võivad need märkimisväärselt mõjutada  peakomponentide aluseks olevat andmepilve teisendamist. 
 
 ## Peakomponentide arv
 
@@ -195,7 +197,7 @@ Osakaal koguhajuvusest andmetes, mille $j$ndas peakomponent seletab on arvutatav
 Peakomponentide omaväärtused saame R keeles, kui võtame peakomponentide standardhälbed ruutu.
 
 ```{r}
-peakomp$sdev^2 %>% round(3)
+peakomp$sdev^2 %>% round(2)
 ```
 
 Näeme, et esimene peakomponent esindab umbes `r round(peakomp$sdev^2)[1]` tunnuse hajuvust.
@@ -203,7 +205,7 @@ Näeme, et esimene peakomponent esindab umbes `r round(peakomp$sdev^2)[1]` tunnu
 Kuna omaväärtuste summa $\Sigma^p_{j=1} \lambda$ on võrdne tunnuste arvuga, siis peakomponendi **omaväärtus** näitab, *kui mitme algse tunnuse hajuvust või kui mitut algset tunnust vastav peakomponent esindab*. Seega saame iga peakomponendi poolt seletatud hajuvuse osakaalu, kui jagame vastava omaväärtuse tunnuste arvuga.
 
 ```{r}
-(peakomp$sdev^2 / ncol(kv)) %>% round(3)
+(peakomp$sdev^2 / ncol(kv)) %>% round(2)
 ```
 
 Näeme, et esimene peakomponent seletab `r paste0(round(peakomp$sdev[1]^2 * 100/length(peakomp$sdev)), '%')` hajuvusest andmepilves ja kaks esimest peakomponenti üle poole. Sama tulemuse saame ka peakomponendi objekti kokkuvõttest funktsiooni `summary()` abil.
@@ -212,27 +214,29 @@ Näeme, et esimene peakomponent seletab `r paste0(round(peakomp$sdev[1]^2 * 100/
 summary(peakomp)
 ```
 
-Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletataud hajuvus, kui *suur osa andmetes olevast teabes jääb alles*, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.
+Seletatud hajuvusest lähtudes saame leida ka, kui suure osa hajuvusest seletavad teatud arv esimesi peakomponente. Sisuliselt näitab seletatud hajuvus, kui *suur osa andmetes olevast teabest jääb alles*, kui võtame algsed tunnused kokku teatud arvul peakomponentidena.
 
 ### Kordajad
 
-Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja seda  laadimist mõõdab vastav kordaja või **laadung** (*loading*). Neid võib mõista ka kui tunnuste kaale. 
+Peakomponendid tuletatakse tunnustest ja nii on igal tunnusel igale peakomponendile. Teisisõnu, iga tunnus laadib igat peakomponenti ja sedalaadimist mõõdab vastav kordaja või **laadung** (*loading*). Neid võib mõista ka kui tunnuste kaale. Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus. 
 
-R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti.
+R keeles kuvatakse kordajaid, kui sisestame käsureale lihstalt peakomponendi objekti või uurime selle objekti osist `rotation`.
 
 ```{r}
-peakomp
+peakomp$rotation %>% round(2)
 ```
+
+Näeme, et esimene peakomponent iseloomustab kõikide alade soorituste nõrkust, sest kõik kordajad on negatiivsed. Seega on iseloomustab esimene komponent võistleja üldist võimekust või kui arvestada negatiivseid kordajaid, siis võimetust. Teine komponent kirjeldab sooritust jooksudel, aga on negatiivselt seotud viskealadega (`shotput`, `discus`, `javeline`). 
 
 Neid kordajaid saame kasutada selleks, et leida peakomponentide väärtused iga vaatluse jaoks. Kui korrutame iga kordaja sellele vastava tunnuse väärtustega, siis saame peakomponentide **skoorid**. Need on peakomponente esindavad uued tunnused, mis näitavad peakomponendi väärtust iga `r nrow(kv)` võistleja kohta.
 
 ```{r}
-peakomp$x
+peakomp$x %>% round(2)
 ```
 
-Kordajaid saab kasutada peakomponentide tõlgendamiseks, et anda neile sisuline tähendus. Nt eelnevalt esitatud kordajatest näeme, et  esimene peakomponent on seotud võistleja üldise võimekusega.
+Esimese peakomponendi skoore uurides näeme, et esimesed võistlejad on keskmisest märkimisväärselt võimekamad. Teise peakomponendi skoorid näitavad aga, et esimesed võistlejad on jooksualades keskmisest nõrgemad, aga paremad viskealadel.
 
-Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega $-1$. Nt kümnevõistluse andmetes võiks seda teha jooksmisaladel, kus praegu kõrgem tulemus näitab aeglasemat sooritust.
+Sealjuures tuleb arvestada tunnuste sisu. Mõne tunnuse kõrgem väärtus võib peakomponendi tähendusega hästi sobida, samas kui teise tunnuse korral sobiks paremini madalam väärtus. Sellisel juhul võib peakomponentide tõlgendamise lihtsustamiseks vahetada osade tunnuste märk, nt korrutades nende väärtused väärtusega $-1$.
 
 ::: {.callout-warning}
 Esimese peakomponendi suund uuel koordinaatteljestikul on juhuslik. Seetõttu on igal peakomponentide arvutamisel kordajate absoluutväärtused küll samad, aga positiivsed märgid võivad järgmisel arvutamisel olla negatiivsed ja vastupidi. 
@@ -251,4 +255,3 @@ Kahte esimest peakomponenti saame kujutada erilisel peakomponentide hajuvusjooni
 par(mar = c(4,4,2,4))
 biplot(peakomp)
 ```
-

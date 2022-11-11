@@ -8,6 +8,26 @@ library('dplyr')
 
 # Read, clean and save data sets (2022-10-23 09:30:09) ----------
 
+# Young people
+# test_09_mõõtmevähendus
+noored <- read.csv('assets/youngpeople.csv', na.strings = '')
+## Nimitunnused arvudeks
+Tasemed <- list(Smoking = c('never smoked', 'tried smoking', 'former smoker', 'current smoker'), 
+                Alcohol = c('never', 'social drinker', 'drink a lot'), 
+                Punctuality = c('i am often running late', 'i am always on time', 'i am often early'), 
+                Lying = c('never', 'only to avoid hurting someone', 'sometimes', 'everytime it suits me'), 
+                Internet.usage = c('no time at all', 'less than an hour a day', 'few hours a day', 'most of the day'), 
+                Education = c('currently a primary school pupil', 'primary school', 'secondary school', 
+                              'college/bachelor degree', 'masters degree', 'doctorate degree'))
+for (i in names(Tasemed)) {
+  noored[, i] <- noored[, i] %>% factor(levels = Tasemed[[i]]) %>% as.numeric
+}
+## Korrasta veeru nimetused
+names(noored) %<>% tolower %>% gsub('\\.+', '\\.', .)
+## Salvesta nimetused
+#writeLines(names(noored), 'andmed/youngpeople.txt')
+write.csv(noored, 'andmed/youngpeople.csv', row.names = F)
+
 # Eesti ettevõtete majandusnäitajad
 # praktikum_09_mõõtmevähendus
 ## Päri
@@ -25,19 +45,27 @@ ettev <- päring
 ## Korrasta
 ettev %<>% select(näitaja = Näitaja, tegevusala = Tegevusala, 
                  väärtus = 'EM001: Ettevõtete majandusnäitajad')
-## Vali näitajad 
-set.seed(0);jätta <- unique(ettev$näitaja) %>% sample(20)
+## Vali 
+set.seed(2)
+jätta <- unique(ettev$näitaja) %>% sample(20)
 ettev %<>% filter(näitaja %in% jätta)
+jätta <- unique(ettev$tegevusala) %>% sample(50)
+ettev %<>% filter(tegevusala %in% jätta)
 ## Laienda
 library('tidyr')
 ettev %<>% pivot_wider(names_from = näitaja, values_from = väärtus)
 ## Salvesta
-write.csv(ettev, 'andmed/ettevõtted.csv', row.names = F)
+write.csv(ettev, 'andmed/tegevusalad.csv', row.names = F)
 
 # Death causes
 # faktoranalüüs
 surm <- read.csv('assets/deathcause.csv')
+## Asedna absoluutväärtused osakaaludega
 surm[, -1] <- surm[, -1] / rowSums(surm[, -1], na.rm = T)
+## Korrasta
+vaheta <- c('Cirrhosis.and.other.chronic.liver.diseases', 
+            'Environmental.heat.and.cold.exposure')
+names(surm)[names(surm) %in% vaheta] <- c('Liver.diseases', 'Heat.and.cold')
 write.csv(surm, 'andmed/deathcause.csv', row.names = F)
 
 # Decathlon
@@ -45,7 +73,8 @@ write.csv(surm, 'andmed/deathcause.csv', row.names = F)
 kv <- read.csv('assets/decathlon2004.csv')
 kv %<>% filter(Competition == 'OlympicG')
 kv %<>% select(Athlets, 
-               X100m, X400m, X1500m, X110m.hurdle, 
+               run100m = X100m, run400m = X400m, run1500m = X1500m, 
+               run110m.hurdle = X110m.hurdle, 
                Long.jump, High.jump, Pole.vault, 
                Shot.put, Discus, Javeline)
 names(kv) %<>% tolower %>% sub('\\.', '', .)

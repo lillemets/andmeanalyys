@@ -1,4 +1,4 @@
-# Lineaarne regressioon {#sec-regressioon}
+# Lineaarne regressioon {#sec-linreg}
 
 <!--
 [[Regression analysis]]

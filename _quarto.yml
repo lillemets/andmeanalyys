@@ -61,8 +61,8 @@ book:
 #  - põhimõtted.qmd
 #  - sõnastik.qmd
 
-bibliography: ../../note/assets/library.json
-csl: ../../note/assets/apa.csl
+bibliography: ../../notes/assets/library.json
+csl: ../../notes/assets/apa.csl
 
 reference-location: margin
 format:

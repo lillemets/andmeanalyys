@@ -52,12 +52,12 @@ faktorid <- fa(surm, nfactors = 7, rotate = 'none')
 
 Sobiva arvu faktorite määramisel võib jällegi kasutada samasid põhimõtteid, mida peakomponentide analüüsi korral. Kuna faktoranalüüs on mõneti loomingulisem, siis võib vabamalt läheneda ka faktorite valikule. Näiteks võib lähtuda faktorite kordajatest või unikaalsusest. Kui mõnel tunnusel on väga kõrge unikaalsus, siis faktorite lisamine võib aidata sellist tunnust lisanduva faktori abil seletada.
 
-Kõige lihtsam on selgitada sobiv faktorite arv ilmselt funktsiooniga `fa.parallel()`.
+Samuti saab välja selgitada sobiva faktorite arv funktsiooni `fa.parallel()` abil. Lisaks joonisele nimetatakse sellisel juhul sobivaim faktorite arv ka käsureal.
 
 ```{r}
 fa.parallel(surm)
 ```
-
+Joonisele järgnevast sõnumist saame järeldada, et sobivaim faktorite arv ette antud andmete analüüsimiseks on 7.
 
 ## Pööramine
 
@@ -69,53 +69,63 @@ Enamasti rakendatakse ühte kolmest alljärgnevast pööramisest. Sealjuures tas
 - **Oblimin** pööramisel maksimeeritakse samuti kordajate ruutude hajuvust *faktorite siseselt*, aga selliselt, et faktorite vahel võib olla ka korrelatsioon. Võrreldes varimax pööramisega on tulemuseks küll mitte nii selgelt eristuvad faktorid, aga faktorite siseselt eristuvad selgemalt tunnused.
 - **Quartimax** pööramise eesmärk on maksimeerida faktori kordajate ruutude hajuvust erinevalt eelnevatest hoopis *tunnuste siseselt*. Selle tulemusel on iga tunnus seotud võimalikult väheste faktoritega.
 
-Soovitud pööramise saame faktorite arvutamisel täpsustada argumendiga `rotate`. Võrdleme, kuidas paiknevad faktorite kordajad erinevatel pööramistel kahe esimese faktori suhtes.
+Soovitud pööramise saame faktorite arvutamisel täpsustada argumendiga `rotate`. Näiteks tavapäraselt kasutatavat Varimax pööramist 7 faktori leidmiseks saame rakendada alljärgnevalt.
 
 ```{r}
 faktorid <- fa(surm, nfactors = 7, rotate = 'varimax')
-plot(faktorid$loadings[, 1:2])
-faktorid <- fa(surm, nfactors = 7, rotate = 'oblimin')
-plot(faktorid$loadings[, 1:2])
 ```
 
 
 ## Eeldused
 
-Üldiselt kehtivad faktoranalüüsile samad eeldused, mis peakomponentide analüüsi puhul. Veelgi olulisem on aga veenduda selles, et tunnuste vaheline jagatud hajuvus on piisav selleks, et 
+Üldiselt kehtivad faktoranalüüsil samad eeldused, mis peakomponentide analüüsi puhul. Veelgi olulisem on aga veenduda selles, et tunnuste vaheline jagatud hajuvus on piisav selleks, et 
 
 - andmepilv ei ole sfääriline (*sphericity*) ja 
-- iga tunnus ei ole seotud ainult ühe faktoriga (*sampling adequacy*).
+- andmetabel sobib faktoranalüüsiks (*sampling adequacy*).
 
 Nende kahe eelduse testimiseks saab kasutada vastavalt funktsioone `cortest.bartlett()` ja `KMO()` laiendusest `psych`.
 
-```{r}
-#| include: false
+Veendumaks, et andmepilv ei ole sfääriline, saame testida, kas andmetes esinevad korrelatsioonid on üldistatavad. Selleks saame kasutada Bartletti testi korrelatsioonimaatriksi hindamiseks.
 
-# Bartletti test
+```{r}
 korrel <- cor(surm, use = 'pairwise.complete.obs')
-cortest.bartlett(korrel, n = nrow(surm))$p.value
-# KMO mõõdik
+cortest.bartlett(korrel, n = nrow(surm))
+```
+
+Kuna saadud p-väärtus on madalam kui $\alpha = 0.05$, siis võime järeldada, et andmetes esinevad korrelatsioonid on piisavalt suured.
+
+Andmetabeli sobivus faktoranalüüsiks seisneb sellest, et kasutatavad tunnused on üldse seletatavad faktorite poolt ja ei ole seotud ainult enda faktoriga ega unikaalsed. Seda saame hinnata **KMO mõõdiku** abil (*Kaiser-Meyer-Olkin measure*). Mõõdiku väärtus on vahemikus $0...1$, kus kõrgem väärtus näitab, et suurem osa hajuvusest on tingitud faktoritest.
+
+```{r}
 KMO(surm)
 ```
+
+Näeme, et esineb palju surmapõhjuseid, mille korral KMO mõõdiku väärtus on $<0.6$. Seega need tunnused ei ole faktoritega seletatavad ega sobi seega faktoranalüüsi jaoks.
 
 ## Tõlgendamine
 
 Lähtudes faktormudelist näitavad faktorite **kordajad** iga faktori mõju tunnusele. Nii on need kordajad tähenduselt mingil määral sarnased regressioonmudeli kordajatele, kus kordaja märk näitab seose suunda ja absoluutväärtus seose tugevust. Sageli võetakse arvesse ainult neid kordajaid mille väärtus on kõrgem kui nt 0,3 või 0,5 selleks, et iga faktor oleks selgemini seotud konkreetsete tunnustega või vastupidi.
 
-Kordajad saame kätte faktori objekti osisest `loadings`. 
+Kordajad saame kätte faktori objekti osisest `loadings`. Sealjuures tuleks faktorite järjestamisel lähtuda seletatud hajuvusest, mitte veeru päises olevast numbrist.
 
 ```{r}
 #| fig-height: 10
 faktorid <- fa(surm, nfactors = 7, rotate = 'oblimin')
 faktorid$loadings
 ```
-Kordajate alusel saame muuhulgas anda faktoritele tähenduse. Nt esimene faktor võiks iseloomustada arsiabi kättesaadavust, kuna on seotud eelkõige nakkushaiguste ja lihtsamini ravitavate surmapõhjustega. Teine faktor mõjutab muuhulgas õnnetustega seotud surmapõhjusi, nii et võiks iseloomustada elukeskkonna ohtlikkust.
+
+Kordajate alusel saame muuhulgas anda faktoritele tähenduse. 
+
+1. Esimene faktor võiks iseloomustada arsiabi kättesaamatust, kuna suurendab eelkõige nakkushaiguste ja lihtsamini ravitavate surmapõhjuste esinemist, vähendades samal ajal vanadusega seotud haigustesse suremist. 
+2. Teine faktor suurendab muuhulgas õnnetustega seotud surmapõhjusi ja vähendab vanadusega seotud surmapõhjuste esinemist, nii et see võiks iseloomustada elukeskkonna ohtlikkust. Samas ei ole see iseloomustus päris täpne, sest kõige suurem on selle faktori mõju hoopis suremusel maksahaiguste tõttu.
+3. Kolmas faktor suurendab kuumast ja külmast keskkonnast tingitud surmasid ja (alkoholi) mürgitust, aga vähendab suremist maksahaiguste ja diabeedi tõttu.
 
 Üks viis faktorite kordajaid joonistada on kasutada seosekaarti.
 
 ```{r}
 #| column: page-right
 #| fig-height: 8
+#| message: false
 library('gplots')
 heatmap.2(faktorid$loadings, col = 'bluered', margins = c(4,12))
 ```
@@ -123,6 +133,7 @@ heatmap.2(faktorid$loadings, col = 'bluered', margins = c(4,12))
 Teine võimalus on kuvada tunnused ja faktorid ning nende vahelised seosed joontena, millel on kordajad.
 
 ```{r}
+#| fig-width: 10
 #| fig-height: 10
 fa.diagram(faktorid)
 ```
@@ -133,19 +144,25 @@ Sarnaselt peakomponentide analüüsile saame ka faktoranalüüsis leida igale va
 head(faktorid$scores)
 ```
 
+Võttes aluseks eelneva faktorite iseloomustuse, võime öelda nt, et Afganistaanis ja Angolas on keskmisest kõrgem arstiabi kättesaamatus ehk halvem arstiabi kättesaadavus.
+
 Iga tunnuse kohta saame arvutada **unikaalsuse** (*uniqueness*), mis näitab faktorite poolt seletamata jäänud osa tunnuse hajuvusest. **Kommunaliteet** (*communality*) on selle pöördväärtus ja näitab seega, kui suur osa tunnuse hajuvusest on seletatav faktoritega. 
 
 ```{r}
-head(faktorid$uniqueness)
+sort(faktorid$uniqueness)
 ```
+
+Näeme, et kõige vähem seletavad faktorid surmasid terrorismi ja sarnaste konfliktide tõttu (`Conflict.and.terrorism`). Kõige paremini seletavad faktorid aga seedimisega seotud surmapõhjuste esinemist (`Digestive.diseases`).
 
 Tunnuse **keerukuse** (*complexity*) saab leida samuti iga tunnuse kohta ja see näitab faktorite arvu, mis antud tunnust mõjutavad. 
 
 ```{r}
-head(faktorid$complexity)
+sort(faktorid$complexity)
 ```
 
-Kahte faktorit saame korraga kujutada hajuvusjoonisel.
+Näeme, et kui vastsündinu surmade (`Neonatal.disorders`) seletamiseks piisab ühest faktorist, siis isikutevaheline vägivald (`Interpersonal.violence`) on seotud peaaegu viie faktoriga.
+
+Kahte faktorit ja vaatluste paiknemist nende suhtes saame korraga kujutada hajuvusjoonisel.
 
 ```{r}
 #| column: page-right
