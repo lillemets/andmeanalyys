@@ -6,7 +6,19 @@ library('magrittr')
 library('dplyr')
 
 
-# Read, clean and save data sets (2022-10-23 09:30:09) ----------
+li# Read, clean and save data sets (2022-10-23 09:30:09) ----------
+
+# Comparative Manifestos Project
+# tekstikaeve
+#nimed <- list.files('andmed/cmp') %>% sub('\\..+' , '', .)
+#progs <- lapply(list.files('andmed/cmp', full = T), read.csv) %>% 
+#  lapply(select, 1) %>% lapply(unlist) %>% lapply(trimws) %>% 
+#  lapply(paste, collapse = ' ')
+#for (i in seq_along(progs)) writeLines(progs[[i]], paste0('andmed/cmp/', nimed[i], '.txt'))
+#library('manifestoR')
+#mp_setapikey(key = '5d3ca6b25bf8fe42b5de91660224b086')
+#progs <- mp_corpus(countryname == "Estonia" & edate > as.Date("2007-03-01"))
+
 
 # Young people
 # test_09_mõõtmevähendus
