@@ -379,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#tf-idf" id="toc-tf-idf" class="nav-link" data-scroll-target="#tf-idf"><span class="toc-section-number">30.6</span>  TF-IDF</a></li>
   <li><a href="#sõnade-võrgustik" id="toc-sõnade-võrgustik" class="nav-link" data-scroll-target="#sõnade-võrgustik"><span class="toc-section-number">30.7</span>  Sõnade võrgustik</a></li>
   <li><a href="#klasterdamine" id="toc-klasterdamine" class="nav-link" data-scroll-target="#klasterdamine"><span class="toc-section-number">30.8</span>  Klasterdamine</a></li>
-  <li><a href="#sõnakasutus" id="toc-sõnakasutus" class="nav-link" data-scroll-target="#sõnakasutus"><span class="toc-section-number">30.9</span>  Sõnakasutus</a></li>
+  <li><a href="#keelekasutus" id="toc-keelekasutus" class="nav-link" data-scroll-target="#keelekasutus"><span class="toc-section-number">30.9</span>  Keelekasutus</a></li>
   <li><a href="#teemad" id="toc-teemad" class="nav-link" data-scroll-target="#teemad"><span class="toc-section-number">30.10</span>  Teemad</a></li>
   </ul>
 </nav>
@@ -432,7 +432,7 @@ Mõiste
 <li>Mille poolest üks teatud dokument erineb teistest?</li>
 <li>Mis seosed esinevad dokumendis kasutatud väljendite vahel?</li>
 </ol>
-<p>Mida rohkem on meil dokumente, seda selgemini ilmnevad seosed dokumentide vahel. Järgnevalt uurime teksikaeve meetodite rakendamist 2007. ja 2011. aasta Eesti erakondade valimisprogrammide näitel.</p>
+<p>Järgnevalt uurime teksikaeve meetodite rakendamist 2007. ja 2011. aasta Eesti erakondade valimisprogrammide näitel.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'magrittr'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>failid <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">'andmed/cmp'</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>, <span class="at">pattern =</span> <span class="st">'.pdf$'</span>)</span>
@@ -633,7 +633,7 @@ rahvaliit 2011 :
 <div class="page-columns page-full"><p>Paljud tekstis sageli esinevad sõnad ei ole sisulised ega võimalda dokumenti temaatiliselt iseloomustada ega teistest tekstidest eristada. Sellised sõnad on nt sidesõnad ja asesõnad. Dokumentide analüüsimisel on need sõnad müra, mis raskendavad mustrite ja seoste leidmist. Tekstikaeves nimetatakse taolisi sõnu stoppsõnadeks (<em>stopwords</em>). Stoppsõnad saame sõnedest eemaldada funktsiooniga <code>tokens_remove()</code>. Inglisekeelsete stoppsõnad saame eemaldada argumendiga <code>pattern = stopwords('en')</code>. Eesti keele stoppsõnu aga vastavas funktsioonis ei ole, mistõttu peame need käsitsi arvutisse laadima<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, R töölauale sisestama ja seejärel vastava funktsiooni argumendina määrama.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Eesti keele stoppsõnad on alla laetavad <a href="https://datadoi.ee/handle/33/78">Tartu Ülikooli raamatukogust</a>.</p></li></div></div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>stoppsõnad <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">'andmed/stoppsõnad.txt'</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sõned <span class="ot">&lt;-</span> <span class="fu">tokens_remove</span>(sõned, <span class="at">pattern =</span> stoppsõnad)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>sõned <span class="sc">%&lt;&gt;%</span> <span class="fu">tokens_remove</span>(stoppsõnad)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>sõned</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tokens consisting of 12 documents and 2 docvars.
@@ -678,19 +678,27 @@ rahvaliit 2011 :
 [ reached max_ndoc ... 6 more documents ]</code></pre>
 </div>
 </div>
-<p>Üks ja sama sõna võib esineda mitmel erineval kujul, nt ainsuses ja mitmuses, eessõnadega ja eessõnadeta. Tegusõnadel on paljudes keeltes pöörded. Eesti keeles esinevad nimisõnad veel ka erinevates käänetes. Enne sõnede analüüsimist need seetõttu algvormistatakse (<em>lemmatizing</em>) ehk sõnad asendatakse nende algvormidega. Ingliskeelsete sõnede puhul saame kasutada funktsiooni <code>tokens_wordstem()</code>. Eestikeelsete sõnade algvormid ei ole paraku avalikult leitavad, mistõttu uuritavat korpust me algvormistada ei saa.</p>
-<p>Võiksime arvesse võtta ka asjaolu, et teatud nähtused esitatakse rohkem kui ühe sõnana. Rohkem kui ühest sõnast koosnevad väljendid on <strong>sõnaühendid</strong> (<em>collocations</em>, <em>n-grams</em>). Dokumentides esinevate sõnade järjestuse alusel saame sõnaühendid leida funktsiooniga <code>textstat_collocations()</code>, milles saame määrata mh leitavate sõnaühendite väikseima sageduse (<code>min_count = 10</code>) ja vähina sõnade arvu, mille ühendeid otsime (<code>size = 2</code>).</p>
+<div class="page-columns page-full"><p>Üks ja sama sõna võib esineda mitmel erineval kujul, nt ainsuses ja mitmuses, eessõnadega ja eessõnadeta. Tegusõnadel on paljudes keeltes pöörded. Eesti keeles esinevad nimisõnad veel ka erinevates käänetes. Enne sõnede analüüsimist need seetõttu algvormistatakse (<em>lemmatizing</em>) ehk sõnad asendatakse nende algvormidega (lemmadega). Ingliskeelsete sõnede puhul saame kasutada funktsiooni <code>tokens_wordstem()</code>. Eestikeelsete sõnade algvormid koos kõikvõimalike vormidega ei ole paraku avalikult leitavad, mistõttu uuritavat korpust me algvormistada ei saa<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Vajadusel saab dokumendid enne R töölauale sisestamist lemmatiseerida <a href="https://tekstianalyys.utlib.ut.ee/lemmatiseerimine.html">Tartu Ülikooli poolt pakutava lemmatiseerijaga</a>.</p></li></div></div>
+<p>Võiksime arvesse võtta ka asjaolu, et teatud nähtused esitatakse rohkem kui ühe sõnana. Rohkem kui ühest sõnast koosnevad väljendid on <strong>sõnaühendid</strong> (<em>collocations</em>, <em>n-grams</em>). Dokumentides esinevate sõnade järjestuse alusel saame sõnaühendid leida funktsiooniga <code>textstat_collocations()</code>, milles saame määrata mh leitavate sõnaühendite väikseima sageduse (<code>min_count = 20</code>) ja vähina sõnade arvu, mille ühendeid otsime (<code>size = 2</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sõnaühendid <span class="ot">&lt;-</span> <span class="fu">textstat_collocations</span>(sõned, <span class="at">min_count =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sõnaühendid)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sõnaühendid <span class="ot">&lt;-</span> <span class="fu">textstat_collocations</span>(sõned, <span class="at">min_count =</span> <span class="dv">20</span>, <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sõnaühendid</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>             collocation count count_nested length   lambda        z
-1          euroopa liidu   122            0      2 8.171880 27.29480
-2 kohalike omavalitsuste    44            0      2 7.699716 26.52786
-3  kohaliku omavalitsuse    44            0      2 8.257028 24.63705
-4        aasta riigikogu    25            0      2 6.770979 22.07693
-5       seame eesmärgiks    25            0      2 7.152438 21.28604
-6            eesti keele    84            0      2 5.579262 20.06660</code></pre>
+<pre><code>              collocation count count_nested length   lambda         z
+1           euroopa liidu   122            0      2 8.171880 27.294803
+2  kohalike omavalitsuste    44            0      2 7.699716 26.527861
+3   kohaliku omavalitsuse    44            0      2 8.257028 24.637050
+4         aasta riigikogu    25            0      2 6.770979 22.076934
+5        seame eesmärgiks    25            0      2 7.152438 21.286044
+6             eesti keele    84            0      2 5.579262 20.066599
+7          keele kultuuri    21            0      2 5.513494 19.951902
+8    riigikogu valimistel    20            0      2 7.892776 19.758598
+9       puuetega inimeste    22            0      2 5.970079 19.396205
+10        avaliku sektori    22            0      2 7.642845 19.224620
+11            eesti rahva    23            0      2 2.801869 11.562169
+12            eesti riigi    26            0      2 1.410214  6.879928
+13         euroopa liidus    25            0      2 9.358612  6.546668
+14          toetame eesti    20            0      2 1.009869  4.402414</code></pre>
 </div>
 </div>
 <p>Funktsioon <code>tokens_compound()</code> asendab korpuses eraldi sõnandena esinevad sõnad neile vastavate sõnaühenditega.</p>
@@ -706,62 +714,96 @@ rahvaliit 2011 :
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dokMat <span class="ot">&lt;-</span> <span class="fu">dfm</span>(sõned)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>dokMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Document-feature matrix of: 12 documents, 18,541 features (84.90% sparse) and 2 docvars.
+<pre><code>Document-feature matrix of: 12 documents, 18,498 features (84.91% sparse) and 2 docvars.
                 features
-docs             terve pere mõistus terve_eesti isamaa_res_publica liidu
-  irl 2007           9    7       3           7                  2     3
-  irl 2011           1    2       0           0                  7     4
-  kesk 2007          0    3       0           1                  0     0
-  kesk 2011          1    2       0           0                  1     3
-  rahvaliit 2007     0    0       0           0                  0     0
-  rahvaliit 2011     0    2       0           0                  0     0
+docs             terve pere mõistus eesti isamaa res publica liidu
+  irl 2007          16    7       3   110      2   2       2     3
+  irl 2011           1    2       0    74      7   7       7     4
+  kesk 2007          1    3       0    48      0   0       0     0
+  kesk 2011          1    2       0    80      1   1       1     3
+  rahvaliit 2007     0    0       0    36      0   0       0     0
+  rahvaliit 2011     0    2       0    29      0   0       0     0
                 features
-docs             valitsemisprogramm eesti valitsusele olukorras
-  irl 2007                        1    96           1         2
-  irl 2011                        1    66           0         1
-  kesk 2007                       0    45           0         1
-  kesk 2011                       0    68           0         1
-  rahvaliit 2007                  0    31           0         0
-  rahvaliit 2011                  0    25           0         0
-[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,531 more features ]</code></pre>
+docs             valitsemisprogramm valitsusele
+  irl 2007                        1           1
+  irl 2011                        1           0
+  kesk 2007                       0           0
+  kesk 2011                       0           0
+  rahvaliit 2007                  0           0
+  rahvaliit 2011                  0           0
+[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,488 more features ]</code></pre>
 </div>
 </div>
-<p><strong>Terminite maatriksis</strong> (<em>feature co-occurrence matrix</em>) on ridades ja ka veergudes terminid. Lahtrites on nende terminite koos esinemised. Dokumentide uurimisel saame otsida seoseid kas</p>
+<p><strong>Terminite maatriksis</strong> (<em>feature co-occurrence matrix</em>) on ridades ja ka veergudes terminid. Lahtrites on nende terminite koos esinemised. Dokumentide uurimisel saame otsida sõnade koos esinemisi kas</p>
 <ul>
-<li>ühes dokumendis sõnade vahel lähtudes nende lähedusest või</li>
+<li>sõnade vahel lähtudes nende lähedusest või</li>
 <li>mitme dokumendi vahel sõnade koos esinemise alusel.</li>
 </ul>
-<p>Sealjuures on esimene lähenemine sobilikum üksikute pikkade dokumentide korral, viimane eeldab aga palju dokumente. Kasutades argumente <code>context = 'document'</code>, <code>count = 'boolean'</code> ja <code>window = 5</code>, loendame kui mitu korda esineb iga sõnade paar teineteisest kuni viie sõna kaugusel.</p>
+<p>Sealjuures on esimene lähenemine sobilikum üksikute pikkade dokumentide korral, viimane eeldab aga palju dokumente.</p>
+<p>Kasutades argumente <code>context = 'document', window = 5</code>, loendame kui mitu korda esineb iga sõnade paar teineteisest kuni viie sõna kaugusel.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'window'</span>, <span class="at">count =</span> <span class="st">'boolean'</span>, <span class="at">window =</span> <span class="dv">5</span>)</span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'window'</span>, <span class="at">window =</span> <span class="dv">5</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>termMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Feature co-occurrence matrix of: 18,541 by 18,541 features.
+<pre><code>Feature co-occurrence matrix of: 18,498 by 18,498 features.
                     features
-features             terve pere mõistus eesti liidu valitsemisprogramm
-  terve                  2    1       1     1     1                  1
-  pere                   0    0       1     3     1                  0
-  mõistus                0    0       0     1     1                  1
-  eesti                  0    0       0    24     4                  1
-  liidu                  0    0       0     0     4                  2
-  valitsemisprogramm     0    0       0     0     0                  0
-  valitsusele            0    0       0     0     0                  0
-  olukorras              0    0       0     0     0                  0
-  majandus               0    0       0     0     0                  0
-  kasvab                 0    0       0     0     0                  0
+features             terve pere mõistus eesti isamaa res publica liidu
+  terve                  8    7       5    25      2   2       1     1
+  pere                   0    0       1     6      1   0       0     0
+  mõistus                0    0       0     1      1   1       1     0
+  eesti                  0    0       0   224      5   4       4     5
+  isamaa                 0    0       0     0      0  10      10     7
+  res                    0    0       0     0      0   0      10     7
+  publica                0    0       0     0      0   0       0     7
+  liidu                  0    0       0     0      0   0       0     4
+  valitsemisprogramm     0    0       0     0      0   0       0     0
+  valitsusele            0    0       0     0      0   0       0     0
                     features
-features             valitsusele olukorras majandus kasvab
-  terve                        0         0        1      0
-  pere                         0         0        0      0
-  mõistus                      0         0        0      0
-  eesti                        1         1        4      5
-  liidu                        1         1        1      0
-  valitsemisprogramm           1         1        1      1
-  valitsusele                  0         1        1      1
-  olukorras                    0         0        1      1
-  majandus                     0         0        4      2
-  kasvab                       0         0        0      0
-[ reached max_feat ... 18,531 more features, reached max_nfeat ... 18,531 more features ]</code></pre>
+features             valitsemisprogramm valitsusele
+  terve                               0           0
+  pere                                0           0
+  mõistus                             0           0
+  eesti                               2           1
+  isamaa                              2           0
+  res                                 2           1
+  publica                             2           1
+  liidu                               2           1
+  valitsemisprogramm                  0           1
+  valitsusele                         0           0
+[ reached max_feat ... 18,488 more features, reached max_nfeat ... 18,488 more features ]</code></pre>
+</div>
+</div>
+<p>Argumendi <code>context = 'document'</code> korral näitavad aga saadud sagedused, kui mitmes dokumendis esineb vastav sõnade paar korraga.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'document'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>termMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Feature co-occurrence matrix of: 18,498 by 18,498 features.
+                    features
+features             terve pere mõistus eesti isamaa res publica liidu
+  terve                129  137      48  3183     40  40      40    55
+  pere                   0   36      21  2896     30  30      30    41
+  mõistus                0    0       3   330      6   6       6     9
+  eesti                  0    0       0 61126    818 818     818  1147
+  isamaa                 0    0       0     0     22  54      54    37
+  res                    0    0       0     0      0  22      54    37
+  publica                0    0       0     0      0   0      22    37
+  liidu                  0    0       0     0      0   0       0    13
+  valitsemisprogramm     0    0       0     0      0   0       0     0
+  valitsusele            0    0       0     0      0   0       0     0
+                    features
+features             valitsemisprogramm valitsusele
+  terve                              17          19
+  pere                                9           9
+  mõistus                             3           3
+  eesti                             184         219
+  isamaa                              9           2
+  res                                 9           2
+  publica                             9           2
+  liidu                               7           3
+  valitsemisprogramm                  0           1
+  valitsusele                         0           0
+[ reached max_feat ... 18,488 more features, reached max_nfeat ... 18,488 more features ]</code></pre>
 </div>
 </div>
 </section>
@@ -769,7 +811,7 @@ features             valitsusele olukorras majandus kasvab
 <h2 data-number="30.4" class="anchored" data-anchor-id="sõnade-sagedused"><span class="header-section-number">30.4</span> Sõnade sagedused</h2>
 <p>Kõige lihtsam viis dokumentide kirjeldamiseks on lugeda kokku sõnad. Alustuseks võime võrrelda dokumente kõikide sõnade, kordumatute sõnade (<em>type</em>) ja ka lausete arvu alusel.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntoken</span>(korpus) <span class="co"># Sõnade arv kokku</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntoken</span>(korpus) <span class="co"># Sõnade arv kokku</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
           8085           6012           5746           6519           1982 
@@ -778,7 +820,7 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
       sde 2007       sde 2011 
          13316           9915 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntype</span>(korpus) <span class="co"># Kordumatute sõnade arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntype</span>(korpus) <span class="co"># Kordumatute sõnade arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
           3718           2916           2661           2824           1151 
@@ -787,7 +829,7 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
       sde 2007       sde 2011 
           4540           4426 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nsentence</span>(korpus) <span class="co"># Lausete arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nsentence</span>(korpus) <span class="co"># Lausete arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
            786            546            477            659            102 
@@ -797,80 +839,70 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
            684            347 </code></pre>
 </div>
 </div>
-<p>Ülevaate tekstide sisust annavad <strong>sõnasagedused</strong> (<em>bag-of-words</em>, <em>word frequencies</em>), mis näitavad lihtsalt kui mitu korda sõna esineb. Kõige sagedamini esinevad sõnad annavad lihtsa ülevaate korpuse sisust.</p>
+<p>Ülevaate tekstide sisust annavad <strong>sõnade sagedused</strong> (<em>bag-of-words</em>, <em>word frequencies</em>), mis näitavad lihtsalt kui mitu korda sõna esineb. Kõige sagedamini esinevad sõnad annavad lihtsa ülevaate korpuse sisust.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sage <span class="ot">&lt;-</span> <span class="fu">textstat_frequency</span>(dokMat, <span class="at">n =</span> <span class="dv">10</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sage</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sage <span class="ot">&lt;-</span> <span class="fu">textstat_frequency</span>(dokMat, <span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sage</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>         feature frequency rank docfreq group
-1          eesti       898    1      12   all
-2        toetame       329    2      12   all
-3          riigi       296    3      12   all
-4         tagame       170    4      11   all
-5           riik       141    5      11   all
-6          loome       139    6      12   all
-7            aeg       129    7       6   all
-8  euroopa_liidu       115    8      12   all
-9       inimeste       113    9      12   all
-10    suurendame       109   10      10   all</code></pre>
+<pre><code>          feature frequency rank docfreq group
+1           eesti      1001    1      12   all
+2         toetame       340    2      12   all
+3           riigi       296    3      12   all
+4          tagame       170    4      11   all
+5            riik       158    5      11   all
+6           loome       139    6      12   all
+7             aeg       129    7       6   all
+8        inimeste       129    7      12   all
+9  reformierakond       126    9       2   all
+10  euroopa_liidu       122   10      12   all</code></pre>
 </div>
 </div>
 <p>Neid sagedusi saame samuti uurida mingi korpuses esineva igat dokumenti esindava tunnuse lõikes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sageDok <span class="ot">&lt;-</span> <span class="fu">textstat_frequency</span>(dokMat, <span class="at">groups =</span> korpus<span class="sc">$</span>erakond, <span class="at">n =</span> <span class="dv">3</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sageDok</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sageDok <span class="ot">&lt;-</span> <span class="fu">textstat_frequency</span>(dokMat, <span class="at">groups =</span> korpus<span class="sc">$</span>erakond, <span class="at">n =</span> <span class="dv">3</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sageDok</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          feature frequency rank docfreq     group
-1           eesti       162    1       2       irl
-2         toetame        81    2       2       irl
+1           eesti       184    1       2       irl
+2         toetame        83    2       2       irl
 3           riigi        49    3       2       irl
-4           eesti       113    1       2      kesk
-5           riigi        47    2       2      kesk
-6         toetame        45    3       2      kesk
-7       rahvaliit        69    1       2 rahvaliit
-8           eesti        56    2       2 rahvaliit
-9           riigi        21    3       2 rahvaliit
-10          eesti       316    1       2    reform
-11 reformierakond       103    2       2    reform
+4           eesti       128    1       2      kesk
+5         toetame        48    2       2      kesk
+6           riigi        47    3       2      kesk
+7       rahvaliit       104    1       2 rahvaliit
+8           eesti        65    2       2 rahvaliit
+9            riik        22    3       2 rahvaliit
+10          eesti       356    1       2    reform
+11 reformierakond       126    2       2    reform
 12          riigi        82    3       2    reform
 13            aeg       119    1       1      rohe
-14          eesti        70    2       2      rohe
+14          eesti        75    2       2      rohe
 15        soovime        24    3       2      rohe
-16          eesti       181    1       2       sde
-17        toetame       122    2       2       sde
+16          eesti       193    1       2       sde
+17        toetame       128    2       2       sde
 18          riigi        79    3       2       sde</code></pre>
 </div>
 </div>
-<p>Sõnasagedusi kujutatakse sageli <strong>sõnapilvena</strong> (<em>word cloud</em>). Sõnapilve suuruse saame määrata nt argumentidega <code>min_count</code> või <code>max_words</code>.</p>
+<p>Sõnade sagedusi kujutatakse sageli <strong>sõnapilvena</strong> (<em>word cloud</em>). Sõnapilve suuruse saame määrata nt argumentidega <code>min_count</code> või <code>max_words</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_wordcloud</span>(dokMat, <span class="at">min_size =</span> <span class="dv">1</span>, <span class="at">max_words =</span> <span class="dv">100</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Ka sõnapilvel saame esitada sagedused mingi tunnuse võrdluses.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>dokMatErak <span class="ot">&lt;-</span> <span class="fu">dfm_group</span>(dokMat, <span class="at">groups =</span> korpus<span class="sc">$</span>erakond)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_wordcloud</span>(dokMatErak, <span class="at">min_size =</span> <span class="dv">1</span>, <span class="at">max_words =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'blue'</span>, <span class="st">'red'</span>), </span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">comparison =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud_comparison(x, min_size, max_size, min_count, max_words, :
-programmiettepanek_üldkoosolekule could not be fit on page. It will not be
-plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud_comparison(x, min_size, max_size, min_count, max_words, :
-keskerakonna could not be fit on page. It will not be plotted.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_wordcloud</span>(dokMat, <span class="at">min_size =</span> <span class="dv">1</span>, <span class="at">max_words =</span> <span class="dv">100</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="tekstikaeve_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Ka sõnapilvel saame esitada sagedused mingi tunnuse kuni kaheksa rühma võrdluses. Kui sama sõna esineb enam kui kahes rühmas, siis määratakse selle värv rühma järgi, milles see sõna kõige sagedasem on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dokMatErak <span class="ot">&lt;-</span> <span class="fu">dfm_group</span>(dokMat, <span class="at">groups =</span> korpus<span class="sc">$</span>erakond)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_wordcloud</span>(dokMatErak, <span class="at">min_size =</span> <span class="dv">1</span>, <span class="at">max_words =</span> <span class="dv">50</span>, <span class="at">comparison =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Saame valitud sõnade esinemist kujutada ka asukoha järgi tekstis, uurides sõnade konteksti (<em>keyword in context</em>, <em>kwic</em>). Kontekst on antud juhul dokumendid.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_xray</span>(<span class="fu">kwic</span>(sõned, <span class="at">pattern =</span> <span class="st">"Eesti"</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -881,41 +913,41 @@ keskerakonna could not be fit on page. It will not be plotted.</code></pre>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sõnasus <span class="ot">&lt;-</span>  <span class="fu">textstat_keyness</span>(dokMat, <span class="at">target =</span> <span class="st">'rohe 2007'</span>, <span class="at">measure =</span> <span class="st">'chi2'</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_keyness</span>(sõnasus, <span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="tf-idf" class="level2" data-number="30.6">
 <h2 data-number="30.6" class="anchored" data-anchor-id="tf-idf"><span class="header-section-number">30.6</span> TF-IDF</h2>
 <p>Lisaks sõnasusele hinnatakse sagli dokumendis esineva sõna tähtsust igas dokumendis. Seda esindavat mõõdikut nimetatakse lühendiga <strong>tf-idf</strong> (<em>term frequency - inverse document frequency</em>). See arvutatakse ühe termini <span class="math inline">\(t\)</span> suhtelise sageduse ja dokumendi pöördsageduse korrutis.</p>
-<p><span class="math inline">\(\text{tf-idf} (t) = \text{tf} (t) \times \text{idf} (t),\)</span></p>
-<p>kus suhteline sõnasagedus (<em>term frequency</em>) on sõna osakaal kõikidest sõnadest dokumendis:</p>
-<p><span class="math inline">\(\text{tf} (t) = \frac{\text{termini t sagedus dokumendis}}{\text{kõikide sõnade arv dokumendis}}\)</span></p>
+<p><span class="math display">\[\text{tf-idf} (t) = \text{tf} (t) \times \text{idf} (t),\]</span></p>
+<p>kus suhteline sõnade sagedus (<em>term frequency</em>) on sõna osakaal kõikidest sõnadest dokumendis:</p>
+<p><span class="math display">\[\text{tf} (t) = \frac{\text{termini t sagedus dokumendis}}{\text{kõikide sõnade arv dokumendis}}\]</span></p>
 <p>ja dokumendi pöördsagedus (<em>inverse document frequency</em>) on sõna tähtsus terves korpuses:</p>
-<p><span class="math inline">\(\text{idf} (t) = ln \frac{\text{dokumentide arv}}{\text{terminit t sisaldavate dokumentide arv}}.\)</span></p>
-<p>Mõõdiku väärtus on seda kõrgem, mida sagedamini esineb termin dokumendis, aga mida harvemini teistes dokumentides. Mõni tavaline sõna võib olla küll dokumendis sage, aga kui see on sage ka teistes dokumentides, siis ei iseloomusta see sõna hästi just vaatlusalust dokumenti. Selleks on vajalik, et see sõna teistes dokumentides sage ei oleks. Niisiis näitab tf-idf sõna tähtsust dokumendis, arvestades sealjuures ka sõna üldist tähtsust.</p>
+<p><span class="math display">\[\text{idf} (t) = ln \frac{\text{dokumentide arv}}{\text{terminit t sisaldavate dokumentide arv}}.\]</span></p>
+<p>Mõõdiku väärtus on seda kõrgem, mida sagedamini esineb termin dokumendis, aga mida harvemini teistes dokumentides. Mõni tavaline sõna võib olla küll dokumendis sage, aga kui see on sage ka teistes dokumentides, siis ei iseloomusta see sõna hästi just vaatlusalust dokumenti. Selleks on vajalik, et see sõna teistes dokumentides sage ei oleks. Niisiis näitab tf-idf sõna tähtsust dokumendi kontekstis, arvestades sealjuures ka sõna üldist tähtsust.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tfidf <span class="ot">&lt;-</span> <span class="fu">dfm_tfidf</span>(dokMat)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>tfidf</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Document-feature matrix of: 12 documents, 18,541 features (84.90% sparse) and 2 docvars.
+<pre><code>Document-feature matrix of: 12 documents, 18,498 features (84.91% sparse) and 2 docvars.
                 features
-docs               terve      pere  mõistus terve_eesti isamaa_res_publica
-  irl 2007       2.70927 0.5542687 3.237544   3.3398488            1.20412
-  irl 2011       0.30103 0.1583625 0          0                    4.21442
-  kesk 2007      0       0.2375437 0          0.4771213            0      
-  kesk 2011      0.30103 0.1583625 0          0                    0.60206
-  rahvaliit 2007 0       0         0          0                    0      
-  rahvaliit 2011 0       0.1583625 0          0                    0      
+docs                 terve      pere  mõistus eesti  isamaa     res publica
+  irl 2007       3.7453313 0.5542687 3.237544     0 1.20412 1.20412 1.20412
+  irl 2011       0.2340832 0.1583625 0            0 4.21442 4.21442 4.21442
+  kesk 2007      0.2340832 0.2375437 0            0 0       0       0      
+  kesk 2011      0.2340832 0.1583625 0            0 0.60206 0.60206 0.60206
+  rahvaliit 2007 0         0         0            0 0       0       0      
+  rahvaliit 2011 0         0.1583625 0            0 0       0       0      
                 features
-docs                liidu valitsemisprogramm eesti valitsusele olukorras
-  irl 2007       1.140634          0.7781513     0   0.7781513 0.7604225
-  irl 2011       1.520845          0.7781513     0   0         0.3802112
-  kesk 2007      0                 0             0   0         0.3802112
-  kesk 2011      1.140634          0             0   0         0.3802112
-  rahvaliit 2007 0                 0             0   0         0        
-  rahvaliit 2011 0                 0             0   0         0        
-[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,531 more features ]</code></pre>
+docs                liidu valitsemisprogramm valitsusele
+  irl 2007       1.140634          0.7781513   0.7781513
+  irl 2011       1.520845          0.7781513   0        
+  kesk 2007      0                 0           0        
+  kesk 2011      1.140634          0           0        
+  rahvaliit 2007 0                 0           0        
+  rahvaliit 2011 0                 0           0        
+[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,488 more features ]</code></pre>
 </div>
 </div>
 </section>
@@ -929,27 +961,28 @@ docs                liidu valitsemisprogramm eesti valitsusele olukorras
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textplot_network</span>(sagedased, <span class="at">min_freq =</span> .<span class="dv">5</span>, <span class="at">edge_alpha =</span> <span class="fl">0.2</span>, <span class="at">edge_size =</span> <span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="klasterdamine" class="level2" data-number="30.8">
 <h2 data-number="30.8" class="anchored" data-anchor-id="klasterdamine"><span class="header-section-number">30.8</span> Klasterdamine</h2>
-<p>Mõnikord võib olla vajalik dokumentide rühmitamine. Selleks saame kasuada hierarhilist klasterdamist. Dokumentide vahelised paariviisilised kaugused saame arvutada nt sõnasageduste alusel, millisel juhul on samu sõnu sama sagedasti kasutavad dokumendid on üksteisele lähedal. Dokumendi termine maatriksi alusel saame dokumentide läheduse leida funktsiooniga <code>textstat_dist()</code>. Leitud kauguste alusel saame arvutada ja joonistada klastripuu nii nagu iga teise kauguste maatriksi alusel.</p>
+<p>Mõnikord võib olla vajalik dokumentide rühmitamine. Selleks saame kasuada hierarhilist klasterdamist. Dokumentide vahelised paariviisilised kaugused saame arvutada nt sõnade sageduste alusel, millisel juhul on samu sõnu sama sagedasti kasutavad dokumendid on üksteisele lähedal. Dokumendi termine maatriksi alusel saame dokumentide läheduse leida funktsiooniga <code>textstat_dist()</code>. Leitud kauguste alusel saame arvutada ja joonistada klastripuu nii nagu iga teise kauguste maatriksi alusel.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>kaugused <span class="ot">&lt;-</span> <span class="fu">textstat_dist</span>(dokMat) <span class="sc">%&gt;%</span> as.dist</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>puu <span class="ot">&lt;-</span> <span class="fu">hclust</span>(kaugused, <span class="at">method =</span> <span class="st">'ward.D2'</span>) <span class="sc">%&gt;%</span> <span class="fu">as.dendrogram</span>()</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>puu <span class="ot">&lt;-</span> <span class="fu">hclust</span>(kaugused, <span class="at">method =</span> <span class="st">'ward.D2'</span>) <span class="sc">%&gt;%</span> as.dendrogram</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(puu, <span class="at">type =</span> <span class="st">'triangle'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="tekstikaeve_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="sõnakasutus" class="level2" data-number="30.9">
-<h2 data-number="30.9" class="anchored" data-anchor-id="sõnakasutus"><span class="header-section-number">30.9</span> Sõnakasutus</h2>
-<p>Sõnakasutust dokumentides saab mõõta mitmest küljest. Dokumendi lugemise keerukust saame hinnata tähemärkide, kõikide sõnade, keeruliste sõnade, silpide ja lausete arvu ja pikkuse ning nende omavaheliste suhete alusel. Võimalusi nende tegurite kombineerimiseks on väga palju, aga eestikeelsete tekstide korral on sobilik kasutada mõõdikuid, mis ei võta aluseks sõnade tähendusi ega silpide arvu. Võime võrrelda tekste näiteks keskmise lause pikkuse alusel sõnades.</p>
+<section id="keelekasutus" class="level2" data-number="30.9">
+<h2 data-number="30.9" class="anchored" data-anchor-id="keelekasutus"><span class="header-section-number">30.9</span> Keelekasutus</h2>
+<p>Keelekasutust dokumentides saab mõõta mitmest küljest. Dokumendi <strong>loetavust</strong> saame hinnata tähemärkide, kõikide sõnade, keeruliste sõnade, silpide ja lausete arvu ja pikkuse ning nende omavaheliste suhete alusel. Võimalusi nende tegurite kombineerimiseks on väga palju, aga eestikeelsete tekstide korral on sobilik kasutada mõõdikuid, mis ei võta aluseks sõnade tähendusi ega silpide arvu. Võime võrrelda tekste näiteks keskmise lause pikkuse alusel sõnades.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textstat_readability</span>(korpus, <span class="at">measure =</span> <span class="st">'meanSentenceLength'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>loetavus <span class="ot">&lt;-</span> <span class="fu">textstat_readability</span>(korpus, <span class="at">measure =</span> <span class="st">'meanSentenceLength'</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>loetavus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         document meanSentenceLength
 1        irl 2007           8.764631
@@ -966,51 +999,81 @@ docs                liidu valitsemisprogramm eesti valitsusele olukorras
 12       sde 2011          25.066282</code></pre>
 </div>
 </div>
-<p>Keelelise keerukuse mõõtmiseks on samuti suur valik mõõdikuid, millest paljud lähtuvad ühel või teisel viisil kõikide sõnade ja kordumatute sõnade suhtest. Neist võib-olla kõige lihtsam TTR (<em>type-token ratio</em>) on lihtsalt kordumatute sõnade ja kõikide sõnade arvu suhe.</p>
+<p><strong>Keelelise mitmekesisuse</strong> mõõtmiseks on samuti suur valik mõõdikuid, millest paljud lähtuvad ühel või teisel viisil kõikide sõnade ja kordumatute sõnade suhtest. Neist võib-olla kõige lihtsam TTR (<em>type-token ratio</em>) on lihtsalt kordumatute sõnade ja kõikide sõnade arvu suhe.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">textstat_lexdiv</span>(dokMat, <span class="at">measure =</span> <span class="st">'TTR'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>mitmekesisus <span class="ot">&lt;-</span> <span class="fu">textstat_lexdiv</span>(dokMat, <span class="at">measure =</span> <span class="st">'TTR'</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>mitmekesisus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         document       TTR
-1        irl 2007 0.6518244
-2        irl 2011 0.6721992
-3       kesk 2007 0.6719298
-4       kesk 2011 0.6662940
-5  rahvaliit 2007 0.7370821
-6  rahvaliit 2011 0.7392680
-7     reform 2007 0.6088783
-8     reform 2011 0.5520198
-9       rohe 2007 0.7715040
-10      rohe 2011 0.7160180
-11       sde 2007 0.6523550
-12       sde 2011 0.6306737</code></pre>
+1        irl 2007 0.6450031
+2        irl 2011 0.6629275
+3       kesk 2007 0.6640580
+4       kesk 2011 0.6580842
+5  rahvaliit 2007 0.7208084
+6  rahvaliit 2011 0.7207965
+7     reform 2007 0.6007605
+8     reform 2011 0.5466023
+9       rohe 2007 0.7639979
+10      rohe 2011 0.7115600
+11       sde 2007 0.6466465
+12       sde 2011 0.6174171</code></pre>
+</div>
+</div>
+<p>Saadud mõõdiku väärtuste alusel saame teha kokkuvõtteid ka dokumentidega seotud tunnuste lõikes. Nt võime leida iga erakonna keskmise keelelise mitmekesisuse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(mitmekesisus<span class="sc">$</span>TTR, <span class="fu">list</span>(korpus<span class="sc">$</span>erakond), mean)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Group.1         x
+1       irl 0.6539653
+2      kesk 0.6610711
+3 rahvaliit 0.7208024
+4    reform 0.5736814
+5      rohe 0.7377790
+6       sde 0.6320318</code></pre>
 </div>
 </div>
 <p>Lisaks keerukusele on levinud ka <strong>meelestatuse</strong> (<em>sentiment</em>) analüüs. Selle käigus määratakse igale sõnale, kas see väljendab negatiivset või positiivset emotsiooni. Selle määratluse alusel saame hinnata iga dokumendile meelestatuse. See protseduur on arusaadaval põhjusel väga levinud nt sotsiaalmeedia sõnumite uurimisel. Paraku ei ole eesti keele korpuse kohta veel olemas sõnastikku, milles oleks määratud iga sõna meelsus. Seetõttu antud dokumentides me meelestatust uurida ei saa.</p>
 </section>
 <section id="teemad" class="level2" data-number="30.10">
 <h2 data-number="30.10" class="anchored" data-anchor-id="teemad"><span class="header-section-number">30.10</span> Teemad</h2>
-<p>Keerulisemad tekstikaeve protseduurid võimaldavad luua teemade mudeleid (<em>topic models</em>). Üks selline protseduur on LDA (<em>Latent Dirichlet Allocation</em>). See võimaldab dokumendi-termini maatriksist leida ette antud arvul teemadega seotud märksõnad ja määrata igale dokumendile kõige sobivama teema, mida need märksõnad esindavad.</p>
+<p>Keerulisemad tekstikaeve protseduurid võimaldavad luua teemade mudeleid (<em>topic models</em>). Üks selline protseduur on LDA (<em>Latent Dirichlet Allocation</em>). See võimaldab dokumendi-termini maatriksist leida ette antud arvul teemadega seotud märksõnad ja määrata igale dokumendile kõige sobivama teema, mida need märksõnad esindavad. Teemade paremaks eristamiseks on mõistlik kasutada TF-IDF maatriksit.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'seededlda'</span>)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>teemad <span class="ot">&lt;-</span> <span class="fu">textmodel_lda</span>(dokMat, <span class="at">k =</span> <span class="dv">5</span>)</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(teemad, <span class="dv">5</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'seededlda'</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>teemad <span class="ot">&lt;-</span> <span class="fu">textmodel_lda</span>(tfidf, <span class="at">k =</span> <span class="dv">6</span>)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     topic1            topic2       topic3      topic4    topic5      
-[1,] "reformierakond"  "suurendame" "aeg"       "eesti"   "tasuta"    
-[2,] "toetab"          "toetame"    "rahvaliit" "riigi"   "tõstame"   
-[3,] "reformierakonna" "loome"      "soovime"   "toetame" "aastal"    
-[4,] "loob"            "muudame"    "irl"       "riik"    "suurendame"
-[5,] "eesti_keele"     "töötajate"  "rahva"     "tagame"  "loome"     </code></pre>
+<pre><code>      topic1                       topic2        topic3              
+ [1,] "rahvaliit"                  "aeg"         "programmiettepanek"
+ [2,] "sde"                        "irl"         "üldkoosolekule"    
+ [3,] "sotsidest"                  "irli"        "õnne"              
+ [4,] "visioon"                    "eli"         "soovime"           
+ [5,] "ca"                         "koduomanike" "õnnelik"           
+ [6,] "aasta_riigikogu_valimistel" "isamaa"      "elektrituru"       
+ [7,] "tänane"                     "res"         "terve"             
+ [8,] "maavolikogu"                "publica"     "mõistus"           
+ [9,] "rahvaliidu"                 "rohelised"   "valik"             
+[10,] "sotsiaaldemokraadid"        "elurikkuse"  "tervele"           
+      topic4            topic5              topic6                
+ [1,] "reformierakond"  "reformierakond"    "sotsiaaldemokraatide"
+ [2,] "reformierakonna" "reformierakonna"   "saavutasime"         
+ [3,] "keskerakond"     "eelarvevõimaluste" "2003-2007"           
+ [4,] "eli"             "tekkel"            "suurendarne"         
+ [5,] "toetab"          "soovib"            "tegevuskava"         
+ [6,] "viib"            "muuhulgas"         "2007-2011"           
+ [7,] "jätkab"          "struktuurseid"     "kroonini"            
+ [8,] "üksuste"         "lähtuvad"          "tõstsime"            
+ [9,] "keskerakonna"    "jätkame"           "nt"                  
+[10,] "kavandab"        "põhimõtetest"      "festival"            </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topics</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topics</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
-        topic4         topic4         topic5         topic5         topic4 
+        topic3         topic2         topic6         topic4         topic1 
 rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011 
-        topic3         topic4         topic4         topic3         topic3 
+        topic1         topic4         topic5         topic3         topic2 
       sde 2007       sde 2011 
-        topic4         topic2 
-Levels: topic1 topic2 topic3 topic4 topic5</code></pre>
+        topic6         topic1 
+Levels: topic1 topic2 topic3 topic4 topic5 topic6</code></pre>
 </div>
 </div>
 

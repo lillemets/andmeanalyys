@@ -21,7 +21,7 @@ Seega saame tekstikaevet kasutades vastata nt alljärgnevatele küsimustele:
 2. Mille poolest üks teatud dokument erineb teistest?
 3. Mis seosed esinevad dokumendis kasutatud väljendite vahel?
 
-Mida rohkem on meil dokumente, seda selgemini ilmnevad seosed dokumentide vahel. Järgnevalt uurime teksikaeve meetodite rakendamist 2007. ja 2011. aasta Eesti erakondade valimisprogrammide näitel.
+Järgnevalt uurime teksikaeve meetodite rakendamist 2007. ja 2011. aasta Eesti erakondade valimisprogrammide näitel.
 
 ```{r}
 library('magrittr')
@@ -99,17 +99,17 @@ Paljud tekstis sageli esinevad sõnad ei ole sisulised ega võimalda dokumenti t
 
 ```{r}
 stoppsõnad <- readLines('andmed/stoppsõnad.txt')
-sõned <- tokens_remove(sõned, pattern = stoppsõnad)
+sõned %<>% tokens_remove(stoppsõnad)
 sõned
 ```
 
-Üks ja sama sõna võib esineda mitmel erineval kujul, nt ainsuses ja mitmuses, eessõnadega ja eessõnadeta. Tegusõnadel on paljudes keeltes pöörded. Eesti keeles esinevad nimisõnad veel ka erinevates käänetes. Enne sõnede analüüsimist need seetõttu algvormistatakse (*lemmatizing*) ehk sõnad asendatakse nende algvormidega. Ingliskeelsete sõnede puhul saame kasutada funktsiooni `tokens_wordstem()`. Eestikeelsete sõnade algvormid ei ole paraku avalikult leitavad, mistõttu uuritavat korpust me algvormistada ei saa.
+Üks ja sama sõna võib esineda mitmel erineval kujul, nt ainsuses ja mitmuses, eessõnadega ja eessõnadeta. Tegusõnadel on paljudes keeltes pöörded. Eesti keeles esinevad nimisõnad veel ka erinevates käänetes. Enne sõnede analüüsimist need seetõttu algvormistatakse (*lemmatizing*) ehk sõnad asendatakse nende algvormidega (lemmadega). Ingliskeelsete sõnede puhul saame kasutada funktsiooni `tokens_wordstem()`. Eestikeelsete sõnade algvormid koos kõikvõimalike vormidega ei ole paraku avalikult leitavad, mistõttu uuritavat korpust me algvormistada ei saa^[Vajadusel saab dokumendid enne R töölauale sisestamist lemmatiseerida [Tartu Ülikooli poolt pakutava lemmatiseerijaga](https://tekstianalyys.utlib.ut.ee/lemmatiseerimine.html).].
 
-Võiksime arvesse võtta ka asjaolu, et teatud nähtused esitatakse rohkem kui ühe sõnana. Rohkem kui ühest sõnast koosnevad väljendid on **sõnaühendid** (*collocations*, *n-grams*). Dokumentides esinevate sõnade järjestuse alusel saame sõnaühendid leida funktsiooniga `textstat_collocations()`, milles saame määrata mh leitavate sõnaühendite väikseima sageduse (`min_count = 10`) ja vähina sõnade arvu, mille ühendeid otsime (`size = 2`).
+Võiksime arvesse võtta ka asjaolu, et teatud nähtused esitatakse rohkem kui ühe sõnana. Rohkem kui ühest sõnast koosnevad väljendid on **sõnaühendid** (*collocations*, *n-grams*). Dokumentides esinevate sõnade järjestuse alusel saame sõnaühendid leida funktsiooniga `textstat_collocations()`, milles saame määrata mh leitavate sõnaühendite väikseima sageduse (`min_count = 20`) ja vähina sõnade arvu, mille ühendeid otsime (`size = 2`).
 
 ```{r}
-sõnaühendid <- textstat_collocations(sõned, min_count = 10, size = 2)
-head(sõnaühendid)
+sõnaühendid <- textstat_collocations(sõned, min_count = 20, size = 2)
+sõnaühendid
 ```
 
 Funktsioon `tokens_compound()` asendab korpuses eraldi sõnandena esinevad sõnad neile vastavate sõnaühenditega.
@@ -129,15 +129,24 @@ dokMat <- dfm(sõned)
 dokMat
 ```
 
-**Terminite maatriksis** (*feature co-occurrence matrix*) on ridades ja ka veergudes terminid. Lahtrites on nende terminite koos esinemised. Dokumentide uurimisel saame otsida seoseid kas 
+**Terminite maatriksis** (*feature co-occurrence matrix*) on ridades ja ka veergudes terminid. Lahtrites on nende terminite koos esinemised. Dokumentide uurimisel saame otsida sõnade koos esinemisi kas 
 
-- ühes dokumendis sõnade vahel lähtudes nende lähedusest või 
+- sõnade vahel lähtudes nende lähedusest või 
 - mitme dokumendi vahel sõnade koos esinemise alusel.
 
-Sealjuures on esimene lähenemine sobilikum üksikute pikkade dokumentide korral, viimane eeldab aga palju dokumente. Kasutades argumente `context = 'document'`, `count = 'boolean'` ja `window = 5`, loendame kui mitu korda esineb iga sõnade paar teineteisest kuni viie sõna kaugusel.
+Sealjuures on esimene lähenemine sobilikum üksikute pikkade dokumentide korral, viimane eeldab aga palju dokumente. 
+
+Kasutades argumente `context = 'document', window = 5`, loendame kui mitu korda esineb iga sõnade paar teineteisest kuni viie sõna kaugusel.
 
 ```{r}
-termMat <- fcm(sõned, context = 'window', count = 'boolean', window = 5)
+termMat <- fcm(sõned, context = 'window', window = 5)
+termMat
+```
+
+Argumendi `context = 'document'` korral näitavad saadud sagedused, kui mitmes dokumendis esineb vastav sõnade paar korraga.
+
+```{r}
+termMat <- fcm(sõned, context = 'document')
 termMat
 ```
 
@@ -151,7 +160,7 @@ ntype(korpus) # Kordumatute sõnade arv
 nsentence(korpus) # Lausete arv
 ```
 
-Ülevaate tekstide sisust annavad **sõnasagedused** (*bag-of-words*, *word frequencies*), mis näitavad lihtsalt kui mitu korda sõna esineb. Kõige sagedamini esinevad sõnad annavad lihtsa ülevaate korpuse sisust.
+Ülevaate tekstide sisust annavad **sõnade sagedused** (*bag-of-words*, *word frequencies*), mis näitavad lihtsalt kui mitu korda sõna esineb. Kõige sagedamini esinevad sõnad annavad lihtsa ülevaate korpuse sisust.
 
 ```{r}
 sage <- textstat_frequency(dokMat, n = 10)
@@ -165,18 +174,17 @@ sageDok <- textstat_frequency(dokMat, groups = korpus$erakond, n = 3)
 sageDok
 ```
 
-Sõnasagedusi kujutatakse sageli **sõnapilvena** (*word cloud*). Sõnapilve suuruse saame määrata nt argumentidega `min_count` või `max_words`.
+Sõnade sagedusi kujutatakse sageli **sõnapilvena** (*word cloud*). Sõnapilve suuruse saame määrata nt argumentidega `min_count` või `max_words`.
 
 ```{r}
 textplot_wordcloud(dokMat, min_size = 1, max_words = 100)
 ```
 
-Ka sõnapilvel saame esitada sagedused mingi tunnuse võrdluses.
+Ka sõnapilvel saame esitada sagedused mingi tunnuse kuni kaheksa rühma võrdluses. Kui sama sõna esineb enam kui kahes rühmas, siis määratakse selle värv rühma järgi, milles see sõna kõige sagedasem on.
 
 ```{r}
 dokMatErak <- dfm_group(dokMat, groups = korpus$erakond)
-textplot_wordcloud(dokMatErak, min_size = 1, max_words = 50, col = c('blue', 'red'), 
-                   comparison = TRUE)
+textplot_wordcloud(dokMatErak, min_size = 1, max_words = 50, comparison = TRUE)
 ```
 
 Saame valitud sõnade esinemist kujutada ka asukoha järgi tekstis, uurides sõnade konteksti (*keyword in context*, *kwic*). Kontekst on antud juhul dokumendid.
@@ -198,17 +206,17 @@ textplot_keyness(sõnasus, n = 10)
 
 Lisaks sõnasusele hinnatakse sagli dokumendis esineva sõna tähtsust igas dokumendis. Seda esindavat mõõdikut nimetatakse lühendiga **tf-idf** (*term frequency - inverse document frequency*). See arvutatakse ühe termini $t$ suhtelise sageduse ja dokumendi pöördsageduse korrutis.
 
-$\text{tf-idf} (t) = \text{tf} (t) \times \text{idf} (t),$
+$$\text{tf-idf} (t) = \text{tf} (t) \times \text{idf} (t),$$
 
-kus suhteline sõnasagedus (*term frequency*) on sõna osakaal kõikidest sõnadest dokumendis: 
+kus suhteline sõnade sagedus (*term frequency*) on sõna osakaal kõikidest sõnadest dokumendis: 
 
-$\text{tf} (t) = \frac{\text{termini t sagedus dokumendis}}{\text{kõikide sõnade arv dokumendis}}$
+$$\text{tf} (t) = \frac{\text{termini t sagedus dokumendis}}{\text{kõikide sõnade arv dokumendis}}$$
 
 ja dokumendi pöördsagedus (*inverse document frequency*) on sõna tähtsus terves korpuses: 
 
-$\text{idf} (t) = ln \frac{\text{dokumentide arv}}{\text{terminit t sisaldavate dokumentide arv}}.$
+$$\text{idf} (t) = ln \frac{\text{dokumentide arv}}{\text{terminit t sisaldavate dokumentide arv}}.$$
 
-Mõõdiku väärtus on seda kõrgem, mida sagedamini esineb termin dokumendis, aga mida harvemini teistes dokumentides. Mõni tavaline sõna võib olla küll dokumendis sage, aga kui see on sage ka teistes dokumentides, siis ei iseloomusta see sõna hästi just vaatlusalust dokumenti. Selleks on vajalik, et see sõna teistes dokumentides sage ei oleks. Niisiis näitab tf-idf sõna tähtsust dokumendis, arvestades sealjuures ka sõna üldist tähtsust. 
+Mõõdiku väärtus on seda kõrgem, mida sagedamini esineb termin dokumendis, aga mida harvemini teistes dokumentides. Mõni tavaline sõna võib olla küll dokumendis sage, aga kui see on sage ka teistes dokumentides, siis ei iseloomusta see sõna hästi just vaatlusalust dokumenti. Selleks on vajalik, et see sõna teistes dokumentides sage ei oleks. Niisiis näitab tf-idf sõna tähtsust dokumendi kontekstis, arvestades sealjuures ka sõna üldist tähtsust. 
 
 ```{r}
 tfidf <- dfm_tfidf(dokMat)
@@ -231,38 +239,46 @@ textplot_network(sagedased, min_freq = .5, edge_alpha = 0.2, edge_size = 2)
 
 ## Klasterdamine
 
-Mõnikord võib olla vajalik dokumentide rühmitamine. Selleks saame kasuada hierarhilist klasterdamist. Dokumentide vahelised paariviisilised kaugused saame arvutada nt sõnasageduste alusel, millisel juhul on samu sõnu sama sagedasti kasutavad dokumendid on üksteisele lähedal. Dokumendi termine maatriksi alusel saame dokumentide läheduse leida funktsiooniga `textstat_dist()`. Leitud kauguste alusel saame arvutada ja joonistada klastripuu nii nagu iga teise kauguste maatriksi alusel.
+Mõnikord võib olla vajalik dokumentide rühmitamine. Selleks saame kasuada hierarhilist klasterdamist. Dokumentide vahelised paariviisilised kaugused saame arvutada nt sõnade sageduste alusel, millisel juhul on samu sõnu sama sagedasti kasutavad dokumendid on üksteisele lähedal. Dokumendi termine maatriksi alusel saame dokumentide läheduse leida funktsiooniga `textstat_dist()`. Leitud kauguste alusel saame arvutada ja joonistada klastripuu nii nagu iga teise kauguste maatriksi alusel.
 
 ```{r}
 kaugused <- textstat_dist(dokMat) %>% as.dist
-puu <- hclust(kaugused, method = 'ward.D2') %>% as.dendrogram()
+puu <- hclust(kaugused, method = 'ward.D2') %>% as.dendrogram
 plot(puu, type = 'triangle')
 ```
 
-## Sõnakasutus
+## Keelekasutus
 
-Sõnakasutust dokumentides saab mõõta mitmest küljest. Dokumendi lugemise keerukust saame hinnata tähemärkide, kõikide sõnade, keeruliste sõnade, silpide ja lausete arvu ja pikkuse ning nende omavaheliste suhete alusel. Võimalusi nende tegurite kombineerimiseks on väga palju, aga eestikeelsete tekstide korral on sobilik kasutada mõõdikuid, mis ei võta aluseks sõnade tähendusi ega silpide arvu. Võime võrrelda tekste näiteks keskmise lause pikkuse alusel sõnades.
+Keelekasutust dokumentides saab mõõta mitmest küljest. Dokumendi **loetavust** saame hinnata tähemärkide, kõikide sõnade, keeruliste sõnade, silpide ja lausete arvu ja pikkuse ning nende omavaheliste suhete alusel. Võimalusi nende tegurite kombineerimiseks on väga palju, aga eestikeelsete tekstide korral on sobilik kasutada mõõdikuid, mis ei võta aluseks sõnade tähendusi ega silpide arvu. Võime võrrelda tekste näiteks keskmise lause pikkuse alusel sõnades.
 
 ```{r}
-textstat_readability(korpus, measure = 'meanSentenceLength')
+loetavus <- textstat_readability(korpus, measure = 'meanSentenceLength')
+loetavus
 ```
 
-Keelelise keerukuse mõõtmiseks on samuti suur valik mõõdikuid, millest paljud lähtuvad ühel või teisel viisil kõikide sõnade ja kordumatute sõnade suhtest. Neist võib-olla kõige lihtsam TTR (*type-token ratio*) on lihtsalt kordumatute sõnade ja kõikide sõnade arvu suhe.
+**Keelelise mitmekesisuse** mõõtmiseks on samuti suur valik mõõdikuid, millest paljud lähtuvad ühel või teisel viisil kõikide sõnade ja kordumatute sõnade suhtest. Neist võib-olla kõige lihtsam TTR (*type-token ratio*) on lihtsalt kordumatute sõnade ja kõikide sõnade arvu suhe.
 
 ```{r}
-textstat_lexdiv(dokMat, measure = 'TTR')
+mitmekesisus <- textstat_lexdiv(dokMat, measure = 'TTR')
+mitmekesisus
+```
+
+Saadud mõõdiku väärtuste alusel saame teha kokkuvõtteid ka dokumentidega seotud tunnuste lõikes. Nt võime leida iga erakonna programmide keskmise keelelise mitmekesisuse.
+
+```{r}
+aggregate(mitmekesisus$TTR, list(korpus$erakond), mean)
 ```
 
 Lisaks keerukusele on levinud ka **meelestatuse** (*sentiment*) analüüs. Selle käigus määratakse igale sõnale, kas see väljendab negatiivset või positiivset emotsiooni. Selle määratluse alusel saame hinnata iga dokumendile meelestatuse. See protseduur on arusaadaval põhjusel väga levinud nt sotsiaalmeedia sõnumite uurimisel. Paraku ei ole eesti keele korpuse kohta veel olemas sõnastikku, milles oleks määratud iga sõna meelsus. Seetõttu antud dokumentides me meelestatust uurida ei saa.
 
 ## Teemad
 
-Keerulisemad tekstikaeve protseduurid võimaldavad luua teemade mudeleid (*topic models*). Üks selline protseduur on LDA (*Latent Dirichlet Allocation*). See võimaldab dokumendi-termini maatriksist leida ette antud arvul teemadega seotud märksõnad ja määrata igale dokumendile kõige sobivama teema, mida need märksõnad esindavad.
+Keerulisemad tekstikaeve protseduurid võimaldavad luua teemade mudeleid (*topic models*). Üks selline protseduur on LDA (*Latent Dirichlet Allocation*). See võimaldab dokumendi-termini maatriksist leida ette antud arvul teemadega seotud märksõnad ja määrata igale dokumendile kõige sobivama teema, mida need märksõnad esindavad. Teemade paremaks eristamiseks on mõistlik kasutada TF-IDF maatriksit.
 
 ```{r}
 #| message: false
 library('seededlda')
-teemad <- textmodel_lda(dokMat, k = 5)
-terms(teemad, 5)
+teemad <- textmodel_lda(tfidf, k = 6)
+terms(teemad)
 topics(teemad)
 ```

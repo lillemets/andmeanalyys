@@ -6,7 +6,42 @@ library('magrittr')
 library('dplyr')
 
 
-li# Read, clean and save data sets (2022-10-23 09:30:09) ----------
+# Read, clean and save data sets (2022-10-23 09:30:09) ----------
+
+# Presidentide kõned
+# test_10_tekstikaeve
+library('rjson')
+kõned <- fromJSON(file = 'assets/kõned.json')
+kõned %<>% bind_rows
+## Vali
+set.seed(1); kõned %<>% sample_n(200)
+## Korrasta
+kõned$aasta <- substr(kõned$date, 7,10) %>% as.numeric
+kõned %<>% select(pealkiri = title, president, aasta, text)
+## Täpsusta korduvad pealkirjad
+korduvad <- duplicated(kõned$pealkiri)
+kõned$pealkiri[korduvad] %<>% paste(kõned$aasta[korduvad])
+write.csv(kõned, 'andmed/kõned.csv', row.names = F)
+
+# praktikum_10_tekstikaeve
+library('rvest')
+xtee <- list(pealkiri = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/h2/text()', 
+             liik = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[2]/div[3]/ul/li/a', 
+             aasta = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[1]/div[2]/text()[2]', 
+             tekst = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[2]/div[1]/div/text()[1]')
+allUrls <- paste0('https://dspace.emu.ee/handle/10492/', 1000:7000)
+set.seed(0); urls <- sample(allUrls, 200)
+dokidLs <- lapply(urls, function(x) {
+  tryCatch({
+    leht <- read_html(x)
+    lapply(xtee, function(y) html_elements(leht, xpath = y) %>% html_text)
+    #Sys.sleep(1)
+    }, error = function() message(x, '\n'))
+})
+dokid <- lapply(dokidLs, as.data.frame) %>% do.call(rbind, .)
+#dokid %<>% filter(!grepl('Vol.', dokid$liik))
+#dokid %<>% filter(!grepl(' the ', dokid$tekst))
+write.csv(dokid, 'andmed/dspace.csv', row.names = F)
 
 # Comparative Manifestos Project
 # tekstikaeve
@@ -56,7 +91,7 @@ päring <- pxweb_get_data(url = aadress, query = valikud)
 ettev <- päring
 ## Korrasta
 ettev %<>% select(näitaja = Näitaja, tegevusala = Tegevusala, 
-                 väärtus = 'EM001: Ettevõtete majandusnäitajad')
+                  väärtus = 'EM001: Ettevõtete majandusnäitajad')
 ## Vali 
 set.seed(2)
 jätta <- unique(ettev$näitaja) %>% sample(20)
