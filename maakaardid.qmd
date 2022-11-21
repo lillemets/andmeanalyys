@@ -1,1 +1,210 @@
 # Maakaardid {#sec-maakaardid}
+
+Mõnikord on andmetel ka ruumiline mõõde, mis määrab vaatluste paiknemise geograafilises ruumis. Mõned andmed hõlmavadki ainult vaatluste paiknemist ruumis ilma mingi muu, mitteruumilise teabeta vaatluste kohta. Mõlemal juhul võib anda ruumilise mõõtme kirjeldamine ja analüüsi kaasamine sellist teavet vaatluste ja tunnuste kohta, mis muidu jääks avastamata. Digitaalsete ruumiandmete kasutamine võetakse mõnikord kokku ka **geoinfosüsteemi** mõistega. 
+
+Andmete kujutamise viis sõltub sellest, kas eesmärk on kirjeldada andmete ruumi või kujutatavat objekti. Sellest lähtub ka maakaadi vormistamse viis.
+
+- Ruumi kirjeldamisel määrame igale punktile ruumis mingi väärtuse lähtudes objekti paiknemisest. Sellised andmed esitatakse rasterkaardil.
+- Objektide kirjeldamisel kujutame objekte ruumis ilma neid ruumi alusel lihtsustamata. Objektid on sel juhul esitatud punktidena või nendest koosnevate kujunditena vektorkaardil.
+
+:::{.callout-important}
+Kõige üldisemalt võib digitaalsed maakaardid jagada kaheks: 
+
+- **rasterkaardid**, millel on iga ruudukujuline osa mingist suuremast alast esitatud ühe pikslina; 
+- **vektorkaardid**, millel on esitatud mitmesugused objektid punktide alusel.
+
+Kaardiandmete vorming määrab võimalused andmete kujutamiseks ja nende alusel arvutuste tegemiseks.
+:::
+
+Käesolevas peatükis uurime andmete esitamist maakaartidel. Ruumiandmete analüüsimise võimalustest käsitleme ainult väikest osa.
+
+## Rasterkaaardid
+
+Kõige lihtsam viis maakaarte mõista on läheneda neile kui piltidele. Digitaalses vormingus pildid koosnevad pikslitest, millest igaühel on mingi väärtus. Nii on see ka rasterkaardi puhul, kus pikslid esindavad mingit maa-ala. Teine viis on mõelda rasterkaardist kui andmemaatriksist, milles iga lahter esindab teatud maa-ala. Üks piksel pildil või lahter andmemaatriksis esindab rasterkaardi korral ruutu, mis esindab nt ruutkilomeetrit maastikul.
+
+Need ruudud võivad esindada väärtusi kahte liiki skaalal: 
+
+- pideval skaalal esitatakse arvtunnused, nt maapinna kõrgus, rahvaarv; 
+- diskreetsel skaalal saab esitada nimitunnuseid, nt maakasutusviis . 
+
+Maakasutusviiside kohta Euroopas on alates 1990. aasta seisuga rasterkaardid kättesaadavad [CORINE](https://land.copernicus.eu/pan-european/corine-land-cover) andmestikus. Neil kaartidel esindab iga piksel ühte hektarit. Kuvame nende andmete alusel maakasutuse Eestis aastal 1990, kasutades selleks laiendust `raster`.
+
+```{r}
+library('magrittr')
+library('raster')
+corine <- raster('andmed/corine1990.tif')
+unique(corine)
+```
+
+Näeme, et pikslid on esitatud pideval skaalal arvudena. Siiski ei ole tegemist arvskaalaga, vaid iga väärtus esindab [täpselt määratletud](https://land.copernicus.eu/user-corner/technical-library/corine-land-cover-nomenclature-guidelines/html/) maakasutusviisi ^[Lihtsustatult esindavad siin madalamad väärtused tehislikku ja kõrgemad väärtused looduslikku maakasutust.]. 
+
+```{r}
+plot(corine)
+```
+
+Rasterkaardilt saame välja lõigata ka mingi huvipakkuva ala. Selleks peame määrama selle ala nurgad. Võime uurida nt Tartut ja selle ümbrust, kus hektarisuurused pikslid tulevad selgemini esile.
+
+```{r}
+piirid <- as(extent(5285000, 5300000, 4025000, 4040000), 'SpatialPolygons')
+crs(piirid) <- crs(corine)
+tartu <- crop(corine, piirid)
+plot(tartu, axes = FALSE, box = FALSE, legend = FALSE)
+```
+
+Näeme, et kaardil on kuvatud jõgi ja raudtee, aga katkendlikult. See on mitut objekti kujutavate rasterkaartide üks puudus: konkreetsed objektid on nähtavad ainult siis, kui need moodustavad piisavalt suure osa pikslist.
+
+Kuna rasterkaardid on sisuliselt pildid, siis enamasti on ühel rasterkaardil esitatud ainult ühe tunnuse väärtused. Harvem on rasterkaardil mitu kihti (*raster band*). Üks viis mitme tunnuse ühendamiseks on teisendada rasterkaart andmetabeliks, kus iga rida esindab ühte pikslit.
+
+```{r}
+tartuDf <- tartu %>% rasterToPoints %>% as.data.frame
+head(tartuDf)
+```
+
+Näeme, et iga piksli vahe on 100 meetrit, mis ongi hektari küljepikkus. Andmetabeli kujule teisendatud andmeid saame joonistada kasutades funktsiooni `ggplot`.
+
+```{r}
+library('ggplot2')
+ggplot(tartuDf) + aes(x = x, y = y, fill = corine1990) + 
+  coord_fixed() + 
+  geom_raster() + 
+  labs(fill = "Maakasutusviis") + 
+  scale_fill_distiller(palette = 'Spectral', direction = 1) + 
+  theme_void()
+```
+
+Kuna antud kaardi skaalal on esitatud nimitunnuse väärtused, siis oleks kohane lisada ka legend värvide tähendustega.
+
+## Vektorkaardid
+
+Objekte on ruumis vaistlik kujutada nende võimalikult täpse asukoha või piiride alusel mingil koordinaatteljestikul. Vektorkaarditel kujutatakse objektid vastavalt nende asukohale või piiridele sõltuvalt objekti omadustest: 
+
+- punkti (*point*) kujutamiseks piisabki ühest punktist, 
+- joon (*line*) esitatakse punktide jadana, 
+- kujund (*polygon*) määratakse selle piire esindavate punktide alusel. 
+
+Sealjuures sõltub objekti liik selle kujutamise täpsusest. Kui suure mõõtkava korral esitatakse objektid kujundina, siis väiksel mõõtkaval piisab objekti keskpunktist, sest kujund ei ole siis väiksuse tõttu eristatav.
+
+R keeles on vektorkaartidega tegelemiseks mugav kastutada laiendust `sf`.
+
+### Punktid
+
+Punktide kujutamise näitena võime uurida [avaliku korra vastaseid ja avalikus kohas toime pandud süütegusid](https://avaandmed.eesti.ee/datasets/avaliku-korra-vastased-ja-avalikus-kohas-toime-pandud-suuteod) võttes aluseks nende asukohad. Uurime ainult vandalismijuhtumeid.
+
+```{r}
+library('sf')
+teod <- read.csv('andmed/süüteod.csv')
+str(teod)
+```
+
+Näeme, et andmetabeli esimestes veergudes on koordinaadid. Saame kujutada vaatlused nende koordinaatide alusel hajuvusjoonisel, mille tulemuseks ongi maakaart süütegude asukohtadega.
+
+```{r}
+plot(teod[, 1:2])
+```
+
+Koordinaatidega andmetabeli saame teisendada nö ruumiliseks andmetabeliks.
+
+```{r}
+teod <- st_as_sf(teod, coords = c('lon', 'lat'))
+teod
+```
+
+Kaardil saame kujutada huvipakkuvat tunnuset või ka ette antud tingimustele vastavaid vaatlusi.
+
+```{r}
+#| warning: false
+library('dplyr')
+teod %>% select(kahjusumma) %>% plot
+teod %>% filter(nädalapäev == 'Esmaspäev') %>% select(kahjusumma) %>% plot
+```
+
+Viisakamate jooniste joonistamiseks saame kasutada funktsiooni `ggplot()`.
+
+```{r}
+ggplot(teod) + aes(color = nädalapäev) + 
+  geom_sf(alpha = .2) + 
+  labs(color = "Nädalapäev") + 
+  theme_void()
+```
+
+### Kujundid
+
+Kujundite näitena võime uurida omavalitsuste piire Eestis^[Eesti maakondade, omavalitsuste ja asustusüksuste piirid on kättesaadavad [Maa-amet Geoportaalis](https://geoportaal.maaamet.ee/est/Ruumiandmed/Haldus-ja-asustusjaotus-p119.html).]. Selleks laadime alla Shapefile vormingus andmed ja loeme vastavas kaustas olevad failid R keskkonda.
+
+```{r}
+list.files('andmed/omavalitsus')
+ov <- st_read('andmed/omavalitsus')
+ov
+```
+
+Näeme, et tulemuseks on andmetabel, mille iga rida esindab ühte omavalitsust. Igale real asuval kujundil on piire tähistavad punktid, millele annab tähenduse koordinaatsüsteem.
+
+Kujunditega saame paljusid funktsioone rakendades ja omavahel ühendades teha kõikvõimalikke tehteid. Saame arvutada näiteks omavalitsuste pindalad.
+
+```{r}
+st_area(ov)
+```
+
+Eelneval viisil sisestatud kaartide joonistamiseks saame kasutada funktsiooni `plot()`, mis vaikimisi kuvab korraga kõik andmetabelis esinevad tunnused.
+
+```{r}
+plot(ov)
+```
+
+Kui soovime kujutada ainult kujundite piirid, siis võime andmetabelist eraldada geomeetria ja joonistada ainult selle.
+
+```{r}
+plot(st_geometry(ov))
+```
+Mida keerulisemad on kujundid, seda kauem võtab aega nende joonistamine. Väiksemõõtmeliste jooniste korral ei ole kujundite suur täpsus tähtis, mistõttu võime seda lihtsustada. Selleks saame kasutada funktsiooni `st_simplify`, mille argumendi `dTolerance` erinevaid väärtusi proovides saame lihtsustada kaardi nii, et kujundid liiga lihtsaks ei muutuks.
+
+```{r}
+st_simplify(ov, dTolerance = 2000) %>% st_geometry %>% plot
+ov <- st_simplify(ov, dTolerance = 200)
+plot(st_geometry((ov)))
+```
+Et kujutada mingit nähtust omavalitsuse piirides, saame lisada vastava tunnuse andmetabelisse. Selle näiteks sisestame rahvaarvu Statistikaameti tabelist RLV701. 
+
+```{r}
+rahvaarv <- read.csv('andmed/rahvaarv.csv')
+head(rahvaarv, 10)
+```
+
+Andmetabelite ühendamiseks saame kasutada funktsiooni `left_join` laiendusest `dplyr`. Kui ühendamise aluseks olevate tunnuste nimed tabelites erinevad, siis peame vastavad nimetused määratlema.
+
+```{r}
+library('dplyr')
+ov <- left_join(ov, rahvaarv, by = c('ONIMI' = 'koht'))
+ov
+```
+
+Lisatud tunnust saame kujutada lihtsalt funktsiooni `ggplot` abil.
+
+```{r}
+ggplot(ov) + aes(fill = rahvaarv) + 
+  geom_sf() + 
+  theme_void()
+```
+
+Kui vaikimisi valikutega kuvatud joonis ei ole piisavalt ilmekas, siis saame seda parandada erinevate valikutega.
+
+```{r}
+Legend <- function(x) format(round(x), big.mark = ' ', scientific = F)
+ggplot(ov) + aes(fill = rahvaarv) + 
+  geom_sf() + 
+  scale_fill_distiller(trans = 'log', palette = 'RdBu', labels = Legend) + 
+  labs(fill = "Rahvaarv") + 
+  theme_void()
+```
+
+Saame korraga kujutada ka erineval kujul andmeid. Selleks peame esmalt määrama süütegude andmetabelile koordinaatsüsteemi, mis peaks olema sama mis omavalitsuste andmetabelis. Seejärel saame lisada objektid mõlemast andmetabelist korraga `ggplot` käsu järele.
+
+```{r}
+st_crs(teod) <- crs(ov)
+ggplot() + 
+  geom_sf(data = ov, color = NA, aes(fill = rahvaarv)) + # Omavalitsused
+  geom_sf(data = teod, alpha = .2, aes(color = nädalapäev, size = kahjusumma)) + # Süüteod
+  scale_fill_distiller(trans = 'log', palette = 'RdBu', labels = Legend) + 
+  labs(fill = "Rahvaarv") + 
+  theme_void()
+```

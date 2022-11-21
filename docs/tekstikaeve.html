@@ -93,7 +93,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./viited.html" rel="next">
+<link href="./maakaardid.html" rel="next">
 <link href="./faktoranalüüs.html" rel="prev">
 <link href="./logo.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -353,6 +353,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></a>
   </div>
 </li>
       </ul>
@@ -773,7 +778,7 @@ features             valitsemisprogramm valitsusele
 [ reached max_feat ... 18,488 more features, reached max_nfeat ... 18,488 more features ]</code></pre>
 </div>
 </div>
-<p>Argumendi <code>context = 'document'</code> korral näitavad aga saadud sagedused, kui mitmes dokumendis esineb vastav sõnade paar korraga.</p>
+<p>Argumendi <code>context = 'document'</code> korral näitavad saadud sagedused, kui mitmes dokumendis esineb vastav sõnade paar korraga.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'document'</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>termMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1019,7 +1024,7 @@ docs                liidu valitsemisprogramm valitsusele
 12       sde 2011 0.6174171</code></pre>
 </div>
 </div>
-<p>Saadud mõõdiku väärtuste alusel saame teha kokkuvõtteid ka dokumentidega seotud tunnuste lõikes. Nt võime leida iga erakonna keskmise keelelise mitmekesisuse.</p>
+<p>Saadud mõõdiku väärtuste alusel saame teha kokkuvõtteid ka dokumentidega seotud tunnuste lõikes. Nt võime leida iga erakonna programmide keskmise keelelise mitmekesisuse.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(mitmekesisus<span class="sc">$</span>TTR, <span class="fu">list</span>(korpus<span class="sc">$</span>erakond), mean)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1042,37 +1047,37 @@ docs                liidu valitsemisprogramm valitsusele
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>teemad <span class="ot">&lt;-</span> <span class="fu">textmodel_lda</span>(tfidf, <span class="at">k =</span> <span class="dv">6</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      topic1                       topic2        topic3              
- [1,] "rahvaliit"                  "aeg"         "programmiettepanek"
- [2,] "sde"                        "irl"         "üldkoosolekule"    
- [3,] "sotsidest"                  "irli"        "õnne"              
- [4,] "visioon"                    "eli"         "soovime"           
- [5,] "ca"                         "koduomanike" "õnnelik"           
- [6,] "aasta_riigikogu_valimistel" "isamaa"      "elektrituru"       
- [7,] "tänane"                     "res"         "terve"             
- [8,] "maavolikogu"                "publica"     "mõistus"           
- [9,] "rahvaliidu"                 "rohelised"   "valik"             
-[10,] "sotsiaaldemokraadid"        "elurikkuse"  "tervele"           
-      topic4            topic5              topic6                
- [1,] "reformierakond"  "reformierakond"    "sotsiaaldemokraatide"
- [2,] "reformierakonna" "reformierakonna"   "saavutasime"         
- [3,] "keskerakond"     "eelarvevõimaluste" "2003-2007"           
- [4,] "eli"             "tekkel"            "suurendarne"         
- [5,] "toetab"          "soovib"            "tegevuskava"         
- [6,] "viib"            "muuhulgas"         "2007-2011"           
- [7,] "jätkab"          "struktuurseid"     "kroonini"            
- [8,] "üksuste"         "lähtuvad"          "tõstsime"            
- [9,] "keskerakonna"    "jätkame"           "nt"                  
-[10,] "kavandab"        "põhimõtetest"      "festival"            </code></pre>
+<pre><code>      topic1                 topic2        topic3                      
+ [1,] "rahvaliit"            "aeg"         "sde"                       
+ [2,] "sotsiaaldemokraatide" "irl"         "sotsidest"                 
+ [3,] "rahvaliidu"           "irli"        "visioon"                   
+ [4,] "sotsiaaldemokraadid"  "eli"         "ca"                        
+ [5,] "vajame"               "koduomanike" "aasta_riigikogu_valimistel"
+ [6,] "kultuuriruumi"        "isamaa"      "tänane"                    
+ [7,] "loodusvaradest"       "res"         "maavolikogu"               
+ [8,] "taotleme"             "publica"     "keskerakond"               
+ [9,] "kr"                   "rohelised"   "olukord"                   
+[10,] "piirkondade"          "elurikkuse"  "üksuste"                   
+      topic4              topic5        topic6              
+ [1,] "reformierakond"    "saavutasime" "reformierakond"    
+ [2,] "reformierakonna"   "2003-2007"   "reformierakonna"   
+ [3,] "eelarvevõimaluste" "suurendarne" "programmiettepanek"
+ [4,] "tekkel"            "õnne"        "üldkoosolekule"    
+ [5,] "soovib"            "kroonini"    "toetab"            
+ [6,] "muuhulgas"         "tegevuskava" "viib"              
+ [7,] "struktuurseid"     "2007-2011"   "soovime"           
+ [8,] "lähtuvad"          "tõstsime"    "eli"               
+ [9,] "jätkame"           "nt"          "jätkab"            
+[10,] "põhimõtetest"      "festival"    "kavandab"          </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topics</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
-        topic3         topic2         topic6         topic4         topic1 
+        topic5         topic2         topic5         topic3         topic1 
 rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011 
-        topic1         topic4         topic5         topic3         topic2 
+        topic1         topic6         topic4         topic6         topic2 
       sde 2007       sde 2011 
-        topic6         topic1 
+        topic1         topic3 
 Levels: topic1 topic2 topic3 topic4 topic5 topic6</code></pre>
 </div>
 </div>
@@ -1187,8 +1192,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./viited.html" class="pagination-link">
-        <span class="nav-page-text">Viited</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./maakaardid.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

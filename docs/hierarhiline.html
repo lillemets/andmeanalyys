@@ -355,6 +355,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -450,7 +455,7 @@ Armenia    0.3812617 0.4294143</code></pre>
 </div>
 <p>Ka hierarhilisel klasterdamisel peaksime viima väärtused võrreldavale skaalale Antud juhul on kõik väärtushinnangud mõõdetud samal skaalal, seega ei ole standardiseerimine vajalik. Võime seda siiski teha, et lihtsamini hinnata riikide paiknemist keskmise suhtes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wvs <span class="sc">%&lt;&gt;%</span> <span class="fu">lapply</span>(scale) <span class="sc">%&gt;%</span> as.data.frame</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>wvs[] <span class="sc">%&lt;&gt;%</span> <span class="fu">lapply</span>(scale) <span class="sc">%&gt;%</span> as.data.frame</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Joonistame nö kultuurilise kaardi, mis iseloomustab riikide paiknemist väärtushinnangute ruumis.</p>
 <div class="cell">
@@ -465,7 +470,7 @@ Armenia    0.3812617 0.4294143</code></pre>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Seos</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 13 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 32 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">
@@ -547,13 +552,13 @@ rect.dendrogram(puu, k = 6, lower_rect = -1)
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>wvs<span class="sc">$</span>klaster <span class="ot">&lt;-</span> klastridK</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(wvs)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     survexp    tradsec klaster
-1 -0.5534204 -0.7420832       1
-2 -1.2414307 -0.5850448       1
-3  0.5440756 -0.2346523       2
-4  1.9590629  0.7460210       3
-5 -0.6013524 -0.5053418       1
-6 -1.0202307 -0.9618397       1</code></pre>
+<pre><code>              survexp    tradsec klaster
+Algeria    -0.5534204 -0.7420832       1
+Azerbaijan -1.2414307 -0.5850448       1
+Argentina   0.5440756 -0.2346523       2
+Australia   1.9590629  0.7460210       3
+Bahrain    -0.6013524 -0.5053418       1
+Armenia    -1.0202307 -0.9618397       1</code></pre>
 </div>
 </div>
 <p>Klastrite iseloomustamiseks on palju võimalusi (<a href="klasterdamine.html"><span>Peatükk&nbsp;17</span></a>). Antud andmete korral võiksime eristada klastreid nö kultuurilisel kaardil.</p>
@@ -562,7 +567,7 @@ rect.dendrogram(puu, k = 6, lower_rect = -1)
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(klastridK)) <span class="sc">+</span> </span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Klaster"</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: ggrepel: 20 unlabeled data points (too many overlaps). Consider
+<pre><code>Warning: ggrepel: 35 unlabeled data points (too many overlaps). Consider
 increasing max.overlaps</code></pre>
 </div>
 <div class="cell-output-display">

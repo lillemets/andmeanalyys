@@ -54,7 +54,7 @@ book:
     - peakomponendid.qmd
     - faktoranalüüs.qmd
     - tekstikaeve.qmd
-#    - maakaardid.qmd
+    - maakaardid.qmd
 #    - masinõpe.qmd
   - viited.qmd
 #  appendices:

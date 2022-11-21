@@ -8,6 +8,44 @@ library('dplyr')
 
 # Read, clean and save data sets (2022-10-23 09:30:09) ----------
 
+# Rahvaarv
+# 11_maakaardid
+## Päri
+library('pxweb')
+aadress <- 'https://andmed.stat.ee/api/v1/et/stat/RLV701'
+#pxweb_get(aadress)$variables
+valikud <- list(
+  'Elukoht' = '*', 
+  'Aasta' = '2021', 
+  'Näitaja' = '4')
+päring <- pxweb_get_data(url = aadress, query = valikud)
+ra <- päring
+## Korrasta
+ra %<>% select(koht = 1, rahvaarv = 4)
+ra$koht %<>% gsub('\\.', '', .)
+write.csv(ra, 'andmed/rahvaarv.csv', row.names = F)
+
+# Vallad
+# 11_maakaardid
+url <- 'https://geoportaal.maaamet.ee/docs/haldus_asustus/omavalitsus_shp.zip?t=20221101010828'
+temp <- tempfile()
+download.file(url, temp)
+unzip(temp, exdir = 'andmed/omavalitsus')
+
+# Süüteod (https://avaandmed.eesti.ee/datasets/avaliku-korra-vastased-ja-avalikus-kohas-toime-pandud-suuteod)
+# 11_maakaardid
+teod <- read.table('https://opendata.smit.ee/ppa/csv/avalik_2.csv', 
+                   sep = '\t', header = T, na.strings = '')
+teod %<>% select(lon = Lest_Y, lat = Lest_X, nädalapäev = ToimNadalapaev, 
+                sündmus = SyndmusLiik, koht = KohtLiik, kahjusumma = Kahjusumma)
+teod$lon %<>% strsplit('-') %>% sapply(head, 1) %>% as.numeric
+teod$lat %<>% strsplit('-') %>% sapply(head, 1) %>% as.numeric
+teod$nädalapäev %<>% trimws
+teod[, c('sündmus', 'koht')] %<>% lapply(tolower)
+teod %<>% na.omit
+teod <- teod[grep('vandalism', teod$sündmus), ]
+write.csv(teod, 'andmed/süüteod.csv', row.names = F)
+
 # Presidentide kõned
 # test_10_tekstikaeve
 library('rjson')

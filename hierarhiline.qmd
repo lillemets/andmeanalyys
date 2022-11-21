@@ -42,7 +42,7 @@ head(wvs)
 Ka hierarhilisel klasterdamisel peaksime viima väärtused võrreldavale skaalale Antud juhul on kõik väärtushinnangud mõõdetud samal skaalal, seega ei ole standardiseerimine vajalik. Võime seda siiski teha, et lihtsamini hinnata riikide paiknemist keskmise suhtes.
 
 ```{r}
-wvs %<>% lapply(scale) %>% as.data.frame
+wvs[] %<>% lapply(scale) %>% as.data.frame
 ```
 
 Joonistame nö kultuurilise kaardi, mis iseloomustab riikide paiknemist väärtushinnangute ruumis.
