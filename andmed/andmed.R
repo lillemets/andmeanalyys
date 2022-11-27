@@ -8,6 +8,23 @@ library('dplyr')
 
 # Read, clean and save data sets (2022-10-23 09:30:09) ----------
 
+# PRIA loomaaksvatusehitised
+ehit <- read.csv('andmed/priaehitised.csv')
+ehit %<>% select(x = X, y = Y, maakond = aadr_maako, 
+                registreeriti = reg_kp, loomad = loomaliigi)
+ehit$loomad %<>% tolower
+ehit$maakond %<>% tolower
+ehit$registreeriti %<>% as.Date %>% format('%Y')
+write.csv(ehit, 'andmed/tegevuskohad.csv', row.names = F)
+
+# Eesti raster
+ra <- read.csv('andmed/rahvaarvraster_alg.csv')
+ra$y <- substring(ra$GRD_ID, 17,23) %>% as.numeric
+ra$x <- substring(ra$GRD_ID, 25,31) %>% as.numeric
+ra %<>% dplyr::select(x, y, 
+                      arv06 = TOT_P_2006, arv11 = TOT_P_2011, arv18 = TOT_P_2018)
+write.csv(ra, 'andmed/rahvaarvraster.csv', row.names = F)
+
 # Rahvaarv
 # 11_maakaardid
 ## Päri
@@ -34,16 +51,19 @@ unzip(temp, exdir = 'andmed/omavalitsus')
 
 # Süüteod (https://avaandmed.eesti.ee/datasets/avaliku-korra-vastased-ja-avalikus-kohas-toime-pandud-suuteod)
 # 11_maakaardid
-teod <- read.table('https://opendata.smit.ee/ppa/csv/avalik_2.csv', 
-                   sep = '\t', header = T, na.strings = '')
-teod %<>% select(lon = Lest_Y, lat = Lest_X, nädalapäev = ToimNadalapaev, 
-                sündmus = SyndmusLiik, koht = KohtLiik, kahjusumma = Kahjusumma)
-teod$lon %<>% strsplit('-') %>% sapply(head, 1) %>% as.numeric
-teod$lat %<>% strsplit('-') %>% sapply(head, 1) %>% as.numeric
+vastus <- lapply(paste0('https://opendata.smit.ee/ppa/csv/avalik_', 1:3, '.csv'), 
+                 function(x) read.table(x, sep = '\t', header = T, na.strings = ''))
+teod <- do.call(rbind, vastus)
+teod %<>% select(lon = Lest_Y, lat = Lest_X, 
+                 kuupäev = ToimKpv, 
+                 sündmus = SyndmusLiik, juhtunu = SyndmusTaiendavStatLiik, 
+                 koht = KohtLiik, kahjusumma = Kahjusumma)
+# Kuigi süütegude asukohad on avaldatud kaardiruutudel, siis käsitleme neid siinkohal punktidena kaardiruutude keskkoha alusel. 
+teod$lon %<>% strsplit('-') %>% sapply(as.numeric) %>% sapply(mean)
+teod$lat %<>% strsplit('-') %>% sapply(as.numeric) %>% sapply(mean)
 teod$nädalapäev %<>% trimws
 teod[, c('sündmus', 'koht')] %<>% lapply(tolower)
-teod %<>% na.omit
-teod <- teod[grep('vandalism', teod$sündmus), ]
+teod <- teod[complete.cases(teod[, c('lon', 'lat')]), ]
 write.csv(teod, 'andmed/süüteod.csv', row.names = F)
 
 # Presidentide kõned
@@ -74,7 +94,7 @@ dokidLs <- lapply(urls, function(x) {
     leht <- read_html(x)
     lapply(xtee, function(y) html_elements(leht, xpath = y) %>% html_text)
     #Sys.sleep(1)
-    }, error = function() message(x, '\n'))
+  }, error = function() message(x, '\n'))
 })
 dokid <- lapply(dokidLs, as.data.frame) %>% do.call(rbind, .)
 #dokid %<>% filter(!grepl('Vol.', dokid$liik))

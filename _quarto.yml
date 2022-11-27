@@ -71,3 +71,4 @@ format:
     css: style.css
 execute: 
   freeze: auto
+  message: false
