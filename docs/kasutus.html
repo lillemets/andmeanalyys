@@ -820,17 +820,25 @@ Märkus
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 89</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Fibonacci) <span class="co"># Väikseima ja suurima väärtuse vahe</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0 89</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(Fibonacci) <span class="co"># Väärtuste arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
 </div>
 </section>
 <section id="torutamine" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="torutamine"><span class="header-section-number">5.8</span> Torutamine</h2>
 <p>Koodi kirjutamise ja eriti hiljem lugemise lihtsustamiseks saab kasutada paljudes programmeerimiskeeltes kasutusel olevat toru (<em>pipe</em>). Torude abil saame ühe funktsiooni tulemuse suunata järgmisesse funktsiooni, mis muudab koodi selgemaks. Kokku on kolm viisi, kuidas funktsioone omavahel ühendada.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Oletame, et soovime uurida eluaseme THI muutust 2022. aastal</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Iga iga funktsiooni tulemuse saab järjest objekti salvestada</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>eluase <span class="ot">&lt;-</span> <span class="fu">filter</span>(thi, Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>)</span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>eluase <span class="ot">&lt;-</span> <span class="fu">filter</span>(eluase, Aasta <span class="sc">==</span> <span class="dv">2022</span>)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(eluase, Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Oletame, et soovime uurida eluaseme THI muutust 2022. aastal</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Iga iga funktsiooni tulemuse saab järjest objekti salvestada</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>eluase <span class="ot">&lt;-</span> <span class="fu">filter</span>(thi, Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>eluase <span class="ot">&lt;-</span> <span class="fu">filter</span>(eluase, Aasta <span class="sc">==</span> <span class="dv">2022</span>)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(eluase, Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Kuu Tarbijahinnaindeks
 1  Jaanuar             452.08
@@ -842,8 +850,8 @@ Märkus
 7    Juuli             623.25
 8   August             683.04</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nö pesastamist kasutades tõstame funktsiooni tulemuse järgmise funktsiooni sisse</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(thi, Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>), Aasta <span class="sc">==</span> <span class="dv">2022</span>), Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nö pesastamist kasutades tõstame funktsiooni tulemuse järgmise funktsiooni sisse</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(thi, Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>), Aasta <span class="sc">==</span> <span class="dv">2022</span>), Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Kuu Tarbijahinnaindeks
 1  Jaanuar             452.08
@@ -855,11 +863,11 @@ Märkus
 7    Juuli             623.25
 8   August             683.04</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Torutamise käigus saadame funktsiooni tulemuse järgmisesse funktsiooni</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>thi <span class="sc">%&gt;%</span> </span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Aasta <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Torutamise käigus saadame funktsiooni tulemuse järgmisesse funktsiooni</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>thi <span class="sc">%&gt;%</span> </span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Aasta <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       Kuu Tarbijahinnaindeks
 1  Jaanuar             452.08
@@ -875,15 +883,15 @@ Märkus
 <p>Nagu näha, siis arvestab torule järgnev funktsioon kõige esimese argumendina eelneva funktsiooni tulemust.</p>
 <p>Ühendades nüüd oskused andmetabelist andmeid valida ja kokku võtta saame juba hakata vastama mitmesugustele küsimustele.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Millal ja mis kaubagrupis oli THI pärast 2020. aastat kõige kõrgem?</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(thi, Aasta <span class="sc">&gt;=</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tarbijahinnaindeks <span class="sc">==</span> <span class="fu">max</span>(Tarbijahinnaindeks))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Millal ja mis kaubagrupis oli THI pärast 2020. aastat kõige kõrgem?</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(thi, Aasta <span class="sc">&gt;=</span> <span class="dv">2021</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tarbijahinnaindeks <span class="sc">==</span> <span class="fu">max</span>(Tarbijahinnaindeks))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Aasta Kaubagrupp    Kuu Tarbijahinnaindeks
 1  2022     Eluase August             683.04</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mis juhtudel on THI suurenenud 1997. aastaga võrreldes vähemalt 4 korda?</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>thi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Tarbijahinnaindeks <span class="sc">&gt;</span> <span class="dv">400</span>) </span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mis juhtudel on THI suurenenud 1997. aastaga võrreldes vähemalt 4 korda?</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>thi <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Tarbijahinnaindeks <span class="sc">&gt;</span> <span class="dv">400</span>) </span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Aasta                       Kaubagrupp       Kuu Tarbijahinnaindeks
 1   2021                           Eluase September             400.24
@@ -904,9 +912,9 @@ Märkus
 </section>
 <section id="salvestamine" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="salvestamine"><span class="header-section-number">5.9</span> Salvestamine</h2>
-<p>Nii nagu andmete R keskkonda lugemise korral on ka nende salvestamiseks soovitatav kasutada CSV vormingut. Selleks on funktsioon <code>write.csv()</code>, aga kui soovime hiljem selle faili avada Excelis, siis tuleb kasutada funktsiooni <code>write.csv2()</code>.</p>
+<p>Nii nagu andmete R keskkonda lugemise korral on ka nende salvestamiseks soovitatav kasutada CSV vormingut. Selleks on funktsioon <code>write.csv()</code>, aga kui soovime hiljem selle faili avada Excelis, siis tuleb enamasti kasutada funktsiooni <code>write.csv2()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(thi, <span class="st">'andmed/thi.csv'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(thi, <span class="st">'andmed/thi.csv'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="korratav-analüüs" class="level2" data-number="5.10">

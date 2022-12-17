@@ -51,6 +51,7 @@ Patterns in data
 
 <!--
 ## Eetika
+-->
 
 <!-- 
 Data ethics

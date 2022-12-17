@@ -87,7 +87,7 @@ Binaartunnuse korral eeldame, et selle väärtused järgivad binoomjaotust. Seet
 Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni `glm()` üldistatud lineaarse mudeli leidmiseks, määrates argumendi `family = binomial(link = 'logit')`. 
 
 ```{r}
-mudel <- glm(default ~ credit, laenud, family = binomial(link = 'logit'))
+mudel <- glm(default ~ credit, data = laenud, family = binomial(link = 'logit'))
 mudel
 ```
 
@@ -131,7 +131,7 @@ Kordaja eksponent näitab, kui mitu korda on väljundtunnuseks oleva sündmuse t
 Uurime, millised šansid ilmnevad, kui lisame mudelisse ka krediidisaaja tausta iseloomustavad tunnused: vanus (`age`), sugu (`gender`), haridustase (`education`) ja perekondlik seis (`maritalstatus`). 
 
 ```{r}
-mudel <- glm(default ~ credit + age + gender + education + maritalstatus, laenud, family = binomial(link = 'logit'))
+mudel <- glm(default ~ credit + age + gender + education + maritalstatus, data = laenud, family = binomial(link = 'logit'))
 mudel$coefficients # Kordajad
 ```
 
@@ -158,7 +158,7 @@ Sarnaselt saame järeldada, et šanss olla maksevõimetu on suurem madalama hari
 Logistilise mudeli alusel on võimalik prognoosida väljundtunnuse väärtusi sisendtunnuse väärtuste alusel. Prognoos on sellisel juhul väärtus vahemikus 0 kuni 1 (vt @fig-autod) ja saadud prognoosi võib tõlgendada sündmuse toimumise tõenäosusena vastvate sisendtunnuste väärtuste korral. Tõenäosuste prognoosimiseks üldistatud lineaarse mudeli korral peame funktsiooni `predict()` lisama argumendi `type = 'response'`.
 
 ```{r}
-mudel <- glm(default ~ age + gender + education, laenud, family = binomial(link = 'logit'))
+mudel <- glm(default ~ age + gender + education, data = laenud, family = binomial(link = 'logit'))
 tõenäosus <- predict(mudel, list(age = 23, gender = 'Female', education = 'University'), type = 'response')
 tõenäosus
 ```
@@ -172,7 +172,7 @@ Mudeli prognoose olemasolevate vaatluste kohta näitab funktsioon `fitted()`. Ku
 ```{r}
 #| echo: false
 #| fig-cap: Prognooside sagedused
-mudel <- glm(default ~ ., laenud, family = binomial(link = 'logit'))
+mudel <- glm(default ~ ., data = laenud, family = binomial(link = 'logit'))
 library('ggplot2')
 ggplot() + aes(x = mudel$fitted.values) + 
   scale_x_continuous(limits = 0:1) + 
@@ -193,7 +193,7 @@ Tabelist selgub, et tõenäosuse lävendi 0.4 korral tuvastab mudel õigesti ain
 Teisendame veatabelis olevad väärtused osakaaludeks ja ümardame kahe komakohani.
 
 ```{r}
-table(fitted(mudel) > 0.4, mudel$model$default, 
+table(fitted(mudel) > 0.4, mudel$y, 
       dnn = c('Prognoos', 'Tegelik')) %>% 
   prop.table %>% round(2)
 ```

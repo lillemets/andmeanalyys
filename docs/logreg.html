@@ -471,6 +471,10 @@ Coefficients:
 </div>
 <p>Regressioonijäägid ei ole normaaljaotusega, vaid jaotus on hoopis kahetipuline (<em>bimodal</em>), mis tähendab, et vähimruutude meetodil leitud regressioonimudel antud juhul ei kehti. Sellele viitab ka regressioonimudelit iseloomustav sirge.</p>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -499,8 +503,8 @@ Mõiste
 </div>
 <p>Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni <code>glm()</code> üldistatud lineaarse mudeli leidmiseks, määrates argumendi <code>family = binomial(link = 'logit')</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mudel</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit, <span class="at">data =</span> laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mudel</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:  glm(formula = default ~ credit, family = binomial(link = "logit"), 
@@ -558,8 +562,8 @@ Märkus
 </div>
 <p>Uurime, millised šansid ilmnevad, kui lisame mudelisse ka krediidisaaja tausta iseloomustavad tunnused: vanus (<code>age</code>), sugu (<code>gender</code>), haridustase (<code>education</code>) ja perekondlik seis (<code>maritalstatus</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> education <span class="sc">+</span> maritalstatus, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mudel<span class="sc">$</span>coefficients <span class="co"># Kordajad</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> credit <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> education <span class="sc">+</span> maritalstatus, <span class="at">data =</span> laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mudel<span class="sc">$</span>coefficients <span class="co"># Kordajad</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         (Intercept)               credit                  age 
      -0.796736765011      -0.000002939894      -0.000311098193 
@@ -571,7 +575,7 @@ Märkus
 </div>
 <p>Lihtsuse huvides jätame praegu kõrvale kordjate usaldusvahemikud. Näeme, et üks dollar krediidi limiiti ja üks aasta vanust vähendavad maksevõimetust, sest vastavad kordajad on negatiivsed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(mudel<span class="sc">$</span>coefficients) <span class="co"># Kordajate eksponendid</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(mudel<span class="sc">$</span>coefficients) <span class="co"># Kordajate eksponendid</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         (Intercept)               credit                  age 
       0.450797625104       0.999997060111       0.999688950193 
@@ -584,7 +588,7 @@ Märkus
 <p>Nende kordajate eksponendid ehk šanssid näitavad aga mõlema tunnuse korral, et nende ühe ühikulise suurenemise korral suureneb tõenäosus olla maksevõimetu vastavalt 0.9999971 ja 0.999689 korda. Kuna suurenemine <span class="math inline">\(&lt;1\)</span> tähendab vähenemist, siis iga dollar krediidi limiiti ja iga aasta vanust vähendavad väga vähesel määral šanssi olla maksevõimetu.</p>
 <p>Nimitunnuste tõlgendamiseks peame arvesse võtma nende võrdlusväärtusi.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>laenud[, <span class="fu">c</span>(<span class="st">'gender'</span>, <span class="st">'education'</span>, <span class="st">'maritalstatus'</span>)] <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(unique)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>laenud[, <span class="fu">c</span>(<span class="st">'gender'</span>, <span class="st">'education'</span>, <span class="st">'maritalstatus'</span>)] <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(unique)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$gender
 [1] "Female" "Male"  
@@ -604,9 +608,9 @@ $maritalstatus
 <h2 data-number="23.3" class="anchored" data-anchor-id="prognoosimine"><span class="header-section-number">23.3</span> Prognoosimine</h2>
 <p>Logistilise mudeli alusel on võimalik prognoosida väljundtunnuse väärtusi sisendtunnuse väärtuste alusel. Prognoos on sellisel juhul väärtus vahemikus 0 kuni 1 (vt <a href="#fig-autod">Joonis&nbsp;<span>23.1</span></a>) ja saadud prognoosi võib tõlgendada sündmuse toimumise tõenäosusena vastvate sisendtunnuste väärtuste korral. Tõenäosuste prognoosimiseks üldistatud lineaarse mudeli korral peame funktsiooni <code>predict()</code> lisama argumendi <code>type = 'response'</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> education, laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tõenäosus <span class="ot">&lt;-</span> <span class="fu">predict</span>(mudel, <span class="fu">list</span>(<span class="at">age =</span> <span class="dv">23</span>, <span class="at">gender =</span> <span class="st">'Female'</span>, <span class="at">education =</span> <span class="st">'University'</span>), <span class="at">type =</span> <span class="st">'response'</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tõenäosus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mudel <span class="ot">&lt;-</span> <span class="fu">glm</span>(default <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> education, <span class="at">data =</span> laenud, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">'logit'</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tõenäosus <span class="ot">&lt;-</span> <span class="fu">predict</span>(mudel, <span class="fu">list</span>(<span class="at">age =</span> <span class="dv">23</span>, <span class="at">gender =</span> <span class="st">'Female'</span>, <span class="at">education =</span> <span class="st">'University'</span>), <span class="at">type =</span> <span class="st">'response'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tõenäosus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        1 
 0.2403401 </code></pre>
@@ -617,7 +621,7 @@ $maritalstatus
 <p>Mudeli prognoose olemasolevate vaatluste kohta näitab funktsioon <code>fitted()</code>. Kuvame need prognoosid histogrammil.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_bar()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -630,8 +634,8 @@ $maritalstatus
 </div>
 <p>Kõikide andmetes olevate tunnustega mudel prognoosib kõikidele isikutele tõenäosuse olla maksevõimetu alla 0.5. Seega võiksime tõenäosuse lävendiks võtta nt 0.4 ja uurida, kui suur osa maksevõimetutest isikutest prognoositakse õigesti. Selleks saame kasutada <strong>veatabelit</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fitted</span>(mudel) <span class="sc">&gt;</span> <span class="fl">0.4</span>, mudel<span class="sc">$</span>model<span class="sc">$</span>default, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">'Prognoos'</span>, <span class="st">'Tegelik'</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fitted</span>(mudel) <span class="sc">&gt;</span> <span class="fl">0.4</span>, mudel<span class="sc">$</span>model<span class="sc">$</span>default, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">'Prognoos'</span>, <span class="st">'Tegelik'</span>))</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Tegelik
 Prognoos   0   1
@@ -642,9 +646,9 @@ Prognoos   0   1
 <p>Tabelist selgub, et tõenäosuse lävendi 0.4 korral tuvastab mudel õigesti ainult 9 maksevõimetut, samas kui 226 tegelikult maksevõimetut isikut mudel selliseks ei pea. See näitab, et mudel ei ole maksevõimetuse prognoosimisel eriti täpne. Kasutatud andmed laenusaajate kohta ei ole piisavad selleks, et eristada maksevõimetuid teistest.</p>
 <p>Teisendame veatabelis olevad väärtused osakaaludeks ja ümardame kahe komakohani.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fitted</span>(mudel) <span class="sc">&gt;</span> <span class="fl">0.4</span>, mudel<span class="sc">$</span>model<span class="sc">$</span>default, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">'Prognoos'</span>, <span class="st">'Tegelik'</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  prop.table <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fitted</span>(mudel) <span class="sc">&gt;</span> <span class="fl">0.4</span>, mudel<span class="sc">$</span>y, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">dnn =</span> <span class="fu">c</span>(<span class="st">'Prognoos'</span>, <span class="st">'Tegelik'</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  prop.table <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Tegelik
 Prognoos    0    1

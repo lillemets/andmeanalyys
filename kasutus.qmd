@@ -287,6 +287,8 @@ mean(Fibonacci) # Aritmeetiline keskmine
 median(Fibonacci) # Mediaan
 min(Fibonacci) # Väikseim väärtus
 max(Fibonacci) # Suurim väärtus
+range(Fibonacci) # Väikseima ja suurima väärtuse vahe
+length(Fibonacci) # Väärtuste arv
 ```
 
 ## Torutamine
@@ -322,7 +324,7 @@ thi %>% filter(Tarbijahinnaindeks > 400)
 
 ## Salvestamine
 
-Nii nagu andmete R keskkonda lugemise korral on ka nende salvestamiseks soovitatav kasutada CSV vormingut. Selleks on funktsioon `write.csv()`, aga kui soovime hiljem selle faili avada Excelis, siis tuleb kasutada funktsiooni `write.csv2()`.
+Nii nagu andmete R keskkonda lugemise korral on ka nende salvestamiseks soovitatav kasutada CSV vormingut. Selleks on funktsioon `write.csv()`, aga kui soovime hiljem selle faili avada Excelis, siis tuleb enamasti kasutada funktsiooni `write.csv2()`.
 
 ```{r}
 #| eval: false

@@ -472,14 +472,14 @@ Mõiste
 </div>
 <p>Samuti saab koondada kõik vaatlusted klastri alusel ja võrrelda klastrite keskmisi tunnuste lõikes. Keskmise asemel võime kasutada ka mõnda muud mõõdikut. Klastrite kaupa saame andmetabeli kokku võtta, kasutades funktsiooni <code>aggregate()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(arvtunnused, <span class="fu">list</span>(<span class="at">klaster =</span> klastrid), mean)[<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(arvtunnused, <span class="fu">list</span>(<span class="at">klaster =</span> klastrid), mean)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   population        area netmigration        gdp   literacy     phones
-1 -0.05681084 -0.08228393   0.06658805 -0.7939203 -1.4828453 -0.9367697
-2 -0.13543341 -0.14740112  -0.46515318 -0.3627625  0.3714034 -0.2207414
-3  9.27230705  3.01939409  -0.03759815 -0.5455107 -0.3580826 -0.2826662
-4 -0.15272107 -0.30138109   0.79695837  1.4225060  0.7134170  1.2690521
-5  0.81818752  5.18629135   0.62926516  1.2882190  0.6900443  1.3269050
+<pre><code>  klaster  population        area netmigration        gdp   literacy     phones
+1       1 -0.05681084 -0.08228393   0.06658805 -0.7939203 -1.4828453 -0.9367697
+2       2 -0.13543341 -0.14740112  -0.46515318 -0.3627625  0.3714034 -0.2207414
+3       3  9.27230705  3.01939409  -0.03759815 -0.5455107 -0.3580826 -0.2826662
+4       4 -0.15272107 -0.30138109   0.79695837  1.4225060  0.7134170  1.2690521
+5       5  0.81818752  5.18629135   0.62926516  1.2882190  0.6900443  1.3269050
        arable  agriculture
 1 -0.04109864  1.278406603
 2 -0.04089891 -0.196382277

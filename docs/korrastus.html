@@ -892,7 +892,7 @@ Pea meeles!
 </section>
 <section id="agregeerimine" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="agregeerimine"><span class="header-section-number">6.8</span> Agregeerimine</h2>
-<p>Sageli on vaja andmetabelis olevad väärtused edasiseks analüüsiks kuidagi koondada. Väärtuste kokku võtmine mingite rühmade kaupa ja mingi tehte alusel on <strong>agregeerimine</strong>. Nii on agregeerimisel vaja määrata</p>
+<p>Sageli on vaja andmetabelis olevad väärtused edasiseks analüüsiks või kokkuvõtete saamiseks kuidagi koondada. Väärtuste kokku võtmine mingite rühmade kaupa ja mingi tehte alusel on <strong>agregeerimine</strong>. Nii on agregeerimisel vaja määrata</p>
 <ul>
 <li>väärtusi sisaldav kokku võetav tunnus,</li>
 <li>väärtusi rühmitav tunnus,</li>
@@ -1075,6 +1075,14 @@ Elektrienergia, gaasi, auru ja konditsioneeritud õhuga varustamine
 <li>veonduses ja laonduses oli palgalõhe ainult ühel aastal üle 10%, samas kui</li>
 <li>hariduses oli kõikidel aastatel palgalõhe üle 10%.</li>
 </ul>
+<hr>
+<p>Tabelarvutuses on andmete koondamiseks kaks võimalust:</p>
+<ul>
+<li>kasutada vastavaid funktsioone ja arvutada koond iga rümitava tunnuse väärtuse kohta eraldi või</li>
+<li>tekitada andmetabeli alusel liigendtabel (<em>pivot table</em>) koos kõikide rühmitava tunnuse väärtuste koonditega.</li>
+</ul>
+<p>Funktsioonide abil saame leida ette antud rühma väärtuste summa (<code>=sum()</code>), keskmise (<code>=average()</code>) või arvu (<code>=count()</code>). Selleks peame vastavate funktsioonide nimetuste lõppu lisama ühe rühmitava tunnuse korral <code>if</code> ja mitme korral <code>ifs</code>. Nt kui soovime leida veeru B ainult nende ridade summa, kus veerus A on väärtus 2020, siis peaksime kasutama funktsiooni kujul nt <code>=sumif(A:A,2020,B:B)</code>.</p>
+<p>Liigendtabel võimaldab leida korraga ühe tunnuse kõikide rühmade koondi. Selleks peame esmalt määratlema veergude nimetused, määrates neile filtrid. Seejärel saame lisada liigendabeli. Selles tabelis saame esitada kas ridades või veergudes rühmitamise aluseks oleva tunnuse või mitu, tõstes need vastavatesse lahtritesse. Tabelis kuvatakse selle tunnuse koond, mille tõstame väärtuste lahtrisse. Kokkuvõtte aluseks oleva tehte saab määrata samuti selles lahtris.</p>
 <!--
 Aggregation
 -->
@@ -1146,6 +1154,8 @@ Aggregation
 <p><img src="korrastus_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="960"></p>
 </div>
 </div>
+<hr>
+<p>Tabelarvutuse rakendustes ei saa ühendada omavahel terveid tabeleid. Küll aga saame ühele tabelile lisada korraga ühe veeru teisest tabelist nii, et väärtuste määramise aluseks on mingi mõlemas tabelis olev tunnus. Saame selleks kasutada funktsiooni <code>=vlookup()</code>.</p>
 <!--
 case_when()
 recode()

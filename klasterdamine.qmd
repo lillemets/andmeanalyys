@@ -69,7 +69,7 @@ fviz_pca_biplot(prcomp(arvtunnused), habillage = klastrid)
 Samuti saab koondada kõik vaatlusted klastri alusel ja võrrelda klastrite keskmisi tunnuste lõikes. Keskmise asemel võime kasutada ka mõnda muud mõõdikut. Klastrite kaupa saame andmetabeli kokku võtta, kasutades funktsiooni `aggregate()`. 
 
 ```{r}
-aggregate(arvtunnused, list(klaster = klastrid), mean)[-1]
+aggregate(arvtunnused, list(klaster = klastrid), mean)
 ```
 
 Mõnevõrra ilmekamalt saame klastrite keskmisi võrrelda seosekaardil.

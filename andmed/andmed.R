@@ -5,19 +5,58 @@
 library('magrittr')
 library('dplyr')
 
-
-# Read, clean and save data sets (2022-10-23 09:30:09) ----------
+# Taimekasvatus
+# 11_maakaardid
+library('pxweb')
+## RV0291U: RAHVAARV, PINDALA JA ASUSTUSTIHEDUS, 1. JAANUAR. HALDUSJAOTUS SEISUGA 01.01.2018
+aadress <- 'https://andmed.stat.ee/api/v1/et/stat/RV0291U'
+#pxweb_get(aadress)$variables
+valikud <- list(
+  'Elukoht' = '*', 
+  'Aasta' = '2022', 
+  'Näitaja' = c('1', '2'))
+päring <- pxweb_get_data(url = aadress, query = valikud)
+rv <- päring
+### Korrasta
+rv %<>% tidyr::pivot_wider(names_from = 3, values_from = 4)
+rv %<>% select(Koht = 1, Rahvaarv = 3, `Pindala, m²` = 4)
+rv %<>% filter(grepl('^\\.\\.[A-Z]', rv$Koht))
+rv %<>% mutate(Koht = sub('\\.\\.', '', Koht))
+## RL21202: TAVAELURUUMIDEGA HOONED, ELURUUMID JA ELURUUMIDE PIND HOONE TÜÜBI, EHITUSAJA JA ASUKOHA (HALDUSÜKSUS) JÄRGI, 31. DETSEMBER 2021
+aadress <- 'https://andmed.stat.ee/api/v1/et/stat/RL21202'
+#pxweb_get(aadress)$variables
+valikud <- list(
+  'Aasta' = '2021', 
+  'Asukoht' = '*', 
+  'Ehitusaeg' = '1', 
+  'Näitaja' = '4', 
+  'Hoone tüüp' = '1')
+päring <- pxweb_get_data(url = aadress, query = valikud)
+rl <- päring
+## Korrasta
+rl %<>% select(Koht = 2, `Eluruumide pind, m²` = 6)
+rl %<>% mutate(Koht = sub('\\.+', '', Koht))
+## Ühenda vihikusse ja salvesta
+library('openxlsx')
+vihik <- createWorkbook()
+addWorksheet(vihik, 'Rahvaarv, pindala')
+writeData(vihik, 'Rahvaarv, pindala', rv)
+addWorksheet(vihik, 'Eluruumid')
+writeData(vihik, 'Eluruumid', rl)
+saveWorkbook(vihik, 'andmed/eluruumid.xlsx', overwrite = T)
 
 # PRIA loomaaksvatusehitised
+# test_11_maakaardid
 ehit <- read.csv('andmed/priaehitised.csv')
 ehit %<>% select(x = X, y = Y, maakond = aadr_maako, 
-                registreeriti = reg_kp, loomad = loomaliigi)
+                 registreeriti = reg_kp, loomad = loomaliigi)
 ehit$loomad %<>% tolower
 ehit$maakond %<>% tolower
 ehit$registreeriti %<>% as.Date %>% format('%Y')
 write.csv(ehit, 'andmed/tegevuskohad.csv', row.names = F)
 
 # Eesti raster
+# praktikum_11_maakaardid
 ra <- read.csv('andmed/rahvaarvraster_alg.csv')
 ra$y <- substring(ra$GRD_ID, 17,23) %>% as.numeric
 ra$x <- substring(ra$GRD_ID, 25,31) %>% as.numeric
@@ -81,12 +120,13 @@ korduvad <- duplicated(kõned$pealkiri)
 kõned$pealkiri[korduvad] %<>% paste(kõned$aasta[korduvad])
 write.csv(kõned, 'andmed/kõned.csv', row.names = F)
 
+# Dspace
 # praktikum_10_tekstikaeve
 library('rvest')
 xtee <- list(pealkiri = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/h2/text()', 
              liik = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[2]/div[3]/ul/li/a', 
              aasta = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[1]/div[2]/text()[2]', 
-             tekst = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[2]/div[1]/div/text()[1]')
+             kokkuvõte = '//*[@id="aspect_artifactbrowser_ItemViewer_div_item-view"]/div/div/div[2]/div[1]/div/text()[1]')
 allUrls <- paste0('https://dspace.emu.ee/handle/10492/', 1000:7000)
 set.seed(0); urls <- sample(allUrls, 200)
 dokidLs <- lapply(urls, function(x) {

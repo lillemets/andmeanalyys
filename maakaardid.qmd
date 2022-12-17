@@ -147,7 +147,7 @@ Punktide paiknemise alusel saame teha ka mitmesuguseid arvutusi. Selleks saame k
 #| warning: false
 library('sf')
 ov <- st_read('andmed/omavalitsus')
-aken <- st_union(ov) %>% st_simplify(dTolerance = 200)
+aken <- st_union(ov, is.coverage = TRUE)
 library('spatstat')
 aken %<>% as.ppp
 teodPt <- as.ppp(teod, W = aken)
@@ -159,6 +159,7 @@ Kuna paljud punktid kattuvad, siis lihtsalt nende kuvamine ei anna tegelikku aru
 ```{r}
 ruudud <- quadratcount(teodPt, 5, 5)
 plot(ruudud)
+plot(teodPt, add = TRUE)
 ```
 Näeme, et ülekaalukalt kõige enam juhtumeid toimus kaardiruudus, kus asus Tallinn.
 
@@ -283,7 +284,7 @@ Antud juhul näitab legendis esimene väärtus omavalitsuse enda rahvaarvu võrr
 
 Üsna hõlpsasti saame koostada ka liikuvaid kaarte, millelt saame lugeda iga objekti kohta olevat teavet. Kasutades selleks laiendust `tmap`, peame esmalt käsuga `tmap_mode('view')` teada andma, et soovime liikuvat kaarti. Seejärel kuvatakse kõik `tm_shape` käsuga joonistatud kaardid liikuvatena, kuni määrame käsuga `tmap_mode('plot')`, et soovime jälle kuvada kaarte piltidena. Liikuvatel kaartidel saab kuvada mh objekte, mis on sisestatud funktsiooniga `st_read()` või teisendatud funktsiooniga `st_as_sf()`.
 
-Kuna süütegude asukohad on teada tegelikult ruutkilomeetriste kaardiruutude kaupa, siis liigutame koordinaate kilomeetri võrra juhuslikus suunas, et samal kaardiruudul asuvad punktid ei kattuks.
+Kuna süütegude asukohad on teada tegelikult ruutkilomeetriste kaardiruutude kaupa, siis liigutame koordinaate 1000 m võrra juhuslikus suunas (`st_jitter`), et samal kaardiruudul asuvad punktid ei kattuks.
 
 ```{r}
 tmap_mode('view')
