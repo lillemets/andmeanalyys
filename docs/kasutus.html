@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus - 5&nbsp; Põhikasutus</title>
+<title>Oijee! Andmeanalüüs - 5&nbsp; Põhikasutus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -121,7 +92,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -133,11 +105,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./kasutus.html">Tarkvara</a></li><li class="breadcrumb-item"><a href="./kasutus.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -145,250 +122,288 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Oijee! Andmeteadus</a> 
+      <a href="./">Oijee! Andmeanalüüs</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Saateks</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Põhimõisted</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Tarkvara</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kasutus.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Statistika</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  <a href="./valim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
+  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Rakendused</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></a>
+  <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></a>
+  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viited</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sisukord</h2>
    
   <ul>
-  <li><a href="#käsurida" id="toc-käsurida" class="nav-link active" data-scroll-target="#käsurida"><span class="toc-section-number">5.1</span>  Käsurida</a></li>
-  <li><a href="#objektid-ja-funktsioonid" id="toc-objektid-ja-funktsioonid" class="nav-link" data-scroll-target="#objektid-ja-funktsioonid"><span class="toc-section-number">5.2</span>  Objektid ja funktsioonid</a></li>
-  <li><a href="#laiendused" id="toc-laiendused" class="nav-link" data-scroll-target="#laiendused"><span class="toc-section-number">5.3</span>  Laiendused</a></li>
-  <li><a href="#sisestamine" id="toc-sisestamine" class="nav-link" data-scroll-target="#sisestamine"><span class="toc-section-number">5.4</span>  Sisestamine</a></li>
-  <li><a href="#ülevaade-objektist" id="toc-ülevaade-objektist" class="nav-link" data-scroll-target="#ülevaade-objektist"><span class="toc-section-number">5.5</span>  Ülevaade objektist</a></li>
-  <li><a href="#valimine" id="toc-valimine" class="nav-link" data-scroll-target="#valimine"><span class="toc-section-number">5.6</span>  Valimine</a>
+  <li><a href="#käsurida" id="toc-käsurida" class="nav-link active" data-scroll-target="#käsurida"><span class="header-section-number">5.1</span> Käsurida</a></li>
+  <li><a href="#objektid-ja-funktsioonid" id="toc-objektid-ja-funktsioonid" class="nav-link" data-scroll-target="#objektid-ja-funktsioonid"><span class="header-section-number">5.2</span> Objektid ja funktsioonid</a></li>
+  <li><a href="#laiendused" id="toc-laiendused" class="nav-link" data-scroll-target="#laiendused"><span class="header-section-number">5.3</span> Laiendused</a></li>
+  <li><a href="#sisestamine" id="toc-sisestamine" class="nav-link" data-scroll-target="#sisestamine"><span class="header-section-number">5.4</span> Sisestamine</a></li>
+  <li><a href="#ülevaade-objektist" id="toc-ülevaade-objektist" class="nav-link" data-scroll-target="#ülevaade-objektist"><span class="header-section-number">5.5</span> Ülevaade objektist</a></li>
+  <li><a href="#valimine" id="toc-valimine" class="nav-link" data-scroll-target="#valimine"><span class="header-section-number">5.6</span> Valimine</a>
   <ul class="collapse">
-  <li><a href="#valimine-andmetabelist" id="toc-valimine-andmetabelist" class="nav-link" data-scroll-target="#valimine-andmetabelist"><span class="toc-section-number">5.6.1</span>  Valimine andmetabelist</a></li>
+  <li><a href="#valimine-andmetabelist" id="toc-valimine-andmetabelist" class="nav-link" data-scroll-target="#valimine-andmetabelist"><span class="header-section-number">5.6.1</span> Valimine andmetabelist</a></li>
   </ul></li>
-  <li><a href="#kokkuvõtted" id="toc-kokkuvõtted" class="nav-link" data-scroll-target="#kokkuvõtted"><span class="toc-section-number">5.7</span>  Kokkuvõtted</a></li>
-  <li><a href="#torutamine" id="toc-torutamine" class="nav-link" data-scroll-target="#torutamine"><span class="toc-section-number">5.8</span>  Torutamine</a></li>
-  <li><a href="#salvestamine" id="toc-salvestamine" class="nav-link" data-scroll-target="#salvestamine"><span class="toc-section-number">5.9</span>  Salvestamine</a></li>
-  <li><a href="#korratav-analüüs" id="toc-korratav-analüüs" class="nav-link" data-scroll-target="#korratav-analüüs"><span class="toc-section-number">5.10</span>  Korratav analüüs</a></li>
-  <li><a href="#aruanded-r-keeles" id="toc-aruanded-r-keeles" class="nav-link" data-scroll-target="#aruanded-r-keeles"><span class="toc-section-number">5.11</span>  Aruanded R keeles</a></li>
+  <li><a href="#kokkuvõtted" id="toc-kokkuvõtted" class="nav-link" data-scroll-target="#kokkuvõtted"><span class="header-section-number">5.7</span> Kokkuvõtted</a></li>
+  <li><a href="#torutamine" id="toc-torutamine" class="nav-link" data-scroll-target="#torutamine"><span class="header-section-number">5.8</span> Torutamine</a></li>
+  <li><a href="#salvestamine" id="toc-salvestamine" class="nav-link" data-scroll-target="#salvestamine"><span class="header-section-number">5.9</span> Salvestamine</a></li>
+  <li><a href="#korratav-analüüs" id="toc-korratav-analüüs" class="nav-link" data-scroll-target="#korratav-analüüs"><span class="header-section-number">5.10</span> Korratav analüüs</a></li>
+  <li><a href="#aruanded-r-keeles" id="toc-aruanded-r-keeles" class="nav-link" data-scroll-target="#aruanded-r-keeles"><span class="header-section-number">5.11</span> Aruanded R keeles</a></li>
   </ul>
 </nav>
     </div>
@@ -397,7 +412,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-kasutus" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></span></h1>
+<h1 class="title"><span id="sec-kasutus" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></span></h1>
 </div>
 
 
@@ -405,6 +420,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -530,13 +546,13 @@ Everything that happens is a function call.<br>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>?sum</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Märkus
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -564,13 +580,13 @@ Märkus
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Need on tarbijahinnaindeksi (THI) andmed Statistikaameti tabeli IA02 alusel</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'C:/Users/kasutajanimi/Desktop/thi.csv'</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-caution callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Vaata ette!
+<div class="callout-title-container flex-fill">
+Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -582,13 +598,13 @@ Vaata ette!
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">'C:/Users/kasutajanimi/Desktop/thi.xlsx'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Soovitus
+<div class="callout-title-container flex-fill">
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -600,13 +616,13 @@ Soovitus
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/Users/kasutajanimi/Desktop/'</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>thi <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'thi.csv'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-warning callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Pea meeles!
+<div class="callout-title-container flex-fill">
+Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -633,8 +649,8 @@ Pea meeles!
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(thi)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   3848 obs. of  4 variables:
- $ Aasta             : int  1998 1998 1998 1998 1998 1998 1998 1998 1998 1998 ...
+<pre><code>'data.frame':   3991 obs. of  4 variables:
+ $ Aasta             : chr  "1998" "1998" "1998" "1998" ...
  $ Kaubagrupp        : chr  "Kokku" "Kokku" "Kokku" "Kokku" ...
  $ Kuu               : chr  "Jaanuar" "Veebruar" "Märts" "Aprill" ...
  $ Tarbijahinnaindeks: num  106 107 107 108 108 ...</code></pre>
@@ -723,16 +739,17 @@ Pea meeles!
 3277  2019             209.98
 3433  2020             213.40
 3589  2021             213.88
-3745  2022             238.13</code></pre>
+3745  2022             238.13
+3901  2023             282.40</code></pre>
 </div>
 </div>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Märkus
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -840,28 +857,36 @@ Märkus
 <span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>eluase <span class="ot">&lt;-</span> <span class="fu">filter</span>(eluase, Aasta <span class="sc">==</span> <span class="dv">2022</span>)</span>
 <span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(eluase, Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Kuu Tarbijahinnaindeks
-1  Jaanuar             452.08
-2 Veebruar             439.13
-3    Märts             456.10
-4   Aprill             538.55
-5      Mai             557.34
-6    Juuni             587.38
-7    Juuli             623.25
-8   August             683.04</code></pre>
+<pre><code>         Kuu Tarbijahinnaindeks
+1    Jaanuar             452.08
+2   Veebruar             439.13
+3      Märts             456.10
+4     Aprill             538.55
+5        Mai             557.34
+6      Juuni             587.38
+7      Juuli             623.25
+8     August             683.04
+9  September             659.76
+10  Oktoober             585.75
+11  November             592.23
+12 Detsember             589.07</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Nö pesastamist kasutades tõstame funktsiooni tulemuse järgmise funktsiooni sisse</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">filter</span>(thi, Kaubagrupp <span class="sc">==</span> <span class="st">'Eluase'</span>), Aasta <span class="sc">==</span> <span class="dv">2022</span>), Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Kuu Tarbijahinnaindeks
-1  Jaanuar             452.08
-2 Veebruar             439.13
-3    Märts             456.10
-4   Aprill             538.55
-5      Mai             557.34
-6    Juuni             587.38
-7    Juuli             623.25
-8   August             683.04</code></pre>
+<pre><code>         Kuu Tarbijahinnaindeks
+1    Jaanuar             452.08
+2   Veebruar             439.13
+3      Märts             456.10
+4     Aprill             538.55
+5        Mai             557.34
+6      Juuni             587.38
+7      Juuli             623.25
+8     August             683.04
+9  September             659.76
+10  Oktoober             585.75
+11  November             592.23
+12 Detsember             589.07</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Torutamise käigus saadame funktsiooni tulemuse järgmisesse funktsiooni</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>thi <span class="sc">%&gt;%</span> </span>
@@ -869,15 +894,19 @@ Märkus
 <span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Aasta <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Kuu, Tarbijahinnaindeks)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       Kuu Tarbijahinnaindeks
-1  Jaanuar             452.08
-2 Veebruar             439.13
-3    Märts             456.10
-4   Aprill             538.55
-5      Mai             557.34
-6    Juuni             587.38
-7    Juuli             623.25
-8   August             683.04</code></pre>
+<pre><code>         Kuu Tarbijahinnaindeks
+1    Jaanuar             452.08
+2   Veebruar             439.13
+3      Märts             456.10
+4     Aprill             538.55
+5        Mai             557.34
+6      Juuni             587.38
+7      Juuli             623.25
+8     August             683.04
+9  September             659.76
+10  Oktoober             585.75
+11  November             592.23
+12 Detsember             589.07</code></pre>
 </div>
 </div>
 <p>Nagu näha, siis arvestab torule järgnev funktsioon kõige esimese argumendina eelneva funktsiooni tulemust.</p>
@@ -905,8 +934,25 @@ Märkus
 9   2022                           Eluase     Juuni             587.38
 10  2022                           Eluase     Juuli             623.25
 11  2022                           Eluase    August             683.04
-12  2022 Söömine väljaspool kodu, majutus     Juuli             426.74
-13  2022 Söömine väljaspool kodu, majutus    August             416.38</code></pre>
+12  2022                           Eluase September             659.76
+13  2022                           Eluase  Oktoober             585.75
+14  2022                           Eluase  November             592.23
+15  2022                           Eluase Detsember             589.07
+16  2022 Söömine väljaspool kodu, majutus     Juuli             426.74
+17  2022 Söömine väljaspool kodu, majutus    August             416.38
+18  2023                           Eluase   Jaanuar             594.75
+19  2023                           Eluase  Veebruar             581.33
+20  2023                           Eluase     Märts             581.58
+21  2023                           Eluase    Aprill             627.92
+22  2023                           Eluase       Mai             626.18
+23  2023                           Eluase     Juuni             628.28
+24  2023                           Eluase     Juuli             614.56
+25  2023 Söömine väljaspool kodu, majutus  Veebruar             404.10
+26  2023 Söömine väljaspool kodu, majutus     Märts             410.81
+27  2023 Söömine väljaspool kodu, majutus    Aprill             409.45
+28  2023 Söömine väljaspool kodu, majutus       Mai             415.23
+29  2023 Söömine väljaspool kodu, majutus     Juuni             434.64
+30  2023 Söömine väljaspool kodu, majutus     Juuli             441.37</code></pre>
 </div>
 </div>
 </section>
@@ -926,13 +972,13 @@ Märkus
 <li>saame hiljem üle vaadata, kuidas täpselt andmetöötluses mingi tulemuseni jõudsime;</li>
 <li>teised saavad veenduda meie tulemuste õigsuses, rakendades meie koosatud käsulehte mingitel andmetel.</li>
 </ul>
-<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Märkus
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -987,9 +1033,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1001,7 +1061,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Kopeeritud!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopeeritud!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1037,24 +1114,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

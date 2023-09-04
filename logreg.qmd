@@ -84,9 +84,11 @@ Binaartunnuse korral eeldame, et selle väärtused järgivad binoomjaotust. Seet
 **Logistiline mudel** (*logistic model*) on regressioonimudel, mis seletab binaarskaalal mõõdetud väljundtunnuse väärtuseid sisendtunnus(t)e alusel.
 :::
 
-Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni `glm()` üldistatud lineaarse mudeli leidmiseks, määrates argumendi `family = binomial(link = 'logit')`. 
+Logistilise mudeli arvutamiseks R keeles saame kasutada funktsiooni `glm()` üldistatud lineaarse mudeli leidmiseks, määrates argumendi `family = binomial(link = 'logit')`. Selleks peab väljundtunnusses olema sündmuse mitte toimumine ja toimumine määratud vastavalt kas väärtustega `0` ja `1` või loogilise tunnusena ehk väärtustega `FALSE` või `TRUE`.
 
 ```{r}
+laenud$maksevõimetu <- laenud$credit == 1
+table(laenud$default, laenud$maksevõimetu)
 mudel <- glm(default ~ credit, data = laenud, family = binomial(link = 'logit'))
 mudel
 ```

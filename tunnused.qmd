@@ -2,7 +2,7 @@
 
 ## Mõõtmistasemed
 
-Kahte nähtust saab võrrelda mitmel viisl: kas üks on teisest suurem, kumb on teisest suurem, kui palju on üks teistest suurem. Vastavalt sellele saab nähtusi ka mitmel viisil mõõta. Kõige üldisemalt saame eristada nelja mõõtmistaset^[Eesti keeles on  mõõtmistasemete olemust ilmekalt selgitanud @sauga17statistika.], millele vastavad mõõtmisskaalad alates kõige üldistavamast:
+Kahte nähtust saab võrrelda mitmel viisl: kas üks on teisest suurem, kumb on teisest suurem, kui palju on üks teistest suurem. Vastavalt sellele saab nähtusi ka mitmel viisil mõõta. Kõige üldisemalt saame eristada nelja mõõtmistaset^[Eesti keeles on  mõõtmistasemete olemust ilmekalt selgitanud @sauga20statistika.], millele vastavad mõõtmisskaalad alates kõige üldistavamast:
 
 1. binaarskaala (kuni kaks järjestamata väärtust), 
 2. nimiskaala (järjestamata väärtused),

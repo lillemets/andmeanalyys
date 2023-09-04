@@ -3,12 +3,13 @@ project:
   output-dir: docs
 
 book:
-  title: "Oijee! Andmeteadus"
-  author-meta: "Jüri Lillemets"
-  date-meta: today
+  title: "Oijee! Andmeanalüüs"
+  author: "Jüri Lillemets"
+  date: today
   date-format: iso
-  logo: logo.png
   favicon: logo.png
+  sidebar: 
+    logo: logo.png
   chapters: 
   - index.qmd
   - part: "Põhimõisted"
@@ -17,8 +18,9 @@ book:
     - mlaibd.qmd
     - analüüs.qmd
     - tarkvara.qmd
-  - part: "R keel"
+  - part: "Tarkvara"
     chapters: 
+#    - tabelarvutus.qmd
     - kasutus.qmd
     - korrastus.qmd
     - joonised.qmd
@@ -33,6 +35,7 @@ book:
     - seosed.qmd
     - põhjuslikkus.qmd
     - tinglikkus.qmd
+#    - regressioon.qmd
     - klassifitseerimine.qmd
     - kaugus.qmd
     - klasterdamine.qmd
@@ -40,6 +43,7 @@ book:
 #    - sobitamine.qmd
 #    - standardiseerimine.qmd
 #    - veatabel.qmd
+#    - eetika.qmd
   - part: "Rakendused"
     chapters:
     - korrelatsioon.qmd
@@ -61,8 +65,8 @@ book:
 #  - põhimõtted.qmd
 #  - sõnastik.qmd
 
-bibliography: ../../notes/assets/library.json
-csl: ../../notes/assets/apa.csl
+bibliography: ../../library/library.json
+csl: ../../library/apa.csl
 
 reference-location: margin
 format:

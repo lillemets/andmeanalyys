@@ -36,7 +36,7 @@ kus
 - $x_j$ on tunnus $j$, 
 - $q_{jl}$ on $j$nda tunnuse $l$nda faktori kordaja, 
 - $F_l$ on $l$ndas faktor, 
-- $U_j$ on $j$th ainult tunnusele omane (unikaalne) hajuvus ja  
+- $U_j$ on ainult $j$ndale tunnusele omane (unikaalne) hajuvus ja  
 - $\mu_j$ on tunnuse $x_j$ keskmine väärtus. 
 
 Enne faktoranalüüsi kajastavad tunnuste väärtused ainult tunnustele omast hajuvust $U_j$ koos tunnuse keskmisega $\mu_j$. Faktoranalüüsi tulemusel eraldatakse sellest faktor $q_{jl} F_l$, mida saame seejärel kirjeldada. Faktorite arvutamiseks kasutatakse tunnustevahelisi korrelatsioone, millest faktorite tuletamiseks on mitu viisi.

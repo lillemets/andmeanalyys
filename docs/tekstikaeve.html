@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Oijee! Andmeteadus - 30&nbsp; Tekstikaeve</title>
+<title>Oijee! Andmeanalüüs - 30&nbsp; Tekstikaeve</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -121,10 +92,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="style.css">
@@ -134,11 +107,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./korrelatsioon.html">Rakendused</a></li><li class="breadcrumb-item"><a href="./tekstikaeve.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -146,246 +124,284 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       <img src="./logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Oijee! Andmeteadus</a> 
+      <a href="./">Oijee! Andmeanalüüs</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Saateks</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Saateks</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Põhimõisted</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Põhimõisted</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></a>
+  <a href="./andmeteadus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Andmed ja andmeteadus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></a>
+  <a href="./mlaibd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Masinõpe ja suurandmed</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></a>
+  <a href="./analüüs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Andmete analüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></a>
+  <a href="./tarkvara.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Tarkvara andmetöötluseks</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">R keel</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Tarkvara</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kasutus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></a>
+  <a href="./kasutus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Põhikasutus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrastus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></a>
+  <a href="./korrastus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Korrastus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./joonised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></a>
+  <a href="./joonised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Joonised</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Statistika</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Statistika</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tunnused.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></a>
+  <a href="./tunnused.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tunnuste liigid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valim.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></a>
+  <a href="./valim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Valim ja kogum</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></a>
+  <a href="./valikunihe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Valikunihe</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></a>
+  <a href="./taasvalik.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Taasvalik</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosed.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></a>
+  <a href="./seosed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Seosed</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></a>
+  <a href="./põhjuslikkus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Põhjuslikkus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></a>
+  <a href="./tinglikkus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Tinglikkus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></a>
+  <a href="./klassifitseerimine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Klassifitseerimine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kaugus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></a>
+  <a href="./kaugus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Statistiline kaugus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></a>
+  <a href="./klasterdamine.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Klasterdamine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></a>
+  <a href="./mõõtmevähendus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Mõõtmevähendus</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Rakendused</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Rakendused</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></a>
+  <a href="./korrelatsioon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Korrelatsioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></a>
+  <a href="./seosereeglid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Seosereeglid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></a>
+  <a href="./usaldusvahemikud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Usaldusvahemikud</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></a>
+  <a href="./linreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Lineaarne regressioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./logreg.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></a>
+  <a href="./logreg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Logistiline regressioon</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></a>
+  <a href="./otsusepuu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Otsusepuu</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></a>
+  <a href="./lähinaabrid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Lähinaabrid</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></a>
+  <a href="./hierarhiline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Hierarhiline klasterdamine</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></a>
+  <a href="./kkeskmised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">K-keskmised</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></a>
+  <a href="./peakomponendid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Peakomponentide analüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></a>
+  <a href="./faktoranalüüs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Faktoranalüüs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></a>
+  <a href="./tekstikaeve.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></a>
+  <a href="./maakaardid.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Maakaardid</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./viited.html" class="sidebar-item-text sidebar-link">Viited</a>
+  <a href="./viited.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viited</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sisukord</h2>
    
   <ul>
-  <li><a href="#korpus" id="toc-korpus" class="nav-link active" data-scroll-target="#korpus"><span class="toc-section-number">30.1</span>  Korpus</a></li>
-  <li><a href="#sõnestamine" id="toc-sõnestamine" class="nav-link" data-scroll-target="#sõnestamine"><span class="toc-section-number">30.2</span>  Sõnestamine</a></li>
-  <li><a href="#maatriksid" id="toc-maatriksid" class="nav-link" data-scroll-target="#maatriksid"><span class="toc-section-number">30.3</span>  Maatriksid</a></li>
-  <li><a href="#sõnade-sagedused" id="toc-sõnade-sagedused" class="nav-link" data-scroll-target="#sõnade-sagedused"><span class="toc-section-number">30.4</span>  Sõnade sagedused</a></li>
-  <li><a href="#sõnasus" id="toc-sõnasus" class="nav-link" data-scroll-target="#sõnasus"><span class="toc-section-number">30.5</span>  Sõnasus</a></li>
-  <li><a href="#tf-idf" id="toc-tf-idf" class="nav-link" data-scroll-target="#tf-idf"><span class="toc-section-number">30.6</span>  TF-IDF</a></li>
-  <li><a href="#sõnade-võrgustik" id="toc-sõnade-võrgustik" class="nav-link" data-scroll-target="#sõnade-võrgustik"><span class="toc-section-number">30.7</span>  Sõnade võrgustik</a></li>
-  <li><a href="#klasterdamine" id="toc-klasterdamine" class="nav-link" data-scroll-target="#klasterdamine"><span class="toc-section-number">30.8</span>  Klasterdamine</a></li>
-  <li><a href="#keelekasutus" id="toc-keelekasutus" class="nav-link" data-scroll-target="#keelekasutus"><span class="toc-section-number">30.9</span>  Keelekasutus</a></li>
-  <li><a href="#teemad" id="toc-teemad" class="nav-link" data-scroll-target="#teemad"><span class="toc-section-number">30.10</span>  Teemad</a></li>
+  <li><a href="#korpus" id="toc-korpus" class="nav-link active" data-scroll-target="#korpus"><span class="header-section-number">30.1</span> Korpus</a></li>
+  <li><a href="#sõnestamine" id="toc-sõnestamine" class="nav-link" data-scroll-target="#sõnestamine"><span class="header-section-number">30.2</span> Sõnestamine</a></li>
+  <li><a href="#maatriksid" id="toc-maatriksid" class="nav-link" data-scroll-target="#maatriksid"><span class="header-section-number">30.3</span> Maatriksid</a></li>
+  <li><a href="#sõnade-sagedused" id="toc-sõnade-sagedused" class="nav-link" data-scroll-target="#sõnade-sagedused"><span class="header-section-number">30.4</span> Sõnade sagedused</a></li>
+  <li><a href="#sõnasus" id="toc-sõnasus" class="nav-link" data-scroll-target="#sõnasus"><span class="header-section-number">30.5</span> Sõnasus</a></li>
+  <li><a href="#tf-idf" id="toc-tf-idf" class="nav-link" data-scroll-target="#tf-idf"><span class="header-section-number">30.6</span> TF-IDF</a></li>
+  <li><a href="#sõnade-võrgustik" id="toc-sõnade-võrgustik" class="nav-link" data-scroll-target="#sõnade-võrgustik"><span class="header-section-number">30.7</span> Sõnade võrgustik</a></li>
+  <li><a href="#klasterdamine" id="toc-klasterdamine" class="nav-link" data-scroll-target="#klasterdamine"><span class="header-section-number">30.8</span> Klasterdamine</a></li>
+  <li><a href="#keelekasutus" id="toc-keelekasutus" class="nav-link" data-scroll-target="#keelekasutus"><span class="header-section-number">30.9</span> Keelekasutus</a></li>
+  <li><a href="#teemad" id="toc-teemad" class="nav-link" data-scroll-target="#teemad"><span class="header-section-number">30.10</span> Teemad</a></li>
   </ul>
 </nav>
     </div>
@@ -394,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-tekstikaeve" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></span></h1>
+<h1 class="title"><span id="sec-tekstikaeve" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Tekstikaeve</span></span></h1>
 </div>
 
 
@@ -402,6 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -409,13 +426,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Andmed ei ole alati hoiustatud analüüsimiseks mugavates tabelites. Sageli on tulenevalt teabe olemusest palju loomulikum esitada andmed mõnel muul kujul. Üks näide sellest on teksti sisaldavad dokumendid. <strong>Dokumentideks</strong> võime selles tähenduses pidada ükskõik mis pikkusega tekste, alates sotsiaalmeedia sõnumitest ja lõpetades ilukirjanduslike teostega. Kuigi harjumuspärane ja loomulik on analüüsida dokumente neid lihtsalt lugedes, ei anna see nendest sageli piisavalt ülevaatlikku arusaamist. Nii on see eriti suurel arvul mahukate dokumentide korral. Tekstina esitatud teabe saab teisendada aga arvudeks, mis võimaldab läheneda teksti sisule kvantitatiivselt. Selleks on välja mõeldud mitmesuguseid protseduure ja neile vastavaid tööriistu, mille kasutamist nimetatakse andmeteadustes tekstikaeveks.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-Mõiste
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -455,7 +472,7 @@ Mõiste
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'pdftools'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Using poppler version 22.11.0</code></pre>
+<pre><code>Using poppler version 23.08.0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dokumendid <span class="ot">&lt;-</span> <span class="fu">sapply</span>(failid, pdf_text) <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(paste, <span class="at">collapse =</span> <span class="st">' '</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -463,12 +480,12 @@ Mõiste
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">'quanteda'</span>)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Package version: 3.2.3
+<pre><code>Package version: 3.3.1
 Unicode version: 15.0
-ICU version: 72.1</code></pre>
+ICU version: 73.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Parallel computing: 8 of 8 threads used.</code></pre>
+<pre><code>Parallel computing: 16 of 16 threads used.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>See https://quanteda.io for tutorials and examples.</code></pre>
@@ -552,7 +569,7 @@ irl 2007 :
  [4] "mõistus"            "terve"              "eesti"             
  [7] "isamaa"             "ja"                 "res"               
 [10] "publica"            "liidu"              "valitsemisprogramm"
-[ ... and 6,584 more ]
+[ ... and 6,585 more ]
 
 irl 2011 :
  [1] "esileht"            "irl-i"              "programm"          
@@ -571,7 +588,7 @@ kesk 2011 :
  [1] "vastu"           "võetud"          "eesti"           "keskerakonna"   
  [5] "volikogu"        "istungil"        "jaanuar"         "eesti"          
  [9] "inimkeskseks"    "eesti"           "keskerakonna"    "valimisplatvorm"
-[ ... and 4,804 more ]
+[ ... and 4,816 more ]
 
 rahvaliit 2007 :
  [1] "erl"             "valimisplatvorm" "aasta"           "riigikogu"      
@@ -599,7 +616,7 @@ irl 2007 :
  [4] "mõistus"            "terve"              "eesti"             
  [7] "isamaa"             "ja"                 "res"               
 [10] "publica"            "liidu"              "valitsemisprogramm"
-[ ... and 6,580 more ]
+[ ... and 6,581 more ]
 
 irl 2011 :
  [1] "esileht"            "irl-i"              "programm"          
@@ -618,7 +635,7 @@ kesk 2011 :
  [1] "vastu"           "võetud"          "eesti"           "keskerakonna"   
  [5] "volikogu"        "istungil"        "jaanuar"         "eesti"          
  [9] "inimkeskseks"    "eesti"           "keskerakonna"    "valimisplatvorm"
-[ ... and 4,787 more ]
+[ ... and 4,799 more ]
 
 rahvaliit 2007 :
  [1] "erl"             "valimisplatvorm" "aasta"           "riigikogu"      
@@ -646,8 +663,8 @@ irl 2007 :
  [1] "terve"              "pere"               "terve"             
  [4] "mõistus"            "terve"              "eesti"             
  [7] "isamaa"             "res"                "publica"           
-[10] "liidu"              "valitsemisprogramm" "eesti"             
-[ ... and 4,936 more ]
+[10] "liidu"              "valitsemisprogramm" "2007–2011"         
+[ ... and 4,937 more ]
 
 irl 2011 :
  [1] "esileht"            "irl-i"              "programm"          
@@ -666,7 +683,7 @@ kesk 2011 :
  [1] "võetud"          "eesti"           "keskerakonna"    "volikogu"       
  [5] "istungil"        "jaanuar"         "eesti"           "inimkeskseks"   
  [9] "eesti"           "keskerakonna"    "valimisplatvorm" "riigikogu"      
-[ ... and 3,656 more ]
+[ ... and 3,668 more ]
 
 rahvaliit 2007 :
  [1] "erl"             "valimisplatvorm" "aasta"           "riigikogu"      
@@ -690,20 +707,20 @@ rahvaliit 2011 :
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sõnaühendid</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              collocation count count_nested length   lambda         z
-1           euroopa liidu   122            0      2 8.171880 27.294803
-2  kohalike omavalitsuste    44            0      2 7.699716 26.527861
-3   kohaliku omavalitsuse    44            0      2 8.257028 24.637050
-4         aasta riigikogu    25            0      2 6.770979 22.076934
-5        seame eesmärgiks    25            0      2 7.152438 21.286044
-6             eesti keele    84            0      2 5.579262 20.066599
-7          keele kultuuri    21            0      2 5.513494 19.951902
-8    riigikogu valimistel    20            0      2 7.892776 19.758598
-9       puuetega inimeste    22            0      2 5.970079 19.396205
-10        avaliku sektori    22            0      2 7.642845 19.224620
-11            eesti rahva    23            0      2 2.801869 11.562169
-12            eesti riigi    26            0      2 1.410214  6.879928
-13         euroopa liidus    25            0      2 9.358612  6.546668
-14          toetame eesti    20            0      2 1.009869  4.402414</code></pre>
+1           euroopa liidu   122            0      2 8.172183 27.295814
+2  kohalike omavalitsuste    44            0      2 7.700018 26.528901
+3   kohaliku omavalitsuse    44            0      2 8.257329 24.637951
+4         aasta riigikogu    25            0      2 6.771280 22.077919
+5        seame eesmärgiks    25            0      2 7.152740 21.286942
+6             eesti keele    84            0      2 5.580524 20.071027
+7          keele kultuuri    21            0      2 5.513795 19.952996
+8    riigikogu valimistel    20            0      2 7.893078 19.759353
+9       puuetega inimeste    22            0      2 5.970381 19.397187
+10        avaliku sektori    22            0      2 7.643146 19.225379
+11            eesti rahva    23            0      2 2.803082 11.567095
+12            eesti riigi    26            0      2 1.411430  6.885797
+13         euroopa liidus    25            0      2 9.358914  6.546880
+14          toetame eesti    20            0      2 1.011082  4.407667</code></pre>
 </div>
 </div>
 <p>Funktsioon <code>tokens_compound()</code> asendab korpuses eraldi sõnandena esinevad sõnad neile vastavate sõnaühenditega.</p>
@@ -719,24 +736,24 @@ rahvaliit 2011 :
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dokMat <span class="ot">&lt;-</span> <span class="fu">dfm</span>(sõned)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>dokMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Document-feature matrix of: 12 documents, 18,498 features (84.91% sparse) and 2 docvars.
+<pre><code>Document-feature matrix of: 12 documents, 18,510 features (84.92% sparse) and 2 docvars.
                 features
 docs             terve pere mõistus eesti isamaa res publica liidu
   irl 2007          16    7       3   110      2   2       2     3
   irl 2011           1    2       0    74      7   7       7     4
   kesk 2007          1    3       0    48      0   0       0     0
-  kesk 2011          1    2       0    80      1   1       1     3
+  kesk 2011          1    2       0    79      1   1       1     3
   rahvaliit 2007     0    0       0    36      0   0       0     0
   rahvaliit 2011     0    2       0    29      0   0       0     0
                 features
-docs             valitsemisprogramm valitsusele
-  irl 2007                        1           1
-  irl 2011                        1           0
-  kesk 2007                       0           0
-  kesk 2011                       0           0
-  rahvaliit 2007                  0           0
-  rahvaliit 2011                  0           0
-[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,488 more features ]</code></pre>
+docs             valitsemisprogramm 2007–2011
+  irl 2007                        1         1
+  irl 2011                        1         0
+  kesk 2007                       0         0
+  kesk 2011                       0         0
+  rahvaliit 2007                  0         0
+  rahvaliit 2011                  0         0
+[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,500 more features ]</code></pre>
 </div>
 </div>
 <p><strong>Terminite maatriksis</strong> (<em>feature co-occurrence matrix</em>) on ridades ja ka veergudes terminid. Lahtrites on nende terminite koos esinemised. Dokumentide uurimisel saame otsida sõnade koos esinemisi kas</p>
@@ -750,32 +767,32 @@ docs             valitsemisprogramm valitsusele
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'window'</span>, <span class="at">window =</span> <span class="dv">5</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>termMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Feature co-occurrence matrix of: 18,498 by 18,498 features.
+<pre><code>Feature co-occurrence matrix of: 18,510 by 18,510 features.
                     features
 features             terve pere mõistus eesti isamaa res publica liidu
   terve                  8    7       5    25      2   2       1     1
   pere                   0    0       1     6      1   0       0     0
   mõistus                0    0       0     1      1   1       1     0
-  eesti                  0    0       0   224      5   4       4     5
+  eesti                  0    0       0   222      4   4       4     5
   isamaa                 0    0       0     0      0  10      10     7
   res                    0    0       0     0      0   0      10     7
   publica                0    0       0     0      0   0       0     7
   liidu                  0    0       0     0      0   0       0     4
   valitsemisprogramm     0    0       0     0      0   0       0     0
-  valitsusele            0    0       0     0      0   0       0     0
+  2007–2011              0    0       0     0      0   0       0     0
                     features
-features             valitsemisprogramm valitsusele
-  terve                               0           0
-  pere                                0           0
-  mõistus                             0           0
-  eesti                               2           1
-  isamaa                              2           0
-  res                                 2           1
-  publica                             2           1
-  liidu                               2           1
-  valitsemisprogramm                  0           1
-  valitsusele                         0           0
-[ reached max_feat ... 18,488 more features, reached max_nfeat ... 18,488 more features ]</code></pre>
+features             valitsemisprogramm 2007–2011
+  terve                               0         0
+  pere                                0         0
+  mõistus                             0         0
+  eesti                               2         1
+  isamaa                              2         1
+  res                                 2         1
+  publica                             2         1
+  liidu                               2         1
+  valitsemisprogramm                  0         1
+  2007–2011                           0         0
+[ reached max_feat ... 18,500 more features, reached max_nfeat ... 18,500 more features ]</code></pre>
 </div>
 </div>
 <p>Argumendi <code>context = 'document'</code> korral näitavad saadud sagedused, kui mitmes dokumendis esineb vastav sõnade paar korraga.</p>
@@ -783,32 +800,32 @@ features             valitsemisprogramm valitsusele
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>termMat <span class="ot">&lt;-</span> <span class="fu">fcm</span>(sõned, <span class="at">context =</span> <span class="st">'document'</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>termMat</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Feature co-occurrence matrix of: 18,498 by 18,498 features.
+<pre><code>Feature co-occurrence matrix of: 18,510 by 18,510 features.
                     features
 features             terve pere mõistus eesti isamaa res publica liidu
-  terve                129  137      48  3183     40  40      40    55
-  pere                   0   36      21  2896     30  30      30    41
+  terve                129  137      48  3182     40  40      40    55
+  pere                   0   36      21  2894     30  30      30    41
   mõistus                0    0       3   330      6   6       6     9
-  eesti                  0    0       0 61126    818 818     818  1147
+  eesti                  0    0       0 61047    817 817     817  1144
   isamaa                 0    0       0     0     22  54      54    37
   res                    0    0       0     0      0  22      54    37
   publica                0    0       0     0      0   0      22    37
   liidu                  0    0       0     0      0   0       0    13
   valitsemisprogramm     0    0       0     0      0   0       0     0
-  valitsusele            0    0       0     0      0   0       0     0
+  2007–2011              0    0       0     0      0   0       0     0
                     features
-features             valitsemisprogramm valitsusele
-  terve                              17          19
-  pere                                9           9
-  mõistus                             3           3
-  eesti                             184         219
-  isamaa                              9           2
-  res                                 9           2
-  publica                             9           2
-  liidu                               7           3
-  valitsemisprogramm                  0           1
-  valitsusele                         0           0
-[ reached max_feat ... 18,488 more features, reached max_nfeat ... 18,488 more features ]</code></pre>
+features             valitsemisprogramm 2007–2011
+  terve                              17        22
+  pere                                9        11
+  mõistus                             3         3
+  eesti                             184       328
+  isamaa                              9         2
+  res                                 9         2
+  publica                             9         2
+  liidu                               7         3
+  valitsemisprogramm                  0         1
+  2007–2011                           0         1
+[ reached max_feat ... 18,500 more features, reached max_nfeat ... 18,500 more features ]</code></pre>
 </div>
 </div>
 </section>
@@ -819,20 +836,20 @@ features             valitsemisprogramm valitsusele
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntoken</span>(korpus) <span class="co"># Sõnade arv kokku</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
-          8085           6012           5746           6519           1982 
+          8080           6012           5746           6488           1982 
 rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011 
-          3478           8789          15171           3038           5993 
+          3477           8784          15171           3038           5993 
       sde 2007       sde 2011 
-         13316           9915 </code></pre>
+         13312           9908 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ntype</span>(korpus) <span class="co"># Kordumatute sõnade arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
-          3718           2916           2661           2824           1151 
+          3721           2916           2661           2827           1151 
 rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011 
-          1878           3754           6036           1670           2899 
+          1880           3758           6038           1671           2900 
       sde 2007       sde 2011 
-          4540           4426 </code></pre>
+          4544           4426 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nsentence</span>(korpus) <span class="co"># Lausete arv</span></span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -850,7 +867,7 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>sage</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          feature frequency rank docfreq group
-1           eesti      1001    1      12   all
+1           eesti      1000    1      12   all
 2         toetame       340    2      12   all
 3           riigi       296    3      12   all
 4          tagame       170    4      11   all
@@ -871,7 +888,7 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
 1           eesti       184    1       2       irl
 2         toetame        83    2       2       irl
 3           riigi        49    3       2       irl
-4           eesti       128    1       2      kesk
+4           eesti       127    1       2      kesk
 5         toetame        48    2       2      kesk
 6           riigi        47    3       2      kesk
 7       rahvaliit       104    1       2 rahvaliit
@@ -935,7 +952,7 @@ rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tfidf <span class="ot">&lt;-</span> <span class="fu">dfm_tfidf</span>(dokMat)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>tfidf</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Document-feature matrix of: 12 documents, 18,498 features (84.91% sparse) and 2 docvars.
+<pre><code>Document-feature matrix of: 12 documents, 18,510 features (84.92% sparse) and 2 docvars.
                 features
 docs                 terve      pere  mõistus eesti  isamaa     res publica
   irl 2007       3.7453313 0.5542687 3.237544     0 1.20412 1.20412 1.20412
@@ -945,14 +962,14 @@ docs                 terve      pere  mõistus eesti  isamaa     res publica
   rahvaliit 2007 0         0         0            0 0       0       0      
   rahvaliit 2011 0         0.1583625 0            0 0       0       0      
                 features
-docs                liidu valitsemisprogramm valitsusele
-  irl 2007       1.140634          0.7781513   0.7781513
-  irl 2011       1.520845          0.7781513   0        
-  kesk 2007      0                 0           0        
-  kesk 2011      1.140634          0           0        
-  rahvaliit 2007 0                 0           0        
-  rahvaliit 2011 0                 0           0        
-[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,488 more features ]</code></pre>
+docs                liidu valitsemisprogramm 2007–2011
+  irl 2007       1.140634          0.7781513 0.7781513
+  irl 2011       1.520845          0.7781513 0        
+  kesk 2007      0                 0         0        
+  kesk 2011      1.140634          0         0        
+  rahvaliit 2007 0                 0         0        
+  rahvaliit 2011 0                 0         0        
+[ reached max_ndoc ... 6 more documents, reached max_nfeat ... 18,500 more features ]</code></pre>
 </div>
 </div>
 </section>
@@ -1010,16 +1027,16 @@ docs                liidu valitsemisprogramm valitsusele
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>mitmekesisus</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         document       TTR
-1        irl 2007 0.6450031
-2        irl 2011 0.6629275
-3       kesk 2007 0.6640580
-4       kesk 2011 0.6580842
-5  rahvaliit 2007 0.7208084
-6  rahvaliit 2011 0.7207965
-7     reform 2007 0.6007605
-8     reform 2011 0.5466023
-9       rohe 2007 0.7639979
-10      rohe 2011 0.7115600
+1        irl 2007 0.6447853
+2        irl 2011 0.6627430
+3       kesk 2007 0.6637656
+4       kesk 2011 0.6575607
+5  rahvaliit 2007 0.7205993
+6  rahvaliit 2011 0.7211155
+7     reform 2007 0.6008327
+8     reform 2011 0.5465092
+9       rohe 2007 0.7638743
+10      rohe 2011 0.7116410
 11       sde 2007 0.6466465
 12       sde 2011 0.6174171</code></pre>
 </div>
@@ -1029,11 +1046,11 @@ docs                liidu valitsemisprogramm valitsusele
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(mitmekesisus<span class="sc">$</span>TTR, <span class="fu">list</span>(korpus<span class="sc">$</span>erakond), mean)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Group.1         x
-1       irl 0.6539653
-2      kesk 0.6610711
-3 rahvaliit 0.7208024
-4    reform 0.5736814
-5      rohe 0.7377790
+1       irl 0.6537641
+2      kesk 0.6606631
+3 rahvaliit 0.7208574
+4    reform 0.5736710
+5      rohe 0.7377576
 6       sde 0.6320318</code></pre>
 </div>
 </div>
@@ -1047,37 +1064,37 @@ docs                liidu valitsemisprogramm valitsusele
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>teemad <span class="ot">&lt;-</span> <span class="fu">textmodel_lda</span>(tfidf, <span class="at">k =</span> <span class="dv">6</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">terms</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      topic1                 topic2        topic3                      
- [1,] "rahvaliit"            "aeg"         "sde"                       
- [2,] "sotsiaaldemokraatide" "irl"         "sotsidest"                 
- [3,] "rahvaliidu"           "irli"        "visioon"                   
- [4,] "sotsiaaldemokraadid"  "eli"         "ca"                        
- [5,] "vajame"               "koduomanike" "aasta_riigikogu_valimistel"
- [6,] "kultuuriruumi"        "isamaa"      "tänane"                    
- [7,] "loodusvaradest"       "res"         "maavolikogu"               
- [8,] "taotleme"             "publica"     "keskerakond"               
- [9,] "kr"                   "rohelised"   "olukord"                   
-[10,] "piirkondade"          "elurikkuse"  "üksuste"                   
-      topic4              topic5        topic6              
- [1,] "reformierakond"    "saavutasime" "reformierakond"    
- [2,] "reformierakonna"   "2003-2007"   "reformierakonna"   
- [3,] "eelarvevõimaluste" "suurendarne" "programmiettepanek"
- [4,] "tekkel"            "õnne"        "üldkoosolekule"    
- [5,] "soovib"            "kroonini"    "toetab"            
- [6,] "muuhulgas"         "tegevuskava" "viib"              
- [7,] "struktuurseid"     "2007-2011"   "soovime"           
- [8,] "lähtuvad"          "tõstsime"    "eli"               
- [9,] "jätkame"           "nt"          "jätkab"            
-[10,] "põhimõtetest"      "festival"    "kavandab"          </code></pre>
+<pre><code>      topic1               topic2            topic3                      
+ [1,] "rahvaliit"          "reformierakond"  "sde"                       
+ [2,] "programmiettepanek" "aeg"             "sotsidest"                 
+ [3,] "üldkoosolekule"     "reformierakonna" "visioon"                   
+ [4,] "saavutasime"        "eli"             "sotsiaaldemokraadid"       
+ [5,] "2003-2007"          "jätkab"          "aasta_riigikogu_valimistel"
+ [6,] "suurendarne"        "viib"            "sotsiaaldemokraatide"      
+ [7,] "rahvaliidu"         "kavandab"        "tänane"                    
+ [8,] "soovime"            "muudab"          "maavolikogu"               
+ [9,] "kroonini"           "toetab"          "ca"                        
+[10,] "tõstsime"           "arendab"         "olukord"                   
+      topic4               topic5              topic6        
+ [1,] "terve"              "reformierakond"    "irl"         
+ [2,] "soovib"             "reformierakonna"   "irli"        
+ [3,] "jätkame"            "eelarvevõimaluste" "2011–2015"   
+ [4,] "ca"                 "tekkel"            "keskerakond" 
+ [5,] "tegevuskava"        "muuhulgas"         "õnne"        
+ [6,] "seisame"            "struktuurseid"     "eli"         
+ [7,] "töötajate"          "lähtuvad"          "üksuste"     
+ [8,] "omavalitsusüksuste" "põhimõtetest"      "koduomanike" 
+ [9,] "rakendab"           "omandi"            "keskerakonna"
+[10,] "taastame"           "odavaima"          "isamaa"      </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">topics</span>(teemad)</span></code><button title="Kopeeri lõikelauale" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      irl 2007       irl 2011      kesk 2007      kesk 2011 rahvaliit 2007 
-        topic5         topic2         topic5         topic3         topic1 
+        topic4         topic4         topic4         topic4         topic4 
 rahvaliit 2011    reform 2007    reform 2011      rohe 2007      rohe 2011 
-        topic1         topic6         topic4         topic6         topic2 
+        topic4         topic4         topic5         topic1         topic4 
       sde 2007       sde 2011 
-        topic1         topic3 
+        topic4         topic4 
 Levels: topic1 topic2 topic3 topic4 topic5 topic6</code></pre>
 </div>
 </div>
@@ -1114,9 +1131,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1128,7 +1159,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Kopeeritud!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopeeritud!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1164,24 +1212,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

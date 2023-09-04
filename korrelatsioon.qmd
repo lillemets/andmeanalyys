@@ -41,7 +41,7 @@ riigid <- read.csv('andmed/countries.csv')
 # Kuvame andmetabeli ülevaate
 str(riigid)
 # Jätame ainult valitud tunnused
-riigid <- riigid[, 3:17]
+riigid <- riigid[, 3:10]
 # Arvutame korrelatsioonid
 korrelatsioonid <- cor(riigid, use = 'pairwise.complete.obs')
 ```

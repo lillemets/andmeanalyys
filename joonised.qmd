@@ -80,16 +80,16 @@ names(riigid) %<>% strsplit('\\.') %>% sapply(`[`, 1) # Jätame veerunimetustes 
 R keeles saab tekitada lihtsaid jooniseid nagu punkt- ja ringjoonis nt sageduste kujutamiseks.
 
 ```{r}
-table(riigid$Region) %>% barplot
-table(riigid$Region) %>% pie
+table(riigid$region) %>% barplot
+table(riigid$region) %>% pie
 ```
 
 Samuti tuleb R keelega kaasa mitu funktsiooni väärtuste hajumise kujutamiseks, sh histogramm ning hajumis- ja karpjoonis. Need funktsioonid ei nõua eriti palju tähemärke, mistõttu on neid mugav kasutada andmete uurimiseks. 
 
 ```{r}
-hist(riigid$Arable)
-plot(GDP ~ Phones, riigid)
-boxplot(GDP ~ Region, riigid)
+hist(riigid$arable)
+plot(gdp ~ phones, riigid)
+boxplot(gdp ~ region, riigid)
 ```
 
 Eelnevad R keelega kaasas olevad funktsioonid on mõnevõrra piiratud ja igasuguste osiste muutmine joonistel on enamasti keerukas ja kohmakas. Seetõttu on kujunenud tavapäraseks, et joonised tekitatakse R keeles hoopis laienduses `ggplot2` olevate funktsioonidega. Need pakuvad andmete joonistamiseks peaaegu piiramatult võimalusi. 
@@ -102,9 +102,9 @@ Nt on `ggplot2` kasutades lihtne kujutada korraga joonisel mitut tunnust.
 #| fig-height: 5
 library('ggplot2')
 ggplot(riigid) + 
-  aes(x = GDP, y = Phones, size = Population, color = Literacy) + 
+  aes(x = gdp, y = phones, size = population, color = literacy) + 
   geom_point() + 
-  facet_wrap(~Region) + 
+  facet_wrap(~region) + 
   theme_light()
 ```
 
@@ -116,11 +116,11 @@ Andmeid saab kujutada väga erinevat liiki joonistel, kuvada jooniseid üksteise
 #| fig-height: 5
 library('ggplot2')
 ggplot(riigid) + 
-  aes(x = Region, y = Agriculture*100, color = Arable) + 
+  aes(x = region, y = agriculture*100, color = arable) + 
   coord_flip() + 
   ylim(c(0,100)) +
   geom_boxplot() + 
-  geom_jitter(aes(size = Population/1e6)) + 
+  geom_jitter(aes(size = population/1e6)) + 
   labs(title = "Põllumajandus", 
        subtitle = "Hõive põllumajanduses erineb piirkonniti ja riigiti märkimisväärselt", 
        x = "Piirkond", y = "Hõive põllumajanduses, %", 
